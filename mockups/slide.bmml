@@ -1,0 +1,14 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="1568" measuredH="828" mockupW="1354" mockupH="781">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::Image" x="214" y="162" w="-1" h="-1" measuredW="1354" measuredH="666" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <src>./assets/slide_left.PNG</src>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::StickyNote" x="371" y="47" w="115" h="107" measuredW="109" measuredH="123" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Que%20el%20fondo%20se%20mueva%20junto%20con%20el%20slide</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

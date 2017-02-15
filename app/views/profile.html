@@ -1,0 +1,56 @@
+<div class="container">
+
+  <div class="block-header">
+    <h2> {{vm.maestroNombre}}
+      <small>@Instituto Tecnologico de Hermosillo</small>
+    </h2>
+  </div>
+
+  <div class="card" id="profile-main">
+    <div class="pm-overview ">
+      <div class="pmo-pic">
+        <div class="p-relative">
+          <a href="">
+            <img class="img-responsive" src="img/profile-pics/perfilMaestro.png" alt="">
+          </a>
+
+          <!--Botón de Seleccionar como favorito al maestro-->
+          <div class="maestro-like" ng-click="vm.puntuarMaestroFavorito()">
+            <input type="checkbox" id="like" ng-model="vm.checkLike">
+            <label for="like" class="check-like">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path
+                  d="M12 21.35l-1.45-1.32c-5.15-4.67-8.55-7.75-8.55-11.53 0-3.08 2.42-5.5 5.5-5.5 1.74 0 3.41.81 4.5 2.09 1.09-1.28 2.76-2.09 4.5-2.09 3.08 0 5.5 2.42 5.5 5.5 0 3.78-3.4 6.86-8.55 11.54l-1.45 1.31z"/>
+              </svg>
+            </label>
+          </div>
+
+          <!--<div class="dropdown pmop-message" uib-dropdown>-->
+          <!--<button uib-dropdown-toggle class="btn bgm-white btn-float">-->
+          <!--<i class="zmdi zmdi-comment-text-alt"></i>-->
+          <!--</button>-->
+
+          <!--<div class="dropdown-menu stop-propagate">-->
+          <!--<textarea placeholder="Write something..."></textarea>-->
+
+          <!--<button class="btn bgm-green btn-float"><i class="zmdi zmdi-mail-send"></i></button>-->
+          <!--</div>-->
+          <!--</div>-->
+        </div>
+
+
+        <div class="pmo-stat">
+          <h2 class="m-0 c-white"></h2>
+          <h3 class="m-0 c-white">{{vm.promedioCalificacion}}</h3>
+          <p style="padding-bottom:5px"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pm-body clearfix">
+      <ul class="tab-nav tn-justified" data-ng-include="'template/profile-menu.html'"></ul>
+
+      <data ui-view></data>
+    </div>
+  </div>
+</div>
