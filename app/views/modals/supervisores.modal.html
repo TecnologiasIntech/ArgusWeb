@@ -1,0 +1,31 @@
+<form action="">
+
+  <div class="modal-header">
+    <ul class="tab-nav" ng-class="{'tn-vertical': vertical, 'tn-justified': justified, 'tab-nav-right': right}"
+        ng-transclude="">
+      <!-- ngRepeat: tab in tabs -->
+      <li ng-class="{active: active, disabled: disabled}" heading="Home" active="tab.active"
+          disable="tab.disabled" class="ng-isolate-scope active">
+        <a href="" ng-click="select()" uib-tab-heading-transclude="" class="ng-binding">Home</a>
+      </li><!-- end ngRepeat: tab in tabs -->
+      <li ng-class="{active: active, disabled: disabled}" heading="Profile" active="tab.active"
+          disable="tab.disabled" class="ng-isolate-scope">
+        <a href="" ng-click="select()" uib-tab-heading-transclude="" class="ng-binding">Profile</a>
+      </li><!-- end ngRepeat: tab in tabs -->
+      <li ng-class="{active: active, disabled: disabled}" heading="Messages" active="tab.active"
+          disable="tab.disabled" class="ng-isolate-scope">
+        <a href="" ng-click="select()" uib-tab-heading-transclude="" class="ng-binding">Messages</a>
+    </ul>
+  </div>
+
+  <div class="modal-body">
+
+  </div>
+
+  <div class="modal-footer">
+    <div align="right">
+      <button class="btn btn-primary waves-effect">Aceptar</button>
+      <button class="btn btn-primary waves-effect" ng-click="vm.modal.dismiss()">Cancelar</button>
+    </div>
+  </div>
+</form>

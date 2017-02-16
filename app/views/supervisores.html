@@ -9,49 +9,66 @@
   <section id="content">
     <div class="card m-l-20 m-r-20">
       <div class="row">
-        <div class="col-xs-offset-1 col-xs-9" align="right">
+        <div class="col-xs-offset-1 col-xs-9 m-t-20" align="right">
           <div class="zmdi zmdi-search display-inline"></div>
           <label>
             <input type="text" class="form-control supervisor-search  display-inline " placeholder="Buscar...">
           </label>
-          <button class="btn waves-effect display-inline">Agregar</button>
+          <button class="btn btn-primary waves-effect display-inline" ng-click="vm.openModal()">Agregar</button>
         </div>
         <div class="col-xs-1"></div>
       </div>
 
-      <div class="row">
+      <!--No se encontraron TODO: cambiar bandera para checar si hay supervisores-->
+      <div class="row" ng-if="false" align="center">
+        <div class="zmdi zmdi-quote m-t-20 not-found-quote">
+        </div>
+        <div class="not-found">No se encontraron</div>
+        <div class="m-b-30 not-found">supervisores</div>
+      </div>
+
+      <!--Lista de supervisores-->
+      <div class="row" ng-if="true">
         <div class="col-xs-offset-1 col-xs-9">
-          <div class="card">
-            <div class="supervisor-nombre display-inline" align="left">
-              Juan Villa Lobos Manuel
-            </div>
+          <table class="table table-striped table-hover-gray m-t-20 m-b-30">
+            <tbody>
+            <tr>
+              <td class="p-t-15">
+                Juan Villa Lobos Manuel
+              </td>
+              <td align="right">
+                <div class="lv-actions actions dropdown" uib-dropdown="">
+                  <a class="cursor-pointer dropdown-toggle" uib-dropdown-toggle=""
+                     aria-haspopup="true" aria-expanded="false">
+                    <i class="zmdi zmdi-more-vert zmdi-hc-2x actions-size"></i>
+                  </a>
+                  <ul class="dropdown-menu pull-right actions-supervisor">
+                    <li class="action-edit cursor-pointer">Editar</li>
+                    <li class="action-delete cursor-pointer">Eliminar</li>
+                  </ul>
+                </div>
+              </td>
+            </tr>
 
-            <div align="right " class="display-inline lv-actions actions dropdown m-l-0 actions-supervisor">
-              <a class="cursor-pointer" ng-click="vm.isMoreActions = !vm.isMoreActions">
-                <i class="zmdi zmdi-more-vert zmdi-hc-2x actions-size"></i>
-              </a>
-              <div class="card-options" align="left">
-                <ul class="list-actions" ng-if="vm.isMoreActions">
-                  <li>Editar</li>
-                  <li>Eliminar</li>
-                </ul>
-              </div>
-            </div>
-
-            <!--<div class="lv-actions actions dropdown">-->
-              <!--<a class="cursor-pointer" ng-click="vm.isMoreActions = !vm.isMoreActions">-->
-                <!--<i class="zmdi zmdi-more-vert zmdi-hc-2x actions-size"></i>-->
-              <!--</a>-->
-              <!--<ul class=" " ng-if="vm.isMoreActions">-->
-                <!--<li>-->
-                  <!--<a href="" ng-click="" >Editar</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                  <!--<a href="" ng-click="">Eliminar</a>-->
-                <!--</li>-->
-              <!--</ul>-->
-            <!--</div>-->
-          </div>
+            <tr>
+              <td class="p-t-15">
+                Pedro Gonzalez Valenzuela
+              </td>
+              <td align="right">
+                <div class=" lv-actions actions dropdown" uib-dropdown="">
+                  <a class=" dropdown-toggle cursor-pointer " uib-dropdown-toggle=""
+                     aria-haspopup="true" aria-expanded="false">
+                    <i class="zmdi zmdi-more-vert zmdi-hc-2x actions-size cursor-pointer"></i>
+                  </a>
+                  <ul class="dropdown-menu pull-right actions-supervisor">
+                    <li class="action-edit cursor-pointer">Editar</li>
+                    <li class="action-delete cursor-pointer">Eliminar</li>
+                  </ul>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

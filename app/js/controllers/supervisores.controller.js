@@ -2,14 +2,15 @@
  * Created by Toshiba on 14/02/2017.
  */
 argus
-  .controller('supervisorCtrl', ['$firebaseArray', '$location', '$scope', '$rootScope', 'alertService',
-    function ($firebaseArray, $location, $scope, $rootScope, alertService, $sessionStorage, $localStorage) {
+  .controller('supervisorCtrl', ['$firebaseArray', '$location', '$scope', '$rootScope', 'alertService', '$uibModal',
+    function ($firebaseArray, $location, $scope, $rootScope, alertService, $uibModal) {
 
       //public var
       var vm = this;
       vm.isMoreActions = false;
 
       //public functions
+      vm.openModal = openModal;
 
 
       //private functions
@@ -20,6 +21,16 @@ argus
         //     $rootScope.$apply();
         //   }
         // });
+      }
+
+      function openModal() {
+        vm.modal = $uibModal.open({
+          animation: true,
+          templateUrl: 'views/modals/supervisores.modal.html',
+          scope: $scope,
+          size: 'lg',
+          backdrop: 'static'
+        })
       }
 
       activate();

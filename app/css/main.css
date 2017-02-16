@@ -5,12 +5,24 @@
   margin-left: 10px !important;
   margin-right: 15px;
 }
-.list-actions{
-  list-style: none;
-}
-.card-options{
-  position: absolute;
-}
 .actions-supervisor{
-  width: auto;
+  padding-left: 20px;
+}
+.cursor-pointer{
+  cursor: pointer;
+}
+.action-edit{
+  padding-top:10px;
+}
+.action-delete{
+  padding-top:15px;
+  padding-bottom: 10px;
+}
+.not-found{
+  font-size: 30px;
+  color: #bdc3c7;
+}
+.not-found-quote{
+  font-size: 100px;
+  color: #bdc3c7;
 }
