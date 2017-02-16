@@ -1,0 +1,16 @@
+/*Supervisores*/
+
+.supervisor-search{
+  width: 200px;
+  margin-left: 10px !important;
+  margin-right: 15px;
+}
+.list-actions{
+  list-style: none;
+}
+.card-options{
+  position: absolute;
+}
+.actions-supervisor{
+  width: auto;
+}

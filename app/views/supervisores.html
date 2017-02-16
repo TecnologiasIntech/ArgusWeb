@@ -7,7 +7,54 @@
          data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }"></aside>
 
   <section id="content">
+    <div class="card m-l-20 m-r-20">
+      <div class="row">
+        <div class="col-xs-offset-1 col-xs-9" align="right">
+          <div class="zmdi zmdi-search display-inline"></div>
+          <label>
+            <input type="text" class="form-control supervisor-search  display-inline " placeholder="Buscar...">
+          </label>
+          <button class="btn waves-effect display-inline">Agregar</button>
+        </div>
+        <div class="col-xs-1"></div>
+      </div>
 
+      <div class="row">
+        <div class="col-xs-offset-1 col-xs-9">
+          <div class="card">
+            <div class="supervisor-nombre display-inline" align="left">
+              Juan Villa Lobos Manuel
+            </div>
+
+            <div align="right " class="display-inline lv-actions actions dropdown m-l-0 actions-supervisor">
+              <a class="cursor-pointer" ng-click="vm.isMoreActions = !vm.isMoreActions">
+                <i class="zmdi zmdi-more-vert zmdi-hc-2x actions-size"></i>
+              </a>
+              <div class="card-options" align="left">
+                <ul class="list-actions" ng-if="vm.isMoreActions">
+                  <li>Editar</li>
+                  <li>Eliminar</li>
+                </ul>
+              </div>
+            </div>
+
+            <!--<div class="lv-actions actions dropdown">-->
+              <!--<a class="cursor-pointer" ng-click="vm.isMoreActions = !vm.isMoreActions">-->
+                <!--<i class="zmdi zmdi-more-vert zmdi-hc-2x actions-size"></i>-->
+              <!--</a>-->
+              <!--<ul class=" " ng-if="vm.isMoreActions">-->
+                <!--<li>-->
+                  <!--<a href="" ng-click="" >Editar</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                  <!--<a href="" ng-click="">Eliminar</a>-->
+                <!--</li>-->
+              <!--</ul>-->
+            <!--</div>-->
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 </section>
 

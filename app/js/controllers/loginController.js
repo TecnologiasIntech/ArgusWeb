@@ -3,11 +3,8 @@
  */
 
 argus
-  .controller('loginCtrl', ['$firebaseArray', '$location', '$scope', '$rootScope', 'alertService',
-    function ($firebaseArray, $location, $scope, $rootScope, alertService, $sessionStorage, $localStorage) {
-
-      //firebase reference TODO: Cambiar la ruta de firebase
-      var refGeeb = new Firebase('https://geeb-e2f11.firebaseio.com/');
+  .controller('loginCtrl', ['$firebaseArray', '$location', '$scope', '$rootScope', 'alertService', 'settings',
+    function ($firebaseArray, $location, $scope, $rootScope, alertService, settings) {
 
       //public var
       var vm = this;

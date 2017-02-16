@@ -53,11 +53,11 @@ argus
       })
 
     var config = {
-      apiKey: "AIzaSyC7ONGr_pbrC8ka-8v5a2-SNRkYP5ATU1k",
-      authDomain: "geeb-e2f11.firebaseapp.com",
-      databaseURL: "https://geeb-e2f11.firebaseio.com",
-      storageBucket: "geeb-e2f11.appspot.com",
-      messagingSenderId: "945237774250"
+      apiKey: "AIzaSyC0yuNCG-G00bF80ecXmio8Fg5lgrCoDZI",
+      authDomain: "argusseguridad-41e35.firebaseapp.com",
+      databaseURL: "https://argusseguridad-41e35.firebaseio.com",
+      storageBucket: "argusseguridad-41e35.appspot.com",
+      messagingSenderId: "792155953924"
     };
     firebase.initializeApp(config);
   });
