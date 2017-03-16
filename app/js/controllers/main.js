@@ -25,7 +25,7 @@ argus
         //Close sidebar on click
         this.sidebarStat = function(event) {
             if (!angular.element(event.target).parent().hasClass('active')) {
-                this.sidebarToggle.left = false;
+                this.sidebarToggle.left = true;
             }
         }
 
