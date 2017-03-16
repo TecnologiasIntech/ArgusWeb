@@ -21,6 +21,30 @@ argus
         controller: 'supervisorCtrl as vm'
       })
 
+      .state('clientes', {
+        url: '/clientes',
+        templateUrl: 'views/clientes.html',
+        controller: 'clienteCtrl as vm'
+      })
+
+      .state('zonas', {
+        url: '/zonas',
+        templateUrl: 'views/zonas.html',
+        controller: 'zonaCtrl as vm'
+      })
+
+      .state('bitacoras', {
+        url: '/bitacoras',
+        templateUrl: 'views/bitacoras.html',
+        controller: 'bitacoraCtrl as vm'
+      })
+
+      .state('notificaciones',{
+        url: '/notificaciones',
+        templateUrl: 'views/notificaciones.html',
+        controller: 'notificacionCtrl as vm'
+      })
+
       .state('pages', {
         url: '/pages',
         templateUrl: 'views/common.html'
@@ -61,3 +85,8 @@ argus
     };
     firebase.initializeApp(config);
   });
+
+argus.config(['growlProvider', function (growlProvider) {
+  growlProvider.globalTimeToLive(5000);
+  growlProvider.globalPosition('top-right');
+}]);

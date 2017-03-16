@@ -9220,11 +9220,11 @@ button.close {
 
 /*!
  * Waves v0.7.4
- * http://fian.my.id/Waves 
- * 
- * Copyright 2014 Alfiana E. Sibuea and other contributors 
- * Released under the MIT license 
- * https://github.com/fians/Waves/blob/master/LICENSE 
+ * http://fian.my.id/Waves
+ *
+ * Copyright 2014 Alfiana E. Sibuea and other contributors
+ * Released under the MIT license
+ * https://github.com/fians/Waves/blob/master/LICENSE
  */
 
 .waves-effect {
@@ -9796,7 +9796,7 @@ a.waves-effect .waves-ripple {
   display: inline-block !important;
 }
 
-/* 
+/*
  * Material Background Colors
  */
 
@@ -9993,7 +9993,7 @@ a.waves-effect .waves-ripple {
 }
 
 /*
- * Border Radius 
+ * Border Radius
  */
 
 .brd-2 {
@@ -10129,7 +10129,7 @@ h6 small,
 #main {
   position: relative;
   padding-bottom: 110px;
-  padding-top: 100px;
+  padding-top: 90px;
 }
 
 .container.c-alt {
@@ -14550,7 +14550,7 @@ a.thumbnail.active {
 }
 
 /*
- * Lightbox  
+ * Lightbox
  */
 
 .lightbox .lightbox-item > img {

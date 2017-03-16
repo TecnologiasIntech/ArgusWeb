@@ -1,5 +1,4 @@
-<header id="header" data-current-skin={{mactrl.currentSkin}} data-ng-include="'template/header.html'"
-        data-ng-controller="headerCtrl as hctrl">
+<header id="header" data-current-skin={{mactrl.currentSkin}} data-ng-include="'template/header.html'">
 
 </header>
 <section id="main">
@@ -7,34 +6,87 @@
          data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }"></aside>
 
   <section id="content">
+    <div growl></div>
     <div class="card m-l-20 m-r-20">
       <div class="row">
         <div class="col-xs-offset-1 col-xs-9 m-t-20" align="right">
+
+          <!--TIPOS DE BUSQUEDA-->
+
+          <!--Guardia-->
+          <div class="radio radio-search">
+            <label>
+              <input class="form-control" type="radio" value="guardia" ng-model="vm.searchTypeUser">
+              <i class="input-helper"></i>
+              Guardia
+            </label>
+          </div>
+
+          <!--Supervisor-->
+          <div class="radio radio-search">
+            <label>
+              <input class="form-control" type="radio" value="supervisor" ng-model="vm.searchTypeUser">
+              <i class="input-helper"></i>
+              Supervisor
+            </label>
+          </div>
+
+          <!--Administrador-->
+          <div class="radio radio-search">
+            <label>
+              <input class="form-control" type="radio" value="administrador" ng-model="vm.searchTypeUser">
+              <i class="input-helper"></i>
+              Administrador
+            </label>
+          </div>
+
+          <!--INPUT DE BUSQUEDA-->
           <div class="zmdi zmdi-search display-inline"></div>
           <label>
-            <input type="text" class="form-control supervisor-search  display-inline " placeholder="Buscar...">
+            <input type="text" class="form-control supervisor-search  display-inline " placeholder="Buscar..."
+                   ng-model="vm.buscarUsuario">
           </label>
           <button class="btn btn-primary waves-effect display-inline" ng-click="vm.openModal()">Agregar</button>
         </div>
         <div class="col-xs-1"></div>
       </div>
 
-      <!--No se encontraron TODO: cambiar bandera para checar si hay supervisores-->
-      <div class="row" ng-if="false" align="center">
+      <!--No se encontró supervisores-->
+      <div class="row" ng-if="vm.searchTypeUser == 'supervisor' && !vm.supervisores" align="center">
         <div class="zmdi zmdi-quote m-t-20 not-found-quote">
         </div>
         <div class="not-found">No se encontraron</div>
         <div class="m-b-30 not-found">supervisores</div>
       </div>
 
-      <!--Lista de supervisores-->
-      <div class="row" ng-if="true">
-        <div class="col-xs-offset-1 col-xs-9">
-          <table class="table table-striped table-hover-gray m-t-20 m-b-30">
+      <!--No se encontró guardias-->
+      <div class="row" ng-if="vm.searchTypeUser == 'guardia' && !vm.guardias" align="center">
+        <div class="zmdi zmdi-quote m-t-20 not-found-quote">
+        </div>
+        <div class="not-found">No se encontraron</div>
+        <div class="m-b-30 not-found">guardias</div>
+      </div>
+
+      <!--No se encontró administradores-->
+      <div class="row" ng-if="vm.searchTypeUser == 'administrador' && !vm.administradores" align="center">
+        <div class="zmdi zmdi-quote m-t-20 not-found-quote">
+        </div>
+        <div class="not-found">No se encontraron</div>
+        <div class="m-b-30 not-found">administradores</div>
+      </div>
+
+
+      <!--Todos los usuarios-->
+      <div class="row" ng-if="vm.usuarios || !vm.isLoading">
+        <div class="col-xs-offset-1 col-xs-9 m-t-10 m-b-30 p-l-0 p-r-0 table-box">
+          <table class="table table-striped table-hover-gray">
             <tbody>
-            <tr>
+
+            <!--ADMINISTRADORES-->
+            <tr ng-repeat="administrador in vm.administradores | toArray | filter: {usuarioNombre: vm.buscarUsuario}"
+                ng-if="vm.searchTypeUser == 'administrador'">
               <td class="p-t-15">
-                Juan Villa Lobos Manuel
+                <span>{{administrador.usuarioNombre}}</span>
               </td>
               <td align="right">
                 <div class="lv-actions actions dropdown" uib-dropdown="">
@@ -43,26 +95,50 @@
                     <i class="zmdi zmdi-more-vert zmdi-hc-2x actions-size"></i>
                   </a>
                   <ul class="dropdown-menu pull-right actions-supervisor">
-                    <li class="action-edit cursor-pointer">Editar</li>
-                    <li class="action-delete cursor-pointer">Eliminar</li>
+                    <li class="action-edit cursor-pointer" ng-click="vm.editUser(administrador)">Editar</li>
+                    <li class="action-delete cursor-pointer" ng-click="vm.deleteUser(administrador, 'Usuarios')">Eliminar</li>
                   </ul>
                 </div>
               </td>
             </tr>
 
-            <tr>
+            <!--SUPERVISORES-->
+            <tr ng-repeat="supervisor in vm.supervisores | toArray | filter: {usuarioNombre: vm.buscarUsuario}"
+                ng-if="vm.searchTypeUser == 'supervisor'">
               <td class="p-t-15">
-                Pedro Gonzalez Valenzuela
+                <span>{{supervisor.usuarioNombre}}</span>
               </td>
               <td align="right">
-                <div class=" lv-actions actions dropdown" uib-dropdown="">
-                  <a class=" dropdown-toggle cursor-pointer " uib-dropdown-toggle=""
+                <div class="lv-actions actions dropdown" uib-dropdown="">
+                  <a class="cursor-pointer dropdown-toggle" uib-dropdown-toggle=""
                      aria-haspopup="true" aria-expanded="false">
-                    <i class="zmdi zmdi-more-vert zmdi-hc-2x actions-size cursor-pointer"></i>
+                    <i class="zmdi zmdi-more-vert zmdi-hc-2x actions-size"></i>
                   </a>
                   <ul class="dropdown-menu pull-right actions-supervisor">
-                    <li class="action-edit cursor-pointer">Editar</li>
-                    <li class="action-delete cursor-pointer">Eliminar</li>
+                    <li class="action-edit cursor-pointer" ng-click="vm.editUser(supervisor)">Editar</li>
+                    <li class="action-delete cursor-pointer" ng-click="vm.deleteUser(supervisor, 'supervisores')">
+                      Eliminar
+                    </li>
+                  </ul>
+                </div>
+              </td>
+            </tr>
+
+            <!--GUARDIAS-->
+            <tr ng-repeat="guardia in vm.guardias | toArray | filter: {usuarioNombre: vm.buscarUsuario}"
+                ng-if="vm.searchTypeUser == 'guardia'">
+              <td class="p-t-15">
+                <span>{{guardia.usuarioNombre}}</span>
+              </td>
+              <td align="right">
+                <div class="lv-actions actions dropdown" uib-dropdown="">
+                  <a class="cursor-pointer dropdown-toggle" uib-dropdown-toggle=""
+                     aria-haspopup="true" aria-expanded="false">
+                    <i class="zmdi zmdi-more-vert zmdi-hc-2x actions-size"></i>
+                  </a>
+                  <ul class="dropdown-menu pull-right actions-supervisor">
+                    <li class="action-edit cursor-pointer" ng-click="vm.editUser(guardia)">Editar</li>
+                    <li class="action-delete cursor-pointer" ng-click="vm.deleteUser(guardia, 'guardias')">Eliminar</li>
                   </ul>
                 </div>
               </td>

@@ -26,3 +26,124 @@
   font-size: 100px;
   color: #bdc3c7;
 }
+.modal-size{
+  height: 350px;
+}
+.table-box{
+  box-shadow: 0px 0px 5px #BDC3C7;
+}
+.table-guardias{
+  height: 240px;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+.modal-lm{
+  width: 700px;
+}
+.select-account{
+  min-width: 100%;
+  padding: 4px;
+  margin-top: 5px;
+  webkit-appearance: normal !important;
+
+  display: block;
+  width: 100%;
+  height: 35px;
+  padding: 6px 12px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  color: #555555;
+  background-color: #ffffff;
+  background-image: none;
+  border: 1px solid #e0e0e0;
+  border-radius: 0;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.select-account:not(.fc-alt) {
+  box-shadow: none;
+  border: 0;
+  border-bottom: 1px solid #e0e0e0;
+
+  padding: 0;
+}
+
+.radio-search{
+  width: 115px;
+  display: inline;
+  margin-right: 10px;
+}
+
+.loader-position{
+  position: absolute;
+  right: 45%;
+  z-index: 1000;
+}
+
+
+/*Notificaciones*/
+.notification-icon{
+  color:white !important;
+  font-size: 26px !important;
+}
+.notification-icon:hover{
+  color:white !important;
+}
+.notification-card{
+  width: 350px;
+  height: auto;
+  max-height: 80vh;
+  right: 40px !important;
+  border-radius: 5px 5px 5px 5px;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border: 0px solid #000000;
+}
+.notification-list{
+  box-shadow: inset 0 -0.5px 0 0 #bdc3c7;
+  font-size: 12px;
+}
+.notification-list:hover{
+  background-color: #ecf0f1;
+}
+.notification-text{
+  font-size: 18px;
+}
+.see-all-notificaction-text{
+  color: #3498db;
+  font-weight: 500;
+  font-size: 14px;
+}
+.notification-length{
+  font-weight: 500;
+  color: white;
+  position: absolute;
+  bottom: 16px;
+  left: 21px;
+  border-radius:250px;
+  /*background-color: #e67e22;*/
+  background-color: #e74c3c;
+  width: 16px;
+  height: 16px;
+  font-size: 11px;
+}
+.actions > li > a:hover:before, .actions > a:hover:before, .actions > li > a.open:before, .actions > a.open:before {
+  opacity: 0 !important;
+}
+.actions > li.open > a:before, .actions.open > a:before {
+  opacity: 0 !important;
+}
+
+/*Datepicker*/
+.size-datepicker .md-datepicker-input-container .md-datepicker-input{
+  width: 130px;
+  padding-left: 5px;
+}
+.a-datepicker{
+  padding-top: 8px;
+  font-size: 14px;
+}
+.bitacora-align-middle{
+  vertical-align: middle !important;
+}

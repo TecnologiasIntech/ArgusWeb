@@ -1,0 +1,72 @@
+<script src="../../bower_components/lodash/lodash.js"></script>
+<form action="" ng-submit="vm.registerZone()">
+
+  <div class="modal-header p-t-10">
+    <ul class="tab-nav">
+      <li class="active">
+        <a href="">General</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="modal-body modal-size" style="height: 400px">
+    <div class="row">
+
+      <!--General-->
+      <div class="m-l-30 m-r-30 ">
+        <div class="row m-t-10">
+          <!--NOMBRE DE LA ZONA-->
+          <div class="col-xs-offset-1 col-xs-5">
+            <span>Nombre</span>
+            <div class="fg-line m-l-10">
+              <input type="text" ng-model="vm.zone.zonaNombre" class="form-control" placeholder="Nombre de la zona..." ng-disabled="vm.isEdit" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="row m-t-30">
+          <!--ASIGNACION DE CLIENTES A LA ZONA-->
+          <div class="col-xs-offset-1 col-xs-5">
+            <span>Asignar clientes a la zona:</span>
+          </div>
+          <div class="row">
+            <div class="col-xs-offset-5 col-xs-5 m-r-20" align="right">
+              <div class="zmdi zmdi-search display-inline"></div>
+              <label>
+                <input type="text" class="form-control supervisor-search  display-inline" placeholder="Buscar..."
+                       ng-model="vm.searchInClients">
+              </label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-offset-2 col-xs-8 m-t-10 p-l-0 p-r-0 table-guardias table-box">
+              <table class="table table-hover table-bordered ">
+                <tbody>
+                <tr ng-repeat="client in vm.customers | toArray |filter: {clienteNombre: vm.searchInClients}">
+                  <td align="left" ng-if="client.clienteDisponible">
+                    <div class="checkbox m-t-0 m-b-0">
+                      <label>
+                        <input type="checkbox" ng-click="vm.addOrDeleteItemInAssignment(client)" ng-checked="vm.verifyChecked(client.clienteNombre) > -1">
+                        <i class="input-helper"></i>
+                        <span>{{client.clienteNombre}}</span>
+                      </label>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div align="right">
+      <button class="btn btn-primary waves-effect" type="submit" ng-if="!vm.isEdit">Aceptar</button>
+      <button class="btn btn-primary waves-effect" ng-click="vm.updateZone()" ng-if="vm.isEdit">Aceptar</button>
+      <div class="btn btn-primary waves-effect" ng-click="vm.modal.dismiss(); vm.customersToZone = []; vm.zone = {}; vm.isEdit = false">Cancelar</div>
+    </div>
+  </div>
+</form>

@@ -7,7 +7,9 @@ var argus = angular.module('argus', [
   'oc.lazyLoad',
   'nouislider',
   'ngTable',
-  'firebase',
   'ngStorage',
-  'angular-toArrayFilter'
+  'angular-toArrayFilter',
+  'angular-growl',
+  'notification',
+  'ngMaterial'
 ])

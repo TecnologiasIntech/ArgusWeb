@@ -2,8 +2,8 @@
  * Created by Toshiba on 20/01/2017.
  */
 argus
-  .controller('sidebarCtrl', ['$firebaseArray', '$scope', '$rootScope', 'settings'
-    , function ($firebaseArray, $scope, $rootScope, settings) {
+  .controller('sidebarCtrl', ['$scope', '$rootScope', 'settings'
+    , function ($scope, $rootScope, settings) {
 
       //public var
       var vm = this;
@@ -32,7 +32,7 @@ argus
 
       function cerrarSesion() {
         firebase.auth().signOut().then(function() {
-          // Exito
+          location.href = '#/login';
         }, function(error) {
           //TODO: crear las notificaciones para los errores esperados
         });

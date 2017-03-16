@@ -3,8 +3,8 @@
  */
 
 argus
-  .controller('loginCtrl', ['$firebaseArray', '$location', '$scope', '$rootScope', 'alertService', 'settings',
-    function ($firebaseArray, $location, $scope, $rootScope, alertService, settings) {
+  .controller('loginCtrl', ['$location', '$scope', '$rootScope', 'alertService', 'settings',
+    function ($location, $scope, $rootScope, alertService, settings) {
 
       //public var
       var vm = this;
@@ -12,6 +12,8 @@ argus
       vm.password = '';
       vm.checkUser = false;
       vm.resetEmail = '';
+      vm.isAdmin = false;
+      vm.isLoading = false;
 
       //public functions
       vm.activate = activate;
@@ -22,7 +24,7 @@ argus
       function activate() {
         firebase.auth().onAuthStateChanged(function (user) {
           if (user) {
-            $location.path('/main');
+            $location.path('/supervisores');
             $rootScope.$apply();
           }
         });
@@ -31,33 +33,52 @@ argus
       activate();
 
       function login() {
-        firebase.auth().signInWithEmailAndPassword(vm.email, vm.password).then(function () {
-          //Comprobamos si está autenticado
-          firebase.auth().onAuthStateChanged(function (user) {
-            if (user) {
-              location.href = '#/main';
+        vm.isLoading = true;
+        firebase.database().ref('Argus/administradores')
+          .orderByChild('usuarioEmail')
+          .equalTo(vm.email)
+          .on('value', function (snapshot) {
+            vm.isAdmin = snapshot.val();
+
+            if(vm.isAdmin){
+              firebase.auth().signInWithEmailAndPassword(vm.email, vm.password).then(function () {
+                //Comprobamos si está autenticado
+                firebase.auth().onAuthStateChanged(function (user) {
+                  if (user) {
+                    localStorage.setItem('email', vm.email);
+                    localStorage.setItem('password', vm.password);
+                    location.href = '#/supervisores';
+                  }
+                });
+                //En caso de error lo cachamos aqui y mostramos el error en pantalla
+              }).catch(function (error) {
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.log(error);
+                switch (errorCode) {
+                  case 'auth/wrong-password':
+                    alertService.error('Contraseña incorrecta', 'Verifica que tu contraseña este corretamente escrita');
+                    break;
+                  case 'auth/user-not-found':
+                    alertService.error('Usuario no encontrado', 'Verifica que el usuario que escribiste sea correcto');
+                    break;
+                  case 'auth/invalid-email':
+                    alertService.error('Email no valido', 'Escribe un email valido');
+                    break;
+                  case 'auth/user-disabled':
+                    alertService.error('Usuario baneado', 'Ponte en contacto con los administradores de la pagina para una solución');
+                    break;
+                }
+              });
+            }else{
+              alertService.error('Usuario no autorizado', 'Verifica tu direccion de correo electronico o ponte en contacto con un administrador');
+              vm.isLoading = false;
+              $rootScope.$apply();
             }
           });
-          //En caso de error lo cachamos aqui y mostramos el error en pantalla
-        }).catch(function (error) {
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          console.log(error);
-          switch (errorCode) {
-            case 'auth/wrong-password':
-              alertService.error('Contraseña incorrecta', 'Verifica que tu contraseña este corretamente escrita');
-              break;
-            case 'auth/user-not-found':
-              alertService.error('Usuario no encontrado', 'Verifica que el usuario que escribiste sea correcto');
-              break;
-            case 'auth/invalid-email':
-              alertService.error('Email no valido', 'Escribe un email valido');
-              break;
-            case 'auth/user-disabled':
-              alertService.error('Usuario baneado', 'Ponte en contacto con los administradores de la pagina para una solución');
-              break;
-          }
-        });
+
+
+
       }
 
       function resetPassword() {

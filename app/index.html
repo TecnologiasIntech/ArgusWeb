@@ -19,18 +19,17 @@
         <link href="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" rel="stylesheet">
         <link href="vendors/bower_components/angular-loading-bar/src/loading-bar.css" rel="stylesheet">
         <link href="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
 
         <!-- CSS -->
         <link rel="stylesheet" href="css/app.css">
         <link href="css/app.min.1.css" rel="stylesheet" id="app-level">
         <link href="css/app.min.2.css" rel="stylesheet">
         <link href="css/demo.css" rel="stylesheet">
-        <link rel="stylesheet" href="css/estrellas.css">
         <link rel="stylesheet" href="css/main.css">
 
         <link rel="stylesheet" href="bower_components/sweetalert2/dist/sweetalert2.min.css">
-
-
+        <link rel="stylesheet" href="../bower_components/angular-growl-v2/build/angular-growl.css">
 
     </head>
 
@@ -74,19 +73,27 @@
         <script src="vendors/bower_components/angular-nouislider/src/nouislider.min.js"></script>
 
         <!-- Firebase -->
-        <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+        <!--<script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>-->
 
         <!-- AngularFire -->
         <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
         <script src="bower_components/ngstorage/ngStorage.min.js"></script>
 
         <!--Firebase SDK-->
-        <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+
         <!--Google tools-->
         <script src="https://apis.google.com/js/platform.js" async defer></script>
         <!--Sweet Alert-->
         <script src="bower_components/sweetalert2/dist/sweetalert2.min.js"></script>
         <script src="bower_components/lodash/lodash.js"></script>
+        <script src="bower_components/angular-growl-v2/build/angular-growl.js"></script>
+        <script src="bower_components/angular-notification/angular-notification.js"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
 
         <!-- App level -->
         <script src="js/app.js"></script>
@@ -101,9 +108,15 @@
         <script src="js/controllers/loginController.js"></script>
         <script src="js/controllers/sidebar.Controller.js"></script>
         <script src="js/controllers/supervisores.controller.js"></script>
+        <script src="js/controllers/clientes.controller.js"></script>
+        <script src="js/controllers/zonas.controller.js"></script>
+        <script src="js/controllers/header.Controller.js"></script>
+        <script src="js/controllers/bitacora.Controller.js"></script>
+        <script src="js/controllers/notificaciones.controller.js"></script>
 
         <!--Services-->
         <script src="services/alert.service.js"></script>
+        <script src="services/growl.service.js"></script>
 
         <!--Filter-->
         <script src="filters/search.filter.js"></script>

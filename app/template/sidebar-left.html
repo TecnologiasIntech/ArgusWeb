@@ -13,7 +13,18 @@
     <ul class="main-menu" style="display: none;">
       <!--<li><a href=""><i class="zmdi zmdi-account"></i> Ver perfil</a></li>-->
       <!--<li><a href=""><i class="zmdi zmdi-settings"></i> Configuración</a></li>-->
-      <li><a href="#/login" ng-click="vm.cerrarSesion()"><i class="zmdi zmdi-power"></i> Cerrar sesión</a></li>
+      <li>
+        <a href="#/notificaciones">
+          <i class="zmdi zmdi-notifications"></i>
+          Notificaciones
+        </a>
+      </li>
+      <li>
+        <a href="#/login" ng-click="vm.cerrarSesion()">
+          <i class="zmdi zmdi-power"></i>
+          Cerrar sesión
+        </a>
+      </li>
     </ul>
   </div>
 
@@ -21,9 +32,22 @@
 
     <li data-ui-sref-active="active">
       <a data-ui-sref="supervisores" data-ng-click="mactrl.sidebarStat($event)"><i
-        class="zmdi zmdi-accounts-list zmdi-hc-fw"></i> Supervisores</a>
+        class="zmdi zmdi-accounts-list zmdi-hc-fw"></i> Usuarios</a>
     </li>
 
+    <li data-ui-sref-active="active">
+      <a data-ui-sref="zonas" data-ng-click="mactrl.sidebarStat($event)"><i
+        class="zmdi zmdi-pin zmdi-hc-fw"></i> Zonas</a>
+    </li>
 
+    <li data-ui-sref-active="active">
+      <a data-ui-sref="clientes" data-ng-click="mactrl.sidebarStat($event)"><i
+        class="zmdi zmdi-store zmdi-hc-fw"></i> Clientes</a>
+    </li>
+
+    <li data-ui-sref-active="active">
+      <a data-ui-sref="bitacoras" data-ng-click="mactrl.sidebarStat($event)"><i
+        class="zmdi zmdi-file-text zmdi-hc-fw"></i> Bitácora</a>
+    </li>
   </ul>
 </div>

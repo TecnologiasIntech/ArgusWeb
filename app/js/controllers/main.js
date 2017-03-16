@@ -12,7 +12,7 @@ argus
 
         // By default Sidbars are hidden in boxed layout and in wide layout only the right sidebar is hidden.
         this.sidebarToggle = {
-            left: false,
+            left: true,
             right: false
         }
 

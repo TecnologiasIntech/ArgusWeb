@@ -1,0 +1,96 @@
+<form ng-submit="vm.registerClient()">
+
+  <div class="modal-header p-t-10">
+    <ul class="tab-nav">
+      <li class="{{vm.view == 'general' ? 'active' : ''}}">
+        <a href="" ng-click="vm.view = 'general'">General</a>
+      </li>
+      <li class="{{vm.view == 'assignment' ? 'active' : ''}}">
+        <a href="" ng-click="vm.view = 'assignment'">Asignación</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="modal-body modal-size">
+    <div class="row">
+
+      <!--General-->
+      <div class="m-l-30 m-r-30 " ng-if="vm.view == 'general'">
+        <div class="row m-t-20">
+
+          <!--NOMBRE-->
+          <div class="col-xs-offset-1 col-xs-5">
+            <span>Nombre</span>
+            <div class="fg-line m-l-10">
+              <input type="text" ng-model="vm.client.clienteNombre" class="form-control"
+                     placeholder="Nombre completo aqui..." value="{{vm.isEdit ? vm.client.clienteNombre : ''}}" ng-disabled="vm.isEdit"
+                     required>
+            </div>
+          </div>
+
+          <!--DOMICILIO-->
+          <div class="col-xs-5">
+            <span>Domicilio</span>
+            <div class="fg-line m-l-10">
+              <input type="text" ng-model="vm.client.clienteDomicilio" class="form-control" placeholder="Escribe el domicilio..."
+                     required>
+            </div>
+          </div>
+        </div>
+
+        <div class="row m-t-30" ng-if="vm.user.usuarioTipo != 'guardia'">
+
+          <!--NUMERO DE GUARDIAS-->
+          <div class="col-xs-offset-1 col-xs-5">
+            <span>Numero de guardias</span>
+            <div class="fg-line m-l-10">
+              <input type="number" ng-model="vm.client.clienteNumeroGuardias" class="form-control" placeholder="Escribe numero de guardias..."
+                     required>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Asignación-->
+      <div ng-if="vm.view == 'assignment'">
+        <div class="row">
+          <div class="col-xs-offset-2 col-xs-5 m-r-20" align="left">
+            <div class="zmdi zmdi-search display-inline"></div>
+            <label>
+              <input type="text" class="form-control supervisor-search  display-inline" placeholder="Buscar..."
+                     ng-model="vm.searchInGuards">
+            </label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-offset-2 col-xs-8 m-t-10 p-l-0 p-r-0 table-guardias table-box">
+            <table class="table table-hover table-bordered ">
+              <tbody>
+              <tr ng-repeat="guard in vm.guards | toArray |filter: {usuarioNombre: vm.searchInGuards}">
+                <td align="left" ng-if="guard.usuarioDisponible">
+                  <div class="checkbox m-t-0 m-b-0">
+                    <label>
+                      <input type="checkbox" ng-click="vm.addOrDeleteItemInAssignment(guard, guard.$key)" ng-checked="vm.verifyChecked(guard.usuarioNombre) > -1" >
+                      <i class="input-helper"></i>
+                      <span>{{guard.usuarioNombre}}</span>
+                    </label>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+            {{vm.guardsToClient[0].$}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div align="right">
+      <button class="btn btn-primary waves-effect" type="submit" ng-if="!vm.isEdit">Aceptar</button>
+      <button class="btn btn-primary waves-effect" ng-click="vm.updateClient()" ng-if="vm.isEdit">Aceptar</button>
+      <div class="btn btn-primary waves-effect" ng-click="vm.modal.dismiss(); vm.guardsToClient = []; vm.client = {}; vm.isEdit = false">Cancelar</div>
+    </div>
+  </div>
+</form>

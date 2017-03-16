@@ -1,31 +1,165 @@
-<form action="">
+<form action="" ng-submit="vm.registerUser()">
 
-  <div class="modal-header">
-    <ul class="tab-nav" ng-class="{'tn-vertical': vertical, 'tn-justified': justified, 'tab-nav-right': right}"
-        ng-transclude="">
-      <!-- ngRepeat: tab in tabs -->
-      <li ng-class="{active: active, disabled: disabled}" heading="Home" active="tab.active"
-          disable="tab.disabled" class="ng-isolate-scope active">
-        <a href="" ng-click="select()" uib-tab-heading-transclude="" class="ng-binding">Home</a>
-      </li><!-- end ngRepeat: tab in tabs -->
-      <li ng-class="{active: active, disabled: disabled}" heading="Profile" active="tab.active"
-          disable="tab.disabled" class="ng-isolate-scope">
-        <a href="" ng-click="select()" uib-tab-heading-transclude="" class="ng-binding">Profile</a>
-      </li><!-- end ngRepeat: tab in tabs -->
-      <li ng-class="{active: active, disabled: disabled}" heading="Messages" active="tab.active"
-          disable="tab.disabled" class="ng-isolate-scope">
-        <a href="" ng-click="select()" uib-tab-heading-transclude="" class="ng-binding">Messages</a>
+  <div class="modal-header p-t-10">
+    <ul class="tab-nav">
+      <li class="{{vm.view == 'general' ? 'active' : ''}}">
+        <a href="" ng-click="vm.changeView('general')">General</a>
+      </li>
+      <!--<li class="{{vm.view == 'asignacion' ? 'active' : ''}}" ng-if="vm.user.usuarioTipo1w == 'supervisor'">-->
+      <!--<a href="" ng-click="vm.changeView('asignacion')">Asignación</a>-->
+      <!--</li>-->
     </ul>
   </div>
 
-  <div class="modal-body">
+  <div class="modal-body modal-size">
+    <div class="row">
 
+      <!--General-->
+      <div class="m-l-30 m-r-30 " ng-if="vm.view == 'general'">
+        <div class="row m-t-20">
+
+          <!--TIPO DE USUARIO-->
+          <div class="col-xs-offset-1 col-xs-5">
+            <span>Tipo de usuario</span>
+            <div class="fg-line m-l-10">
+              <select class="form-control" ng-model="vm.user.usuarioTipo">
+                <option value="guardia">Guardia</option>
+                <option value="supervisor">Supervisor</option>
+                <option value="administrador">Administrador</option>
+              </select>
+            </div>
+
+          </div>
+
+          <!--NOMBRE-->
+          <div class="col-xs-5">
+            <span>Nombre</span>
+            <div class="fg-line m-l-10">
+              <input type="text" ng-model="vm.user.usuarioNombre" class="form-control"
+                     placeholder="Nombre completo aqui..." required>
+            </div>
+          </div>
+        </div>
+
+        <div class="row m-t-30" ng-if="vm.user.usuarioTipo != 'guardia'">
+
+          <!--CORREO ELECTRONICO-->
+          <div class="col-xs-offset-1 col-xs-5">
+            <span>Correo electronico</span>
+            <div class="fg-line m-l-10">
+              <input type="email" ng-model="vm.user.usuarioEmail" class="form-control" placeholder="argus@ejemplo.com"
+                     required>
+            </div>
+          </div>
+
+          <!--CONTRASEÑA-->
+          <div class="col-xs-4">
+            <span>Contraseña</span>
+            <div class="fg-line m-l-10">
+              <input type="{{vm.viewPassword ? 'text' : 'password'}}" ng-model="vm.user.usuarioContrasena" class="form-control" placeholder="* * * * *"
+                     required>
+            </div>
+
+          </div>
+          <div class="col-xs-1 p-t-25">
+            <i class="zmdi zmdi-eye zmdi-hc-2x" ng-click="vm.viewPassword = !vm.viewPassword" ng-if="vm.viewPassword"></i>
+            <i class="zmdi zmdi-eye-off zmdi-hc-2x" ng-click="vm.viewPassword = !vm.viewPassword" ng-if="!vm.viewPassword"></i>
+          </div>
+        </div>
+
+        <div class="row m-t-30">
+
+          <!--TELEFONO-->
+          <div class="col-xs-offset-1 col-xs-5">
+            <span>Teléfono</span>
+            <div class="fg-line m-l-10">
+              <input type="number" ng-model="vm.user.usuarioTelefono" class="form-control"
+                     placeholder="Numero de teléfono" required>
+            </div>
+          </div>
+
+          <div class="preloader pls-blue pl-xl loader-position" align="center" ng-if="vm.isLoadingRegister">
+            <svg class="pl-circular" viewBox="25 25 50 50">
+              <circle class="plc-path" cx="50" cy="50" r="20"></circle>
+            </svg>
+          </div>
+
+          <!--ZONA-->
+          <div class="col-xs-5" ng-if="vm.user.usuarioTipo == 'supervisor'">
+            <span>Zona</span>
+            <div class="fg-line m-l-10">
+              <select class="form-control" ng-model="vm.user.usuarioZona">
+                <option value="{{zona.zonaNombre}}" ng-repeat="zona in vm.zonas">{{zona.zonaNombre}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row m-t-30">
+          <!--DIRECCION-->
+          <div class="col-xs-offset-1 col-xs-5" ng-if="vm.user.usuarioTipo != 'administrador'">
+            <span>Domicilio</span>
+            <div class="fg-line m-l-10">
+              <input type="text" ng-model="vm.user.usuarioDomicilio" class="form-control"
+                     placeholder="Escribe domicilio aqui..." required>
+            </div>
+          </div>
+
+          <!--TURNO-->
+          <div class="col-xs-5" ng-if="vm.user.usuarioTipo != 'administrador'">
+            <span>Turno</span>
+            <div class="fg-line m-l-10">
+              <select class="form-control" ng-model="vm.user.usuarioTurno">
+                <option value="dia">Dia</option>
+                <option value="noche">Noche</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Asignación-->
+      <div ng-if="vm.view == 'asignacion'">
+        <div class="row">
+          <div class="col-xs-offset-2 col-xs-5 m-r-20" align="left">
+            <div class="zmdi zmdi-search display-inline"></div>
+            <label>
+              <input type="text" class="form-control supervisor-search  display-inline" placeholder="Buscar..."
+                     ng-model="vm.buscarGuardia">
+            </label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-offset-2 col-xs-8 m-t-10 p-l-0 p-r-0 table-guardias table-box">
+            <table class="table table-hover table-bordered ">
+              <tbody>
+              <tr ng-repeat="guardia in vm.usuarios | toArray |filter: {usuarioNombre: vm.buscarGuardia}">
+                <td align="left" ng-if="guardia.usuarioTipo == 'guardia' && guardia.usuarioDisponible == true">
+                  <div class="checkbox m-t-0 m-b-0">
+                    <label>
+                      <input type="checkbox" ng-click="vm.addOrDeleteItemInAssignment(guardia)">
+                      <i class="input-helper"></i>
+                      <span>{{guardia.usuarioNombre}}</span>
+                    </label>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="modal-footer">
     <div align="right">
-      <button class="btn btn-primary waves-effect">Aceptar</button>
-      <button class="btn btn-primary waves-effect" ng-click="vm.modal.dismiss()">Cancelar</button>
+      <button class="btn btn-primary waves-effect" type="submit" ng-if="!vm.isEdit">Aceptar</button>
+      <button class="btn btn-primary waves-effect" ng-click="vm.updateUser()" ng-if="vm.isEdit">Aceptar</button>
+      <div class="btn btn-primary waves-effect"
+           ng-click="vm.modal.dismiss(); vm.user = {}; vm.user.usuarioTipo = 'guardia'">Cancelar
+      </div>
     </div>
   </div>
 </form>

@@ -865,34 +865,36 @@ body.login-content:before {
   height: calc(100% + 37px);
 }
 
-.t-view[data-tv-type="text"]:before {
-  content: "\f24f";
-  background: #d40026;
-  box-shadow: 0 0 0 1px #d40026;
+/*OPCIONES DEL TIMELINE*/
+
+.t-view[data-tv-type="AG"]:before {
+  content: "\f1ff";
+  background: #2ecc71;
+  box-shadow: 0 0 0 1px #2ecc71;
 }
 
-.t-view[data-tv-type="text"]:after {
-  background: #d40026;
+.t-view[data-tv-type="AG"]:after {
+  background: #2ecc71;
 }
 
-.t-view[data-tv-type="image"]:before {
-  content: "\f17f";
-  background: #4caf50;
-  box-shadow: 0 0 0 1px #4caf50;
+.t-view[data-tv-type="MG"]:before {
+  content: "\f20d";
+  background: #3498db;
+  box-shadow: 0 0 0 1px #3498db;
 }
 
-.t-view[data-tv-type="image"]:after {
-  background: #4caf50;
+.t-view[data-tv-type="MG"]:after {
+  background: #3498db;
 }
 
-.t-view[data-tv-type="video"]:before {
-  content: "\f3a9";
-  background: #ffc107;
-  box-shadow: 0 0 0 1px #ffc107;
+.t-view[data-tv-type="AI"]:before {
+  content: "\f1f1";
+  background: #e74c3c;
+  box-shadow: 0 0 0 1px #e74c3c;
 }
 
-.t-view[data-tv-type="video"]:after {
-  background: #ffc107;
+.t-view[data-tv-type="AI"]:after {
+  background: #e74c3c;
 }
 
 .t-view .tvb-stats {
@@ -1367,7 +1369,7 @@ body.login-content:before {
 .actions {
   list-style: none;
   padding: 0;
-  z-index: 3;
+  /*z-index: 3;*/
   margin: 0;
 }
 
