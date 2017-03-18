@@ -54,6 +54,7 @@ argus
           backdrop: 'static'
         });
       }
+
       function editClient(client) {
         vm.isEdit = true;
         vm.client = client;

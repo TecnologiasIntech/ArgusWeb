@@ -45,6 +45,12 @@ argus
         controller: 'notificacionCtrl as vm'
       })
 
+      .state('incidentes',{
+        url: '/incidentes',
+        templateUrl: 'views/incidentes.html',
+        controller: 'incidentesCtrl as vm'
+      })
+
       .state('pages', {
         url: '/pages',
         templateUrl: 'views/common.html'
