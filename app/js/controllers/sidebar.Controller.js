@@ -34,7 +34,6 @@ argus
         firebase.auth().signOut().then(function() {
           location.href = '#/login';
         }, function(error) {
-          //TODO: crear las notificaciones para los errores esperados
         });
       }
 

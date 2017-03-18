@@ -10,6 +10,7 @@ argus
       var vm = this;
       vm.myDate = new Date();
       vm.records = {};
+      vm.isReady = false;
       vm.config = {};
       // vm.adios = '';
 
@@ -26,7 +27,6 @@ argus
 
       function viewRecords() {
         if (vm.secondDate) {
-          vm.records = {};
           var primaryDate = dateFormat(vm.myDate);
           var secondDate = dateFormat(vm.secondDate);
 
@@ -35,7 +35,15 @@ argus
             .startAt(secondDate)
             .endAt(primaryDate)
             .on('value', function (snapshot) {
+              // vm.records = {};
               vm.records = snapshot.val();
+              vm.recordsLength = Object.keys(vm.records).length;
+              if(vm.recordsLength != 0){
+                vm.isReady = true;
+              }else{
+                vm.isReady = false;
+              }
+              console.log(vm.records)
               $rootScope.$apply();
             })
         } else {

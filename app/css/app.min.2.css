@@ -866,6 +866,7 @@ body.login-content:before {
 }
 
 /*OPCIONES DEL TIMELINE*/
+/*NOTIFICACIONES*/
 
 .t-view[data-tv-type="AG"]:before {
   content: "\f1ff";
