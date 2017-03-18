@@ -1,0 +1,66 @@
+<form ng-submit="vm.registerIncident(vm.incident.incidenteTipo, vm.incident.incidenteGravedad)">
+
+  <div class="modal-header p-t-10">
+    <ul class="tab-nav">
+      <li class="{{vm.view == 'general' ? 'active' : ''}}">
+        <a href="" ng-click="vm.view = 'general'">General</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="modal-body modal-size">
+    <div class="row">
+
+      <!--General-->
+      <div class="m-l-30 m-r-30 " ng-if="vm.view == 'general'">
+        <div class="row m-t-20">
+          <!--NOMBRE INCIDENTE-->
+          <div class="col-xs-offset-1 col-xs-5">
+            <span>Tipo de incidente</span>
+            <div class="fg-line m-l-10">
+              <input type="text" ng-model="vm.incident.incidenteTipo" class="form-control"
+                     placeholder="Tipo de incidente aqui..." required>
+            </div>
+          </div>
+        </div>
+
+        <div class="row m-t-20">
+          <div class="col-xs-offset-1 col-xs-5">
+            <div class="form-group">
+              <label>Selecciona la gravedad</label>
+              <!--Gravedad baja-->
+              <div class="radio fg-line m-l-10">
+                <label>
+                  <input checked type="radio" value="Alta" ng-model="vm.incident.incidenteGravedad">
+                  <i class="input-helper"></i>
+                  Alta
+                </label>
+              </div>
+              <div class="radio fg-line m-l-10">
+                <label>
+                  <input type="radio" value="Media" ng-model="vm.incident.incidenteGravedad">
+                  <i class="input-helper"></i>
+                  Media
+                </label>
+              </div>
+              <div class="radio fg-line m-l-10">
+                <label>
+                  <input type="radio" value="Baja" ng-model="vm.incident.incidenteGravedad">
+                  <i class="input-helper"></i>
+                  Baja
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div align="right">
+      <button class="btn btn-primary waves-effect" type="submit" ng-if="!vm.isEdit">Aceptar</button>
+      <button class="btn btn-primary waves-effect" ng-click="vm.updateIncident()" ng-if="vm.isEdit">Aceptar</button>
+      <div class="btn btn-primary waves-effect" ng-click="vm.modal.dismiss(); vm.incidents = []; vm.incident = {}; vm.isEdit = false">Cancelar</div>
+    </div>
+  </div>
+</form>
