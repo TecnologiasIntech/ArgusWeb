@@ -12,18 +12,32 @@ argus
       vm.records = {};
       vm.isReady = false;
       vm.config = {};
+      vm.picture = '';
       // vm.adios = '';
 
 
       //public functions
       vm.viewRecords = viewRecords;
+      vm.openPicture = openPicture;
+      vm.openModal = openModal;
 
       //private functions
       function activate() {
 
       }
 
+      
       activate();
+
+      function openModal() {
+        vm.modal = $uibModal.open({
+          animation: true,
+          templateUrl: 'views/modals/bitacora.modal.html',
+          scope: $scope,
+          size: 'lm',
+          backdrop: 'static'
+        });
+      }
 
       function viewRecords() {
         if (vm.secondDate) {
@@ -60,16 +74,10 @@ argus
         return (year + '' + month + '' + day);
       }
 
-      // vm.hola = function (hola, id) {
-      //
-      //   var patron = / \ /g;
-      //   var valor = '';
-      //   var nuevo = hola.replace(patron, valor);
-      //   // document.getElementById(id).innerHTML = nuevo;
-      //   $(id).html(nuevo);
-      //   // var nuevo2 = nuevo.substring(1, nuevo.length -1);
-      //
-      //   // return nuevo2;
-      // }
+      function openPicture(picture) {
+        vm.picture = picture;
+        openModal();
+
+      }
     }
   ]);

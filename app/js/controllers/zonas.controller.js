@@ -42,7 +42,7 @@ argus
         firebase.database().ref('Argus/Clientes')
           .on('value', function (snapshot) {
             vm.customers = snapshot.val();
-
+            $rootScope.$apply();
           })
 
 

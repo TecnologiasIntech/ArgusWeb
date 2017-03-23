@@ -18,11 +18,20 @@ argus
       //private functions
       function activate() {
         firebase.database().ref('Argus/Notificacion')
+          .limitToLast(10)
           .on('value', function (snapshot) {
             //Voy a recibir
             //  * Tipo de accion que se ha hecho
             //  *
             vm.notifications = snapshot.val();
+            // console.log(vm.notifications);
+
+            // // Reverse
+            // vm.notifications = {};
+            // vm.notifications = _.forEachRight(vm.notifications, function (value) {
+            //   vm.notifications.push(value)
+            // });
+            // console.log(vm.notifications)
 
             // $interval(function(){
             if (vm.notificationsLength < Object.keys(vm.notifications).length && vm.isReadyToListener) {
@@ -52,7 +61,7 @@ argus
 
       activate();
 
-      function verifyAction(action, information) {
+      function verifyAction(action, information, key) {
         switch (action){
           case 'AG':
             if($location.path() != '/supervisores'){
@@ -60,6 +69,7 @@ argus
               $location.path('/supervisores');
             }else{
               $rootScope.$broadcast('notificacion:agregar', information);
+              $rootScope.$broadcast('notificacion:key', key);
             }
             break;
 

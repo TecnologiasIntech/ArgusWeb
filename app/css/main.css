@@ -152,3 +152,10 @@
 .bitacora-align-middle{
   vertical-align: middle !important;
 }
+
+
+/*Notifications*/
+.notification-icon-modal{
+  color: white;
+  padding-top: 75%;
+}

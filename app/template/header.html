@@ -1,3 +1,5 @@
+<script src="../../bower_components/lodash/lodash.js"></script>
+
 <ul class="header-inner clearfix">
   <li id="menu-trigger" data-target="mainmenu" data-toggle-sidebar data-model-left="mactrl.sidebarToggle.left"
       data-ng-class="{ 'open': mactrl.sidebarToggle.left === true }">
@@ -43,8 +45,8 @@
               </div>
             </li>
             <li class="action-edit cursor-pointer notification-list p-b-10 p-l-20 p-r-20"
-                ng-repeat="notification in vm.notifications"
-                ng-click="vm.verifyAction(notification.accion, notification.informacion)">
+                ng-repeat="notification in vm.notifications | toArray | orderBy : ' -fecha'"
+                ng-click="vm.verifyAction(notification.accion, notification.informacion, notification.$key)">
               <div class="row">
                 <div class="col-xs-2">
                   <i class="zmdi zmdi-account-add zmdi-hc-2x" ng-if="notification.accion == 'AG'"></i>

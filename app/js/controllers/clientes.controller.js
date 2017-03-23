@@ -98,7 +98,7 @@ argus
             usuarioKey: guardKey
           })
         }else{
-          vm.guardsToClient.splice(guardIndex, 1);
+          vm.guardsToClient.splice(guardIndex, 1);0
         }
       }
 

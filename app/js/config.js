@@ -94,5 +94,5 @@ argus
 
 argus.config(['growlProvider', function (growlProvider) {
   growlProvider.globalTimeToLive(5000);
-  growlProvider.globalPosition('top-right');
+  growlProvider.globalPosition('bottom-right');
 }]);

@@ -44,17 +44,12 @@
       <div class="row m-t-15" ng-if="vm.recordsLength > 0">
         <div class="col-xs-offset-1 col-xs-2">
           <div class="m-l-10">
-            <select class="form-control" ng-model="vm.filterZone">
-              <option value="">Filtrar por zonas</option>
-            </select>
+            <input type="text" class="form-control" placeholder="Filtrar por Zona" ng-model="vm.filterZone">
           </div>
         </div>
         <div class="col-xs-offset-1 col-xs-2">
           <div class="m-l-10">
-            <!--<select class="form-control" ng-model="vm.filterClient">-->
-              <!--<option value="">Filtrar por clientes</option>-->
-            <!--</select>-->
-            <input type="text" class="form-control" placeholder="Buscar clientes..." ng-model="vm.filterClient">
+            <input type="text" class="form-control" placeholder="Filtrar por clientes..." ng-model="vm.filterClient">
           </div>
         </div>
         <div class="col-xs-offset-1 col-xs-3">
@@ -66,28 +61,13 @@
         </div>
       </div>
 
-      <!--BITACORA-->
-      <!--<div class="row" ng-if="vm.recordsLength == 0" align="center">-->
-      <!--<div class="zmdi zmdi-quote m-t-20 not-found-quote" ng-if="vm.recordsLength == 0">-->
-      <!--</div>-->
-      <!--<div class="not-found" ng-if="vm.recordsLength == 0">No se encontraron</div>-->
-      <!--<div class="m-b-30 not-found" ng-if="vm.recordsLength == 0">registros {{vm.recordsLength}}</div>-->
-      <!--</div>-->
-
-      <!--<div class="col-lg-offset-5 col-lg-6 m-t-30">-->
-      <!--<div class="preloader pls-blue pl-xl" align="center" ng-if="vm.isLoading">-->
-      <!--<svg class="pl-circular" viewBox="25 25 50 50">-->
-      <!--<circle class="plc-path" cx="50" cy="50" r="20"></circle>-->
-      <!--</svg>-->
-      <!--</div>-->
-      <!--</div>-->
-      <!--Lista de supervisores-->
+      <!--Tabla de bitacora-->
       <div class="row m-t-20" ng-if="vm.recordsLength > 0">
         <div class="col-xs-offset-1 col-xs-9 m-t-10 m-b-30 p-l-0 p-r-0 table-box">
           <table class="table table-striped table-hover-gray">
             <thead>
             <tr>
-              <th>Cliente</th>
+              <th>Servicio</th>
               <th>Guardia</th>
               <th>Turno</th>
               <th>Firma</th>
@@ -109,7 +89,7 @@
                 {{guard.turno}}
               </td>
               <td class="bitacora-align-middle">
-                <img src="{{guard.firma}}" alt="" style="width: 50px; height: 50px;">
+                <img src="{{guard.firma}}" alt="" style="width: 50px; height: 50px;" ng-click="vm.openPicture(guard.firma)">
               </td>
               <td class="bitacora-align-middle">
                 {{guard.status}}

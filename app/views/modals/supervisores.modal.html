@@ -158,7 +158,7 @@
       <button class="btn btn-primary waves-effect" type="submit" ng-if="!vm.isEdit">Aceptar</button>
       <button class="btn btn-primary waves-effect" ng-click="vm.updateUser()" ng-if="vm.isEdit">Aceptar</button>
       <div class="btn btn-primary waves-effect"
-           ng-click="vm.modal.dismiss(); vm.user = {}; vm.user.usuarioTipo = 'guardia'">Cancelar
+           ng-click="vm.modal.dismiss(); vm.user = {}; vm.user.usuarioTipo = 'guardia'; vm.isEdit = false;">Cancelar
       </div>
     </div>
   </div>

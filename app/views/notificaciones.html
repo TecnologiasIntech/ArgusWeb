@@ -6,33 +6,33 @@
   <aside id="sidebar" data-ng-include="'template/sidebar-left.html'"
          data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }"></aside>
 
-  <section id="content">
+  <section id="content" style="height: auto; background-color: #edecec;">
     <div class="row">
       <div class="col-xs-offset-2 col-xs-7">
         <div class="timeline">
-          <div class="t-view" ng-repeat="notification in vm.notifications" data-tv-type="{{notification.accion}}">
+          <div class="t-view" ng-repeat="notification in vm.notifications | toArray | orderBy : ' -fecha'" data-tv-type="{{notification.accion}}">
             <div class="tv-header media p-t-0 p-b-0">
               <div class="media-body p-t-5 p-b-15">
                 <p class="p-t-10 m-b-0" style="font-size: 14px">{{notification.descripcion}}</p>
                 <small class="p-l-5" style="color: #95a5a6;">{{notification.fecha}}</small>
               </div>
 
-              <ul class="actions hidden-xs m-t-5">
-                <li class="dropdown" uib-dropdown>
-                  <a href="" uib-dropdown-toggle>
-                    <i class="zmdi zmdi-more-vert"></i>
-                  </a>
+              <!--<ul class="actions hidden-xs m-t-5">-->
+                <!--<li class="dropdown" uib-dropdown>-->
+                  <!--<a href="" uib-dropdown-toggle>-->
+                    <!--<i class="zmdi zmdi-more-vert"></i>-->
+                  <!--</a>-->
 
-                  <ul class="dropdown-menu dropdown-menu-right">
-                    <li>
-                      <a href="" ng-click="vm.viewDetails(notification)">Edit</a>
-                    </li>
-                    <li>
-                      <a href="" ng-click="vm.deleteNotification(notification.$key)">Delete</a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
+                  <!--<ul class="dropdown-menu dropdown-menu-right">-->
+                    <!--<li>-->
+                      <!--<a href="" ng-click="vm.viewDetails(notification)">Edit</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                      <!--<a href="" ng-click="vm.deleteNotification(notification.$key)">Delete</a>-->
+                    <!--</li>-->
+                  <!--</ul>-->
+                <!--</li>-->
+              <!--</ul>-->
             </div>
           </div>
         </div>
@@ -41,4 +41,4 @@
   </section>
 </section>
 
-<footer id="footer" data-ng-include="'template/footer.html'"></footer>
+<footer id="footer" data-ng-include="'template/footer.html'" style="position: relative;"></footer>

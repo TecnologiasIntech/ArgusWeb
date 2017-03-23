@@ -26,6 +26,8 @@ argus
       vm.isLoadingRegister = false;
       vm.guardiaInformacion = {};
       vm.viewPassword = false;
+      vm.isAssignmentToZone = false;
+      vm.notificationkey = '';
 
       //public functions
       vm.openModal = openModal;
@@ -98,8 +100,12 @@ argus
         $scope.$on('notificacion:agregar', function (event, information) {
           vm.user = information;
           vm.user.usuarioTipo = 'guardia';
-          vm.isEdit = true;
+          vm.isAssignmentToZone = true;
           openModal();
+        })
+
+        $scope.$on('notificacion:key', function (event, key) {
+          vm.notificationkey = key;
         })
 
       }
@@ -214,20 +220,21 @@ argus
           });
         }).catch(function (error) {
 
-          // switch (error.code) {
-          //   case 'auth/email-already-in-use':
-          //     alertService.error('Email ya en uso', 'Intenta con uno diferente');
-          //     break;
-          //   case 'auth/invalid-email':
-          //     alertService.error('Email invalido', 'Escribe un email valido');
-          //     break;
-          //   case 'auth/operation-not-allowed':
-          //     alertService.error('Operacion no permitida', 'Ponte en contacto con los administradores de la pagina');
-          //     break;
-          //   case 'auth/weak-password':
-          //     alertService.error('Contraseña muy debil', 'Escribe una contraseña dificil de adivinar');
-          //     break;
-          // }
+          switch (error.code) {
+            case 'auth/email-already-in-use':
+              alertService.error('Email ya en uso', 'Intenta con uno diferente');
+              break;
+            case 'auth/invalid-email':
+              alertService.error('Email invalido', 'Escribe un email valido');
+              break;
+            case 'auth/operation-not-allowed':
+              alertService.error('Operacion no permitida', 'Ponte en contacto con los administradores de la pagina');
+              break;
+            case 'auth/weak-password':
+              alertService.error('Contraseña muy debil', 'Escribe una contraseña dificil de adivinar');
+              break;
+          }
+          vm.isLoadingRegister = false;
         });
       }
 
@@ -241,6 +248,26 @@ argus
         }
 
         firebase.database().ref('Argus/' + vm.user.usuarioTipo + tipoPlural).push(vm.user);
+
+        if(vm.isAssignmentToZone){
+
+          firebase.database().ref('Argus/guardias')
+            .orderByChild('usuarioNombre')
+            .equalTo(vm.user.usuarioNombre)
+            .on('value', function (snapshot) {
+              var guardia = snapshot.val();
+              vm.user.key = Object.keys(guardia);
+
+              firebase.database().ref('Argus/Clientes/' + vm.user.usuarioCliente + '/clienteGuardias/' + vm.user.key).set({
+                usuarioKey: vm.user.key[0],
+                usuarioNombre: vm.user.usuarioNombre
+              });
+              firebase.database().ref('Argus/Notificacion/' + vm.notificationkey).remove();
+
+              vm.isAssignmentToZone = false;
+              vm.notificationkey = '';
+            })
+        }
 
         vm.user = {};
         vm.user.usuarioTipo = 'guardia';
