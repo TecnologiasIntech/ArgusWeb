@@ -7,7 +7,54 @@
          data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }"></aside>
 
   <section id="content">
+    <div class="card m-l-20 m-r-20">
+      <div class="row p-t-20">
+        <div class="col-xs-offset-2 col-xs-2">
+          <span>Año</span>
+          <div class="fg-line ">
+            <select class="form-control p-l-5" ng-model="vm.year" ng-options="year for year in vm.years">
+            </select>
+          </div>
+        </div>
 
+        <div class="col-xs-2">
+          <span>Mes</span>
+          <div class="fg-line ">
+            <select class="form-control p-l-5" ng-model="vm.mouth" ng-options="mouth.mouth for mouth in vm.mouthArray">
+              <!--<option value="{{mouth}}" ng-repeat="mouth in vm.mouthArray">{{mouth}}</option>-->
+            </select>
+          </div>
+        </div>
+
+        <div class="col-xs-2">
+          <span>Quincena</span>
+          <div class="row">
+            <div class="col-xs-4">
+              <div class="radio m-b-15" style="width: 30px;">
+                <label>
+                  <input type="radio" name="sample" value="1" ng-model="vm.fortnight">
+                  <i class="input-helper"></i>
+                  1
+                </label>
+              </div>
+            </div>
+            <div class="col-xs-4">
+              <div class="radio m-b-15 display-inline" style="width: 30px;">
+                <label>
+                  <input type="radio" name="sample" value="2" ng-model="vm.fortnight">
+                  <i class="input-helper"></i>
+                  2
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xs-2">
+          <button class="btn waves-effect btn-success m-t-10" ng-click="vm.generatePaysheet()">Generar Nomina</button>
+        </div>
+
+      </div>
   </section>
 </section>
 

@@ -26,7 +26,7 @@ argus
 
       }
 
-      
+
       activate();
 
       function openModal() {
@@ -51,13 +51,14 @@ argus
             .on('value', function (snapshot) {
               // vm.records = {};
               vm.records = snapshot.val();
+              console.log(vm.records[20170318]);
               vm.recordsLength = Object.keys(vm.records).length;
               if(vm.recordsLength != 0){
                 vm.isReady = true;
               }else{
                 vm.isReady = false;
               }
-              console.log(vm.records)
+              // console.log(vm.records)
               $rootScope.$apply();
             })
         } else {
