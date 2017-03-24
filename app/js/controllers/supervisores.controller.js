@@ -91,9 +91,9 @@ argus
           vm.guardiaInformacion = JSON.parse(sessionStorage['guardiaInformacion']);
 
           vm.user = vm.guardiaInformacion;
-          vm.user.usuarioTipo = 'guardia'
+          vm.user.usuarioTipo = 'guardia';
           sessionStorage.clear();
-          vm.isEdit = true;
+          vm.isAssignmentToZone = true;
           openModal();
         }
 
@@ -268,12 +268,12 @@ argus
               vm.notificationkey = '';
             })
         }
-
+        vm.modal.dismiss();
         vm.user = {};
         vm.user.usuarioTipo = 'guardia';
         // $rootScope.$apply();
         growl.success('Usuario Agregado exitosamente!', vm.config);
-        vm.modal.dismiss();
+
 
       }
 

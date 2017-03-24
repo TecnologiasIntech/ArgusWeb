@@ -51,6 +51,12 @@ argus
         controller: 'incidentesCtrl as vm'
       })
 
+      .state('nomina',{
+        url: '/nomina',
+        templateUrl: 'views/nomina.html',
+        controller: 'nominaCtrl as vm'
+      })
+
       .state('pages', {
         url: '/pages',
         templateUrl: 'views/common.html'

@@ -111,7 +111,7 @@ argus
       }
 
       function updateZone() {
-        firebase.database().ref('Argus/Zonas' + vm.zone.zonaNombre + 'zonaClientes').remove();
+        firebase.database().ref('Argus/Zonas/' + vm.zone.zonaNombre + '/zonaClientes').remove();
 
         for(var i = 0; i < vm.customersToZone.length; i++){
           firebase.database().ref('Argus/Zonas/' + vm.zone.zonaNombre + '/zonaClientes').push({
@@ -119,6 +119,7 @@ argus
           });
         }
         growl.info('Zona Actualizada!', vm.config);
+        vm.modal.dismiss();
       }
     }
   ]);
