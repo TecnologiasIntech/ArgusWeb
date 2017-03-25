@@ -60,6 +60,8 @@
           </label>
         </div>
       </div>
+      <button type="button" ng-csv="vm.result" filename="test.csv">Export</button>
+      {{vm.result}}
 
       <!--Tabla de bitacora-->
       <div class="row m-t-20" ng-if="vm.recordsLength > 0">
@@ -96,6 +98,11 @@
               </td>
               <td class="bitacora-align-middle">
                 {{guard.fecha}}
+              </td>
+              <td class="bitacora-align-middle">
+                <a href="">
+                  <i class="zmdi zmdi-close-circle" style="font-size: 20px; color: #e74c3c" ng-click="vm.cancelAsssist(record.$key, guard.$key)"></i>
+                </a>
               </td>
             </tr>
             </tbody>
