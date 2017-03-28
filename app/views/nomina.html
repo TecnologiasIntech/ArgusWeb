@@ -6,12 +6,12 @@
   <aside id="sidebar" data-ng-include="'template/sidebar-left.html'"
          data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }"></aside>
 
-  <section id="content">
+  <section id="content" class="body">
     <div class="card m-l-20 m-r-20">
       <div class="row p-t-20">
-        <div class="col-xs-offset-2 col-xs-2">
+        <div class="col-xs-offset-1 col-xs-2">
           <span>Año</span>
-          <div class="fg-line ">
+          <div class="fg-line">
             <select class="form-control p-l-5" ng-model="vm.year" ng-options="year for year in vm.years">
             </select>
           </div>
@@ -51,16 +51,16 @@
         </div>
 
         <div class="col-xs-2">
-          <button class="btn waves-effect btn-success m-t-10" ng-click="vm.generatePaysheet()">Generar Nomina</button>
+          <button class="btn waves-effect btn-success m-t-20" ng-click="vm.generatePaysheet()">Generar</button>
         </div>
 
       </div>
 
-      <div class="row m-t-20" ng-if="">
-        <div class="col-xs-offset-1 col-xs-9 m-t-10 m-b-30 p-l-0 p-r-0 table-box">
-          <table class="table table-striped table-hover-gray">
-            <thead>
-            <tr>
+      <div class="row m-t-20" ng-if="vm.nominaLength > 0">
+        <div class="col-xs-offset-1 col-xs-9 m-t-10 m-b-30 p-l-0 p-r-0 table-box" >
+          <table class="table table-striped table-hover-gray" >
+            <thead >
+            <tr >
               <th>Guardia</th>
               <th>Sueldo Base</th>
               <th>Asistencias</th>
@@ -68,9 +68,8 @@
             </tr>
             </thead>
 
-            <!--ADMINISTRADORES-->
-            <tr ng-repeat="nomina in vm.nomina" ng-if="">
 
+            <tr ng-repeat="nomina in vm.nomina" >
               <td class="bitacora-align-middle">
                 {{nomina.nombreGuardia}}
               </td>
@@ -86,8 +85,14 @@
               <td class="bitacora-align-middle">
                 {{nomina.sueldoTotal}}
               </td>
-
             </tr>
+            <tr >
+              <td></td>
+              <td></td>
+              <td>Total</td>
+              <td>{{vm.totalPagado}}</td>
+            </tr>
+
           </table>
         </div>
       </div>
@@ -95,4 +100,4 @@
   </section>
 </section>
 
-<footer id="footer" data-ng-include="'template/footer.html'"></footer>
+<footer id="footer" class="footer" data-ng-include="'template/footer.html'"></footer>
