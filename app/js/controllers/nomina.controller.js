@@ -159,6 +159,7 @@ argus
                 });
                 vm.assistence = 0;
               }
+              vm.nominaLength = vm.nomina.length;
 
 
               /*Sumamos todos los sueldoTotales de los empleados en vm.totalPagado*/
@@ -190,14 +191,16 @@ argus
                 vm.nominaLength = Object.keys(vm.nominaFirebase).length;
 
                 for (var index in vm.nominaFirebase) {
-                  vm.nomina.push({
-                    'nombreGuardia': vm.nominaFirebase[index].nombreGuardia,
-                    'sueldoBase': vm.nominaFirebase[index].sueldoBase,
-                    'asistencia': vm.nominaFirebase[index].asistencia,
-                    'sueldoTotal': vm.nominaFirebase[index].sueldoTotal
-                  });
-                }
+                  if (index != "totalPagado") {
 
+                    vm.nomina.push({
+                      'nombreGuardia': vm.nominaFirebase[index].nombreGuardia,
+                      'sueldoBase': vm.nominaFirebase[index].sueldoBase,
+                      'asistencia': vm.nominaFirebase[index].asistencia,
+                      'sueldoTotal': vm.nominaFirebase[index].sueldoTotal
+                    });
+                  }
+                }
               });
 
             }
