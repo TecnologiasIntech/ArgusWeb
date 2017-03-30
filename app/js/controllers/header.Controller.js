@@ -14,10 +14,11 @@ argus
       //public functions
       vm.verifyAction = verifyAction;
       vm.goToNotifications = goToNotifications;
+      vm.deleteNotifications = deleteNotifications;
 
       //private functions
       function activate() {
-        firebase.database().ref('Argus/Notificacion')
+        firebase.database().ref('Argus/NotificacionTmp')
           .limitToLast(10)
           .on('value', function (snapshot) {
             //Voy a recibir
@@ -83,6 +84,12 @@ argus
 
       function goToNotifications() {
         $location.path('/notificaciones');
+      }
+
+      function deleteNotifications() {
+        alertService.confirm('Borrar Notificaciones', '¿Está seguro que desea eliminar todas las notificaciones?').then(function () {
+          firebase.database().ref('Argus/NotificacionTmp').remove();
+        })
       }
     }
   ]);

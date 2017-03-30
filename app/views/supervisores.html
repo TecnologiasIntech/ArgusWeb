@@ -85,10 +85,10 @@
             <!--ADMINISTRADORES-->
             <tr ng-repeat="administrador in vm.administradores | toArray | filter: {usuarioNombre: vm.buscarUsuario}"
                 ng-if="vm.searchTypeUser == 'administrador'">
-              <td class="p-t-15">
+              <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(administrador)">
                 <span>{{administrador.usuarioNombre}}</span>
               </td>
-              <td align="right">
+              <td align="right" style="width: 50px">
                 <div class="lv-actions actions dropdown" uib-dropdown="">
                   <a class="cursor-pointer dropdown-toggle" uib-dropdown-toggle=""
                      aria-haspopup="true" aria-expanded="false">
@@ -96,7 +96,7 @@
                   </a>
                   <ul class="dropdown-menu pull-right actions-supervisor">
                     <li class="action-edit cursor-pointer" ng-click="vm.editUser(administrador)">Editar</li>
-                    <li class="action-delete cursor-pointer" ng-click="vm.deleteUser(administrador, 'Usuarios')">Eliminar</li>
+                    <li class="action-delete cursor-pointer" ng-click="vm.deleteUser(administrador, 'administradores')">Eliminar</li>
                   </ul>
                 </div>
               </td>
@@ -105,10 +105,10 @@
             <!--SUPERVISORES-->
             <tr ng-repeat="supervisor in vm.supervisores | toArray | filter: {usuarioNombre: vm.buscarUsuario}"
                 ng-if="vm.searchTypeUser == 'supervisor'">
-              <td class="p-t-15">
+              <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(supervisor)">
                 <span>{{supervisor.usuarioNombre}}</span>
               </td>
-              <td align="right">
+              <td align="right" style="width: 50px">
                 <div class="lv-actions actions dropdown" uib-dropdown="">
                   <a class="cursor-pointer dropdown-toggle" uib-dropdown-toggle=""
                      aria-haspopup="true" aria-expanded="false">
@@ -116,7 +116,7 @@
                   </a>
                   <ul class="dropdown-menu pull-right actions-supervisor">
                     <li class="action-edit cursor-pointer" ng-click="vm.editUser(supervisor)">Editar</li>
-                    <li class="action-delete cursor-pointer" ng-click="vm.deleteUser(supervisor, 'supervisores')">
+                    <li class="action-delete cursor-pointer" ng-click="vm.deleteUser(supervisor, 'supervisores', supervisor.$key)">
                       Eliminar
                     </li>
                   </ul>
@@ -127,10 +127,10 @@
             <!--GUARDIAS-->
             <tr ng-repeat="guardia in vm.guardias | toArray | filter: {usuarioNombre: vm.buscarUsuario}"
                 ng-if="vm.searchTypeUser == 'guardia'">
-              <td class="p-t-15">
+              <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(guardia)">
                 <span>{{guardia.usuarioNombre}}</span>
               </td>
-              <td align="right">
+              <td align="right" style="width: 50px">
                 <div class="lv-actions actions dropdown" uib-dropdown="">
                   <a class="cursor-pointer dropdown-toggle" uib-dropdown-toggle=""
                      aria-haspopup="true" aria-expanded="false">

@@ -50,8 +50,12 @@
           </div>
         </div>
 
-        <div class="col-xs-2" align="right">
+        <div class="col-xs-2">
           <button class="btn waves-effect btn-success m-t-10" ng-click="vm.generatePaysheet()">Generar</button>
+        </div>
+
+        <div class="col-xs-2">
+          <button class="btn waves-effect btn-primary m-t-10" ng-click="vm.downloadCSV({ filename: 'stock-data.csv' })">Exportar</button>
         </div>
 
       </div>
@@ -69,7 +73,7 @@
             </thead>
 
 
-            <tr ng-repeat="nomina in vm.nomina" >
+            <tr ng-repeat="nomina in vm.nomina | toArray" >
               <td class="bitacora-align-middle">
                 {{nomina.nombreGuardia}}
               </td>

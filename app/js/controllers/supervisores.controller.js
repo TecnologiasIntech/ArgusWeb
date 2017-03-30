@@ -35,7 +35,6 @@ argus
       vm.editUser = editUser;
       vm.deleteUser = deleteUser;
       vm.registerUser = registerUser;
-      vm.addOrDeleteItemInAssignment = addOrDeleteItemInAssignment;
       vm.updateUser = updateUser;
 
       //private functions
@@ -68,7 +67,6 @@ argus
         firebase.database().ref('Argus/supervisores/')
           .on('value', function (snapshot) {
             vm.supervisores = snapshot.val();
-            $rootScope.$apply();
           });
 
         firebase.database().ref('Argus/administradores/')
@@ -180,9 +178,41 @@ argus
 
       }
 
-      function deleteUser(user, type) {
-        firebase.database().ref('Argus/' + type + '/' + user.$key).remove();
-        growl.error('Usuario Eliminado!', vm.config);
+      function deleteUser(user, type, userKey) {
+
+        alertService.confirm('Eliminar usuario', '¿Estas seguro de que desea eliminar este usuario?').then(function () {
+          if(user.usuarioTipo != 'guardia'){
+            //Cerramos sesion
+            firebase.auth().signOut().then(function () {
+              // Iniciamos sesion
+              firebase.auth().signInWithEmailAndPassword(user.usuarioEmail, user.usuarioContrasena).then(function () {
+                //Eliminamos la cuenta de Autentification
+                var user = firebase.auth().currentUser;
+                user.delete().then(function() {
+                  // Volvemos a iniciar sesion actual
+                  firebase.auth().signInWithEmailAndPassword(vm.emailAdmin, vm.passwordAdmin).then(function () {
+                    // Listo
+                    firebase.database().ref('Argus/' + type + '/' + userKey).remove();
+                    $rootScope.$apply();
+                  }).catch(function (error) {
+                    var errorCode = error.code;
+                    console.log(errorCode);
+                  });
+
+                }, function(error) {
+                  console.log(error);
+                });
+
+              }).catch(function (error) {
+                var errorCode = error.code;
+                console.log(errorCode);
+              });
+            }, function (error) {
+            });
+          }else{
+            firebase.database().ref('Argus/' + type + '/' + user.$key).remove();
+          }
+        });
       }
 
       function registerUser() {
@@ -235,6 +265,7 @@ argus
               break;
           }
           vm.isLoadingRegister = false;
+          $rootScope.$apply();
         });
       }
 
@@ -274,10 +305,6 @@ argus
         // $rootScope.$apply();
         growl.success('Usuario Agregado exitosamente!', vm.config);
 
-
-      }
-
-      function addOrDeleteItemInAssignment(guardia) {
 
       }
     }

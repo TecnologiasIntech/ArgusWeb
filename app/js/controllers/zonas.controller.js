@@ -69,8 +69,10 @@ argus
       }
 
       function deleteZone(zone) {
-        firebase.database().ref('Argus/Zonas/' + zone.zonaNombre).remove();
-        growl.error('Zona Eliminada!', vm.config);
+        alertService.confirm('Eliminar zona', '¿Estas seguro de que desea eliminar esta zona?').then(function () {
+          firebase.database().ref('Argus/Zonas/' + zone.zonaNombre).remove();
+          growl.error('Zona Eliminada!', vm.config);
+        });
       }
 
       function registerZone() {

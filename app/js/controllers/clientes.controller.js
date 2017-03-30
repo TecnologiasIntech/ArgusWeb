@@ -68,8 +68,10 @@ argus
       }
 
       function deleteClient(client) {
-        firebase.database().ref('Argus/Clientes/' + client.clienteNombre).remove();
-        growl.error('Cliente Eliminado!', vm.config);
+        alertService.confirm('Eliminar cliente', '¿Estas seguro de que desea eliminar este cliente?').then(function () {
+          firebase.database().ref('Argus/Clientes/' + client.clienteNombre).remove();
+          growl.error('Cliente Eliminado!', vm.config);
+        });
       }
 
       function registerClient() {

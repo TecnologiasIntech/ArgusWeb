@@ -56,9 +56,11 @@ argus.controller('incidentesCtrl', ['$scope', '$rootScope', 'growl', '$uibModal'
         }
 
         function deleteincident(key){
-          vm.incidentNombre = key;
-          firebase.database().ref('Argus/IncidenteTipo').child(vm.incidentNombre).remove();
-          growl.error('Incidencia Eliminada!', vm.config);
+          alertService.confirm('Eliminar incidente', '¿Estas seguro de que desea eliminar este incidente?').then(function () {
+            vm.incidentNombre = key;
+            firebase.database().ref('Argus/IncidenteTipo').child(vm.incidentNombre).remove();
+            growl.error('Incidente Eliminado!', vm.config);
+          });
         }
 
         function editIncident(incident, key) {

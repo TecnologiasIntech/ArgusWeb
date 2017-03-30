@@ -56,7 +56,10 @@
                 <p class="col-xs-10 p-l-0 m-b-0">{{notification.descripcion}}</p>
               </div>
             </li>
-            <li class="action-edit cursor-pointer m-t-5 p-b-15 see-all-notificaction-text" ng-click="vm.goToNotifications()" align="center"> Mirar todas las notificaciones</li>
+            <li class="action-edit m-t-5  see-all-notificaction-text"  align="center">
+              <div class="col-xs-6 cursor-pointer p-b-15" ng-click="vm.deleteNotifications()" style="color: #e74c3c;">Borrar notificaciones</div>
+              <div class="col-xs-6 cursor-pointer p-b-15" ng-click="vm.goToNotifications()">Ver notificaciones</div>
+            </li>
           </ul>
         </div>
       </li>
