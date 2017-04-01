@@ -44,8 +44,6 @@ argus
             vm.customers = snapshot.val();
             $rootScope.$apply();
           })
-
-
       }
       activate();
 
@@ -81,9 +79,15 @@ argus
         });
 
         for(var i = 0; i < vm.customersToZone.length; i++){
-          firebase.database().ref('Argus/Zonas/' + vm.zone.zonaNombre + '/zonaClientes').push({
+          // Agregar el cliente a la zona
+          firebase.database().ref('Argus/Zonas/' + vm.zone.zonaNombre + '/zonaClientes/' + vm.customersToZone[i].clienteNombre).set({
             clienteNombre: vm.customersToZone[i].clienteNombre
           });
+
+          // Agregar referencia de la zona al cliente
+          var updates = {};
+          updates['Argus/Clientes/' + vm.customersToZone[i].clienteNombre + '/clienteZonaAsignada'] = vm.zone.zonaNombre;
+          firebase.database().ref().update(updates);
         }
         vm.customersToZone = [];
         growl.success('Zona Agregada!', vm.config);
@@ -116,9 +120,15 @@ argus
         firebase.database().ref('Argus/Zonas/' + vm.zone.zonaNombre + '/zonaClientes').remove();
 
         for(var i = 0; i < vm.customersToZone.length; i++){
+          // Asigna todos los clientes a la zona
           firebase.database().ref('Argus/Zonas/' + vm.zone.zonaNombre + '/zonaClientes').push({
             clienteNombre: vm.customersToZone[i].clienteNombre
           });
+
+          // Agregar referencia de la zona al cliente
+          var updates = {};
+          updates['Argus/Clientes/' + vm.customersToZone[i].clienteNombre + '/clienteZonaAsignada'] = vm.zone.zonaNombre;
+          firebase.database().ref().update(updates);
         }
         growl.info('Zona Actualizada!', vm.config);
         vm.modal.dismiss();

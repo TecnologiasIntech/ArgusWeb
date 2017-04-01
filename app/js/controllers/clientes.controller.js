@@ -70,6 +70,7 @@ argus
       function deleteClient(client) {
         alertService.confirm('Eliminar cliente', '¿Estas seguro de que desea eliminar este cliente?').then(function () {
           firebase.database().ref('Argus/Clientes/' + client.clienteNombre).remove();
+          firebase.database().ref('Argus/Zonas/' + client.clienteZonaAsignada + '/zonaClientes/' + client.clienteNombre).remove();
           growl.error('Cliente Eliminado!', vm.config);
         });
       }
@@ -78,12 +79,19 @@ argus
         firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).set(vm.client);
 
         for(var i = 0; i < vm.guardsToClient.length; i++){
+          // Asignar los guardias al cliente
           firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteGuardias/' + vm.guardsToClient[i].usuarioKey).set({
             usuarioNombre: vm.guardsToClient[i].usuarioNombre,
             usuarioKey: vm.guardsToClient[i].usuarioKey
           });
+
+          // Agregar referencia del cliente en el guardia
+          var updates = {};
+          updates['Argus/guardias/' + vm.guardsToClient[i].usuarioKey + '/usuarioClienteAsignado'] = vm.client.clienteNombre;
+          firebase.database().ref().update(updates);
         }
         vm.client = {};
+        vm.client.clienteDisponible = true;
         vm.guardsToClient = [];
         growl.success('Cliente Agregado!', vm.config);
         vm.modal.dismiss();
@@ -125,8 +133,14 @@ argus
             usuarioNombre: vm.guardsToClient[i].usuarioNombre,
             usuarioKey: vm.guardsToClient[i].usuarioKey
           });
+
+          // Agregar referencia del cliente en el guardia
+          var updates = {};
+          updates['Argus/guardias/' + vm.guardsToClient[i].usuarioKey + '/usuarioClienteAsignado'] = vm.client.clienteNombre;
+          firebase.database().ref().update(updates);
         }
         vm.client = {};
+        vm.client.clienteDisponible = true;
         vm.guardsToClient = [];
         vm.isEdit = false;
         vm.view = 'general';

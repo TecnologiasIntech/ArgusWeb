@@ -193,7 +193,7 @@ argus
                   firebase.auth().signInWithEmailAndPassword(vm.emailAdmin, vm.passwordAdmin).then(function () {
                     // Listo
                     firebase.database().ref('Argus/' + type + '/' + userKey).remove();
-                    $rootScope.$apply();
+
                   }).catch(function (error) {
                     var errorCode = error.code;
                     console.log(errorCode);
@@ -211,6 +211,7 @@ argus
             });
           }else{
             firebase.database().ref('Argus/' + type + '/' + user.$key).remove();
+            firebase.database().ref('Argus/Clientes/' + user.usuarioClienteAsignado + '/clienteGuardias/' + userKey).remove();
           }
         });
       }
@@ -232,24 +233,7 @@ argus
 
       function registerUserWithEmail() {
         vm.isLoadingRegister = true;
-        firebase.auth().createUserWithEmailAndPassword(vm.user.usuarioEmail, vm.user.usuarioContrasena).then(function () {
-          //Cerramos sesion
-          firebase.auth().signOut().then(function () {
-            // Iniciamos sesion
-            firebase.auth().signInWithEmailAndPassword(vm.emailAdmin, vm.passwordAdmin).then(function () {
-              // Salvamos los datos de la cuenta creada
-              saveUserInformation();
-              vm.isLoadingRegister = false;
-
-              // $rootScope.$apply();
-            }).catch(function (error) {
-              var errorCode = error.code;
-              console.log(errorCode);
-            });
-          }, function (error) {
-          });
-        }).catch(function (error) {
-
+        firebase.auth().createUserWithEmailAndPassword(vm.user.usuarioEmail, vm.user.usuarioContrasena).catch(function(error) {
           switch (error.code) {
             case 'auth/email-already-in-use':
               alertService.error('Email ya en uso', 'Intenta con uno diferente');
@@ -266,6 +250,22 @@ argus
           }
           vm.isLoadingRegister = false;
           $rootScope.$apply();
+        });
+        //Cerramos sesion
+        firebase.auth().signOut().then(function () {
+          // Iniciamos sesion
+          firebase.auth().signInWithEmailAndPassword(vm.emailAdmin, vm.passwordAdmin).then(function () {
+            // Salvamos los datos de la cuenta creada
+            saveUserInformation();
+            vm.isLoadingRegister = false;
+
+            // $rootScope.$apply();
+          }).catch(function (error) {
+            var errorCode = error.code;
+            console.log(errorCode);
+          });
+        }, function (error) {
+          alert(error);
         });
       }
 

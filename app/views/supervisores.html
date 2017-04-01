@@ -96,7 +96,7 @@
                   </a>
                   <ul class="dropdown-menu pull-right actions-supervisor">
                     <li class="action-edit cursor-pointer" ng-click="vm.editUser(administrador)">Editar</li>
-                    <li class="action-delete cursor-pointer" ng-click="vm.deleteUser(administrador, 'administradores')">Eliminar</li>
+                    <li class="action-delete cursor-pointer" ng-click="vm.deleteUser(administrador, 'administradores', administrador.$key)">Eliminar</li>
                   </ul>
                 </div>
               </td>
@@ -138,7 +138,7 @@
                   </a>
                   <ul class="dropdown-menu pull-right actions-supervisor">
                     <li class="action-edit cursor-pointer" ng-click="vm.editUser(guardia)">Editar</li>
-                    <li class="action-delete cursor-pointer" ng-click="vm.deleteUser(guardia, 'guardias')">Eliminar</li>
+                    <li class="action-delete cursor-pointer" ng-click="vm.deleteUser(guardia, 'guardias', guardia.$key)">Eliminar</li>
                   </ul>
                 </div>
               </td>

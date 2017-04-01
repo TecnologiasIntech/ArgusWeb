@@ -1,5 +1,5 @@
 <script src="../../bower_components/lodash/lodash.js"></script>
-<form action="" ng-submit="vm.registerZone()">
+<form ng-submit="vm.registerZone()">
 
   <div class="modal-header p-t-10">
     <ul class="tab-nav">
@@ -64,8 +64,8 @@
   </div>
   <div class="modal-footer">
     <div align="right">
-      <button class="btn btn-primary waves-effect" type="submit" ng-if="!vm.isEdit">Aceptar</button>
-      <button class="btn btn-primary waves-effect" ng-click="vm.updateZone()" ng-if="vm.isEdit">Aceptar</button>
+      <button class="btn btn-primary waves-effect" type="submit" ng-if="!vm.isEdit">Aceptare</button>
+      <div class="btn btn-primary waves-effect" ng-click="vm.updateZone()" ng-if="vm.isEdit">Aceptar</div>
       <div class="btn btn-primary waves-effect" ng-click="vm.modal.dismiss(); vm.customersToZone = []; vm.zone = {}; vm.isEdit = false">Cancelar</div>
     </div>
   </div>
