@@ -17,6 +17,7 @@ argus
       vm.guardias = {};
       vm.zonas = {};
       vm.user.usuarioTipo = 'guardia';
+      vm.user.usuarioTipoGuardia = 'guardiaPlaza';
       vm.userAsignacion = {};
       vm.emailAdmin = '';
       vm.passwordAdmin = '';

@@ -23,41 +23,32 @@ argus
           .on('value', function (snapshot) {
             //Voy a recibir
             //  * Tipo de accion que se ha hecho
-            //  *
             vm.notifications = snapshot.val();
-            // console.log(vm.notifications);
 
-            // // Reverse
-            // vm.notifications = {};
-            // vm.notifications = _.forEachRight(vm.notifications, function (value) {
-            //   vm.notifications.push(value)
-            // });
-            // console.log(vm.notifications)
-
-            // $interval(function(){
-            if (vm.notificationsLength < Object.keys(vm.notifications).length && vm.isReadyToListener) {
-              vm.i = '';
-              for(var ja in vm.notifications){
-                vm.i = vm.notifications[ja].descripcion;
-                console.log(vm.i);
+            if(vm.notifications == null){
+              vm.notificationsLength = 0;
+            }else {
+              if (vm.notificationsLength < Object.keys(vm.notifications).length && vm.isReadyToNotification) {
+                vm.i = '';
+                for (var ja in vm.notifications) {
+                  vm.i = vm.notifications[ja].descripcion;
+                  console.log(vm.i);
+                }
+                $notification('Notificación de Argus', {
+                  body: vm.i,
+                  dir: 'auto',
+                  lang: 'en',
+                  tag: 'my-tag',
+                  icon: '../img/argus-icon-v2.jpeg',
+                  delay: 10000,
+                  focusWindowOnClick: true
+                });
               }
-              $notification('Notificación de Argus', {
-                body: vm.i,
-                dir: 'auto',
-                lang: 'en',
-                tag: 'my-tag',
-                icon: '../img/argus-icon-v2.jpeg',
-                delay: 10000,
-                focusWindowOnClick: true
-              });
+              vm.notificationsLength = Object.keys(vm.notifications).length;
             }
-            vm.isReadyToListener = true;
-            vm.notificationsLength = Object.keys(vm.notifications).length;
             $rootScope.$apply();
-            // }, 5000);
+            vm.isReadyToNotification = true;
           })
-
-
       }
 
       activate();
@@ -90,6 +81,7 @@ argus
         alertService.confirm('Borrar Notificaciones', '¿Está seguro que desea eliminar todas las notificaciones?').then(function () {
           firebase.database().ref('Argus/NotificacionTmp').remove();
         })
+        $rootScope.$apply();
       }
     }
   ]);

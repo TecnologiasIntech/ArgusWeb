@@ -84,6 +84,18 @@
             </svg>
           </div>
 
+          <!--Tipo de guardia-->
+          <div class="col-xs-5" ng-if="vm.user.usuarioTipo == 'guardia'">
+            <span>Sueldo base</span>
+            <div class="fg-line m-l-10">
+              <select class="form-control" ng-model="vm.user.usuarioTipoGuardia">
+                <option value="guardiaPlaza">Guardia en plaza</option>
+                <option value="guardiaHospital">Guardia en hospital cima</option>
+                <option value="guardiaJefe">Jefe de grupo</option>
+              </select>
+            </div>
+          </div>
+
           <!--ZONA-->
           <div class="col-xs-5" ng-if="vm.user.usuarioTipo == 'supervisor'">
             <span>Zona</span>
