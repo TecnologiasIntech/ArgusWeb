@@ -66,7 +66,7 @@
     <div align="right">
       <button class="btn btn-primary waves-effect" type="submit" ng-if="!vm.isEdit">Aceptare</button>
       <div class="btn btn-primary waves-effect" ng-click="vm.updateZone()" ng-if="vm.isEdit">Aceptar</div>
-      <div class="btn btn-primary waves-effect" ng-click="vm.modal.dismiss(); vm.customersToZone = []; vm.zone = {}; vm.isEdit = false">Cancelar</div>
+      <div class="btn btn-primary waves-effect" ng-click="vm.modal.dismiss(); vm.customersToZone = []; vm.zone = {}; vm.isEdit = false; vm.editZoneCancel()">Cancelar</div>
     </div>
   </div>
 </form>

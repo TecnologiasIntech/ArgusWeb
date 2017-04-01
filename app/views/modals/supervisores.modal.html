@@ -101,7 +101,7 @@
             <span>Zona</span>
             <div class="fg-line m-l-10">
               <select class="form-control" ng-model="vm.user.usuarioZona">
-                <option value="{{zona.zonaNombre}}" ng-repeat="zona in vm.zonas">{{zona.zonaNombre}}</option>
+                <option value="{{zona.zonaNombre}}" ng-repeat="zona in vm.zonas" ng-if="zona.disponibilidadZona">{{zona.zonaNombre}}</option>
               </select>
             </div>
           </div>
@@ -170,7 +170,7 @@
       <button class="btn btn-primary waves-effect" type="submit" ng-if="!vm.isEdit">Aceptar</button>
       <button class="btn btn-primary waves-effect" ng-click="vm.updateUser()" ng-if="vm.isEdit">Aceptar</button>
       <div class="btn btn-primary waves-effect"
-           ng-click="vm.modal.dismiss(); vm.user = {}; vm.user.usuarioTipo = 'guardia'; vm.isEdit = false;">Cancelar
+           ng-click="vm.modal.dismiss(); vm.user = {}; vm.user.usuarioTipo = 'guardia'; vm.isEdit = false; vm.editUserCancel(zona)">Cancelar
       </div>
     </div>
   </div>

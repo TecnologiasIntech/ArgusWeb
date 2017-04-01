@@ -16,8 +16,8 @@ argus
       vm.supervisores = {};
       vm.guardias = {};
       vm.zonas = {};
+      vm.zonesAvailable=[];
       vm.user.usuarioTipo = 'guardia';
-      vm.user.usuarioTipoGuardia = 'guardiaPlaza';
       vm.userAsignacion = {};
       vm.emailAdmin = '';
       vm.passwordAdmin = '';
@@ -37,6 +37,7 @@ argus
       vm.deleteUser = deleteUser;
       vm.registerUser = registerUser;
       vm.updateUser = updateUser;
+      vm.editUserCancel = editUserCancel;
 
       //private functions
       function activate() {
@@ -59,6 +60,8 @@ argus
         // Datos de todos los usuarios
         vm.isLoading = true;
 
+
+
         firebase.database().ref('Argus/guardias/')
           .on('value', function (snapshot) {
             vm.guardias = snapshot.val();
@@ -77,10 +80,7 @@ argus
             $rootScope.$apply();
           });
 
-        firebase.database().ref('Argus/Zonas/')
-          .on('value', function (snapshot) {
-            vm.zonas = snapshot.val();
-          });
+
 
         vm.emailAdmin = localStorage.getItem('email');
         vm.passwordAdmin = localStorage.getItem('password');
@@ -112,6 +112,7 @@ argus
       activate();
 
       function openModal() {
+        getZonesAvailable();
         vm.modal = $uibModal.open({
           animation: true,
           templateUrl: 'views/modals/supervisores.modal.html',
@@ -121,18 +122,36 @@ argus
         });
       }
 
+      function getZonesAvailable(){
+        firebase.database().ref('Argus/Zonas/')
+          .on('value', function (snapshot) {
+            vm.zonas = snapshot.val();
+        });
+      }
+
       function changeView(view) {
         vm.view = view;
       }
-
+      vm.saveUser=[];
       function editUser(user) {
         vm.isEdit = true;
         vm.user = user;
+        vm.saveUser.push(user);
+        firebase.database().ref('Argus/Zonas/'+vm.user.usuarioZona).update({
+          disponibilidadZona: true
+        });
         vm.openModal();
         console.log(user);
       }
+      function editUserCancel(){
+        firebase.database().ref('Argus/Zonas/'+vm.saveUser[0].usuarioZona).update({
+          disponibilidadZona: false
+        });
+        vm.saveUser=[];
+      }
 
       function updateUser() {
+        vm.saveUser=[];
         switch (vm.user.usuarioTipo) {
 
           case 'guardia':
@@ -156,9 +175,14 @@ argus
               usuarioTurno: vm.user.usuarioTurno,
               usuarioContrasena: vm.user.usuarioContrasena
             });
+            firebase.database().ref('Argus/Zonas/'+vm.user.usuarioZona).update({
+              disponibilidadZona: false
+            });
             break;
 
           case 'administrador':
+
+          firebase.database().ref('Argus/Zonas/'+vm.user.usuarioZona).child('zonaDisponiblidad').set()
             // ACTUALIZAR SUPERVISORES
             firebase.database().ref('Argus/administradores/' + vm.user.$key + '/').update({
               usuarioNombre: vm.user.usuarioNombre,
@@ -280,6 +304,8 @@ argus
         }
 
         firebase.database().ref('Argus/' + vm.user.usuarioTipo + tipoPlural).push(vm.user);
+
+        firebase.database().ref('Argus/Zonas/'+vm.user.usuarioZona).child('disponibilidadZona').set(false);
 
         if(vm.isAssignmentToZone){
 

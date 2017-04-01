@@ -145,7 +145,22 @@ argus
                   }
                 }
 
-                vm.sueldoTotal = (200 * vm.assistence) + 400;
+                switch (vm.guardias[guardia].usuarioTipoGuardia) {
+                  case 'guardiaPlaza':
+                    vm.sueldoTotal = (200 * vm.assistence) + 400;
+                    break;
+                  case 'guardiaHospital':
+                    vm.sueldoTotal = (200 * vm.assistence) + 400;
+                    break;
+                    case 'guardiaJefe':
+                    vm.sueldoTotal = (266 * vm.assistence) + 400;
+                      break;
+                  default:
+
+                }
+
+
+
                 firebase.database().ref('Argus/Nomina/'+ vm.numQuincena).push({
                   'nombreGuardia': vm.guardias[guardia].usuarioNombre,
                   'sueldoBase': '200',

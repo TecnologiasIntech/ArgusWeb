@@ -90,7 +90,7 @@
     <div align="right">
       <button class="btn btn-primary waves-effect" type="submit" ng-if="!vm.isEdit">Aceptar</button>
       <div class="btn btn-primary waves-effect" ng-click="vm.updateClient()" ng-if="vm.isEdit">Aceptar</div>
-      <div class="btn btn-primary waves-effect" ng-click="vm.modal.dismiss(); vm.guardsToClient = []; vm.client = {}; vm.isEdit = false; vm.client.clienteDisponible = true;">Cancelar</div>
+      <div class="btn btn-primary waves-effect" ng-click="vm.modal.dismiss(); vm.guardsToClient = []; vm.client = {}; vm.isEdit = false; vm.client.clienteDisponible = true; vm.editClientCancel()">Cancelar</div>
     </div>
   </div>
 </form>

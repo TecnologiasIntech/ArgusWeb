@@ -12,12 +12,14 @@ argus
       vm.customers = {};
       vm.guards = {};
       vm.client = {};
+      vm.customersAvailable=[];
       vm.client.clienteDisponible = true;
       vm.isEdit = false;
       vm.guardsToClient = [];
       vm.view = 'general';
       vm.config = {};
       vm.isLoading = false;
+      vm.saveGuardias=[];
 
       //public functions
       vm.openModal = openModal;
@@ -27,6 +29,7 @@ argus
       vm.addOrDeleteItemInAssignment = addOrDeleteItemInAssignment;
       vm.verifyChecked = verifyChecked;
       vm.updateClient = updateClient;
+      vm.editClientCancel = editClientCancel;
 
       //private functions
       function activate() {
@@ -46,6 +49,7 @@ argus
       activate();
 
       function openModal() {
+        //saveGuardias=[];
         vm.modal = $uibModal.open({
           animation: true,
           templateUrl: 'views/modals/clientes.modal.html',
@@ -55,16 +59,31 @@ argus
         });
       }
 
+
+
       function editClient(client) {
         vm.isEdit = true;
         vm.client = client;
         for(var guard in vm.client.clienteGuardias){
+          vm.saveGuardias.push(guard);
           vm.guardsToClient.push({
             usuarioNombre : vm.client.clienteGuardias[guard].usuarioNombre,
             usuarioKey : vm.client.clienteGuardias[guard].usuarioKey
           });
+          firebase.database().ref('Argus/guardias/'+vm.client.clienteGuardias[guard].usuarioKey+'/'+vm.client.clienteGuardias[guard].usuarioClienteAsignado).remove();
+          firebase.database().ref('Argus/guardias/'+ vm.client.clienteGuardias[guard].usuarioKey).update({
+            usuarioDisponible: true
+          });
         }
         vm.openModal();
+      }
+      function editClientCancel(){
+        for(var guard in vm.saveGuardias){
+          firebase.database().ref('Argus/guardias/'+ vm.saveGuardias[guard]).update({
+            usuarioDisponible: false
+          });
+        }
+        vm.saveGuardias=[];
       }
 
       function deleteClient(client) {
@@ -76,6 +95,8 @@ argus
       }
 
       function registerClient() {
+
+        vm.client.clienteDisponible = true;
         firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).set(vm.client);
 
         for(var i = 0; i < vm.guardsToClient.length; i++){
@@ -88,7 +109,9 @@ argus
           // Agregar referencia del cliente en el guardia
           var updates = {};
           updates['Argus/guardias/' + vm.guardsToClient[i].usuarioKey + '/usuarioClienteAsignado'] = vm.client.clienteNombre;
+          updates['Argus/guardias/'+ vm.guardsToClient[i].usuarioKey+'/usuarioDisponible']= false;
           firebase.database().ref().update(updates);
+
         }
         vm.client = {};
         vm.client.clienteDisponible = true;
@@ -121,6 +144,7 @@ argus
       }
 
       function updateClient() {
+        vm.saveGuardias=[];
         firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).update({
           clienteNumeroGuardias: vm.client.clienteNumeroGuardias,
           clienteDomicilio: vm.client.clienteDomicilio
@@ -137,7 +161,9 @@ argus
           // Agregar referencia del cliente en el guardia
           var updates = {};
           updates['Argus/guardias/' + vm.guardsToClient[i].usuarioKey + '/usuarioClienteAsignado'] = vm.client.clienteNombre;
+          updates['Argus/guardias/'+ vm.guardsToClient[i].usuarioKey+'/usuarioDisponible']= false;
           firebase.database().ref().update(updates);
+
         }
         vm.client = {};
         vm.client.clienteDisponible = true;
