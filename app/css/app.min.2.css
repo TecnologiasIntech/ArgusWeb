@@ -878,6 +878,16 @@ body.login-content:before {
   background: #2ecc71;
 }
 
+.t-view[data-tv-type="CF"]:before {
+  content: "\f269";
+  background: #e67e22;
+  box-shadow: 0 0 0 1px #e67e22;
+}
+
+.t-view[data-tv-type="CF"]:after {
+  background: #e67e22;
+}
+
 .t-view[data-tv-type="MG"]:before {
   content: "\f20d";
   background: #3498db;

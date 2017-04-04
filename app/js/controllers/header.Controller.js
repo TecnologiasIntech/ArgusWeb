@@ -53,10 +53,10 @@ argus
 
       activate();
 
-      function verifyAction(action, information, key) {
+      function verifyAction(action, information, key, notificacion) {
         switch (action){
           case 'AG':
-            if($location.path() != '/supervisores'){
+            if($location.path() !== '/supervisores'){
               sessionStorage['guardiaInformacion'] = JSON.stringify(information);
               $location.path('/supervisores');
             }else{
@@ -69,6 +69,17 @@ argus
             break;
 
           case 'AI':
+            break;
+
+          case 'CF':
+            if($location.path() === '/notificaciones'){
+              $rootScope.$broadcast('notificaciones:confirmar', notificacion);
+            }else{
+
+                sessionStorage['notificationConfirm'] = JSON.stringify(notificacion);
+                $location.path('/notificaciones')
+
+            }
             break;
         }
       }

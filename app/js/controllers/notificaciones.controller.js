@@ -14,6 +14,7 @@ argus
       vm.openModal = openModal;
       vm.viewDetails = viewDetails;
       vm.deleteNotification = deleteNotification;
+      vm.confirmSignature = confirmSignature;
 
       //private functions
       function activate() {
@@ -21,6 +22,18 @@ argus
           .on('value', function (snapshot) {
             vm.notifications = snapshot.val();
           })
+
+        if(sessionStorage.getItem('notificationConfirm') === null){
+        }else{
+          vm.notification = JSON.parse(sessionStorage['notificationConfirm']);
+          sessionStorage.clear();
+          openModal();
+        }
+
+        $scope.$on('notificaciones:confirmar', function (event, notification) {
+          vm.notification = notification;
+          openModal();
+        })
       }
       activate();
 
@@ -44,6 +57,15 @@ argus
 
         });
         firebase.database().ref('Argus/Notificacion/' + key).remove();
+      }
+
+      function confirmSignature(fecha, guardKey) {
+        var updates = {};
+        updates['Argus/Bitacora/' + fecha + '/' + guardKey + '/asistio'] = true;
+
+        firebase.database().ref().update(updates);
+        vm.modal.dismiss()
+
       }
 
     }

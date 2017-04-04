@@ -2,8 +2,8 @@
  * Created by Toshiba on 14/02/2017.
  */
 argus
-  .controller('supervisorCtrl', ['$location', '$scope', '$rootScope', 'alertService', '$uibModal', 'growl',
-    function ($location, $scope, $rootScope, alertService, $uibModal, growl) {
+  .controller('supervisorCtrl', ['$location', '$scope', '$rootScope', 'alertService', '$uibModal', 'growl', '$firebaseArray',
+    function ($location, $scope, $rootScope, alertService, $uibModal, growl, $firebaseArray) {
 
       //public var
       var vm = this;
@@ -65,7 +65,7 @@ argus
         firebase.database().ref('Argus/guardias/')
           .on('value', function (snapshot) {
             vm.guardias = snapshot.val();
-            $rootScope.$apply();
+            // $rootScope.$apply();
           });
 
         firebase.database().ref('Argus/supervisores/')
@@ -77,7 +77,7 @@ argus
           .on('value', function (snapshot) {
             vm.administradores = snapshot.val();
             vm.isLoading = false;
-            $rootScope.$apply();
+            // $rootScope.$apply();
           });
 
 
@@ -248,12 +248,6 @@ argus
         } else {
           saveUserInformation();
         }
-
-        // var cred = firebase.auth.EmailAuthProvider.credential(
-        //   'carlos_alatorre_9sds5@hotmail.com',
-        //   'intech2017'
-        // );
-        // console.log(cred)
       }
 
       function registerUserWithEmail() {
@@ -326,12 +320,11 @@ argus
               vm.notificationkey = '';
             })
         }
-        vm.modal.dismiss();
         vm.user = {};
         vm.user.usuarioTipo = 'guardia';
         // $rootScope.$apply();
         growl.success('Usuario Agregado exitosamente!', vm.config);
-
+        vm.modal.dismiss();
 
       }
     }

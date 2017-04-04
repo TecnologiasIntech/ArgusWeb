@@ -133,106 +133,108 @@ argus
             }
 
             /*Si la quincena no existe en la base de datos la generamos*/
-            if (vm.estadoNomina == 0) {
-              for (var guardia in vm.guardias) {
-                for (var asistencias in vm.fechas) {
-                  vm.asistencias = vm.fechas[asistencias];
-                  for (var asistencia in vm.asistencias) {
-                    /*Contabilizamos las asistencias de cada guardia de datos obtenidps de la bitacora con su registro y status*/
-                    if (vm.asistencias[asistencia].guardiaNombre == vm.guardias[guardia].usuarioNombre && vm.asistencias[asistencia].status == 'Asistió') {
-                      vm.assistence += 1;
-                    }
+            // if (vm.estadoNomina == 0) {
+            //
+            // }
+            // else {
+            //
+            //   vm.totalPagado = 0;
+            //
+            //   /*Deducimos el numero de quincena mediante los ultimos dos digitos de la fecha inicial*/
+            //   vm.quincena = vm.rangeOneForPaysheet.substr(6, 7);
+            //
+            //   /*Dependiendo del numero de quincena deducida asignamos un identificador, y verificacmos si existe en la base de datos*/
+            //   if (vm.quincena == '01') {
+            //     vm.numQuincena = vm.mouth.mouth + '-Uno';
+            //   }
+            //   else {
+            //     vm.numQuincena= vm.mouth.mouth + '-Dos';
+            //   }
+            //
+            //   firebase.database().ref('Argus/Nomina/'+ vm.numQuincena)
+            //   .on('value', function(snapshot){
+            //     vm.nominaFirebase = snapshot.val();
+            //     vm.totalPagado = vm.nominaFirebase.totalPagado;
+            //
+            //     vm.nominaLength = Object.keys(vm.nominaFirebase).length;
+            //
+            //     for (var index in vm.nominaFirebase) {
+            //       if (index != "totalPagado") {
+            //
+            //         vm.exportToCsv.push({
+            //           'nombreGuardia': vm.nominaFirebase[index].nombreGuardia,
+            //           'sueldoBase': vm.nominaFirebase[index].sueldoBase,
+            //           'asistencia': vm.nominaFirebase[index].asistencia,
+            //           'sueldoTotal': vm.nominaFirebase[index].sueldoTotal
+            //         });
+            //       }
+            //     }
+            //
+            //     for (var index in vm.nominaFirebase) {
+            //       if (index != "totalPagado") {
+            //
+            //         vm.nomina.push({
+            //           'nombreGuardia': vm.nominaFirebase[index].nombreGuardia,
+            //           'sueldoBase': vm.nominaFirebase[index].sueldoBase,
+            //           'asistencia': vm.nominaFirebase[index].asistencia,
+            //           'sueldoTotal': vm.nominaFirebase[index].sueldoTotal
+            //         });
+            //       }
+            //     }
+            //   });
+            //
+            // }
+vm.nomina = [];
+            for (var guardia in vm.guardias) {
+              for (var asistencias in vm.fechas) {
+                vm.asistencias = vm.fechas[asistencias];
+                for (var asistencia in vm.asistencias) {
+                  /*Contabilizamos las asistencias de cada guardia de datos obtenidps de la bitacora con su registro y status*/
+                  if (vm.asistencias[asistencia].guardiaNombre == vm.guardias[guardia].usuarioNombre && vm.asistencias[asistencia].status == 'Asistió') {
+                    vm.assistence += 1;
                   }
                 }
-
-                switch (vm.guardias[guardia].usuarioTipoGuardia) {
-                  case 'guardiaPlaza':
-                    vm.sueldoTotal = (200 * vm.assistence) + 400;
-                    break;
-                  case 'guardiaHospital':
-                    vm.sueldoTotal = (200 * vm.assistence) + 400;
-                    break;
-                    case 'guardiaJefe':
-                    vm.sueldoTotal = (266 * vm.assistence) + 400;
-                      break;
-                  default:
-
-                }
-
-
-
-                firebase.database().ref('Argus/Nomina/'+ vm.numQuincena).push({
-                  'nombreGuardia': vm.guardias[guardia].usuarioNombre,
-                  'sueldoBase': '200',
-                  'asistencia': vm.assistence,
-                  'sueldoTotal': vm.sueldoTotal
-                });
-
-                vm.nomina.push({
-                  'nombreGuardia': vm.guardias[guardia].usuarioNombre,
-                  'sueldoBase': '200',
-                  'asistencia': vm.assistence,
-                  'sueldoTotal': vm.sueldoTotal
-                });
-                vm.assistence = 0;
-              }
-              vm.nominaLength = vm.nomina.length;
-
-
-              /*Sumamos todos los sueldoTotales de los empleados en vm.totalPagado*/
-              for (var empleado in vm.nomina) {
-                vm.totalPagado += vm.nomina[empleado].sueldoTotal;
-              }
-              firebase.database().ref('Argus/Nomina/'+ vm.numQuincena).child('totalPagado').set(vm.totalPagado);
-            }
-            else {
-
-              vm.totalPagado = 0;
-
-              /*Deducimos el numero de quincena mediante los ultimos dos digitos de la fecha inicial*/
-              vm.quincena = vm.rangeOneForPaysheet.substr(6, 7);
-
-              /*Dependiendo del numero de quincena deducida asignamos un identificador, y verificacmos si existe en la base de datos*/
-              if (vm.quincena == '01') {
-                vm.numQuincena = vm.mouth.mouth + '-Uno';
-              }
-              else {
-                vm.numQuincena= vm.mouth.mouth + '-Dos';
               }
 
-              firebase.database().ref('Argus/Nomina/'+ vm.numQuincena)
-              .on('value', function(snapshot){
-                vm.nominaFirebase = snapshot.val();
-                vm.totalPagado = vm.nominaFirebase.totalPagado;
+              switch (vm.guardias[guardia].usuarioTipoGuardia) {
+                case 'guardiaPlaza':
+                  vm.sueldoTotal = (200 * vm.assistence) + 400;
+                  break;
+                case 'guardiaHospital':
+                  vm.sueldoTotal = (200 * vm.assistence) + 400;
+                  break;
+                case 'guardiaJefe':
+                  vm.sueldoTotal = (266 * vm.assistence) + 400;
+                  break;
+                default:
 
-                vm.nominaLength = Object.keys(vm.nominaFirebase).length;
+              }
 
-                for (var index in vm.nominaFirebase) {
-                  if (index != "totalPagado") {
 
-                    vm.exportToCsv.push({
-                      'nombreGuardia': vm.nominaFirebase[index].nombreGuardia,
-                      'sueldoBase': vm.nominaFirebase[index].sueldoBase,
-                      'asistencia': vm.nominaFirebase[index].asistencia,
-                      'sueldoTotal': vm.nominaFirebase[index].sueldoTotal
-                    });
-                  }
-                }
 
-                for (var index in vm.nominaFirebase) {
-                  if (index != "totalPagado") {
-
-                    vm.nomina.push({
-                      'nombreGuardia': vm.nominaFirebase[index].nombreGuardia,
-                      'sueldoBase': vm.nominaFirebase[index].sueldoBase,
-                      'asistencia': vm.nominaFirebase[index].asistencia,
-                      'sueldoTotal': vm.nominaFirebase[index].sueldoTotal
-                    });
-                  }
-                }
+              firebase.database().ref('Argus/Nomina/'+ vm.numQuincena).push({
+                'nombreGuardia': vm.guardias[guardia].usuarioNombre,
+                'sueldoBase': '200',
+                'asistencia': vm.assistence,
+                'sueldoTotal': vm.sueldoTotal
               });
 
+              vm.nomina.push({
+                'nombreGuardia': vm.guardias[guardia].usuarioNombre,
+                'sueldoBase': '200',
+                'asistencia': vm.assistence,
+                'sueldoTotal': vm.sueldoTotal
+              });
+              vm.assistence = 0;
             }
+            vm.nominaLength = vm.nomina.length;
+
+
+            /*Sumamos todos los sueldoTotales de los empleados en vm.totalPagado*/
+            for (var empleado in vm.nomina) {
+              vm.totalPagado += vm.nomina[empleado].sueldoTotal;
+            }
+            firebase.database().ref('Argus/Nomina/'+ vm.numQuincena).child('totalPagado').set(vm.totalPagado);
             $rootScope.$apply();
         });
       }

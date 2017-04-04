@@ -12,7 +12,8 @@
     "angular-sanitize": "^1.4.0",
     "angular-touch": "^1.4.0",
     "sweetalert2": "^6.2.6",
-    "angular-toArrayFilter": "^1.0.1"
+    "angular-toArrayFilter": "^1.0.1",
+    "angularfire": "^2.3.0"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"

@@ -1,4 +1,4 @@
-<form action="" ng-submit="vm.registerUser()">
+<form ng-submit="vm.registerUser()">
 
   <div class="modal-header p-t-10">
     <ul class="tab-nav">
@@ -168,7 +168,7 @@
   <div class="modal-footer">
     <div align="right">
       <button class="btn btn-primary waves-effect" type="submit" ng-if="!vm.isEdit">Aceptar</button>
-      <button class="btn btn-primary waves-effect" ng-click="vm.updateUser()" ng-if="vm.isEdit">Aceptar</button>
+      <div class="btn btn-primary waves-effect" ng-click="vm.updateUser()" ng-if="vm.isEdit">Aceptar</div>
       <div class="btn btn-primary waves-effect"
            ng-click="vm.modal.dismiss(); vm.user = {}; vm.user.usuarioTipo = 'guardia'; vm.isEdit = false; vm.editUserCancel(zona)">Cancelar
       </div>

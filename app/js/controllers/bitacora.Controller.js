@@ -67,23 +67,7 @@ argus
                 vm.isReady = false;
               }
 
-              vm.binnacleToExport = [];
 
-              for(date in vm.records){
-                for(guard in vm.records[date]){
-                  if(vm.records[date][guard].guardiaNombre){
-                    vm.binnacleToExport.push({
-                      Zona: vm.records[date][guard].zona,
-                      Cliente: vm.records[date][guard].cliente,
-                      Guardia: vm.records[date][guard].guardiaNombre,
-                      Turno: vm.records[date][guard].turno,
-                      Estatus: vm.records[date][guard].status,
-                      Observacion: vm.records[date][guard].observacion,
-                      Fecha: vm.records[date][guard].fecha
-                    })
-                  }
-                }
-              }
 
               $rootScope.$apply();
             })
@@ -146,6 +130,26 @@ argus
 
       function downloadCSV(args) {
         var data, filename, link;
+
+        vm.binnacleToExport = [];
+
+        for(date in vm.records){
+          for(guard in vm.records[date]){
+            if(vm.records[date][guard].guardiaNombre){
+              vm.binnacleToExport.push({
+                Zona: vm.records[date][guard].zona,
+                Cliente: vm.records[date][guard].cliente,
+                Guardia: vm.records[date][guard].guardiaNombre,
+                Turno: vm.records[date][guard].turno,
+                Estatus: vm.records[date][guard].status,
+                Observacion: vm.records[date][guard].observacion,
+                Fecha: vm.records[date][guard].fecha
+              })
+            }
+          }
+        }
+
+
 
         var csv = convertArrayOfObjectsToCSV({
           data: vm.binnacleToExport

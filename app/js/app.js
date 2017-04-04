@@ -13,5 +13,6 @@ var argus = angular.module('argus', [
   'notification',
   'ngMaterial',
   'ngSanitize',
-  'ngCsv'
+  'ngCsv',
+  'firebase'
 ]);
