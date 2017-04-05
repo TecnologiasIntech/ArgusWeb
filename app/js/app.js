@@ -12,7 +12,7 @@ var argus = angular.module('argus', [
   'angular-growl',
   'notification',
   'ngMaterial',
-  'ngSanitize',
-  'ngCsv',
+  // 'ngSanitize',
+  // 'ngCsv',
   'firebase'
 ]);
