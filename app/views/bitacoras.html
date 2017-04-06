@@ -75,14 +75,14 @@
               <th>Guardia</th>
               <th>Turno</th>
               <th>Firma</th>
-              <th>Status</th>
+              <!--<th>Status</th>-->
               <th>Fecha</th>
             </tr>
             </thead>
             <tbody ng-repeat="record in vm.records | toArray">
 
             <!--ADMINISTRADORES-->
-            <tr ng-repeat="guard in vm.records[record.$key] | toArray | filter: {cliente: vm.filterClient, guardiaNombre: vm.filterGuard, zona: vm.filterZone}" ng-if="guard.status">
+            <tr ng-repeat="guard in vm.records[record.$key] | toArray | filter: {cliente: vm.filterClient, guardiaNombre: vm.filterGuard, zona: vm.filterZone}" ng-if="guard.guardiaNombre">
               <td class="bitacora-align-middle">
                 {{guard.cliente}}
               </td>
@@ -94,9 +94,6 @@
               </td>
               <td class="bitacora-align-middle">
                 <img src="{{guard.firma}}" alt="" style="width: 50px; height: 50px;" ng-click="vm.openPicture(guard.firma)">
-              </td>
-              <td class="bitacora-align-middle">
-                {{guard.status}}
               </td>
               <td class="bitacora-align-middle">
                 {{guard.fecha}}

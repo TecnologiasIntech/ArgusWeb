@@ -68,10 +68,10 @@ argus
           vm.saveGuardias.push(guard);
           vm.guardsToClient.push({
             usuarioNombre : vm.client.clienteGuardias[guard].usuarioNombre,
-            usuarioKey : vm.client.clienteGuardias[guard].usuarioKey
+            usuarioKey : vm.client.clienteGuardias[guard].key
           });
-          firebase.database().ref('Argus/guardias/'+vm.client.clienteGuardias[guard].usuarioKey+'/'+vm.client.clienteGuardias[guard].usuarioClienteAsignado).remove();
-          firebase.database().ref('Argus/guardias/'+ vm.client.clienteGuardias[guard].usuarioKey).update({
+          firebase.database().ref('Argus/guardias/'+vm.client.clienteGuardias[guard].key+'/'+vm.client.clienteGuardias[guard].usuarioClienteAsignado).remove();
+          firebase.database().ref('Argus/guardias/'+ vm.client.clienteGuardias[guard].key).update({
             usuarioDisponible: true
           });
         }

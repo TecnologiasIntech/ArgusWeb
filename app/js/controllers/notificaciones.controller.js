@@ -18,7 +18,7 @@ argus
 
       //private functions
       function activate() {
-        firebase.database().ref('Argus/Notificacion')
+        firebase.database().ref('Argus/Notifiacion')
           .on('value', function (snapshot) {
             vm.notifications = snapshot.val();
           })
@@ -56,12 +56,12 @@ argus
         alertService.error('Eliminar notificacion', '¿Estas seguro que quieres eliminar esta notificacion?').then(function () {
 
         });
-        firebase.database().ref('Argus/Notificacion/' + key).remove();
+        firebase.database().ref('Argus/Notifiacion/' + key).remove();
       }
 
       function confirmSignature(fecha, guardKey) {
         var updates = {};
-        updates['Argus/Bitacora/' + fecha + '/' + guardKey + '/asistio'] = true;
+        updates['Argus/Bitacora/' + fecha + '/' + guardKey + '/asisitio'] = true;
 
         firebase.database().ref().update(updates);
         vm.modal.dismiss()
