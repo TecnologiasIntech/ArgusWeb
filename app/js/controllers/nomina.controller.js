@@ -26,7 +26,7 @@ argus
       vm.fechas = {};
       vm.asistencias = {};
       vm.nomina = [];
-      vm.nominaAnterior = {};
+      vm.fechasQuincenaAnterior = {};
       vm.nominaFirebase = {};
       vm.numQuincena = '';
       vm.assistence=0;
@@ -39,6 +39,8 @@ argus
       vm.rangoInicial = '';
       vm.totalPagado = 0;
       vm.exportToCsv = [];
+      vm.inasistencias = 0;
+      vm.bono = 'No';
 
 
       var date = new Date();
@@ -61,6 +63,14 @@ argus
 
       //private functions
       function activate() {
+
+        /*Codigo para obtener todos los guardias*/
+        firebase.database().ref('Argus/guardias')
+          .on('value', function (snapshot) {
+            vm.guardias = snapshot.val();
+            // console.log(vm.guardias);
+        });
+
       }
       activate();
 
@@ -68,7 +78,7 @@ argus
 
         vm.totalPagado = 0;
         vm.nomina = [];
-        vm.nominaAnterior = {};
+        vm.fechasQuincenaAnterior = {};
 
 
                                                           //  indice  nombreMes
@@ -87,46 +97,43 @@ argus
           vm.rangeTwoForPaysheet = vm.year + '' + formatMouth + '31';
         }
 
+
         /*Deducimos el numero de quincena mediante los ultimos dos digitos de la fecha inicial*/
         vm.quincena = vm.rangeOneForPaysheet.substr(6, 7);
-
         /*Dependiendo del numero de quincena deducida asignamos un identificador*/
         if (vm.quincena == '01') {
           vm.numQuincena = vm.mouth.mouth + '-Uno';
-          // firebase.database().ref('Argus/Nomina/'+ vm.mouthArray[findMouth - 2]+'-Dos')
-          // .on('value', function(snapshot){
-          //   vm.nominaAnterior = snapshot.val();
-          //
-          //   for (var variable in object) {
-          //
-          //   }
-          // });
+          findMouth -=1;
+          if (findMouth<10) {
+            findMouth = '0' + findMouth;
+          }
+          firebase.database().ref('Argus/Bitacora')
+            .orderByChild('fecha')
+            .startAt(vm.year + findMouth + '25')
+            .endAt(vm.year + findMouth + '31')
+            .on('value', function (snapshot) {
+              vm.fechasQuincenaAnterior = snapshot.val();
+            });
         }
         else {
           vm.numQuincena= vm.mouth.mouth + '-Dos';
-          // firebase.database().ref('Argus/Nomina/'+ vm.numQuincena)
-          // .on('value', function(snapshot){
-          //   vm.nominaAnterior = snapshot.val();
-          //
-          //   for (var variable1 in vm.nominaAnterior) {
-          //
-          //   }
-          // });
+          if (findMouth<10) {
+            findMouth = '0' + findMouth;
+          }
+          firebase.database().ref('Argus/Bitacora')
+            .orderByChild('fecha')
+            .startAt(vm.year + findMouth + '09')
+            .endAt(vm.year + findMouth + '15')
+            .on('value', function (snapshot) {
+              vm.fechasQuincenaAnterior = snapshot.val();
+            });
         }
 
-
-        /*Codigo para obtener todos los guardias*/
-        firebase.database().ref('Argus/guardias')
-          .on('value', function (snapshot) {
-            vm.guardias = snapshot.val();
-            // console.log(vm.guardias);
-        });
-
-        /*Obtener las nomimas ya generadas*/
-        firebase.database().ref('Argus/Nomina')
-        .on('value', function(snapshot){
-          vm.nominasGeneradas = snapshot.val();
-        });
+        // /*Obtener las nomimas ya generadas*/
+        // firebase.database().ref('Argus/Nomina')
+        // .on('value', function(snapshot){
+        //   vm.nominasGeneradas = snapshot.val();
+        // });
 
         /*Codigo para obtener todos las asistencias de la bitacora*/
         firebase.database().ref('Argus/Bitacora')
@@ -135,27 +142,49 @@ argus
           .endAt(vm.rangeTwoForPaysheet)
           .on('value', function (snapshot) {
             vm.fechas = snapshot.val();
-
-            // firebase.database().ref('Argus/Nomina').child(vm.numQuincena).remove();
             vm.nomina = [];
             /*Si la quincena no existe en la base de datos la generamos*/
             for (var guardia in vm.guardias) {
               vm.sueldoTotal = 0;
+              vm.inasistencias = 0;
+
+
+              for (var fecha in vm.fechasQuincenaAnterior) {
+                var asistencias = vm.fechasQuincenaAnterior[fecha];
+                for (var Guardia in asistencias) {
+                  if (asistencias[Guardia].guardiaNombre == vm.guardias[guardia].usuarioNombre) {
+                    if (asistencias[Guardia].asistio == false && asistencias[Guardia].cubreDescanso == false && asistencias[Guardia].dobleTurno == false) {
+                      vm.inasistencias += 1;
+                    }
+                    break;
+                  }
+                }
+              }
+
+
               for (var fecha in vm.fechas) {
                 vm.asistencias = vm.fechas[fecha];
                 for (var asistencia in vm.asistencias) {
                   /*Contabilizamos las asistencias de cada guardia de datos obtenidos de la bitacora con su registro y status*/
                   if (vm.asistencias[asistencia].guardiaNombre == vm.guardias[guardia].usuarioNombre) {
-                    if (vm.asistencias[asistencia].asisitio) {
-                      vm.assistence += 1;
+
+                    if (vm.asistencias[asistencia].asistio == false && vm.asistencias[asistencia].cubreDescanso == false && vm.asistencias[asistencia].dobleTurno == false) {
+
+                      vm.inasistencias += 1;
                     }
-                    if (vm.asistencias[asistencia].cubreDescanso) {
-                      vm.sueldoTotal += 250;
-                      vm.assistence_cubreG += 1;
-                    }
-                    if (vm.asistencias[asistencia].dobleTurno ) {
-                      vm.sueldoTotal += 300;
-                      vm.assistence_dobleT += 1;
+                    else {
+
+                      if (vm.asistencias[asistencia].asisitio) {
+                        vm.assistence += 1;
+                      }
+                      if (vm.asistencias[asistencia].cubreDescanso) {
+                        vm.sueldoTotal += 250;
+                        vm.assistence_cubreG += 1;
+                      }
+                      if (vm.asistencias[asistencia].dobleTurno ) {
+                        vm.sueldoTotal += 300;
+                        vm.assistence_dobleT += 1;
+                      }
                     }
                   }
                 }
@@ -169,12 +198,18 @@ argus
                 vm.sueldoTotal += (vm.sueldoBase * vm.assistence) + 400;
               }
 
+              if (vm.inasistencias == 0) {
+                vm.sueldoTotal += 300;
+                vm.bono = 'Si';
+              }
+
               firebase.database().ref('Argus/Nomina/'+ vm.numQuincena + '/' + guardia).update({
                 'nombreGuardia': vm.guardias[guardia].usuarioNombre,
                 'sueldoBase': vm.sueldoBase,
                 'asistencia': vm.assistence,
                 'cubreGuardias': vm.assistence_cubreG,
                 'dobleTurno': vm.assistence_dobleT,
+                'bono': vm.bono,
                 'sueldoTotal': vm.sueldoTotal
               });
 
@@ -184,12 +219,14 @@ argus
                 'asistencia': vm.assistence,
                 'cubreGuardias': vm.assistence_cubreG,
                 'dobleTurno': vm.assistence_dobleT,
+                'bono': vm.bono,
                 'sueldoTotal': vm.sueldoTotal
               });
 
               vm.assistence = 0;
               vm.assistence_cubreG = 0;
               vm.assistence_dobleT = 0;
+              vm.bono = 'No';
             }
             vm.nominaLength = vm.nomina.length;
 

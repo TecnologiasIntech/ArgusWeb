@@ -70,6 +70,7 @@
               <th>Asistencias</th>
               <th>Cubre Guardias</th>
               <th>Dobles Turnos</th>
+              <th>Bono</th>
               <th>Sueldo Total</th>
             </tr>
             </thead>
@@ -78,7 +79,7 @@
                 {{nomina.nombreGuardia}}
               </td>
               <td class="bitacora-align-middle">
-                {{nomina.sueldoBase}}
+                {{nomina.sueldoBase | currency}}
               </td>
               <td class="bitacora-align-middle">
                 {{nomina.asistencia}}
@@ -89,12 +90,11 @@
               <td class="bitacora-align-middle">
                 {{nomina.dobleTurno}}
               </td>
-              <!-- <td class="bitacora-align-middle">
-                {{nomina.bono}}
-              </td> -->
-
               <td class="bitacora-align-middle">
-                {{nomina.sueldoTotal}}
+                {{nomina.bono}}
+              </td>
+              <td class="bitacora-align-middle">
+                {{nomina.sueldoTotal | currency}}
               </td>
             </tr>
             <tr >
@@ -102,8 +102,9 @@
               <td></td>
               <td></td>
               <td></td>
+              <td></td>
               <td>Total</td>
-              <td>{{vm.totalPagado}}</td>
+              <td>{{vm.totalPagado | currency}}</td>
             </tr>
 
           </table>
