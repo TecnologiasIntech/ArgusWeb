@@ -46,7 +46,15 @@ argus
           .on('value', function (snapshot) {
             vm.customers = snapshot.val();
             $rootScope.$apply();
-          })
+          });
+
+        if( sessionStorage.getItem('openModal') === null){
+        }else{
+          if(sessionStorage.getItem('openModal')){
+            sessionStorage.clear();
+            openModal();
+          }
+        }
       }
       activate();
 

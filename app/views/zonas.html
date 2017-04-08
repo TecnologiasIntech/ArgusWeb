@@ -41,7 +41,7 @@
           <table class="table table-striped table-hover-gray">
             <tbody>
             <tr ng-repeat="zone in vm.zones | toArray | filter: {zonaNombre: vm.searchInZones}">
-              <td class="p-t-15">
+              <td class="p-t-15 cursor-pointer" ng-click="vm.editZone(zone)">
                 <span>{{zone.zonaNombre}}</span>
               </td>
               <td align="right">

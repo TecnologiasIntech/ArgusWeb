@@ -41,7 +41,7 @@
           <table class="table table-striped table-hover-gray">
             <tbody>
             <tr ng-repeat="client in vm.customers | toArray | filter: {clienteNombre: vm.searchInCustomers}">
-              <td class="p-t-15">
+              <td class="p-t-15 cursor-pointer" ng-click="vm.editClient(client)">
                 <span>{{client.clienteNombre}}</span>
               </td>
               <td align="right">

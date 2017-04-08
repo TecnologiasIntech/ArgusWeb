@@ -38,6 +38,7 @@ argus
       vm.registerUser = registerUser;
       vm.updateUser = updateUser;
       vm.editUserCancel = editUserCancel;
+      vm.verifyUser = verifyUser;
 
       //private functions
       function activate() {
@@ -48,7 +49,7 @@ argus
           // User is signed in.
         } else {
           $location.path('/login');
-          $rootScope.$apply();
+          // $rootScope.$apply();
         }
         // firebase.auth().onAuthStateChanged(function (user) {
         //   if (!user) {
@@ -71,6 +72,14 @@ argus
         firebase.database().ref('Argus/supervisores/')
           .on('value', function (snapshot) {
             vm.supervisores = snapshot.val();
+            vm.supervisoresArray = [];
+
+            _.forEach(vm.supervisores, function (value, key) {
+              value.key = key;
+              vm.supervisoresArray.push(value);
+              console.log(value);
+            });
+            $rootScope.$apply();
           });
 
         firebase.database().ref('Argus/administradores/')
@@ -111,21 +120,36 @@ argus
 
       activate();
 
+      function verifyUser(user) {
+        if(user == 'supervisor'){
+          firebase.database().ref('Argus/Zonas/')
+            .on('value', function (snapshot) {
+              var zonas = snapshot.val();
+              vm.zonas = _.find(zonas, {'disponibilidadZona': true});
+
+              if(vm.zonas) {
+                vm.zonas = snapshot.val();
+                openModal();
+              }else{
+                alertService.verifyConfirm('No hay zonas disponibles', 'Desea agregar una nueva zona?').then(function () {
+                  sessionStorage.setItem('openModal', true);
+                  $location.path('/zonas')
+                })
+              }
+          })
+        }else{
+          openModal();
+        }
+
+      }
+
       function openModal() {
-        getZonesAvailable();
         vm.modal = $uibModal.open({
           animation: true,
           templateUrl: 'views/modals/supervisores.modal.html',
           scope: $scope,
           size: 'lm',
           backdrop: 'static'
-        });
-      }
-
-      function getZonesAvailable(){
-        firebase.database().ref('Argus/Zonas/')
-          .on('value', function (snapshot) {
-            vm.zonas = snapshot.val();
         });
       }
 
@@ -218,6 +242,7 @@ argus
                   firebase.auth().signInWithEmailAndPassword(vm.emailAdmin, vm.passwordAdmin).then(function () {
                     // Listo
                     firebase.database().ref('Argus/' + type + '/' + userKey).remove();
+                    location.reload();
 
                   }).catch(function (error) {
                     var errorCode = error.code;
@@ -230,7 +255,10 @@ argus
 
               }).catch(function (error) {
                 var errorCode = error.code;
-                console.log(errorCode);
+                //Inicio de sesion de emergencia
+                firebase.auth().signInWithEmailAndPassword(vm.emailAdmin, vm.passwordAdmin).then(function () {
+                });
+
               });
             }, function (error) {
             });
@@ -269,23 +297,26 @@ argus
           }
           vm.isLoadingRegister = false;
           $rootScope.$apply();
-        });
-        //Cerramos sesion
-        firebase.auth().signOut().then(function () {
-          // Iniciamos sesion
-          firebase.auth().signInWithEmailAndPassword(vm.emailAdmin, vm.passwordAdmin).then(function () {
-            // Salvamos los datos de la cuenta creada
-            saveUserInformation();
-            vm.isLoadingRegister = false;
+        }).then(function () {
+          //Cerramos sesion
+          firebase.auth().signOut().then(function () {
+            // Iniciamos sesion
+            firebase.auth().signInWithEmailAndPassword(vm.emailAdmin, vm.passwordAdmin).then(function () {
+              // Salvamos los datos de la cuenta creada
+              saveUserInformation();
+              vm.isLoadingRegister = false;
+              location.reload();
 
-            // $rootScope.$apply();
-          }).catch(function (error) {
-            var errorCode = error.code;
-            console.log(errorCode);
+              // $rootScope.$apply();
+            }).catch(function (error) {
+              var errorCode = error.code;
+              console.log(errorCode);
+            });
+          }, function (error) {
+            alert(error);
           });
-        }, function (error) {
-          alert(error);
-        });
+        })
+
       }
 
       function saveUserInformation() {

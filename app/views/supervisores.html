@@ -45,7 +45,7 @@
             <input type="text" class="form-control supervisor-search  display-inline " placeholder="Buscar..."
                    ng-model="vm.buscarUsuario">
           </label>
-          <button class="btn btn-primary waves-effect display-inline" ng-click="vm.user = {}; vm.user.usuarioTipo = vm.searchTypeUser ;vm.openModal()">Agregar</button>
+          <button class="btn btn-primary waves-effect display-inline" ng-click="vm.user = {}; vm.user.usuarioTipo = vm.searchTypeUser ;vm.verifyUser(vm.searchTypeUser)">Agregar</button>
         </div>
         <div class="col-xs-1"></div>
       </div>
@@ -102,7 +102,7 @@
             </tr>
 
             <!--SUPERVISORES-->
-            <tr ng-repeat="supervisor in vm.supervisores | toArray | filter: {usuarioNombre: vm.buscarUsuario}"
+            <tr ng-repeat="supervisor in vm.supervisoresArray | filter: {usuarioNombre: vm.buscarUsuario}"
                 ng-if="vm.searchTypeUser == 'supervisor'">
               <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(supervisor)">
                 <span>{{supervisor.usuarioNombre}}</span>
@@ -115,7 +115,7 @@
                   </a>
                   <ul class="dropdown-menu pull-right actions-supervisor">
                     <li class="action-edit cursor-pointer" ng-click="vm.editUser(supervisor)">Editar</li>
-                    <li class="action-delete cursor-pointer" ng-click="vm.deleteUser(supervisor, 'supervisores', supervisor.$key)">
+                    <li class="action-delete cursor-pointer" ng-click="vm.deleteUser(supervisor, 'supervisores', supervisor.key)">
                       Eliminar
                     </li>
                   </ul>

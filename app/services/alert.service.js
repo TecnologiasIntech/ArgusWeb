@@ -35,6 +35,23 @@ argus
           deferred.resolve();
         });
         return deferred.promise;
+      },
+      verifyConfirm: function (title, message) {
+        var deferred = $q.defer();
+
+        swal({
+          title: title,
+          text: message,
+          type: 'info',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Aceptar'
+        }).then(function () {
+          deferred.resolve();
+        });
+
+        return deferred.promise;
       }
     }
 
