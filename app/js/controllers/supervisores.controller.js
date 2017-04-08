@@ -29,6 +29,7 @@ argus
       vm.viewPassword = false;
       vm.isAssignmentToZone = false;
       vm.notificationkey = '';
+      vm.zonaSupervisorEliminado="";
 
       //public functions
       vm.openModal = openModal;
@@ -226,11 +227,19 @@ argus
         vm.modal.dismiss();
 
       }
-
+      vm.clienteDelGuardia = "";
       function deleteUser(user, type, userKey) {
+        vm.zonaSupervisorEliminado = "";
 
         alertService.confirm('Eliminar usuario', '¿Estas seguro de que desea eliminar este usuario?').then(function () {
           if(user.usuarioTipo != 'guardia'){
+
+            /*Obtenemos la zona que tiene asignada el supervisor*/
+            firebase.database().ref('Argus/supervisores/'+ userKey).child('usuarioZona')
+            .on('value', function(snapshot){
+              vm.zonaSupervisorEliminado = snapshot.val();
+            });
+
             //Cerramos sesion
             firebase.auth().signOut().then(function () {
               // Iniciamos sesion
@@ -262,15 +271,21 @@ argus
               });
             }, function (error) {
             });
-          }else{
+            /*Una vez eliminado el supervisor hacemos dispobible la zona que tenia asignada*/
+            firebase.database().ref('Argus/Zonas/'+ vm.zonaSupervisorEliminado).update({
+              disponibilidadZona: true
+            });
+          }
+          else{
             firebase.database().ref('Argus/' + type + '/' + user.$key).remove();
             firebase.database().ref('Argus/Clientes/' + user.usuarioClienteAsignado + '/clienteGuardias/' + userKey).remove();
           }
         });
+
+
       }
 
       function registerUser() {
-
         if (vm.user.usuarioTipo != 'guardia') {
           registerUserWithEmail();
         } else {
