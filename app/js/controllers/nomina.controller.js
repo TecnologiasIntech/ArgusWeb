@@ -165,6 +165,7 @@ argus
               for (var fecha in vm.fechas) {
                 vm.asistencias = vm.fechas[fecha];
                 for (var asistencia in vm.asistencias) {
+
                   /*Contabilizamos las asistencias de cada guardia de datos obtenidos de la bitacora con su registro y status*/
                   if (vm.asistencias[asistencia].guardiaNombre == vm.guardias[guardia].usuarioNombre) {
 

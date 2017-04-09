@@ -44,6 +44,11 @@ argus
       //private functions
       function activate() {
 
+        firebase.database().ref('Argus/Zonas/')
+        .on('value', function(snapshot){
+          vm.zonas = snapshot.val();
+        });
+
         var user = firebase.auth().currentUser;
 
         if (user) {
