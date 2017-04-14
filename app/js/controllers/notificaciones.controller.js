@@ -18,7 +18,7 @@ argus
 
       //private functions
       function activate() {
-        firebase.database().ref('Argus/Notifiacion')
+        firebase.database().ref('Argus/Notificacion')
           .on('value', function (snapshot) {
             vm.notifications = snapshot.val();
           })
@@ -59,9 +59,10 @@ argus
         firebase.database().ref('Argus/Notifiacion/' + key).remove();
       }
 
-      function confirmSignature(fecha, guardKey) {
+      function confirmSignature(fecha, guardKey, client) {
         var updates = {};
-        updates['Argus/Bitacora/' + fecha + '/' + guardKey + '/asisitio'] = true;
+        updates['Argus/Bitacora/' + fecha + '/' + guardKey + '/asistio'] = true;
+        updates['Argus/Clientes/' + client + '/clienteGuardias/' + guardKey + '/usuarioAsistenciaDelDia'] = 'asistio';
 
         firebase.database().ref().update(updates);
         vm.modal.dismiss()

@@ -143,6 +143,8 @@ argus
           .on('value', function (snapshot) {
             vm.fechas = snapshot.val();
             vm.nomina = [];
+            vm.totalPagado = 0;
+
             /*Si la quincena no existe en la base de datos la generamos*/
             for (var guardia in vm.guardias) {
               vm.sueldoTotal = 0;
@@ -175,7 +177,7 @@ argus
                     }
                     else {
 
-                      if (vm.asistencias[asistencia].asisitio) {
+                      if (vm.asistencias[asistencia].asistio) {
                         vm.assistence += 1;
                       }
                       if (vm.asistencias[asistencia].cubreDescanso) {
@@ -208,6 +210,7 @@ argus
                 'nombreGuardia': vm.guardias[guardia].usuarioNombre,
                 'sueldoBase': vm.sueldoBase,
                 'asistencia': vm.assistence,
+                'inasistencias': vm.inasistencias,
                 'cubreGuardias': vm.assistence_cubreG,
                 'dobleTurno': vm.assistence_dobleT,
                 'bono': vm.bono,
@@ -218,6 +221,18 @@ argus
                 'nombreGuardia': vm.guardias[guardia].usuarioNombre,
                 'sueldoBase': vm.sueldoBase,
                 'asistencia': vm.assistence,
+                'inasistencias': vm.inasistencias,
+                'cubreGuardias': vm.assistence_cubreG,
+                'dobleTurno': vm.assistence_dobleT,
+                'bono': vm.bono,
+                'sueldoTotal': vm.sueldoTotal
+              });
+
+              vm.exportToCsv.push({
+                'nombreGuardia': vm.guardias[guardia].usuarioNombre,
+                'sueldoBase': vm.sueldoBase,
+                'asistencia': vm.assistence,
+                'inasistencias': vm.inasistencias,
                 'cubreGuardias': vm.assistence_cubreG,
                 'dobleTurno': vm.assistence_dobleT,
                 'bono': vm.bono,
@@ -236,8 +251,9 @@ argus
               vm.totalPagado += vm.nomina[empleado].sueldoTotal;
             }
             firebase.database().ref('Argus/Nomina/'+ vm.numQuincena).child('totalPagado').set(vm.totalPagado);
-
+            // vm.exportToCsv = vm.nomina;
             $rootScope.$apply();
+
         });
       }
 

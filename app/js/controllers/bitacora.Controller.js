@@ -23,6 +23,7 @@ argus
       vm.openModal = openModal;
       vm.cancelAsssist = cancelAsssist;
       vm.downloadCSV = downloadCSV;
+      // vm.createBitacora = createBitacora;
 
       //private functions
       function activate() {
@@ -31,6 +32,22 @@ argus
 
 
       activate();
+      //
+      // function createBitacora() {
+      //   for(var y = 2017; y <= 2029; y++ ){
+      //     for(var m = 1; m <= 12; m++ ) {
+      //       for(var d = 1; d <= 32; d++){
+      //
+      //         var m = ("0" + (m)).slice(-2);
+      //         var d = ("0" + (d)).slice(-2);
+      //
+      //         firebase.database().ref('Argus/Bitacora/' + y.toString() + m.toString() + d.toString()).set({
+      //           fecha: y.toString() + m.toString() + d.toString()
+      //         })
+      //       }
+      //     }
+      //   }
+      // }
 
       function openModal() {
         vm.modal = $uibModal.open({
@@ -90,9 +107,14 @@ argus
 
       }
 
-      function cancelAsssist(date, assist) {
+      function cancelAsssist(date, assist, client) {
         alertService.confirm('Cancelar Asistencia del guardia', '¿Estas seguro que la desea cancelar?').then(function () {
           firebase.database().ref('Argus/Bitacora/' + date + '/' + assist).remove();
+
+          var updates = {};
+          updates['Argus/Clientes/' + client + '/clienteGuardias/' + assist + '/usuarioAsistenciaDelDia'] = 'No Asistió';
+          // updates['Argus/Bitacora/' + date + '/' + assist + '/asistio'] = false;
+          firebase.database().ref().update(updates);
         });
 
       }

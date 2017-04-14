@@ -83,7 +83,7 @@ argus
             _.forEach(vm.supervisores, function (value, key) {
               value.key = key;
               vm.supervisoresArray.push(value);
-              console.log(value);
+              // console.log(value);
             });
             $rootScope.$apply();
           });
@@ -100,14 +100,15 @@ argus
         vm.emailAdmin = localStorage.getItem('email');
         vm.passwordAdmin = localStorage.getItem('password');
 
-        if (sessionStorage.getItem("guardiaInformacion") === null) {
+        if (sessionStorage.getItem("guardiaInformacion") === null && sessionStorage.getItem('notificacionKey') === null) {
         } else {
           vm.guardiaInformacion = JSON.parse(sessionStorage['guardiaInformacion']);
+          vm.notificationkey = sessionStorage.getItem('notificacionKey');
 
           vm.user = vm.guardiaInformacion;
           vm.user.usuarioTipo = 'guardia';
-          sessionStorage.clear();
           vm.isAssignmentToZone = true;
+          sessionStorage.clear();
           openModal();
         }
 
@@ -163,20 +164,26 @@ argus
         vm.view = view;
       }
       vm.saveUser=[];
-      function editUser(user) {
+      function editUser(user, userType) {
         vm.isEdit = true;
         vm.user = user;
         vm.saveUser.push(user);
-        firebase.database().ref('Argus/Zonas/'+vm.user.usuarioZona).update({
-          disponibilidadZona: true
-        });
+
+        //Solo cuando se es supervisor
+        if(userType === 'supervisor'){
+          firebase.database().ref('Argus/Zonas/'+vm.user.usuarioZona).update({
+            disponibilidadZona: true
+          });
+        }
         vm.openModal();
-        console.log(user);
+        // console.log(user);
       }
-      function editUserCancel(){
-        firebase.database().ref('Argus/Zonas/'+vm.saveUser[0].usuarioZona).update({
-          disponibilidadZona: false
-        });
+      function editUserCancel(userType){
+        if(userType === 'supervisor'){
+          firebase.database().ref('Argus/Zonas/'+vm.saveUser[0].usuarioZona).update({
+            disponibilidadZona: false
+          });
+        }
         vm.saveUser=[];
       }
 
@@ -365,7 +372,7 @@ argus
                 usuarioKey: vm.user.key[0],
                 usuarioNombre: vm.user.usuarioNombre
               });
-              firebase.database().ref('Argus/Notificacion/' + vm.notificationkey).remove();
+              firebase.database().ref('Argus/NotificacionTmp/' + vm.notificationkey).remove();
 
               vm.isAssignmentToZone = false;
               vm.notificationkey = '';

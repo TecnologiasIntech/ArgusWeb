@@ -34,6 +34,7 @@
         <div class="col-xs-2 m-t-25">
           <button class="btn waves-effect btn-primary" ng-click="vm.downloadCSV({ filename: 'stock-data.csv' });">Exportar</button>
         </div>
+        <!--<button ng-click="vm.createBitacora();">Crear 100 años</button>-->
       </div>
 
       <!--<div class="row" ng-if="!vm.records" align="center">-->
@@ -100,7 +101,7 @@
               </td>
               <td class="bitacora-align-middle">
                 <a href="">
-                  <i class="zmdi zmdi-close-circle" style="font-size: 20px; color: #e74c3c" ng-click="vm.cancelAsssist(record.$key, guard.$key)"></i>
+                  <i class="zmdi zmdi-close-circle" style="font-size: 20px; color: #e74c3c" ng-click="vm.cancelAsssist(record.$key, guard.$key, guard.cliente)"></i>
                 </a>
               </td>
             </tr>

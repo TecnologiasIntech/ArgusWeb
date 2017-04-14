@@ -58,6 +58,7 @@ argus
           case 'AG':
             if($location.path() !== '/supervisores'){
               sessionStorage['guardiaInformacion'] = JSON.stringify(information);
+              sessionStorage['notificacionKey'] = key;
               $location.path('/supervisores');
             }else{
               $rootScope.$broadcast('notificacion:agregar', information);
