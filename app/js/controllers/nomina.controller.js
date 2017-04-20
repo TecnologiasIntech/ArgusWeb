@@ -2,25 +2,25 @@
  * Created by Toshiba on 23/03/2017.
  */
 argus
-  .controller('nominaCtrl', ['$scope', '$rootScope', 'alertService', '$uibModal',
-    function ($scope, $rootScope, alertService, $uibModal) {
+  .controller('nominaCtrl', ['$scope', '$rootScope', 'alertService', '$uibModal', 'growl',
+    function ($scope, $rootScope, alertService, $uibModal, growl) {
 
       //public var
       var vm = this;
 
-      vm.mouthArray = new Array(12);
-      vm.mouthArray [0] = {mouth: "Enero"};
-      vm.mouthArray [1] = {mouth: "Febrero"};
-      vm.mouthArray [2] = {mouth: "Marzo"};
-      vm.mouthArray [3] = {mouth: "Abril"};
-      vm.mouthArray [4] = {mouth: "Mayo"};
-      vm.mouthArray [5] = {mouth: "Junio"};
-      vm.mouthArray [6] = {mouth: "Julio"};
-      vm.mouthArray [7] = {mouth: "Agosto"};
-      vm.mouthArray [8] = {mouth: "Septiembre"};
-      vm.mouthArray [9] = {mouth: "Octubre"};
-      vm.mouthArray [10] = {mouth: "Noviembre"};
-      vm.mouthArray [11] = {mouth: "Diciembre"};
+      vm.monthArray = new Array(12);
+      vm.monthArray [0] = {month: "Enero"};
+      vm.monthArray [1] = {month: "Febrero"};
+      vm.monthArray [2] = {month: "Marzo"};
+      vm.monthArray [3] = {month: "Abril"};
+      vm.monthArray [4] = {month: "Mayo"};
+      vm.monthArray [5] = {month: "Junio"};
+      vm.monthArray [6] = {month: "Julio"};
+      vm.monthArray [7] = {month: "Agosto"};
+      vm.monthArray [8] = {month: "Septiembre"};
+      vm.monthArray [9] = {month: "Octubre"};
+      vm.monthArray [10] = {month: "Noviembre"};
+      vm.monthArray [11] = {month: "Diciembre"};
       vm.guardias = {};
       vm.nominasGeneradas = {};
       vm.fechas = {};
@@ -41,6 +41,11 @@ argus
       vm.exportToCsv = [];
       vm.inasistencias = 0;
       vm.bono = 'No';
+      vm.loading = false;
+      vm.salary = 0;
+      vm.bond = 0;
+      vm.config = {};
+      vm.paysheetSettings = {};
 
 
       var date = new Date();
@@ -50,7 +55,7 @@ argus
         vm.years.push(i);
       }
 
-      vm.mouth = vm.mouthArray[date.getMonth()];
+      vm.month = vm.monthArray[date.getMonth()];
       vm.fortnight = 1;
       vm.rangeOneForPaysheet = 0;
       vm.rangeTwoForPaysheet = 0;
@@ -60,6 +65,8 @@ argus
       //public functions
       vm.generatePaysheet = generatePaysheet;
       vm.downloadCSV = downloadCSV;
+      vm.openModal = openModal;
+      vm.settingsUpdate= settingsUpdate;
 
       //private functions
       function activate() {
@@ -71,30 +78,65 @@ argus
             // console.log(vm.guardias);
         });
 
+        firebase.database().ref('Argus/Nomina/configuracion')
+          .on('value', function (snapshot) {
+            vm.salary = snapshot.val().salario;
+            vm.bond = snapshot.val().bono;
+          })
+
       }
       activate();
+
+      // vm.script = script;
+      // function script() {
+      //   var fecha = 20170401;
+      //
+      //   for(fecha; fecha <= 20170430; fecha++){
+      //     firebase.database().ref('Argus/Bitacora/' + fecha + '/-KhZQb7CrK0X3EespUHf').set({
+      //       asistio: true,
+      //       cubreDescanso: false,
+      //       dobleTurno: false,
+      //       guardiaNombre: 'Manuela Valenzuela'
+      //     })
+      //   }
+      //
+      // }
+
+      function openModal() {
+
+        vm.paysheetSettings.salary = vm.salary;
+        vm.paysheetSettings.bond = vm.bond;
+
+        vm.modal = $uibModal.open({
+          animation: true,
+          templateUrl: 'views/modals/paysheetSettings.modal.html',
+          scope: $scope,
+          size: 'sn',
+          backdrop: 'static'
+        });
+      }
 
       function generatePaysheet() {
 
         vm.totalPagado = 0;
         vm.nomina = [];
         vm.fechasQuincenaAnterior = {};
-
+        vm.loading = true;
 
                                                           //  indice  nombreMes
-        var findMouth = _.findIndex(vm.mouthArray, {'mouth': vm.mouth.mouth}) + 1;
+        var findmonth = _.findIndex(vm.monthArray, {'month': vm.month.month}) + 1;
 
         // Da formato a los meses que son del 1 al 9 => 01,02,03,04.....
-        var formatMouth = ("0" + (findMouth)).slice(-2);
+        var formatmonth = ("0" + (findmonth)).slice(-2);
 
         // Fotrnight == Quincena
         // Fortnight es el valor de los radios buttons al elegir entre "Quincena 1" y "Quincena 2"
         if(vm.fortnight == 1){
-          vm.rangeOneForPaysheet = vm.year + '' + formatMouth + '01';
-          vm.rangeTwoForPaysheet = vm.year + '' + formatMouth + '15';
+          vm.rangeOneForPaysheet = vm.year + '' + formatmonth + '01';
+          vm.rangeTwoForPaysheet = vm.year + '' + formatmonth + '15';
         }else{
-          vm.rangeOneForPaysheet = vm.year + '' + formatMouth + '16';
-          vm.rangeTwoForPaysheet = vm.year + '' + formatMouth + '31';
+          vm.rangeOneForPaysheet = vm.year + '' + formatmonth + '16';
+          vm.rangeTwoForPaysheet = vm.year + '' + formatmonth + '31';
         }
 
 
@@ -102,28 +144,28 @@ argus
         vm.quincena = vm.rangeOneForPaysheet.substr(6, 7);
         /*Dependiendo del numero de quincena deducida asignamos un identificador*/
         if (vm.quincena == '01') {
-          vm.numQuincena = vm.mouth.mouth + '-Uno';
-          findMouth -=1;
-          if (findMouth<10) {
-            findMouth = '0' + findMouth;
+          vm.numQuincena = vm.month.month + '-Uno';
+          findmonth -=1;
+          if (findmonth<10) {
+            findmonth = '0' + findmonth;
           }
           firebase.database().ref('Argus/Bitacora')
             .orderByChild('fecha')
-            .startAt(vm.year + findMouth + '25')
-            .endAt(vm.year + findMouth + '31')
+            .startAt(vm.year + findmonth + '25')
+            .endAt(vm.year + findmonth + '31')
             .on('value', function (snapshot) {
               vm.fechasQuincenaAnterior = snapshot.val();
             });
         }
         else {
-          vm.numQuincena= vm.mouth.mouth + '-Dos';
-          if (findMouth<10) {
-            findMouth = '0' + findMouth;
+          vm.numQuincena= vm.month.month + '-Dos';
+          if (findmonth<10) {
+            findmonth = '0' + findmonth;
           }
           firebase.database().ref('Argus/Bitacora')
             .orderByChild('fecha')
-            .startAt(vm.year + findMouth + '09')
-            .endAt(vm.year + findMouth + '15')
+            .startAt(vm.year + findmonth + '09')
+            .endAt(vm.year + findmonth + '15')
             .on('value', function (snapshot) {
               vm.fechasQuincenaAnterior = snapshot.val();
             });
@@ -149,7 +191,7 @@ argus
             for (var guardia in vm.guardias) {
               vm.sueldoTotal = 0;
               vm.inasistencias = 0;
-
+              vm.asistenciaBono = 0;
 
               for (var fecha in vm.fechasQuincenaAnterior) {
                 var asistencias = vm.fechasQuincenaAnterior[fecha];
@@ -157,12 +199,13 @@ argus
                   if (asistencias[Guardia].guardiaNombre == vm.guardias[guardia].usuarioNombre) {
                     if (asistencias[Guardia].asistio == false && asistencias[Guardia].cubreDescanso == false && asistencias[Guardia].dobleTurno == false) {
                       vm.inasistencias += 1;
+                    }else{
+                      vm.asistenciaBono += 1;
                     }
                     break;
                   }
                 }
               }
-
 
               for (var fecha in vm.fechas) {
                 vm.asistencias = vm.fechas[fecha];
@@ -179,6 +222,7 @@ argus
 
                       if (vm.asistencias[asistencia].asistio) {
                         vm.assistence += 1;
+                        vm.asistenciaBono += 1;
                       }
                       if (vm.asistencias[asistencia].cubreDescanso) {
                         vm.sueldoTotal += 250;
@@ -197,12 +241,12 @@ argus
                 vm.sueldoTotal+= (vm.sueldoBase * vm.assistence) + 400;
               }
               else {
-                vm.sueldoBase=200;
-                vm.sueldoTotal += (vm.sueldoBase * vm.assistence) + 400;
+                vm.sueldoBase = calculateBaseSalary(vm.fortnight, vm.month.month, vm.year, vm.salary);
+                vm.sueldoTotal += (vm.sueldoBase * vm.assistence);
               }
 
-              if (vm.inasistencias == 0) {
-                vm.sueldoTotal += 300;
+              if (vm.inasistencias == 0 && vm.asistenciaBono >= 12) {
+                vm.sueldoTotal += vm.bond;
                 vm.bono = 'Si';
               }
 
@@ -252,6 +296,7 @@ argus
             }
             firebase.database().ref('Argus/Nomina/'+ vm.numQuincena).child('totalPagado').set(vm.totalPagado);
             // vm.exportToCsv = vm.nomina;
+            vm.loading = false;
             $rootScope.$apply();
 
         });
@@ -307,6 +352,43 @@ argus
         link.setAttribute('href', data);
         link.setAttribute('download', filename);
         link.click();
+      }
+
+      function settingsUpdate() {
+
+        var updates = {};
+        updates['Argus/Nomina/configuracion/salario'] = vm.paysheetSettings.salary;
+        updates['Argus/Nomina/configuracion/bono'] = vm.paysheetSettings.bond;
+
+        firebase.database().ref().update(updates);
+
+        vm.paysheetSettings = {};
+        vm.modal.dismiss();
+        growl.info('Configuración de nomina Actualizada!', vm.config);
+      }
+
+      function calculateBaseSalary(quincena, month, year, salary) {
+        var baseSalary = 0;
+
+
+
+        if(quincena == 2) {
+          if (month === 'Abril' || month === 'Junio' || month === 'Septiembre' || month === 'Noviembre') {
+            baseSalary = salary / 13;
+          } else if (month === 'Febrero') {
+            if(year == 2020 || year == 2024 || year == 2028 || year == 2032 || year == 2036 || year == 2040 || year == 2044 || year == 2048 || year == 2052){
+             baseSalary = salary / 12;
+            }else {
+              baseSalary = salary / 11;
+            }
+          } else {
+            baseSalary = salary / 14;
+          }
+        }else{
+          baseSalary = salary / 13;
+        }
+
+        return baseSalary;
       }
 
     }

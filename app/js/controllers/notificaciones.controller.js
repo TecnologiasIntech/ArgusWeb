@@ -9,6 +9,7 @@ argus
       var vm = this;
       vm.notifications = [];
       vm.notification = [];
+      vm.notificationKey = '';
 
       //public functions
       vm.openModal = openModal;
@@ -30,9 +31,18 @@ argus
           openModal();
         }
 
+        if(sessionStorage.getItem('notificacionKey') !== null){
+          vm.notificationKey = sessionStorage.getItem('notificacionKey');
+        }
+
         $scope.$on('notificaciones:confirmar', function (event, notification) {
           vm.notification = notification;
           openModal();
+        });
+
+        // Notification Key
+        $scope.$on('notificacion:key', function (event, notificationKey) {
+          vm.notificationKey = notificationKey;
         })
       }
       activate();
@@ -52,11 +62,16 @@ argus
         openModal();
       }
 
-      function deleteNotification(key) {
-        alertService.error('Eliminar notificacion', '¿Estas seguro que quieres eliminar esta notificacion?').then(function () {
+      function deleteNotification(Notificationkey, confirmationAssist) {
+        if(confirmationAssist){
+          firebase.database().ref('Argus/NotifiacionTmp/' + Notificationkey).remove();
+        }else{
+          alertService.error('Eliminar notificacion', '¿Estas seguro que quieres eliminar esta notificacion?').then(function () {
+            firebase.database().ref('Argus/NotifiacionTmp/' + Notificationkey).remove();
+          });
 
-        });
-        firebase.database().ref('Argus/Notifiacion/' + key).remove();
+        }
+
       }
 
       function confirmSignature(fecha, guardKey, client) {
@@ -65,6 +80,9 @@ argus
         updates['Argus/Clientes/' + client + '/clienteGuardias/' + guardKey + '/usuarioAsistenciaDelDia'] = 'asistio';
 
         firebase.database().ref().update(updates);
+
+        deleteNotification(vm.notificationKey, true);
+
         vm.modal.dismiss()
 
       }

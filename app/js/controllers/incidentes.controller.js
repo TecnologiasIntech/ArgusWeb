@@ -1,6 +1,6 @@
 
-argus.controller('incidentesCtrl', ['$scope', '$rootScope', 'growl', '$uibModal',
-      function($scope, $rootScope, growl, $uibModal){
+argus.controller('incidentesCtrl', ['$scope', '$rootScope', 'growl', '$uibModal', 'alertService',
+      function($scope, $rootScope, growl, $uibModal, alertService){
 
         //public vars
         var vm = this;

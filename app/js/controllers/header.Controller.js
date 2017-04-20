@@ -75,10 +75,12 @@ argus
           case 'CF':
             if($location.path() === '/notificaciones'){
               $rootScope.$broadcast('notificaciones:confirmar', notificacion);
+              $rootScope.$broadcast('notificacion:key', key);
             }else{
 
-                sessionStorage['notificationConfirm'] = JSON.stringify(notificacion);
-                $location.path('/notificaciones')
+              sessionStorage['notificationConfirm'] = JSON.stringify(notificacion);
+              sessionStorage['notificacionKey'] = key;
+              $location.path('/notificaciones');
 
             }
             break;

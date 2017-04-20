@@ -29,7 +29,7 @@
           </div>
         </div>
         <div class="col-xs-2  m-t-25">
-          <button class="btn btn-waves btn-success" ng-click="vm.viewRecords()">Ver resultados</button>
+          <button class="btn btn-waves btn-success" ng-click="vm.records = {}; vm.viewRecords()">Ver resultados</button>
         </div>
         <div class="col-xs-2 m-t-25">
           <button class="btn waves-effect btn-primary" ng-click="vm.downloadCSV({ filename: 'stock-data.csv' });">Exportar</button>

@@ -22,7 +22,11 @@
           <div class="col-xs-offset-1 col-xs-5">
             <span>Tipo de usuario</span>
             <div class="fg-line m-l-10">
-              <select class="form-control" ng-model="vm.user.usuarioTipo">
+              <select
+                class="form-control"
+                ng-model="vm.user.usuarioTipo"
+                ng-disabled="vm.isEdit">
+
                 <option value="guardia">Guardia</option>
                 <option value="supervisor">Supervisor</option>
                 <option value="administrador">Administrador</option>
@@ -47,7 +51,11 @@
           <div class="col-xs-offset-1 col-xs-5">
             <span>Correo electronico</span>
             <div class="fg-line m-l-10">
-              <input type="email" ng-model="vm.user.usuarioEmail" class="form-control" placeholder="argus@ejemplo.com"
+              <input type="email"
+                     ng-model="vm.user.usuarioEmail"
+                     class="form-control"
+                     placeholder="argus@ejemplo.com"
+                     ng-disabled="vm.isEdit"
                      required>
             </div>
           </div>
@@ -56,7 +64,11 @@
           <div class="col-xs-4">
             <span>Contraseña</span>
             <div class="fg-line m-l-10">
-              <input type="{{vm.viewPassword ? 'text' : 'password'}}" ng-model="vm.user.usuarioContrasena" class="form-control" placeholder="* * * * *"
+              <input type="{{vm.viewPassword ? 'text' : 'password'}}"
+                     ng-model="vm.user.usuarioContrasena"
+                     class="form-control"
+                     placeholder="* * * * *"
+                     ng-disabled="vm.isEdit"
                      required>
             </div>
 
@@ -170,7 +182,7 @@
       <button class="btn btn-primary waves-effect" type="submit" ng-if="!vm.isEdit">Aceptar</button>
       <div class="btn btn-primary waves-effect" ng-click="vm.updateUser()" ng-if="vm.isEdit">Aceptar</div>
       <div class="btn btn-primary waves-effect"
-           ng-click="vm.modal.dismiss(); vm.user = {}; vm.user.usuarioTipo = 'guardia'; vm.isEdit = false; vm.editUserCancel(vm.user.usuarioTipo)">Cancelar
+           ng-click="vm.modal.dismiss();  vm.isEdit = false; vm.editUserCancel(vm.user.usuarioTipo);vm.user = {}; vm.user.usuarioTipo = 'guardia'; ">Cancelar
       </div>
     </div>
   </div>

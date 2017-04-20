@@ -48,14 +48,6 @@ argus
             vm.customers = snapshot.val();
             $rootScope.$apply();
           });
-
-        if( sessionStorage.getItem('openModal') === null){
-        }else{
-          if(sessionStorage.getItem('openModal')){
-            sessionStorage.clear();
-            openModal();
-          }
-        }
       }
       activate();
 
@@ -95,22 +87,25 @@ argus
       function deleteZone(zone) {
         vm.clientesZonaEliminada={};
         alertService.confirm('Eliminar zona', '¿Estas seguro de que desea eliminar esta zona?').then(function () {
+
+          /*Obtenemos los clientes de la zona a eliminar*/
+          firebase.database().ref('Argus/Zonas/'+ zone.zonaNombre).child('zonaClientes')
+            .on('value', function(snapshot){
+              vm.clientesZonaEliminada = snapshot.val();
+            });
+          /*Ponemos disponibles los clientes de la zona eliminada*/
+          for (var custom in vm.clientesZonaEliminada) {
+            firebase.database().ref('Argus/Clientes/'+ custom).update({
+              'clienteDisponible': true
+            });
+            /*Eliminamos del cliente el atributo que hacia referencia a su zona*/
+            firebase.database().ref('Argus/Clientes/'+ custom).child('clienteZonaAsignada').remove();
+          }
+
           firebase.database().ref('Argus/Zonas/' + zone.zonaNombre).remove();
           growl.error('Zona Eliminada!', vm.config);
         });
-        /*Obtenemos los clientes de la zona a eliminar*/
-        firebase.database().ref('Argus/Zonas/'+ zone.zonaNombre).child('zonaClientes')
-        .on('value', function(snapshot){
-          vm.clientesZonaEliminada = snapshot.val();
-        });
-        /*Ponemos disponibles los clientes de la zona eliminada*/
-        for (var custom in vm.clientesZonaEliminada) {
-          firebase.database().ref('Argus/Clientes/'+ custom).update({
-            'clienteDisponible': true,
-          });
-          /*Eliminamos del cliente el atributo que hacia referencia a su zona*/
-          firebase.database().ref('Argus/Clientes/'+ custom).child('clienteZonaAsignada').remove();
-        }
+
       }
 
       function registerZone() {
@@ -131,6 +126,7 @@ argus
           updates['Argus/Clientes/' + vm.customersToZone[i].clienteNombre + '/clienteZonaAsignada'] = vm.zone.zonaNombre;
           updates['Argus/Clientes/'+ vm.customersToZone[i].clienteNombre+'/clienteDisponible']=false;
           firebase.database().ref().update(updates);
+
 
         }
         vm.customersToZone = [];

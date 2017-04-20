@@ -45,7 +45,9 @@
             <input type="text" class="form-control supervisor-search  display-inline " placeholder="Buscar..."
                    ng-model="vm.buscarUsuario">
           </label>
-          <button class="btn btn-primary waves-effect display-inline" ng-click="vm.user = {}; vm.user.usuarioTipo = vm.searchTypeUser ;vm.verifyUser(vm.searchTypeUser)">Agregar</button>
+          <button
+            class="btn btn-primary waves-effect display-inline"
+            ng-click="vm.user = {}; vm.user.usuarioTipo = vm.searchTypeUser ; vm.verifyUser(vm.searchTypeUser)">Agregar</button>
         </div>
         <div class="col-xs-1"></div>
       </div>
@@ -82,10 +84,17 @@
             <tbody>
 
             <!--ADMINISTRADORES-->
+            <th ng-if="vm.searchTypeUser == 'administrador'">Nombre</th>
+            <th ng-if="vm.searchTypeUser == 'administrador'">Correo electronico</th>
+            <th ng-if="vm.searchTypeUser == 'administrador'"></th>
+
             <tr ng-repeat="administrador in vm.administradores | toArray | filter: {usuarioNombre: vm.buscarUsuario}"
                 ng-if="vm.searchTypeUser == 'administrador'">
               <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(administrador)">
                 <span>{{administrador.usuarioNombre}}</span>
+              </td>
+              <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(administrador)">
+                <span>{{administrador.usuarioEmail}}</span>
               </td>
               <td align="right" style="width: 50px">
                 <div class="lv-actions actions dropdown" uib-dropdown="">
@@ -102,10 +111,25 @@
             </tr>
 
             <!--SUPERVISORES-->
+            <th ng-if="vm.searchTypeUser == 'supervisor'">Nombre</th>
+            <th ng-if="vm.searchTypeUser == 'supervisor'">Zona</th>
+            <th ng-if="vm.searchTypeUser == 'supervisor'">Turno</th>
+            <th ng-if="vm.searchTypeUser == 'supervisor'">Telefono</th>
+            <th ng-if="vm.searchTypeUser == 'supervisor'"></th>
+
             <tr ng-repeat="supervisor in vm.supervisoresArray | filter: {usuarioNombre: vm.buscarUsuario}"
                 ng-if="vm.searchTypeUser == 'supervisor'">
-              <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(supervisor)">
+              <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(supervisor, 'supervisor')">
                 <span>{{supervisor.usuarioNombre}}</span>
+              </td>
+              <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(supervisor, 'supervisor')">
+                <span>{{supervisor.usuarioZona}}</span>
+              </td>
+              <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(supervisor, 'supervisor')">
+                <span>{{supervisor.usuarioTurno}}</span>
+              </td>
+              <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(supervisor, 'supervisor')">
+                <span>{{supervisor.usuarioTelefono}}</span>
               </td>
               <td align="right" style="width: 50px">
                 <div class="lv-actions actions dropdown" uib-dropdown="">
@@ -124,10 +148,21 @@
             </tr>
 
             <!--GUARDIAS-->
+            <th ng-if="vm.searchTypeUser == 'guardia'">Nombre</th>
+            <th ng-if="vm.searchTypeUser == 'guardia'">Turno</th>
+            <th ng-if="vm.searchTypeUser == 'guardia'">Servicio</th>
+            <th ng-if="vm.searchTypeUser == 'guardia'"></th>
+
             <tr ng-repeat="guardia in vm.guardias | toArray | filter: {usuarioNombre: vm.buscarUsuario}"
                 ng-if="vm.searchTypeUser == 'guardia'">
               <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(guardia)">
                 <span>{{guardia.usuarioNombre}}</span>
+              </td>
+              <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(guardia)">
+                <span>{{guardia.usuarioTurno}}</span>
+              </td>
+              <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(guardia)">
+                <span>{{ guardia.usuarioClienteAsignado ? guardia.usuarioClienteAsignado: 'No asignado' }}</span>
               </td>
               <td align="right" style="width: 50px">
                 <div class="lv-actions actions dropdown" uib-dropdown="">
@@ -149,7 +184,6 @@
     </div>
   </section>
 </section>
-{{vm.guardias.length}}
 
 
 

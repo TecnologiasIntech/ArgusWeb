@@ -88,24 +88,33 @@ argus
       }
 
       function deleteClient(client) {
-        
+
         vm.guardiasClienteEliminado = {};
-        alertService.confirm('Eliminar cliente', '¿Estas seguro de que desea eliminar este cliente?').then(function () {
-          firebase.database().ref('Argus/Clientes/' + client.clienteNombre).remove();
-          firebase.database().ref('Argus/Zonas/' + client.clienteZonaAsignada + '/zonaClientes/' + client.clienteNombre).remove();
-          growl.error('Cliente Eliminado!', vm.config);
-        });
 
         firebase.database().ref('Argus/Clientes/' + client.clienteNombre).child('clienteGuardias')
-        .on('value', function(snapshot){
-          vm.guardiasClienteEliminado = snapshot.val();
-        });
-        for (var guardia in vm.guardiasClienteEliminado) {
-          firebase.database().ref('Argus/guardias/' + guardia).update({
-            'usuarioDisponible': true
+          .on('value', function(snapshot){
+            vm.guardiasClienteEliminado = snapshot.val();
           });
-          firebase.database().ref('Argus/guardias/' + guardia).child('usuarioClienteAsignado').remove();
-        }
+
+        alertService.confirm('Eliminar cliente', '¿Estas seguro de que desea eliminar este cliente?').then(function () {
+
+          for (var guardia in vm.guardiasClienteEliminado) {
+            firebase.database().ref('Argus/guardias/' + guardia).update({
+              'usuarioDisponible': true
+            });
+            firebase.database().ref('Argus/guardias/' + guardia).child('usuarioClienteAsignado').remove();
+          }
+
+          if(client.clienteZonaAsignada){
+            firebase.database().ref('Argus/Zonas/' + client.clienteZonaAsignada + '/zonaClientes/' + client.clienteNombre).remove();
+          }
+
+          growl.error('Cliente Eliminado!', vm.config);
+
+          firebase.database().ref('Argus/Clientes/' + client.clienteNombre).remove();
+        });
+
+
       }
 
       function registerClient() {

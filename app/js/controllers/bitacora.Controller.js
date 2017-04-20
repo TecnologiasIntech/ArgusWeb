@@ -69,7 +69,7 @@ argus
             .startAt(secondDate)
             .endAt(primaryDate)
             .on('value', function (snapshot) {
-              // vm.records = {};
+              vm.records = {};
               vm.records = snapshot.val();
 
               vm.result = Object.keys(vm.records).map(function (e) {
