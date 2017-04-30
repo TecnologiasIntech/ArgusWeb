@@ -2,8 +2,8 @@
  * Created by Toshiba on 23/02/2017.
  */
 argus
-  .controller('zonaCtrl', ['$scope', '$rootScope', 'alertService', '$uibModal', 'growl',
-    function ($scope, $rootScope, alertService, $uibModal, growl) {
+  .controller('zonaCtrl', ['$scope', '$rootScope', 'alertService', '$uibModal', 'growl','$location', '$timeout',
+    function ($scope, $rootScope, alertService, $uibModal, growl, $location, $timeout) {
 
       //public var
       var vm = this;
@@ -33,6 +33,17 @@ argus
 
       //private functions
       function activate() {
+
+        // var user = firebase.auth().currentUser;
+        // $timeout( function(){
+        //   if (user) {
+        //     // User is signed in.
+        //   } else {
+        //     $location.path('/login');
+        //     // $rootScope.$apply();
+        //   }
+        // }, 100 );
+
         vm.isLoading = true;
 
         // Datos de todos las zonas

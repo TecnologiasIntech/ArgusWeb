@@ -1,6 +1,6 @@
 
-argus.controller('incidentesCtrl', ['$scope', '$rootScope', 'growl', '$uibModal', 'alertService',
-      function($scope, $rootScope, growl, $uibModal, alertService){
+argus.controller('incidentesCtrl', ['$scope', '$rootScope', 'growl', '$uibModal', 'alertService','$location', '$timeout',
+      function($scope, $rootScope, growl, $uibModal, alertService, $location, $timeout){
 
         //public vars
         var vm = this;
@@ -22,6 +22,17 @@ argus.controller('incidentesCtrl', ['$scope', '$rootScope', 'growl', '$uibModal'
 
         //private functions
         function activate() {
+
+          // var user = firebase.auth().currentUser;
+          // $timeout( function(){
+          //   if (user) {
+          //     // User is signed in.
+          //   } else {
+          //     $location.path('/login');
+          //     // $rootScope.$apply();
+          //   }
+          // }, 100 );
+
           vm.isLoading = true;
           firebase.database().ref('Argus/IncidenteTipo')
             .on('value', function (snapshot) {

@@ -11,8 +11,8 @@ var argus = angular.module('argus', [
   'angular-toArrayFilter',
   'angular-growl',
   'notification',
-  'ngMaterial',
+  'ngMaterial'
   // 'ngSanitize',
   // 'ngCsv',
-  'firebase'
+  // 'firebase'
 ]);

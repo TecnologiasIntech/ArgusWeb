@@ -65,7 +65,7 @@
       </div>
 
       <div class="row m-t-20">
-        <div class="col-xs-offset-1 col-xs-9 m-t-10 m-b-30 p-l-0 p-r-0 table-box" >
+        <div class="col-xs-offset-1 col-xs-10 m-t-10 m-b-30 p-l-0 p-r-0 table-box" >
           <table class="table table-striped table-hover-gray text-center" >
             <thead >
             <tr align="center">
@@ -75,6 +75,7 @@
               <th>Inasistencias</th>
               <th>Descansos Laborados</th>
               <th>Dobles Turnos</th>
+              <th>Horas Extra</th>
               <th>Bono</th>
               <th>Bono total</th>
               <th>Sueldo Total</th>
@@ -100,6 +101,9 @@
                 {{nomina.dobleTurno}}
               </td>
               <td class="bitacora-align-middle">
+                {{nomina.horasExtra ? nomina.horasExtra: '0'}}
+              </td>
+              <td class="bitacora-align-middle">
                 {{nomina.bono}}
               </td>
               <td class="bitacora-align-middle">
@@ -110,6 +114,7 @@
               </td>
             </tr>
             <tr >
+              <td></td>
               <td></td>
               <td></td>
               <td></td>

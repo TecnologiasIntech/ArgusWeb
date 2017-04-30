@@ -3,8 +3,8 @@
  */
 
 argus
-  .controller('bitacoraCtrl', ['$scope', '$rootScope', 'alertService', '$uibModal', 'growl',
-    function ($scope, $rootScope, alertService, $uibModal, growl) {
+  .controller('bitacoraCtrl', ['$scope', '$rootScope', 'alertService', '$uibModal', 'growl','$location', '$timeout',
+    function ($scope, $rootScope, alertService, $uibModal, growl, $location, $timeout) {
 
       //public var
       var vm = this;
@@ -27,7 +27,15 @@ argus
 
       //private functions
       function activate() {
-
+        // var user = firebase.auth().currentUser;
+        // $timeout( function(){
+        //   if (user) {
+        //     // User is signed in.
+        //   } else {
+        //     $location.path('/login');
+        //     // $rootScope.$apply();
+        //   }
+        // }, 100 );
       }
 
 

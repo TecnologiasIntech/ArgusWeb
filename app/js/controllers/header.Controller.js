@@ -19,13 +19,13 @@ argus
       //private functions
       function activate() {
         firebase.database().ref('Argus/NotificacionTmp')
-          .limitToLast(10)
+          // .limitToLast(8)
           .on('value', function (snapshot) {
             //Voy a recibir
             //  * Tipo de accion que se ha hecho
             vm.notifications = snapshot.val();
 
-            if(vm.notifications == null){
+            if(vm.notifications === null){
               vm.notificationsLength = 0;
             }else {
               if (vm.notificationsLength < Object.keys(vm.notifications).length && vm.isReadyToNotification) {
@@ -94,7 +94,7 @@ argus
       function deleteNotifications() {
         alertService.confirm('Borrar Notificaciones', '¿Está seguro que desea eliminar todas las notificaciones?').then(function () {
           firebase.database().ref('Argus/NotificacionTmp').remove();
-        })
+        });
         $rootScope.$apply();
       }
     }

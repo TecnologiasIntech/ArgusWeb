@@ -81,9 +81,10 @@
 
         <div class="row m-t-30">
 
+          <!--// TODO: poner telefono de casa y telegono de celular-->
           <!--TELEFONO-->
           <div class="col-xs-offset-1 col-xs-5">
-            <span>Teléfono</span>
+            <span>Teléfono.</span>
             <div class="fg-line m-l-10">
               <input type="number" ng-model="vm.user.usuarioTelefono" class="form-control"
                      placeholder="Numero de teléfono" required>
@@ -98,6 +99,13 @@
 
           <!--Tipo de guardia-->
           <div class="col-xs-5" ng-if="vm.user.usuarioTipo == 'guardia'">
+
+            <!--<span>Teléfono Casa</span>-->
+            <!--<div class="fg-line m-l-10">-->
+              <!--<input type="number" ng-model="vm.user.usuarioTelefonoCasa" class="form-control"-->
+                     <!--placeholder="Numero de teléfono" required>-->
+            <!--</div>-->
+
             <span>Sueldo base</span>
             <div class="fg-line m-l-10">
               <select class="form-control" ng-model="vm.user.usuarioTipoGuardia">

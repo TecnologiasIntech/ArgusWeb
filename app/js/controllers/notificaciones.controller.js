@@ -2,8 +2,8 @@
  * Created by Toshiba on 04/03/2017.
  */
 argus
-  .controller('notificacionCtrl', ['$scope', '$rootScope', 'alertService', '$uibModal',
-    function ($scope, $rootScope, alertService, $uibModal) {
+  .controller('notificacionCtrl', ['$scope', '$rootScope', 'alertService', '$uibModal', '$location', '$timeout',
+    function ($scope, $rootScope, alertService, $uibModal, $location, $timeout) {
 
       //public var
       var vm = this;
@@ -19,6 +19,17 @@ argus
 
       //private functions
       function activate() {
+
+        // var user = firebase.auth().currentUser;
+        // $timeout( function(){
+        //   if (user) {
+        //     // User is signed in.
+        //   } else {
+        //     $location.path('/login');
+        //     // $rootScope.$apply();
+        //   }
+        // }, 100 );
+
         firebase.database().ref('Argus/Notificacion')
           .on('value', function (snapshot) {
             vm.notifications = snapshot.val();

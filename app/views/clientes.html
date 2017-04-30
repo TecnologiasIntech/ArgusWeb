@@ -15,7 +15,7 @@
           <label>
             <input type="text" class="form-control supervisor-search  display-inline " placeholder="Buscar..." ng-model="vm.searchInCustomers">
           </label>
-          <button class="btn btn-primary waves-effect display-inline" ng-click="vm.openModal()">Agregar</button>
+          <button class="btn btn-primary waves-effect display-inline" ng-click="vm.openModal(); vm.getConsignas();">Agregar</button>
         </div>
         <div class="col-xs-1"></div>
       </div>
@@ -43,7 +43,7 @@
             <th>Nombre del servicio</th>
             <th></th>
             <tr ng-repeat="client in vm.customers | toArray | filter: {clienteNombre: vm.searchInCustomers}">
-              <td class="p-t-15 cursor-pointer" ng-click="vm.editClient(client)">
+              <td class="p-t-15 cursor-pointer" ng-click="vm.editClient(client, client.$key)">
                 <span>{{client.clienteNombre}}</span>
               </td>
               <td align="right">
@@ -53,7 +53,7 @@
                     <i class="zmdi zmdi-more-vert zmdi-hc-2x actions-size"></i>
                   </a>
                   <ul class="dropdown-menu pull-right actions-supervisor">
-                    <li class="action-edit cursor-pointer" ng-click="vm.editClient(client)">Editar</li>
+                    <li class="action-edit cursor-pointer" ng-click="vm.editClient(client, client.$key)">Editar</li>
                     <li class="action-delete cursor-pointer" ng-click="vm.deleteClient(client)">Eliminar</li>
                   </ul>
                 </div>

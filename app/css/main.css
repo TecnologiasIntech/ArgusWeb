@@ -27,7 +27,7 @@
   color: #bdc3c7;
 }
 .modal-size{
-  height: 350px;
+  height: 400px;
 }
 .table-box{
   box-shadow: 0px 0px 5px #BDC3C7;
@@ -45,6 +45,9 @@
 }
 .modal-sn{
   width: 300px;
+}
+.modal-xxm{
+  width: 210px;
 }
 
 
@@ -101,6 +104,8 @@
 .notification-card{
   width: 350px;
   height: auto;
+  overflow: auto;
+  overflow-x: hidden;
   max-height: 80vh;
   right: 40px !important;
   border-radius: 5px 5px 5px 5px;
@@ -161,4 +166,81 @@
 .notification-icon-modal{
   color: white;
   padding-top: 75%;
+}
+
+
+
+/*Consignas*/
+.cardRegistrarConsigna{
+  height: 350px;
+  max-height: 350px;
+  border-style: dashed;
+  border-color: #d2d0d0;
+  background-color: #f6f5f5;
+  box-shadow: 0px 0px 3px #f6f5f5;
+  border-radius: 3px;
+  border-width: 4px;
+}
+.cardRegistrarConsigna:hover{
+  height: 350px;
+  max-height: 350px;
+  border-style: dashed;
+  border-color: #f6f5f5;
+  background-color: #d2d0d0;
+  box-shadow: 0px 0px 3px #2B2B2B;
+  border-radius: 3px;
+  border-width: 4px;
+}
+
+.title-registerConsigna{
+  margin-top: 40%;
+}
+
+.color-consigna-text{
+  color: #f6f5f5;
+}
+.color-consigna-text-hover{
+  color: #d2d0d0;
+}
+.consigna{
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  float: left;
+  width: 196px;
+  margin-top: 6px;
+}
+.scroll-consigna{
+  /*width: 600px;*/
+  overflow-x: scroll;
+  overflow-y: hidden;
+  height: 389px;
+}
+.scroll-consigna::-webkit-scrollbar {
+  height: 10px;
+  width: 5px;
+}
+.scroll-consigna::-webkit-scrollbar-track {
+  background: #ddd;
+}
+
+.scroll-consigna::-webkit-scrollbar-thumb {
+  background: #afadad;
+}
+.scroll-tareas{
+  /*width: 600px;*/
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 389px;
+}
+.scroll-tareas::-webkit-scrollbar {
+  width: 2px;
+}
+.scroll-tareas::-webkit-scrollbar-track {
+  background: #ddd;
+}
+
+.scroll-tareas::-webkit-scrollbar-thumb {
+  background: #afadad;
 }

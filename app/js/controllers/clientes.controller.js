@@ -2,8 +2,8 @@
  * Created by Toshiba on 20/02/2017.
  */
 argus
-  .controller('clienteCtrl', ['$scope', '$rootScope', 'alertService', '$uibModal', 'growl',
-    function ($scope, $rootScope, alertService, $uibModal, growl) {
+  .controller('clienteCtrl', ['$scope', '$rootScope', 'alertService', '$uibModal', 'growl', '$location', '$timeout', 'focusService',
+    function ($scope, $rootScope, alertService, $uibModal, growl, $location, $timeout, focusService) {
 
       //public var
       var vm = this;
@@ -22,6 +22,7 @@ argus
       vm.saveGuardias=[];
       vm.saveClientes=[];
       vm.guardiasClienteEliminado = {};
+      vm.consignasArray = {};
 
       //public functions
       vm.openModal = openModal;
@@ -32,9 +33,26 @@ argus
       vm.verifyChecked = verifyChecked;
       vm.updateClient = updateClient;
       vm.editClientCancel = editClientCancel;
+      vm.addConsigna = addConsigna;
+      vm.removeItem = removeItem;
+      // vm.getTareas = getTareas;
+      vm.addItemToConsigna = addItemToConsigna;
+      vm.openModalToAsignTitleToConsigna = openModalToAsignTitleToConsigna;
+      vm.deleteConsigna = deleteConsigna;
 
       //private functions
       function activate() {
+
+        // var user = firebase.auth().currentUser;
+        // $timeout( function(){
+        //   if (user) {
+        //     // User is signed in.
+        //   } else {
+        //     $location.path('/login');
+        //     // $rootScope.$apply();
+        //   }
+        // }, 100 );
+
         vm.isLoading = true;
         firebase.database().ref('Argus/Clientes')
           .on('value', function (snapshot) {
@@ -47,7 +65,9 @@ argus
           .on('value', function (snapshot) {
             vm.guards = snapshot.val();
           });
+
       }
+
       activate();
 
       function openModal() {
@@ -61,9 +81,33 @@ argus
         });
       }
 
+      function openModalToAsignTitleToConsigna() {
+        //saveGuardias=[];
+        vm.modalConsigna = $uibModal.open({
+          animation: true,
+          templateUrl: 'views/modals/asignarNombreConsigna.modal.html',
+          scope: $scope,
+          size: 'xxm',
+          backdrop: 'static'
+        });
 
+        // focusService.putFocus('nombreConsigna');
+      }
 
-      function editClient(client) {
+      function getConsignas( keyClient ) {
+
+        firebase.database().ref('Argus/Consigna/' + (keyClient ? keyClient : ''))
+          .on('value', function (snapshot) {
+
+            vm.consignasArray = snapshot.val();
+
+            console.log(snapshot.val())
+
+          })
+
+      }
+
+      function editClient(client, clienteKey) {
         vm.isEdit = true;
         vm.client = client;
         for(var guard in vm.client.clienteGuardias){
@@ -76,8 +120,13 @@ argus
             usuarioDisponible: true
           });
         }
+
+        // Obtener las consignas de este cliente
+        getConsignas(clienteKey);
+
         vm.openModal();
       }
+
       function editClientCancel(){
         for(var guard in vm.saveGuardias){
           firebase.database().ref('Argus/guardias/'+ vm.saveGuardias[guard]).update({
@@ -198,6 +247,65 @@ argus
         vm.view = 'general';
         growl.info('Cliente Actualizado!', vm.config);
         vm.modal.dismiss();
+      }
+
+      function addConsigna( titleConsigna ) {
+
+        if( !titleConsigna ){
+          growl.error('No puedes agregar una consigna vacía', vm.config);
+        }else{
+          firebase.database().ref('Argus/Consigna/' + vm.client.clienteNombre + '/' + titleConsigna).set({
+            prueba:{
+              consignaNombre: 'Prueba'
+            }
+          });
+
+          vm.modalConsigna.dismiss();
+        }
+      }
+
+      function addItemToConsigna( keyConsigna ) {
+
+        // Elimina la tarea de prueba
+        firebase.database().ref('Argus/Consigna/' + vm.client.clienteNombre + '/' + keyConsigna + '/prueba').remove();
+
+        // Añade la nueva tarea
+        if( !document.getElementById( keyConsigna ).value ){
+          growl.error('No puedes agregar una tarea vacía', vm.config);
+        }else {
+          firebase.database().ref('Argus/Consigna/' + vm.client.clienteNombre + '/' + keyConsigna).push({
+            consignaNombre: document.getElementById(keyConsigna).value
+          });
+        }
+
+      }
+
+      function removeItem( consignaKey, tareaKey ) {
+        // var client = vm.client.clienteNombre;
+        firebase.database().ref('Argus/Consigna/' + vm.client.clienteNombre + '/' + consignaKey).remove(tareaKey);
+        console.log(consignaKey + ' ' + tareaKey)
+
+      }
+
+      // function getTareas( consignaKey ) {
+      //
+      //   firebase.database().ref('Argus/Consigna/' + vm.client.clienteNombre + '/' + consignaKey)
+      //     .on('value', function (snapshot) {
+      //       console.log(snapshot.val());
+      //       return snapshot.val();
+      //
+      //     })
+      //
+      // }
+
+      function deleteConsigna( consignaKey ) {
+
+        alertService.verifyConfirm('Estas seguro de eliminar esta consigna?', '').then(function () {
+
+          firebase.database().ref('Argus/Consigna/' + vm.client.clienteNombre + '/' + consignaKey).remove();
+
+        })
+
       }
     }
   ]);

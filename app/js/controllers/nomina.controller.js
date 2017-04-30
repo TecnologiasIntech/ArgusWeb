@@ -2,8 +2,8 @@
  * Created by Toshiba on 23/03/2017.
  */
 argus
-  .controller('nominaCtrl', ['$scope', '$rootScope', 'alertService', '$uibModal', 'growl',
-    function ($scope, $rootScope, alertService, $uibModal, growl) {
+  .controller('nominaCtrl', ['$scope', '$rootScope', 'alertService', '$uibModal', 'growl','$location', '$timeout',
+    function ($scope, $rootScope, alertService, $uibModal, growl, $location, $timeout) {
 
       //public var
       var vm = this;
@@ -46,6 +46,7 @@ argus
       vm.bond = 0;
       vm.config = {};
       vm.paysheetSettings = {};
+      vm.horasExtras = 0;
 
 
       var date = new Date();
@@ -71,6 +72,16 @@ argus
       //private functions
       function activate() {
 
+        // var user = firebase.auth().currentUser;
+        // $timeout( function(){
+        //   if (user) {
+        //     // User is signed in.
+        //   } else {
+        //     $location.path('/login');
+        //     // $rootScope.$apply();
+        //   }
+        // }, 100 );
+
         /*Codigo para obtener todos los guardias*/
         firebase.database().ref('Argus/guardias')
           .on('value', function (snapshot) {
@@ -87,20 +98,29 @@ argus
       }
       activate();
 
-      // vm.script = script;
-      // function script() {
-      //   var fecha = 20170401;
-      //
-      //   for(fecha; fecha <= 20170430; fecha++){
-      //     firebase.database().ref('Argus/Bitacora/' + fecha + '/-KhZQb7CrK0X3EespUHf').set({
-      //       asistio: true,
-      //       cubreDescanso: false,
-      //       dobleTurno: false,
-      //       guardiaNombre: 'Manuela Valenzuela'
-      //     })
-      //   }
-      //
-      // }
+      vm.script = script;
+      function script() {
+        var fecha = 20170401;
+
+        for(fecha; fecha <= 20170415; fecha++){
+          if(fecha == 20170415){
+            firebase.database().ref('Argus/Bitacora/' + fecha + '/-KhZRSL02I7Csjl-hHBZ').set({
+              asistio: false,
+              cubreDescanso: true,
+              dobleTurno: false,
+              guardiaNombre: "CERVANTES BALDENEBRO JESUS RAMON"
+            })
+          }else{
+            firebase.database().ref('Argus/Bitacora/' + fecha + '/-KhZRSL02I7Csjl-hHBZ').set({
+              asistio: true,
+              cubreDescanso: false,
+              dobleTurno: false,
+              guardiaNombre: "CERVANTES BALDENEBRO JESUS RAMON"
+            })
+          }
+        }
+
+      }
 
       function openModal() {
 
@@ -192,6 +212,7 @@ argus
               vm.sueldoTotal = 0;
               vm.inasistencias = 0;
               vm.asistenciaBono = 0;
+              vm.horasExtras = 0;
 
               for (var fecha in vm.fechasQuincenaAnterior) {
                 var asistencias = vm.fechasQuincenaAnterior[fecha];
@@ -232,6 +253,10 @@ argus
                         vm.sueldoTotal += 300;
                         vm.assistence_dobleT += 1;
                       }
+                      if(vm.asistencias[asistencia].horasExtra){
+                        vm.sueldoTotal += vm.asistencias[asistencia].horasExtra * 20;
+                        vm.horasExtras += vm.asistencias[asistencia].horasExtra;
+                      }
                     }
                   }
                 }
@@ -257,6 +282,7 @@ argus
                 'inasistencias': vm.inasistencias,
                 'cubreGuardias': vm.assistence_cubreG,
                 'dobleTurno': vm.assistence_dobleT,
+                'horasExtra': vm.horasExtras,
                 'bono': vm.bono,
                 'sueldoTotal': vm.sueldoTotal
               });
@@ -268,6 +294,7 @@ argus
                 'inasistencias': vm.inasistencias,
                 'cubreGuardias': vm.assistence_cubreG,
                 'dobleTurno': vm.assistence_dobleT,
+                'horasExtra': vm.horasExtras,
                 'bono': vm.bono,
                 'sueldoTotal': vm.sueldoTotal
               });
@@ -279,6 +306,7 @@ argus
                 'inasistencias': vm.inasistencias,
                 'cubreGuardias': vm.assistence_cubreG,
                 'dobleTurno': vm.assistence_dobleT,
+                'horasExtra': vm.horasExtras,
                 'bono': vm.bono,
                 'sueldoTotal': vm.sueldoTotal
               });
@@ -297,7 +325,7 @@ argus
             firebase.database().ref('Argus/Nomina/'+ vm.numQuincena).child('totalPagado').set(vm.totalPagado);
             // vm.exportToCsv = vm.nomina;
             vm.loading = false;
-            $rootScope.$apply();
+            $rootScope.$apply()
 
         });
       }
@@ -363,8 +391,9 @@ argus
         firebase.database().ref().update(updates);
 
         vm.paysheetSettings = {};
-        vm.modal.dismiss();
-        growl.info('Configuración de nomina Actualizada!', vm.config);
+        location.reload();
+        // vm.modal.dismiss();
+        // growl.info('Configuración de nomina Actualizada!', vm.config);
       }
 
       function calculateBaseSalary(quincena, month, year, salary) {
@@ -390,6 +419,5 @@ argus
 
         return baseSalary;
       }
-
     }
   ]);

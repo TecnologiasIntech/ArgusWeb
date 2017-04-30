@@ -2,8 +2,8 @@
  * Created by Toshiba on 14/02/2017.
  */
 argus
-  .controller('supervisorCtrl', ['$location', '$scope', '$rootScope', 'alertService', '$uibModal', 'growl', '$firebaseArray',
-    function ($location, $scope, $rootScope, alertService, $uibModal, growl, $firebaseArray) {
+  .controller('supervisorCtrl', ['$location', '$scope', '$rootScope', 'alertService', '$uibModal', 'growl', '$timeout',
+    function ($location, $scope, $rootScope, alertService, $uibModal, growl, $timeout) {
 
       //public var
       var vm = this;
@@ -48,15 +48,20 @@ argus
         .on('value', function(snapshot){
           vm.zonas = snapshot.val();
         });
-
+        //
         var user = firebase.auth().currentUser;
+        $timeout( function(){
+          if (user) {
+            // User is signed in.
+          } else {
+            $location.path('/login');
+            // $rootScope.$apply();
+          }
+        }, 200 );
 
-        if (user) {
-          // User is signed in.
-        } else {
-          $location.path('/login');
-          // $rootScope.$apply();
-        }
+
+
+
         // firebase.auth().onAuthStateChanged(function (user) {
         //   if (!user) {
         //     $location.path('/login');
@@ -78,13 +83,6 @@ argus
         firebase.database().ref('Argus/supervisores/')
           .on('value', function (snapshot) {
             vm.supervisores = snapshot.val();
-            vm.supervisoresArray = [];
-
-            _.forEach(vm.supervisores, function (value, key) {
-              value.key = key;
-              vm.supervisoresArray.push(value);
-              // console.log(value);
-            });
             $rootScope.$apply();
           });
 
@@ -161,9 +159,10 @@ argus
       }
 
       vm.saveUser=[];
-      function editUser(user, userType) {
+      function editUser(user, userKey, userType) {
         vm.isEdit = true;
         vm.user = user;
+        vm.user.usuarioKey = userKey;
         vm.saveUser.push(user);
 
         //Solo cuando se es supervisor
@@ -190,8 +189,10 @@ argus
         switch (vm.user.usuarioTipo) {
 
           case 'guardia':
+
             // ACTUALIZAR GUARDIAS
-            firebase.database().ref('Argus/guardias/' + vm.user.$key + '/').update({
+            // TODO: quitar telefono por telefono de casa y de celular
+            firebase.database().ref('Argus/guardias/' + vm.user.usuarioKey + '/').update({
               usuarioNombre: vm.user.usuarioNombre,
               usuarioTelefono: vm.user.usuarioTelefono,
               usuarioDomicilio: vm.user.usuarioDomicilio,
@@ -200,33 +201,31 @@ argus
             break;
 
           case 'supervisor':
+
             // ACTUALIZAR SUPERVISORES
-            firebase.database().ref('Argus/supervisores/' + vm.user.$key + '/').update({
-              usuarioNombre: vm.user.usuarioNombre,
-              usuarioEmail: vm.user.usuarioEmail,
-              usuarioTelefono: vm.user.usuarioTelefono,
-              usuarioDomicilio: vm.user.usuarioDomicilio,
-              usuarioZona: vm.user.usuarioZona,
-              usuarioTurno: vm.user.usuarioTurno,
-              usuarioContrasena: vm.user.usuarioContrasena
-            });
-            firebase.database().ref('Argus/Zonas/'+vm.user.usuarioZona).update({
-              disponibilidadZona: false
-            });
+            var updates = {};
+
+            // TODO: cambiar telefono por telefono de casa y de celular
+
+            updates['Argus/supervisores/' + vm.user.usuarioKey + '/usuarioDomicilio'] = vm.user.usuarioDomicilio;
+            updates['Argus/supervisores/' + vm.user.usuarioKey + '/usuarioNombre'] = vm.user.usuarioNombre;
+            updates['Argus/supervisores/' + vm.user.usuarioKey + '/usuarioTelefono'] = vm.user.usuarioTelefono;
+            // updates['Argus/supervisores/' + vm.user.usuarioKey + '/usuarioTelefonoCasa'] = vm.user.usuarioTelefonoCasa;
+            updates['Argus/supervisores/' + vm.user.usuarioKey + '/usuarioTurno'] = vm.user.usuarioTurno;
+            updates['Argus/supervisores/' + vm.user.usuarioKey + '/usuarioZona'] = vm.user.usuarioZona;
+
+            updates['Argus/Zonas/'+vm.user.usuarioZona + '/disponibilidadZona'] = false;
+
+            firebase.database().ref().update(updates);
+
             break;
 
           case 'administrador':
 
-          firebase.database().ref('Argus/Zonas/'+vm.user.usuarioZona).child('zonaDisponiblidad').set()
-            // ACTUALIZAR SUPERVISORES
-            firebase.database().ref('Argus/administradores/' + vm.user.$key + '/').update({
-              usuarioNombre: vm.user.usuarioNombre,
-              usuarioEmail: vm.user.usuarioEmail,
-              usuarioTelefono: vm.user.usuarioTelefono,
-              usuarioDomicilio: vm.user.usuarioDomicilio,
-              usuarioZona: vm.user.usuarioZona,
-              usuarioTurno: vm.user.usuarioTurno,
-              usuarioContrasena: vm.user.usuarioContrasena
+            // ACTUALIZAR ADMINISTRADORES
+            firebase.database().ref('Argus/administradores/' + vm.user.usuarioKey + '/').update({
+              usuarioNombre: vm.user.usuarioNombre
+            //  TODO: Agregar telefono de casa y telefono de celular
             });
             break;
         }
