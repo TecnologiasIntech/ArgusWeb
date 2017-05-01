@@ -105,7 +105,6 @@ argus
         var month = ("0" + (date.getMonth() + 1)).slice(-2);
         var day = ("0" + (date.getUTCDate())).slice(-2);
         var year = date.getUTCFullYear();
-
         return (year + '' + month + '' + day);
       }
 

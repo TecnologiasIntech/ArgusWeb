@@ -57,6 +57,12 @@ argus
         controller: 'nominaCtrl as vm'
       })
 
+      .state('bitacoraRegistro',{
+        url: '/bitacoraRegistro',
+        templateUrl: 'views/bitacoraRegistro.html',
+        controller: 'bitacoraRegistroCtrl as vm'
+      })
+
       .state('pages', {
         url: '/pages',
         templateUrl: 'views/common.html'
