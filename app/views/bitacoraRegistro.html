@@ -1,0 +1,106 @@
+<header id="header" data-current-skin={{mactrl.currentSkin}} data-ng-include="'template/header.html'"
+        data-ng-controller="headerCtrl as hctrl">
+
+</header>
+<section id="main">
+  <aside id="sidebar" data-ng-include="'template/sidebar-left.html'"
+         data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }"></aside>
+
+  <section id="content">
+    <div class="card m-l-20 m-r-20">
+
+      <!--INPUT DATE-->
+      <div class="row">
+        <div class="col-xs-offset-1 col-xs-3 p-r-0  m-t-20 p-r-0">
+          <div class="datepickerdemoBasicUsage">
+            <md-content class="size-datepicker">
+              <md-datepicker ng-model="vm.firstDate" md-placeholder="Introduzca fecha"></md-datepicker>
+            </md-content>
+          </div>
+        </div>
+        <div class="col-xs-1 p-l-0 p-r-0  m-t-20 p-l-0 p-r-0">
+          <div class="a-datepicker" align="center">a</div>
+        </div>
+        <div class="col-xs-3  m-t-20">
+          <div class="datepickerdemoBasicUsage">
+            <md-content class="size-datepicker">
+              <md-datepicker ng-model="vm.secondDate" md-placeholder="Introduzca fecha"></md-datepicker>
+            </md-content>
+          </div>
+        </div>
+        <div class="col-xs-2  m-t-25">
+          <button class="btn btn-waves btn-success" ng-click="vm.datesRecords = {}; vm.getRecords()">Mostrar</button>
+        </div>
+      </div>
+
+      <!--FILTROS-->
+      <!-- <div class="row m-t-15">
+        <div class="col-xs-offset-1 col-xs-3">
+          <div class="m-l-10">
+            <input type="text" class="form-control" ng-model="vm.filterSupervisor" placeholder="Filtrar por supervisor...">
+          </div>
+        </div>
+      </div> -->
+
+      <!-- <div class="row" >
+        <label for="">hola</label>
+        <label for="" ng-repeat="dates in vm.getRecords | toArray">{{dates}}</label>
+      </div> -->
+
+
+
+      <div class="row" ng-init="nombre = vm.nombre" ng-repeat="date in vm.datesRecords | toArray" >
+
+        <div class="row m-t-20">
+          <div ng-init="date = {{date.fecha}}" class="col-lg-offset-1">
+            {{vm.getFullDate( date.fecha )}}
+            <label class="f-20" ng-init="x = vm.datesRecords[date.$key]">{{vm.fullDate}}</label>
+          </div>
+        </div>
+
+        <div class="row m-t-15" ng-repeat="su in x | toArray " ng-if="su.$key != '$$hashKey' && su.$key != 'fecha'">
+          <div class="row" >
+            <div class="col-lg-offset-1" ng-if="su.$key != '$$hashKey' && su.$key != 'fecha'">
+              {{ vm.getSupervisor( su.$key ) }}
+              <label class="f-17 m-l-20" >{{vm.nombre}}</label>
+            </div>
+          </div>
+          <div class="row" >
+            <div class="col-xs-offset-1 col-xs-9 m-t-10 m-b-10 p-l-0 p-r-0 table-box">
+              <table class="table table-striped table-hover-gray" >
+                <thead>
+                <tr>
+                  <th class="col-lg-9">Observaciones</th>
+                  <th class="col-lg-3">Hora</th>
+                </tr>
+                </thead>
+                <tbody >
+                <tr  ng-repeat="observacion in x[su.$key] | toArray" ng-if="observacion.$key != '$$hashKey' && observacion.$key != 'fecha'">
+                  <td class="bitacora-align-middle col-lg-9">
+                    {{observacion.observacion}}
+                  </td>
+                  <td class="bitacora-align-middle col-lg-3">
+                    {{observacion.hora}}
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+
+
+
+        </div>
+
+
+
+
+
+    </div>
+  </section>
+</section>
+
+<footer id="footer" data-ng-include="'template/footer.html'"></footer>
