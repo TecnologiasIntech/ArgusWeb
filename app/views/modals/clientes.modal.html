@@ -1,5 +1,6 @@
-<form name="clientForm" ng-submit="vm.registerClient()">
+<form name="clientForm" id="form" ng-submit="vm.registerClient(); vm.clearConsignas()">
 
+  <!--Header-->
   <div class="modal-header p-t-10">
     <ul class="tab-nav">
       <li class="{{vm.view == 'general' ? 'active' : ''}}">
@@ -9,26 +10,34 @@
         <a href="" ng-click="vm.view = 'assignment'">Asignación</a>
 
       </li>
-      <li class="{{vm.view == 'consignas' ? 'active' : ''}}" >
+      <li class="{{vm.view == 'consignas' ? 'active' : ''}}" ng-if="vm.isEdit" >
         <a href="" ng-click="vm.view = 'consignas'">Consignas</a>
+
+      </li>
+      <li class="{{vm.view == 'consignas' ? 'active' : ''}}" ng-if="!vm.isEdit">
+        <a href="" ng-click="vm.client.clienteNombre ? vm.view = 'consignas' : vm.errorConsignaUndeclaredClientName()" >Consignas</a>
 
       </li>
     </ul>
   </div>
 
-  <div class="modal-body modal-size">
+  <!--Body-->
+  <div class="modal-body modal-size" style="overflow-y: auto">
     <div class="row">
 
       <!--General-->
       <div class="m-l-30 m-r-30 " ng-if="vm.view == 'general'">
-        <div class="row m-t-20">
+
+        <!--DATOS DEL SERVICIO-->
+        <h4 style="color: #616161; margin-top: 0px; margin-left: 30px;">Datos del servicio</h4>
+        <div class="row m-t-15">
 
           <!--NOMBRE-->
           <div class="col-xs-offset-1 col-xs-5">
             <span>Nombre</span>
             <div class="fg-line m-l-10">
               <input type="text" name="clientName" ng-model="vm.client.clienteNombre" class="form-control"
-                     placeholder="Nombre completo aqui..." value="{{vm.isEdit ? vm.client.clienteNombre : ''}}" ng-disabled="vm.isEdit"
+                     placeholder="Nombre completo aqui..." value="{{vm.isEdit ? vm.client.clienteNombre : ''}}" ng-disabled="vm.isEdit || vm.isAddConsigna"
                      required>
             </div>
           </div>
@@ -53,6 +62,55 @@
                      required>
             </div>
           </div>
+
+
+        </div>
+
+        <!--DATOS DEL RESPONSABLE-->
+        <h4 style="color: #616161; margin-top: 30px; margin-bottom: 0px; margin-left: 30px;">Datos del responsable</h4>
+        <div class="row m-t-15" ng-if="vm.user.usuarioTipo != 'guardia'">
+
+          <!--NOMBRE DEL RESPONSABLE-->
+          <div class="col-xs-offset-1 col-xs-5">
+            <span>Nombre del responsable</span>
+            <div class="fg-line m-l-10">
+              <input type="text" ng-model="vm.client.nombreResponsable" class="form-control" placeholder="Escribe el nombre completo..."
+                     required>
+            </div>
+          </div>
+
+          <!--DOMICILIO DEL RESPONSABLE-->
+          <div class=" col-xs-5">
+            <span>Domicilio</span>
+            <div class="fg-line m-l-10">
+              <input type="text" ng-model="vm.client.domicilioResponsable" class="form-control" placeholder="Escribe el domicilio..."
+                     required>
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="row m-t-30" ng-if="vm.user.usuarioTipo != 'guardia'">
+
+          <!--EMAIL DEL RESPONSABLE-->
+          <div class="col-xs-offset-1 col-xs-5">
+            <span>Correo Electrónico</span>
+            <div class="fg-line m-l-10">
+              <input type="text" ng-model="vm.client.emailResponsable" class="form-control" placeholder="Escribe el correo electrónico..."
+                     required>
+            </div>
+          </div>
+
+          <!--TELEFONO DEL RESPONSABLE-->
+          <div class="col-xs-5">
+            <span>Télefono</span>
+            <div class="fg-line m-l-10">
+              <input type="text" ng-model="vm.client.telefonoResponsable" class="form-control" placeholder="Escribe el télefono..."
+                     required>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -66,22 +124,21 @@
                      ng-model="vm.searchInGuards">
             </label>
           </div>
-          <div class="col-xs-3">
-            <div class="checkbox m-t-10">
+          <div class="col-xs-3 m-r-20" align="left">
+            <div class="checkbox m-b-15">
               <label>
-                <input type="checkbox" ng-model="vm.check">
+                <input type="checkbox" ng-model="mostrar">
                 <i class="input-helper"></i>
-                Mostrar Seleccionados
+                Mostrar Asignados
               </label>
             </div>
           </div>
         </div>
-
         <div class="row">
           <div class="col-xs-offset-2 col-xs-8 m-t-10 p-l-0 p-r-0 table-guardias table-box">
             <table class="table table-hover table-bordered ">
               <tbody>
-              <tr ng-repeat="guard in vm.guards | toArray |filter: {usuarioNombre: vm.searchInGuards}" ng-if="vm.check != false">
+              <tr ng-repeat="guard in vm.guards | toArray |filter: {usuarioNombre: vm.searchInGuards} " ng-if="!mostrar">
                 <td align="left" ng-if="guard.usuarioDisponible">
                   <div class="checkbox m-t-0 m-b-0">
                     <label>
@@ -93,17 +150,75 @@
                   </div>
                 </td>
               </tr>
+
+              <tr ng-repeat="guard in vm.guardsToClient | filter: {usuarioNombre: vm.searchInGuards} " ng-if="mostrar">
+                <td align="left">
+                  <div class="checkbox m-t-0 m-b-0">
+                    <label>
+                      <input type="checkbox" disabled ng-checked="vm.verifyChecked(guard.usuarioNombre) > -1" >
+                      <i class="input-helper"></i>
+                      <span>{{guard.usuarioNombre}}</span>
+                      <!--[<span>{{guard.usuarioTurno}}</span>]-->
+                    </label>
+                  </div>
+                </td>
+              </tr>
               </tbody>
             </table>
-            {{vm.guardsToClient[0].$}}
           </div>
         </div>
       </div>
 
-      <!--Consignas-->
-      <div ng-if="vm.view == 'consignas'" class="scroll-consigna">
+      <!--Más de 3 Consignas-->
+      <div ng-if="vm.view == 'consignas'">
+        <div class="m-t-20">
 
-        <div class="" style="width: 2000px;">
+          <!--Lista de consignas pequeñas-->
+          <div class="col-xs-3 m-t-10" ng-repeat="consigna in vm.consignasArray | toArray" >
+            <div class="card consigna-small cursor-pointer" ng-click="vm.verifyClientName( consigna.$key ); vm.isEditConsigna = true" align="center">
+              <span class="title-consignaSmall"> {{ consigna.$key }} </span>
+            </div>
+          </div>
+
+          <!--Registrar nueva consigna pequeña-->
+          <div class="col-xs-3 m-t-10" >
+            <div class="cardRegistrarConsignaSmall cursor-pointer"
+                 align="center"
+                 ng-mouseover="cardFocus = true"
+                 ng-mouseleave="cardFocus = false"
+                 ng-init="cardFocus = false"
+                 ng-click="vm.verifyClientName()">
+
+              <!--<span class="title-registerConsignaSmall d-block {{ cardFocus ? 'color-consigna-text' : 'color-consigna-text-hover' }}">Nueva consigna</span>-->
+
+              <i class="zmdi zmdi-plus zmdi-hc-5x d-block {{ cardFocus ? 'color-consigna-text' : 'color-consigna-text-hover' }}"></i>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!--Menos de 4 Consignas-->
+      <!--<div ng-if="vm.view == 'consignas'" class="scroll-consigna">-->
+      <div ng-if="false" class="scroll-consigna">
+        <div class="" style="width: 2000px;" >
+
+          <!--Card para agregar nueva consigna-->
+          <div class="consigna">
+            <div class="cardRegistrarConsigna cursor-pointer"
+                 align="center"
+                 ng-mouseover="cardFocus = true"
+                 ng-mouseleave="cardFocus = false"
+                 ng-init="cardFocus = false"
+                 ng-click="vm.verifyClientName()">
+
+              <h2 class="title-registerConsigna {{ cardFocus ? 'color-consigna-text' : 'color-consigna-text-hover' }}">Registrar nueva Consigna</h2>
+
+              <i class="zmdi zmdi-plus zmdi-hc-5x {{ cardFocus ? 'color-consigna-text' : 'color-consigna-text-hover' }}"></i>
+
+            </div>
+          </div>
 
           <!--Card de consigna-->
           <div class="consigna" ng-repeat="consigna in vm.consignasArray | toArray">
@@ -134,7 +249,7 @@
                 <div class="row m-t-0">
                   <div class="col-xs-9 p-r-0 p-l-0">
                     <div class="fg-line m-l-5">
-                      <input id="{{ consigna.$key }}" type="text" placeholder="Nueva tarea..." class="form-control p-l-5">
+                      <input id="{{ consigna.$key }}" my-enter="vm.addItemToConsigna( consigna.$key )" type="text" placeholder="Nueva tarea..." class="form-control p-l-5">
                     </div>
                   </div>
                   <div class="col-xs-2 m-t-5 cursor-pointer">
@@ -167,21 +282,7 @@
             </div>
           </div>
 
-          <!--Card para agregar nueva consigna-->
-          <div class="consigna">
-            <div class="cardRegistrarConsigna cursor-pointer"
-                 align="center"
-                 ng-mouseover="cardFocus = true"
-                 ng-mouseleave="cardFocus = false"
-                 ng-init="cardFocus = false"
-                 ng-click="vm.openModalToAsignTitleToConsigna()">
 
-              <h2 class="title-registerConsigna {{ cardFocus ? 'color-consigna-text' : 'color-consigna-text-hover' }}">Registrar nueva Consigna</h2>
-
-              <i class="zmdi zmdi-plus zmdi-hc-5x {{ cardFocus ? 'color-consigna-text' : 'color-consigna-text-hover' }}"></i>
-
-            </div>
-          </div>
 
         </div>
       </div>
@@ -189,11 +290,15 @@
 
     </div>
   </div>
+
+  <!--Footer-->
   <div class="modal-footer">
     <div align="right">
       <button class="btn btn-primary waves-effect" ng-click="vm.view = 'general'" type="submit" ng-if="!vm.isEdit">Aceptar</button>
-      <div class="btn btn-primary waves-effect" ng-click="vm.updateClient()" ng-if="vm.isEdit">Aceptar</div>
-      <div class="btn btn-primary waves-effect" ng-click="vm.modal.dismiss(); vm.guardsToClient = []; vm.client = {}; vm.isEdit = false; vm.client.clienteDisponible = true; vm.editClientCancel()">Cancelar</div>
+      <div class="btn btn-primary waves-effect" ng-click="vm.updateClient(); vm.clearConsignas()" ng-if="vm.isEdit">Aceptar</div>
+
+      <div class="btn btn-primary waves-effect" ng-if="!vm.isEdit" ng-click="vm.modal.dismiss(); vm.deleteAllConsignas( vm.client.clienteNombre ); vm.guardsToClient = []; vm.client = {}; vm.isEdit = false; vm.client.clienteDisponible = true; vm.editClientCancel(); vm.clearConsignas();">Cancelar</div>
+      <div class="btn btn-primary waves-effect" ng-if="vm.isEdit" ng-click="vm.modal.dismiss(); vm.guardsToClient = []; vm.client = {}; vm.isEdit = false; vm.client.clienteDisponible = true; vm.editClientCancel(); vm.clearConsignas()">Cancelar</div>
     </div>
   </div>
 </form>

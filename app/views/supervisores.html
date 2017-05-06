@@ -48,11 +48,13 @@
           <button
             class="btn btn-primary waves-effect display-inline"
             ng-click="vm.user = {}; vm.user.usuarioTipo = vm.searchTypeUser ; vm.verifyUser(vm.searchTypeUser)">Agregar</button>
+
         </div>
         <div class="col-xs-1"></div>
       </div>
 
       <!--No se encontró supervisores-->
+      *
       <div class="row" ng-if="vm.searchTypeUser == 'supervisor' && !vm.supervisores" align="center">
         <div class="zmdi zmdi-quote m-t-20 not-found-quote">
         </div>

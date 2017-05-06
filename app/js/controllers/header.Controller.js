@@ -2,8 +2,8 @@
  * Created by Toshiba on 03/03/2017.
  */
 argus
-  .controller('headerCtrl', ['$scope', '$rootScope', 'alertService', '$uibModal', '$location', '$interval', '$notification',
-    function ($scope, $rootScope, alertService, $uibModal, $location, $interval, $notification) {
+  .controller('headerCtrl', ['$scope', '$rootScope', 'alertService', '$uibModal', '$location', '$interval', '$notification', '$timeout',
+    function ($scope, $rootScope, alertService, $uibModal, $location, $interval, $notification, $timeout) {
 
       //public var
       var vm = this;
@@ -46,7 +46,8 @@ argus
               }
               vm.notificationsLength = Object.keys(vm.notifications).length;
             }
-            $rootScope.$apply();
+            // $rootScope.$apply();
+            $timeout(10);
             vm.isReadyToNotification = true;
           })
       }
@@ -95,7 +96,7 @@ argus
         alertService.confirm('Borrar Notificaciones', '¿Está seguro que desea eliminar todas las notificaciones?').then(function () {
           firebase.database().ref('Argus/NotificacionTmp').remove();
         });
-        $rootScope.$apply();
+        $timeout(10);
       }
     }
   ]);

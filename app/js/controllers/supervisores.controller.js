@@ -59,20 +59,7 @@ argus
           }
         }, 200 );
 
-
-
-
-        // firebase.auth().onAuthStateChanged(function (user) {
-        //   if (!user) {
-        //     $location.path('/login');
-        //     $rootScope.$apply();
-        //   }
-        // });
-
-        // Datos de todos los usuarios
         vm.isLoading = true;
-
-
 
         firebase.database().ref('Argus/guardias/')
           .on('value', function (snapshot) {
@@ -309,7 +296,12 @@ argus
 
       function registerUser() {
         if (vm.user.usuarioTipo != 'guardia') {
-          registerUserWithEmail();
+          if(vm.user.usuarioTipo == 'supervisor' && !vm.user.usuarioZona){
+            growl.error('Tiene que seleccionar una zona!', vm.config);
+          }else{
+            registerUserWithEmail();
+          }
+
         } else {
           saveUserInformation();
         }
@@ -382,7 +374,7 @@ argus
 
         firebase.database().ref('Argus/' + vm.user.usuarioTipo + tipoPlural).push(vm.user);
 
-        if (vm.user.usuarioTipo != 'guardia') {
+        if(vm.user.usuarioTipo == 'supervisor'){
           firebase.database().ref('Argus/Zonas/'+vm.user.usuarioZona).child('disponibilidadZona').set(false);
         }
 

@@ -1,17 +1,17 @@
 <div class="sidebar-inner c-overflow" ng-controller="sidebarCtrl as vm">
-  <div class="profile-menu">
-    <a href="" toggle-submenu>
+  <div class="profile-menu toggled">
+    <a href="" >
       <div class="profile-pic">
         <img src="{{vm.usuarioFotoPerfil}}" alt="" ng-show="vm.usuarioFotoPerfil">
         <img src="img/profile-pics/fondo.jpg" alt="" ng-hide="vm.usuarioFotoPerfil">
       </div>
       <div class="profile-info">
         <!--{{vm.usuarioNombre}}-->
-        Clic para ver más
-        <i class="zmdi zmdi-caret-down"></i>
+        Bienvenido
+        <!--<i class="zmdi zmdi-caret-down"></i>-->
       </div>
     </a>
-    <ul class="main-menu" style="display: none;">
+    <ul class="main-menu" style="display:block">
       <!--<li><a href=""><i class="zmdi zmdi-account"></i> Ver perfil</a></li>-->
       <!--<li><a href=""><i class="zmdi zmdi-settings"></i> Configuración</a></li>-->
       <li>
@@ -48,12 +48,17 @@
 
     <li data-ui-sref-active="active">
       <a data-ui-sref="bitacoras" data-ng-click="mactrl.sidebarStat($event)"><i
-        class="zmdi zmdi-file-text zmdi-hc-fw"></i> Lista de asistencia</a>
+        class="zmdi zmdi-format-list-bulleted zmdi-hc-fw"></i> Lista de asistencia</a>
     </li>
 
+    <!--<li data-ui-sref-active="active">-->
+      <!--<a data-ui-sref="incidentes" data-ng-click="mactrl.sidebarStat($event)"><i-->
+        <!--class="zmdi zmdi-alert-circle zmdi-hc-fw"></i> Incidentes</a>-->
+    <!--</li>-->
+
     <li data-ui-sref-active="active">
-      <a data-ui-sref="incidentes" data-ng-click="mactrl.sidebarStat($event)"><i
-        class="zmdi zmdi-alert-circle zmdi-hc-fw"></i> Incidentes</a>
+      <a data-ui-sref="bitacoraRegistro" data-ng-click="mactrl.sidebarStat($event)"><i
+        class="zmdi zmdi-file-text zmdi-hc-fw"></i>Bitacora</a>
     </li>
 
     <li data-ui-sref-active="active">
@@ -61,10 +66,6 @@
         class="zmdi zmdi-money-box zmdi-hc-fw"></i> Nomina</a>
     </li>
 
-    <li data-ui-sref-active="active">
-      <a data-ui-sref="bitacoraRegistro" data-ng-click="mactrl.sidebarStat($event)"><i
-        class="zmdi zmdi-file-text zmdi-hc-fw"></i>Bitacora</a>
-    </li>
 
   </ul>
 </div>

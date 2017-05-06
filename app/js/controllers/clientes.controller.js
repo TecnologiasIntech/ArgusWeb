@@ -23,6 +23,11 @@ argus
       vm.saveClientes=[];
       vm.guardiasClienteEliminado = {};
       vm.consignasArray = {};
+      vm.isAddConsigna = false;
+      vm.consigna = {};
+      vm.consigna.items = {};
+      vm.isEditConsigna = false;
+
 
       //public functions
       vm.openModal = openModal;
@@ -39,6 +44,10 @@ argus
       vm.addItemToConsigna = addItemToConsigna;
       vm.openModalToAsignTitleToConsigna = openModalToAsignTitleToConsigna;
       vm.deleteConsigna = deleteConsigna;
+      vm.clearConsignas = clearConsignas;
+      vm.verifyClientName = verifyClientName;
+      vm.errorConsignaUndeclaredClientName = errorConsignaUndeclaredClientName;
+      vm.deleteAllConsignas = deleteAllConsignas;
 
       //private functions
       function activate() {
@@ -87,27 +96,38 @@ argus
           animation: true,
           templateUrl: 'views/modals/asignarNombreConsigna.modal.html',
           scope: $scope,
-          size: 'xxm',
+          size: 'c',
           backdrop: 'static'
         });
-
-        // focusService.putFocus('nombreConsigna');
       }
 
-      function getConsignas( keyClient ) {
+      function getConsignas( consignaName ) {
 
-        firebase.database().ref('Argus/Consigna/' + (keyClient ? keyClient : ''))
+        firebase.database().ref('Argus/Consigna/' + vm.client.clienteNombre + '/' + consignaName)
           .on('value', function (snapshot) {
 
-            vm.consignasArray = snapshot.val();
+            vm.consigna.items = snapshot.val();
 
-            console.log(snapshot.val())
+           $rootScope.$apply();
 
           })
 
       }
 
-      function editClient(client, clienteKey) {
+      function getConsignasNames( consignaName ) {
+
+        firebase.database().ref('Argus/Consigna/' + vm.client.clienteNombre)
+          .on('value', function (snapshot) {
+
+            vm.consignasArray = snapshot.val();
+
+           $rootScope.$apply();
+
+          })
+
+      }
+
+      function editClient(client, clientName) {
         vm.isEdit = true;
         vm.client = client;
         for(var guard in vm.client.clienteGuardias){
@@ -122,7 +142,7 @@ argus
         }
 
         // Obtener las consignas de este cliente
-        getConsignas(clienteKey);
+        getConsignasNames( clientName );
 
         vm.openModal();
       }
@@ -200,6 +220,7 @@ argus
         if(guardIndex == -1){
           vm.guardsToClient.push({
             usuarioNombre: guardObj.usuarioNombre,
+            // usuarioTurno: guardObj.usuarioTurno,
             usuarioKey: guardKey
           })
         }else{
@@ -254,37 +275,68 @@ argus
         if( !titleConsigna ){
           growl.error('No puedes agregar una consigna vacía', vm.config);
         }else{
-          firebase.database().ref('Argus/Consigna/' + vm.client.clienteNombre + '/' + titleConsigna).set({
-            prueba:{
-              consignaNombre: 'Prueba'
-            }
-          });
+
+          firebase.database().ref('Argus/Consigna/' + vm.client.clienteNombre + '/' + titleConsigna)
+            .once('value', function (snapshot) {
+
+              var existConsigna = snapshot.val();
+              if( !existConsigna ){
+                vm.isAddConsigna = true;
+
+                firebase.database().ref('Argus/Consigna/' + vm.client.clienteNombre + '/' + titleConsigna).set({
+                  prueba:{
+                    consignaNombre: 'Prueba'
+                  }
+                });
+                // getConsignas( vm.client.clienteNombre );
+              }
+            });
 
           vm.modalConsigna.dismiss();
+          vm.consigna = {};
         }
       }
 
-      function addItemToConsigna( keyConsigna ) {
+      function verifyClientName( consignaName ) {
 
-        // Elimina la tarea de prueba
-        firebase.database().ref('Argus/Consigna/' + vm.client.clienteNombre + '/' + keyConsigna + '/prueba').remove();
+        if( !vm.client.clienteNombre ){
+          vm.view = 'general';
+          growl.error('Tiene que asignar un nombre al Servicio antes de crear consignas', vm.config)
+        }else{
+          // vm.view = 'consignas'
+          vm.openModalToAsignTitleToConsigna();
+          vm.consigna.nombre = consignaName;
+          getConsignas( consignaName )
+        }
+
+      }
+
+      function addItemToConsigna( consignaTarea ) {
 
         // Añade la nueva tarea
-        if( !document.getElementById( keyConsigna ).value ){
+        if( !consignaTarea ){
           growl.error('No puedes agregar una tarea vacía', vm.config);
-        }else {
-          firebase.database().ref('Argus/Consigna/' + vm.client.clienteNombre + '/' + keyConsigna).push({
-            consignaNombre: document.getElementById(keyConsigna).value
+        } else if( !vm.consigna.nombre ){
+          growl.error('No puedes agregar una tarea a una consigna sin nombre', vm.config);
+        } else {
+
+          // Elimina la tarea de prueba
+          firebase.database().ref('Argus/Consigna/' + vm.client.clienteNombre + '/' + vm.consigna.nombre + '/prueba').remove();
+
+          // Agregamos la tarea a la consigna
+          firebase.database().ref('Argus/Consigna/' + vm.client.clienteNombre + '/' + vm.consigna.nombre).push({
+            consignaNombre: consignaTarea
           });
+
+          vm.consignaTarea = '';
+          getConsignas( vm.consigna.nombre );
         }
 
       }
 
       function removeItem( consignaKey, tareaKey ) {
         // var client = vm.client.clienteNombre;
-        firebase.database().ref('Argus/Consigna/' + vm.client.clienteNombre + '/' + consignaKey).remove(tareaKey);
-        console.log(consignaKey + ' ' + tareaKey)
-
+        firebase.database().ref('Argus/Consigna/' + vm.client.clienteNombre + '/' + consignaKey + '/' + tareaKey).remove();
       }
 
       // function getTareas( consignaKey ) {
@@ -303,9 +355,31 @@ argus
         alertService.verifyConfirm('Estas seguro de eliminar esta consigna?', '').then(function () {
 
           firebase.database().ref('Argus/Consigna/' + vm.client.clienteNombre + '/' + consignaKey).remove();
+          getConsignas();
 
+          vm.modalConsigna.dismiss();
         })
 
+
+
+      }
+
+      function deleteAllConsignas( clienteName ) {
+        firebase.database().ref('Argus/Consigna/' + vm.client.clienteNombre).remove();
+
+        getConsignas();
+      }
+
+      function clearConsignas() {
+
+        vm.consignasArray = {};
+        vm.isAddConsigna = false;
+        vm.view = 'general';
+
+      }
+
+      function errorConsignaUndeclaredClientName() {
+        growl.error('Tiene que asignar un nombre al servicio antes de crear Consignas', vm.config)
       }
     }
   ]);

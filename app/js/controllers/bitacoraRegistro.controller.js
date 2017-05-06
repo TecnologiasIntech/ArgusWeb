@@ -17,7 +17,7 @@ argus
       vm.secondDate = vm.firstDate;
       // vm.firstDate;
       // vm.secondDate;
-      vm.datesRecords = {};
+      vm.datesRecords;
       vm.fullRecords = [];
       vm.supervisorData = {};
       vm.supervisores = {};
@@ -66,36 +66,11 @@ argus
           .orderByChild('fecha')
           .startAt(date1)
           .endAt(date2)
-          .on('value', function (snapshot) {
+          .once('value', function (snapshot) {
+            vm.datesRecords ={};
             vm.datesRecords = snapshot.val();
-
-            // for (var fecha in vm.datesRecords) {
-            //   vm.day = fecha.substr(6,7);
-            //   vm.year = fecha.substr(0,4);
-            //   var fechaCorta = fecha.substring(4);
-            //   vm.month = fechaCorta.substr(0,2);
-            //   if (vm.month < 10) {
-            //     vm.month = vm.month.substring(1);
-            //   }
-            //   vm.fullDate = vm.day + " de " + vm.months[vm.month] + " del " + vm.year;
-            //   // console.log(vm.fullDate);
-            //   fecha = vm.datesRecords[fecha];
-            //   for (var supervisores in fecha) {
-            //     if (supervisores == "fecha") {
-            //       break;
-            //     }
-            //     else {
-            //         supervisorData( supervisores );
-            //
-            //       // console.log(supervisores);
-            //     }
-            //
-            //
-            //   }
-
-            // }
-
-            $rootScope.$apply();
+            console.log(vm.datesRecords);
+            $timeout(100 )
           });
       } else {
         // growl.warning('No has seleccionado la primera fecha', vm.config);
@@ -160,7 +135,7 @@ argus
           if (vm.month < 10) {
             vm.month = vm.month.substring(1);
           }
-          vm.fullDate = vm.day + " de " + vm.months[vm.month] + " del " + vm.year;
+          vm.fullDate = vm.day + " de " + vm.months[ vm.month - 1 ] + " del " + vm.year;
 
       }
 

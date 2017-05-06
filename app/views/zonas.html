@@ -20,12 +20,7 @@
         <div class="col-xs-1"></div>
       </div>
 
-      <div class="row" ng-if="!vm.zones" align="center">
-        <div class="zmdi zmdi-quote m-t-20 not-found-quote">
-        </div>
-        <div class="not-found">No se encontraron</div>
-        <div class="m-b-30 not-found">Zonas</div>
-      </div>
+
 
       <div class="col-lg-offset-5 col-lg-6 m-t-30">
         <div class="preloader pls-blue pl-xl" align="center" ng-if="vm.isLoading">
@@ -62,6 +57,13 @@
             </tbody>
           </table>
         </div>
+      </div>
+
+      <div class="row" ng-if="!vm.zones" align="center">
+        <div class="zmdi zmdi-quote m-t-20 not-found-quote">
+        </div>
+        <div class="not-found">No se encontraron</div>
+        <div class="m-b-30 not-found">Zonas</div>
       </div>
     </div>
   </section>

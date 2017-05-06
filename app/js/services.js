@@ -28,7 +28,7 @@ argus
             return gbList.get({
                 img: img,
                 name: name,
-                range: range,
+                range: range
             });
         }
     }])
