@@ -167,18 +167,27 @@ argus
 
         //Solo cuando se es supervisor
         if(userType === 'supervisor'){
-          firebase.database().ref('Argus/Zonas/'+vm.user.usuarioZona).update({
-            disponibilidadZona: true
-          });
+          if (vm.user.usuarioZona != undefined) {
+            firebase.database().ref('Argus/Zonas/'+vm.user.usuarioZona).update({
+              disponibilidadZona: true
+            });
+          }
         }
         vm.openModal();
         // console.log(user);
       }
+
       function editUserCancel(userType){
         if(userType === 'supervisor'){
-          firebase.database().ref('Argus/Zonas/'+vm.saveUser[0].usuarioZona).update({
-            disponibilidadZona: false
-          });
+          firebase.database().ref('Argus/supervisores/'+ vm.user.usuarioKey)
+           .on('value', function(snapshot){
+             vm.zoneSupervisor = snapshot.val();
+           });
+          if (vm.zoneSupervisor.usuarioZona != undefined) {
+            firebase.database().ref('Argus/Zonas/'+vm.saveUser[0].usuarioZona).update({
+              disponibilidadZona: false
+            });
+          }
         }
         vm.saveUser=[];
         vm.user = {};
@@ -232,58 +241,60 @@ argus
         vm.user = {};
         vm.user.usuarioTipo = 'guardia';
         vm.isEdit = false;
-        growl.info('Usuario Actualizado!', vm.config);
+        growl.info('¡Usuario actualizado!', vm.config);
         vm.modal.dismiss();
 
       }
+
       vm.clienteDelGuardia = "";
       function deleteUser(user, type, userKey) {
         vm.zonaSupervisorEliminado = "";
 
-        alertService.confirm('Eliminar usuario', '¿Estas seguro de que desea eliminar este usuario?').then(function () {
+        alertService.confirm('Eliminar usuario', '¿Estás seguro de que desea eliminar este usuario?').then(function () {
           if(user.usuarioTipo != 'guardia'){
 
             /*Obtenemos la zona que tiene asignada el supervisor*/
             firebase.database().ref('Argus/supervisores/'+ userKey).child('usuarioZona')
             .on('value', function(snapshot){
               vm.zonaSupervisorEliminado = snapshot.val();
-            });
+              //Cerramos sesion
+              firebase.auth().signOut().then(function () {
+                // Iniciamos sesion
+                firebase.auth().signInWithEmailAndPassword(user.usuarioEmail, user.usuarioContrasena).then(function () {
+                  //Eliminamos la cuenta de Autentification
+                  var user = firebase.auth().currentUser;
+                  user.delete().then(function() {
+                    // Volvemos a iniciar sesion actual
+                    firebase.auth().signInWithEmailAndPassword(vm.emailAdmin, vm.passwordAdmin).then(function () {
+                      // Listo
+                      firebase.database().ref('Argus/' + type + '/' + userKey).remove();
+                      location.reload();
 
-            //Cerramos sesion
-            firebase.auth().signOut().then(function () {
-              // Iniciamos sesion
-              firebase.auth().signInWithEmailAndPassword(user.usuarioEmail, user.usuarioContrasena).then(function () {
-                //Eliminamos la cuenta de Autentification
-                var user = firebase.auth().currentUser;
-                user.delete().then(function() {
-                  // Volvemos a iniciar sesion actual
-                  firebase.auth().signInWithEmailAndPassword(vm.emailAdmin, vm.passwordAdmin).then(function () {
-                    // Listo
-                    firebase.database().ref('Argus/' + type + '/' + userKey).remove();
-                    location.reload();
+                    }).catch(function (error) {
+                      var errorCode = error.code;
+                      console.log(errorCode);
+                    });
 
-                  }).catch(function (error) {
-                    var errorCode = error.code;
-                    console.log(errorCode);
+                  }, function(error) {
+                    console.log(error);
                   });
 
-                }, function(error) {
-                  console.log(error);
-                });
+                }).catch(function (error) {
+                  var errorCode = error.code;
+                  //Inicio de sesion de emergencia
+                  firebase.auth().signInWithEmailAndPassword(vm.emailAdmin, vm.passwordAdmin).then(function () {
+                  });
 
-              }).catch(function (error) {
-                var errorCode = error.code;
-                //Inicio de sesion de emergencia
-                firebase.auth().signInWithEmailAndPassword(vm.emailAdmin, vm.passwordAdmin).then(function () {
                 });
-
+              }, function (error) {
               });
-            }, function (error) {
+              /*Una vez eliminado el supervisor hacemos dispobible la zona que tenia asignada*/
+              firebase.database().ref('Argus/Zonas/'+ vm.zonaSupervisorEliminado).update({
+                disponibilidadZona: true
+              });
             });
-            /*Una vez eliminado el supervisor hacemos dispobible la zona que tenia asignada*/
-            firebase.database().ref('Argus/Zonas/'+ vm.zonaSupervisorEliminado).update({
-              disponibilidadZona: true
-            });
+
+
           }
           else{
             firebase.database().ref('Argus/' + type + '/' + user.$key).remove();
@@ -303,46 +314,56 @@ argus
           saveUserInformation();
         }
       }
-
+      vm.existingError = false;
       function registerUserWithEmail() {
+        vm.existingError = false;
         vm.isLoadingRegister = true;
         firebase.auth().createUserWithEmailAndPassword(vm.user.usuarioEmail, vm.user.usuarioContrasena).catch(function(error) {
           switch (error.code) {
             case 'auth/email-already-in-use':
               alertService.error('Email ya en uso', 'Intenta con uno diferente');
+              vm.existingError = true;
               break;
             case 'auth/invalid-email':
               alertService.error('Email invalido', 'Escribe un email valido');
+              vm.existingError = true;
+              return true;
               break;
             case 'auth/operation-not-allowed':
               alertService.error('Operacion no permitida', 'Ponte en contacto con los administradores de la pagina');
+              vm.existingError = true;
               break;
             case 'auth/weak-password':
               alertService.error('Contraseña muy debil', 'Escribe una contraseña dificil de adivinar');
+              vm.existingError = true;
               break;
           }
           vm.isLoadingRegister = false;
           $rootScope.$apply();
-        }).then(function () {
-          //Cerramos sesion
-          firebase.auth().signOut().then(function () {
-            // Iniciamos sesion
-            firebase.auth().signInWithEmailAndPassword(vm.emailAdmin, vm.passwordAdmin).then(function () {
-              // Salvamos los datos de la cuenta creada
-              saveUserInformation();
-              vm.isLoadingRegister = false;
-              location.reload();
-
-              // $rootScope.$apply();
-            }).catch(function (error) {
-              var errorCode = error.code;
-              console.log(errorCode);
+        }).then(function(){
+          if (vm.existingError == false) {
+            //Cerramos sesion
+            firebase.auth().signOut().then(function () {
+              // Iniciamos sesion
+              firebase.auth().signInWithEmailAndPassword(vm.emailAdmin, vm.passwordAdmin).then(function () {
+                // Salvamos los datos de la cuenta creada
+                saveUserInformation();
+                vm.isLoadingRegister = false;
+                location.reload();
+                // $rootScope.$apply();
+              }).catch(function (error) {
+                var errorCode = error.code;
+                console.log(errorCode);
+              });
+            }, function (error) {
+              alert(error);
             });
-          }, function (error) {
-            alert(error);
-          });
-        })
-
+          }
+          else {
+            vm.isLoadingRegister = false;
+          }
+        });
+        vm.isLoadingRegister = false;
       }
 
       function saveUserInformation() {
@@ -361,7 +382,9 @@ argus
 
         firebase.database().ref('Argus/' + vm.user.usuarioTipo + tipoPlural).push(vm.user);
 
-        firebase.database().ref('Argus/Zonas/'+vm.user.usuarioZona).child('disponibilidadZona').set(false);
+        if (vm.user.usuarioTipo != 'guardia') {
+          firebase.database().ref('Argus/Zonas/'+vm.user.usuarioZona).child('disponibilidadZona').set(false);
+        }
 
         if(vm.isAssignmentToZone){
 
@@ -388,6 +411,15 @@ argus
         growl.success('Usuario Agregado exitosamente!', vm.config);
         vm.modal.dismiss();
 
+      }
+
+      vm.validar = validar;
+      function validar(e) { // 1
+        tecla = (document.all) ? e.keyCode : e.which; // 2
+        if (tecla==8) return true; // 3
+        patron =/[A-Za-z\s]/; // 4
+        te = String.fromCharCode(tecla); // 5
+        return patron.test(te); // 6
       }
     }
   ]);

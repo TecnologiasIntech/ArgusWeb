@@ -59,12 +59,21 @@
       <!--Asignación-->
       <div ng-if="vm.view == 'assignment'">
         <div class="row">
-          <div class="col-xs-offset-2 col-xs-5 m-r-20" align="left">
+          <div class="col-xs-offset-2 col-xs-5" align="left">
             <div class="zmdi zmdi-search display-inline"></div>
             <label>
               <input type="text" class="form-control supervisor-search  display-inline" placeholder="Buscar..."
                      ng-model="vm.searchInGuards">
             </label>
+          </div>
+          <div class="col-xs-3">
+            <div class="checkbox m-t-10">
+              <label>
+                <input type="checkbox" ng-model="vm.check">
+                <i class="input-helper"></i>
+                Mostrar Seleccionados
+              </label>
+            </div>
           </div>
         </div>
 
@@ -72,7 +81,7 @@
           <div class="col-xs-offset-2 col-xs-8 m-t-10 p-l-0 p-r-0 table-guardias table-box">
             <table class="table table-hover table-bordered ">
               <tbody>
-              <tr ng-repeat="guard in vm.guards | toArray |filter: {usuarioNombre: vm.searchInGuards}">
+              <tr ng-repeat="guard in vm.guards | toArray |filter: {usuarioNombre: vm.searchInGuards}" ng-if="vm.check != false">
                 <td align="left" ng-if="guard.usuarioDisponible">
                   <div class="checkbox m-t-0 m-b-0">
                     <label>

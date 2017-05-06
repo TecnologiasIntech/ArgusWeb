@@ -83,6 +83,7 @@ argus
           firebase.database().ref('Argus/Clientes/'+ vm.zone.zonaClientes[client].clienteNombre).update({
             clienteDisponible: true
           });
+          // firebase.database().ref('Argus/Clientes/'+ vm.zone.zonaClientes[client].clienteNombre + '/clienteZonaAsignada').remove();
         }
         vm.openModal();
       }
@@ -112,6 +113,15 @@ argus
             /*Eliminamos del cliente el atributo que hacia referencia a su zona*/
             firebase.database().ref('Argus/Clientes/'+ custom).child('clienteZonaAsignada').remove();
           }
+          firebase.database().ref('Argus/supervisores')
+            .on('value', function(snapshot){
+              vm.supervisores = snapshot.val();
+              for (var supervisor in vm.supervisores) {
+                if (vm.supervisores[supervisor].usuarioZona == zone.zonaNombre) {
+                  firebase.database().ref('Argus/supervisores/' + supervisor + '/usuarioZona').remove();
+                }
+              }
+            });
 
           firebase.database().ref('Argus/Zonas/' + zone.zonaNombre).remove();
           growl.error('Zona Eliminada!', vm.config);
@@ -168,6 +178,10 @@ argus
       }
 
       function updateZone() {
+        for (var cliente in vm.saveClients) {
+          var x= vm.saveClients[cliente];
+          firebase.database().ref('Argus/Clientes/'+ vm.saveClients[cliente] + '/clienteZonaAsignada').remove();
+        }
         vm.saveClients=[];
         firebase.database().ref('Argus/Zonas/' + vm.zone.zonaNombre + '/zonaClientes').remove();
 

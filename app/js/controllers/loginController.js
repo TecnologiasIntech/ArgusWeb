@@ -57,21 +57,24 @@ argus
                 console.log(error);
                 switch (errorCode) {
                   case 'auth/wrong-password':
-                    alertService.error('Contraseña incorrecta', 'Verifica que tu contraseña este corretamente escrita');
+                    alertService.error('¡Contraseña incorrecta!', 'Verifica que tu contraseña este correctamente escrita');
                     break;
                   case 'auth/user-not-found':
-                    alertService.error('Usuario no encontrado', 'Verifica que el usuario que escribiste sea correcto');
+                    alertService.error('¡Usuario no encontrado!', 'Verifica que el usuario que escribiste sea correcto');
                     break;
                   case 'auth/invalid-email':
-                    alertService.error('Email no valido', 'Escribe un email valido');
+                    alertService.error('¡Correo electrónico no válido!', 'Escribe un correo electrónico válido');
                     break;
                   case 'auth/user-disabled':
-                    alertService.error('Usuario baneado', 'Ponte en contacto con los administradores de la pagina para una solución');
+                    alertService.error('¡Usuario baneado!', 'Ponte en contacto con los administradores de la página para una solución');
                     break;
                 }
+                vm.isLoading = false;
+                $rootScope.$apply();
               });
+
             }else{
-              alertService.error('Usuario no autorizado', 'Verifica tu direccion de correo electronico o ponte en contacto con un administrador');
+              alertService.error('¡Usuario no autorizado!', 'Verifica tu dirección de correo electrónico o ponte en contacto con un administrador');
               vm.isLoading = false;
               $rootScope.$apply();
             }

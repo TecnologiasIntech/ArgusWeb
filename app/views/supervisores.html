@@ -85,7 +85,7 @@
 
             <!--ADMINISTRADORES-->
             <th ng-if="vm.searchTypeUser == 'administrador'">Nombre</th>
-            <th ng-if="vm.searchTypeUser == 'administrador'">Correo electronico</th>
+            <th ng-if="vm.searchTypeUser == 'administrador'">Correo electrónico</th>
             <th ng-if="vm.searchTypeUser == 'administrador'"></th>
 
             <tr ng-repeat="administrador in vm.administradores | toArray | filter: {usuarioNombre: vm.buscarUsuario}"
@@ -114,7 +114,7 @@
             <th ng-if="vm.searchTypeUser == 'supervisor'">Nombre</th>
             <th ng-if="vm.searchTypeUser == 'supervisor'">Zona</th>
             <th ng-if="vm.searchTypeUser == 'supervisor'">Turno</th>
-            <th ng-if="vm.searchTypeUser == 'supervisor'">Telefono</th>
+            <th ng-if="vm.searchTypeUser == 'supervisor'">Teléfono</th>
             <th ng-if="vm.searchTypeUser == 'supervisor'"></th>
 
             <tr ng-repeat="supervisor in vm.supervisores | toArray | filter: {usuarioNombre: vm.buscarUsuario}"
@@ -139,7 +139,7 @@
                   </a>
                   <ul class="dropdown-menu pull-right actions-supervisor">
                     <li class="action-edit cursor-pointer" ng-click="vm.editUser(supervisor, supervisor.$key, 'supervisor')">Editar</li>
-                    <li class="action-delete cursor-pointer" ng-click="vm.deleteUser(supervisor, 'supervisores', supervisor.key)">
+                    <li class="action-delete cursor-pointer" ng-click="vm.deleteUser(supervisor, 'supervisores', supervisor.$key)">
                       Eliminar
                     </li>
                   </ul>
