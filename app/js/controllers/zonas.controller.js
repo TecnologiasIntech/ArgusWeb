@@ -30,6 +30,7 @@ argus
       vm.verifyChecked = verifyChecked;
       vm.updateZone = updateZone;
       vm.editZoneCancel = editZoneCancel;
+      vm.verifyCharacter = verifyCharacter;
 
       //private functions
       function activate() {
@@ -87,6 +88,7 @@ argus
         }
         vm.openModal();
       }
+
       function editZoneCancel(){
         for(var client in vm.saveClients){
           firebase.database().ref('Argus/Clientes/'+ vm.saveClients[client]).update({
@@ -204,5 +206,19 @@ argus
         growl.info('Zona Actualizada!', vm.config);
         vm.modal.dismiss();
       }
+
+      function verifyCharacter( text ) {
+
+        var char = text.substring( text.length - 1, text.length );
+
+        if( char == '/' || char == '.' ){
+
+          vm.zone.zonaNombre = text.substring( 0, text.length - 1);
+          growl.error( 'No se permiten caracteres de "." y "/"', vm.config );
+
+        }
+
+      }
+
     }
   ]);

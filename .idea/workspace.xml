@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="7f4ae1f1-b0de-4894-a4d9-423677ee78ea" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controllers/bitacoraRegistro.controller.js" afterPath="$PROJECT_DIR$/app/js/controllers/bitacoraRegistro.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controllers/header.Controller.js" afterPath="$PROJECT_DIR$/app/js/controllers/header.Controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controllers/notificaciones.controller.js" afterPath="$PROJECT_DIR$/app/js/controllers/notificaciones.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/template/header.html" afterPath="$PROJECT_DIR$/app/template/header.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/modals/notificaciones.modal.html" afterPath="$PROJECT_DIR$/app/views/modals/notificaciones.modal.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controllers/zonas.controller.js" afterPath="$PROJECT_DIR$/app/js/controllers/zonas.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/modals/zonas.modal.html" afterPath="$PROJECT_DIR$/app/views/modals/zonas.modal.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -29,75 +26,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="notificaciones.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/notificaciones.html">
+      <file leaf-file-name="zonas.modal.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/modals/zonas.modal.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="469">
-              <caret line="46" column="16" lean-forward="true" selection-start-line="46" selection-start-column="16" selection-end-line="46" selection-end-column="16" />
+            <state relative-caret-position="440">
+              <caret line="22" column="31" lean-forward="true" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="49" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bitacoraRegistro.controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/js/controllers/bitacoraRegistro.controller.js">
+      <file leaf-file-name="zonas.controller.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/js/controllers/zonas.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="623">
-              <caret line="134" column="0" lean-forward="true" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
+            <state relative-caret-position="523">
+              <caret line="213" column="41" lean-forward="true" selection-start-line="213" selection-start-column="41" selection-end-line="213" selection-end-column="41" />
               <folding>
-                <element signature="e#1051#1916#0" expanded="false" />
-                <element signature="e#1963#2188#0" expanded="false" />
-                <element signature="e#2217#2848#0" expanded="false" />
-                <element signature="e#2883#3238#0" expanded="false" />
-                <element signature="e#3292#3508#0" expanded="false" />
-                <element signature="e#3556#3747#0" expanded="false" />
-                <element signature="e#4269#4640#0" expanded="false" />
+                <element signature="e#1892#2137#0" expanded="false" />
+                <element signature="e#2169#2807#0" expanded="false" />
+                <element signature="e#2840#3066#0" expanded="false" />
+                <element signature="e#3100#4564#0" expanded="false" />
+                <element signature="e#4596#5569#0" expanded="false" />
+                <element signature="e#5623#6023#0" expanded="false" />
+                <element signature="e#6062#6196#0" expanded="false" />
+                <element signature="e#6226#7347#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="header.Controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/js/controllers/header.Controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="683">
-              <caret line="110" column="5" lean-forward="true" selection-start-line="110" selection-start-column="5" selection-end-line="110" selection-end-column="5" />
-              <folding>
-                <element signature="e#703#1932#0" expanded="false" />
-                <element signature="e#2021#3059#0" expanded="false" />
-                <element signature="e#3096#3148#0" expanded="false" />
-                <element signature="e#3187#3433#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="header.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/template/header.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="59" column="59" lean-forward="true" selection-start-line="59" selection-start-column="59" selection-end-line="59" selection-end-column="59" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="asignarNombreConsigna.modal.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/modals/asignarNombreConsigna.modal.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="70" column="14" lean-forward="true" selection-start-line="70" selection-start-column="14" selection-end-line="74" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="notificaciones.modal.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/modals/notificaciones.modal.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="454">
-              <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -172,7 +125,6 @@
         <option value="$PROJECT_DIR$/app/views/login.html" />
         <option value="$PROJECT_DIR$/app/views/modals/bitacora.modal.html" />
         <option value="$PROJECT_DIR$/app/views/modals/incidentes.modal.html" />
-        <option value="$PROJECT_DIR$/app/views/modals/zonas.modal.html" />
         <option value="$PROJECT_DIR$/app/css/app.min.2.css" />
         <option value="$PROJECT_DIR$/app/services/alert.service.js" />
         <option value="$PROJECT_DIR$/app/views/incidentes.html" />
@@ -185,7 +137,6 @@
         <option value="$PROJECT_DIR$/app/js/controllers/loginController.js" />
         <option value="$PROJECT_DIR$/app/js/controllers/bitacora.Controller.js" />
         <option value="$PROJECT_DIR$/app/js/controllers/incidentes.controller.js" />
-        <option value="$PROJECT_DIR$/app/js/controllers/zonas.controller.js" />
         <option value="$PROJECT_DIR$/app/services/focus.service.js" />
         <option value="$PROJECT_DIR$/app/js/services.js" />
         <option value="$PROJECT_DIR$/app/js/config.js" />
@@ -200,7 +151,6 @@
         <option value="$PROJECT_DIR$/app/filters/search.filter.js" />
         <option value="$PROJECT_DIR$/app/js/controllers/clientes.controller.js" />
         <option value="$PROJECT_DIR$/app/views/modals/clientes.modal.html" />
-        <option value="$PROJECT_DIR$/app/views/bitacoraRegistro.html" />
         <option value="$PROJECT_DIR$/app/views/notificaciones.html" />
         <option value="$PROJECT_DIR$/app/views/supervisores.html" />
         <option value="$PROJECT_DIR$/app/js/controllers/supervisores.controller.js" />
@@ -212,6 +162,9 @@
         <option value="$PROJECT_DIR$/app/js/controllers/bitacoraRegistro.controller.js" />
         <option value="$PROJECT_DIR$/app/js/controllers/header.Controller.js" />
         <option value="$PROJECT_DIR$/app/template/header.html" />
+        <option value="$PROJECT_DIR$/app/views/bitacoraRegistro.html" />
+        <option value="$PROJECT_DIR$/app/views/modals/zonas.modal.html" />
+        <option value="$PROJECT_DIR$/app/js/controllers/zonas.controller.js" />
       </list>
     </option>
   </component>
@@ -549,7 +502,7 @@
       <workItem from="1493482204719" duration="57138000" />
       <workItem from="1494009930539" duration="22272000" />
       <workItem from="1494285799224" duration="24000" />
-      <workItem from="1494306819838" duration="5071000" />
+      <workItem from="1494306819838" duration="6931000" />
     </task>
     <task id="LOCAL-00001" summary="cambios generales&#10;">
       <created>1489812407890</created>
@@ -642,11 +595,25 @@
       <option name="project" value="LOCAL" />
       <updated>1494309060407</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="- Correcion de confirmar asistencias&#10;- Funcionalidad para borrar notificacion por notificacion">
+      <created>1494313197523</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1494313197523</updated>
+    </task>
+    <task id="LOCAL-00015" summary="- Filtro por supervisores en bitacora registro">
+      <created>1494314353092</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1494314353092</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="809429000" />
+    <option name="totallyTimeSpent" value="811289000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -716,7 +683,9 @@
     <MESSAGE value="-Algunos bugs arreglados" />
     <MESSAGE value="- Conginas añadidas" />
     <MESSAGE value="- Calculo de nomina con sueldo base añadido manualmente" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Calculo de nomina con sueldo base añadido manualmente" />
+    <MESSAGE value="- Correcion de confirmar asistencias&#10;- Funcionalidad para borrar notificacion por notificacion" />
+    <MESSAGE value="- Filtro por supervisores en bitacora registro" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Filtro por supervisores en bitacora registro" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -789,21 +758,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/modals/zonas.modal.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="8" lean-forward="true" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/GEEB/app/js/services.js" />
-    <entry file="file://$PROJECT_DIR$/app/js/controllers/zonas.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="36" column="18" lean-forward="false" selection-start-line="36" selection-start-column="17" selection-end-line="36" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/directives/ngEnter.Directive.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
@@ -966,14 +921,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/bitacoraRegistro.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="98" column="57" lean-forward="false" selection-start-line="98" selection-start-column="57" selection-end-line="98" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/modals/supervisores.modal.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="290">
@@ -986,14 +933,6 @@
             <element signature="n#div#0;n#div#2;n#div#0;n#div#0;n#div#1;n#form#0;n#!!top" expanded="false" />
             <element signature="n#div#1;n#div#0;n#div#1;n#form#0;n#!!top" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/supervisores.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="51" column="14" lean-forward="true" selection-start-line="51" selection-start-column="14" selection-end-line="51" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1021,26 +960,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/notificaciones.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
-          <caret line="46" column="16" lean-forward="true" selection-start-line="46" selection-start-column="16" selection-end-line="46" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/js/controllers/notificaciones.controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="443">
           <caret line="78" column="25" lean-forward="true" selection-start-line="78" selection-start-column="25" selection-end-line="78" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/modals/notificaciones.modal.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1050,6 +973,27 @@
         <state relative-caret-position="402">
           <caret line="211" column="50" lean-forward="true" selection-start-line="211" selection-start-column="50" selection-end-line="211" selection-end-column="50" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/template/header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="61" column="77" lean-forward="true" selection-start-line="61" selection-start-column="77" selection-end-line="61" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controllers/header.Controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="683">
+          <caret line="110" column="5" lean-forward="true" selection-start-line="110" selection-start-column="5" selection-end-line="110" selection-end-column="5" />
+          <folding>
+            <element signature="e#703#1932#0" expanded="false" />
+            <element signature="e#2021#3059#0" expanded="false" />
+            <element signature="e#3096#3148#0" expanded="false" />
+            <element signature="e#3187#3433#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1069,16 +1013,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/controllers/header.Controller.js">
+    <entry file="file://$PROJECT_DIR$/app/views/notificaciones.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="683">
-          <caret line="110" column="5" lean-forward="true" selection-start-line="110" selection-start-column="5" selection-end-line="110" selection-end-column="5" />
-          <folding>
-            <element signature="e#703#1932#0" expanded="false" />
-            <element signature="e#2021#3059#0" expanded="false" />
-            <element signature="e#3096#3148#0" expanded="false" />
-            <element signature="e#3187#3433#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="469">
+          <caret line="46" column="16" lean-forward="true" selection-start-line="46" selection-start-column="16" selection-end-line="46" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1090,11 +1029,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/template/header.html">
+    <entry file="file://$PROJECT_DIR$/app/views/modals/notificaciones.modal.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="59" column="59" lean-forward="true" selection-start-line="59" selection-start-column="59" selection-end-line="59" selection-end-column="59" />
+        <state relative-caret-position="454">
+          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/supervisores.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-360">
+          <caret line="51" column="14" lean-forward="true" selection-start-line="51" selection-start-column="14" selection-end-line="51" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/bitacoraRegistro.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="71" column="38" lean-forward="true" selection-start-line="71" selection-start-column="38" selection-end-line="71" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/modals/zonas.modal.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="22" column="31" lean-forward="true" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controllers/zonas.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="213" column="41" lean-forward="true" selection-start-line="213" selection-start-column="41" selection-end-line="213" selection-end-column="41" />
+          <folding>
+            <element signature="e#1892#2137#0" expanded="false" />
+            <element signature="e#2169#2807#0" expanded="false" />
+            <element signature="e#2840#3066#0" expanded="false" />
+            <element signature="e#3100#4564#0" expanded="false" />
+            <element signature="e#4596#5569#0" expanded="false" />
+            <element signature="e#5623#6023#0" expanded="false" />
+            <element signature="e#6062#6196#0" expanded="false" />
+            <element signature="e#6226#7347#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
