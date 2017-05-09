@@ -181,7 +181,7 @@
           </div>
 
           <!--Registrar nueva consigna pequeña-->
-          <div class="col-xs-3 m-t-10" >
+          <div class="col-xs-3 m-t-10" ng-if="vm.consignasArray" >
             <div class="cardRegistrarConsignaSmall cursor-pointer"
                  align="center"
                  ng-mouseover="cardFocus = true"
@@ -194,6 +194,20 @@
               <i class="zmdi zmdi-plus zmdi-hc-5x d-block {{ cardFocus ? 'color-consigna-text' : 'color-consigna-text-hover' }}"></i>
 
             </div>
+          </div>
+
+          <!--Primera consigna-->
+          <div class="col-xs-offset-2 col-xs-8 cursor-pointer"
+               ng-if="!vm.consignasArray"
+               ng-click="vm.verifyClientName()">
+
+            <div class="row" align="center">
+              <div class="zmdi zmdi-quote m-t-20 not-found-quote">
+              </div>
+              <div class="not-found">No se encontraron consignas</div>
+              <div class="m-b-30 not-found m-t-15">Da clic para agregar una</div>
+            </div>
+
           </div>
 
         </div>

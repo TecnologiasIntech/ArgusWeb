@@ -52,16 +52,6 @@ argus
       //private functions
       function activate() {
 
-        // var user = firebase.auth().currentUser;
-        // $timeout( function(){
-        //   if (user) {
-        //     // User is signed in.
-        //   } else {
-        //     $location.path('/login');
-        //     // $rootScope.$apply();
-        //   }
-        // }, 100 );
-
         vm.isLoading = true;
         firebase.database().ref('Argus/Clientes')
           .on('value', function (snapshot) {
@@ -339,22 +329,13 @@ argus
         firebase.database().ref('Argus/Consigna/' + vm.client.clienteNombre + '/' + consignaKey + '/' + tareaKey).remove();
       }
 
-      // function getTareas( consignaKey ) {
-      //
-      //   firebase.database().ref('Argus/Consigna/' + vm.client.clienteNombre + '/' + consignaKey)
-      //     .on('value', function (snapshot) {
-      //       console.log(snapshot.val());
-      //       return snapshot.val();
-      //
-      //     })
-      //
-      // }
-
       function deleteConsigna( consignaKey ) {
 
         alertService.verifyConfirm('Estas seguro de eliminar esta consigna?', '').then(function () {
 
           firebase.database().ref('Argus/Consigna/' + vm.client.clienteNombre + '/' + consignaKey).remove();
+          vm.consigna = {};
+          vm.isEditConsigna = false;
           getConsignas();
 
           vm.modalConsigna.dismiss();
@@ -381,5 +362,6 @@ argus
       function errorConsignaUndeclaredClientName() {
         growl.error('Tiene que asignar un nombre al servicio antes de crear Consignas', vm.config)
       }
+
     }
   ]);

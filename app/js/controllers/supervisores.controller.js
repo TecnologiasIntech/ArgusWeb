@@ -30,6 +30,10 @@ argus
       vm.isAssignmentToZone = false;
       vm.notificationkey = '';
       vm.zonaSupervisorEliminado="";
+      vm.saveUser=[];
+      vm.clienteDelGuardia = "";
+      vm.existingError = false;
+      vm.validar = validar;
 
       //public functions
       vm.openModal = openModal;
@@ -145,7 +149,6 @@ argus
         vm.view = view;
       }
 
-      vm.saveUser=[];
       function editUser(user, userKey, userType) {
         vm.isEdit = true;
         vm.user = user;
@@ -234,7 +237,6 @@ argus
 
       }
 
-      vm.clienteDelGuardia = "";
       function deleteUser(user, type, userKey) {
         vm.zonaSupervisorEliminado = "";
 
@@ -307,7 +309,7 @@ argus
           saveUserInformation();
         }
       }
-      vm.existingError = false;
+
       function registerUserWithEmail() {
         vm.existingError = false;
         vm.isLoadingRegister = true;
@@ -406,7 +408,6 @@ argus
 
       }
 
-      vm.validar = validar;
       function validar(e) { // 1
         tecla = (document.all) ? e.keyCode : e.which; // 2
         if (tecla==8) return true; // 3
