@@ -15,6 +15,7 @@ argus
       vm.verifyAction = verifyAction;
       vm.goToNotifications = goToNotifications;
       vm.deleteNotifications = deleteNotifications;
+      vm.deleteNotification = deleteNotification;
 
       //private functions
       function activate() {
@@ -74,14 +75,14 @@ argus
             break;
 
           case 'CF':
-            if($location.path() === '/notificaciones'){
+            if($location.path() === '/bitacoraRegistro'){
               $rootScope.$broadcast('notificaciones:confirmar', notificacion);
               $rootScope.$broadcast('notificacion:key', key);
             }else{
 
               sessionStorage['notificationConfirm'] = JSON.stringify(notificacion);
               sessionStorage['notificacionKey'] = key;
-              $location.path('/notificaciones');
+              $location.path('/bitacoraRegistro');
 
             }
             break;
@@ -98,5 +99,14 @@ argus
         });
         $timeout(10);
       }
+
+      function deleteNotification(Notificationkey) {
+
+        alertService.confirm('Eliminar notificacion', '¿Estas seguro que quieres eliminar esta notificacion?').then(function () {
+          firebase.database().ref('Argus/NotificacionTmp/' + Notificationkey).remove();
+        });
+
+      }
+
     }
   ]);

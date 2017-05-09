@@ -27,34 +27,51 @@ argus
       vm.getRecords = getRecords;
       vm.getSupervisor = getSupervisor;
       vm.getFullDate = getFullDate;
+      vm.deleteNotification = deleteNotification;
+      vm.confirmSignature = confirmSignature;
 
-
-      // var d = new Date();
-      // if (d.getMonth < 10) {
-      //   vm.month = "0" + (d.getMonth + 1);
-      // }
-      // else {
-      //   vm.month = d.getMonth + 1;
-      // }
-      // vm.date = d.getFullYear + vm.month + d.getUTCDate;
-      //
-      // vm.fullDate = d.getUTCDate + " de " + vm.months[vm.month] + " del " + d.getFullYear;
 
       //private functions
       function activate() {
-
-        // firebase.database().ref('Argus/BitacoraRegistro/' + vm.date)
-        //   .on(value, function(snapshot){
-        //     vm.recordsCurrentDate = snapshot.val();
-        //   });
 
         firebase.database().ref('Argus/supervisores/')
         .on('value', function (snapshot) {
           vm.supervisores = snapshot.val();
         });
 
+        if(sessionStorage.getItem('notificationConfirm') === null){
+        }else{
+          vm.notification = JSON.parse(sessionStorage['notificationConfirm']);
+          sessionStorage.clear();
+          openModal();
+        }
+
+        if(sessionStorage.getItem('notificacionKey') !== null){
+          vm.notificationKey = sessionStorage.getItem('notificacionKey');
+        }
+
+        $scope.$on('notificaciones:confirmar', function (event, notification) {
+          vm.notification = notification;
+          openModal();
+        });
+
+        // Notification Key
+        $scope.$on('notificacion:key', function (event, notificationKey) {
+          vm.notificationKey = notificationKey;
+        })
+
       }
       activate();
+
+      function openModal() {
+        vm.modal = $uibModal.open({
+          animation: true,
+          templateUrl: 'views/modals/notificaciones.modal.html',
+          scope: $scope,
+          size: 'lm',
+          backdrop: 'static'
+        });
+      }
 
       function getRecords(){
 
@@ -62,70 +79,20 @@ argus
           var date1 = dateFormat(vm.firstDate);
           var date2 = dateFormat(vm.secondDate);
           var zona;
-        firebase.database().ref('Argus/BitacoraRegistro')
-          .orderByChild('fecha')
-          .startAt(date1)
-          .endAt(date2)
-          .once('value', function (snapshot) {
-            vm.datesRecords ={};
-            vm.datesRecords = snapshot.val();
-            console.log(vm.datesRecords);
-            $timeout(100 )
-          });
-      } else {
-        // growl.warning('No has seleccionado la primera fecha', vm.config);
+          firebase.database().ref('Argus/BitacoraRegistro')
+            .orderByChild('fecha')
+            .startAt(date1)
+            .endAt(date2)
+            .once('value', function (snapshot) {
+              vm.datesRecords ={};
+              vm.datesRecords = snapshot.val();
+              console.log(vm.datesRecords);
+              $timeout(100 )
+            });
+        } else {
+          // growl.warning('No has seleccionado la primera fecha', vm.config);
+        }
       }
-
-      }
-
-      // function supervisorData( supervisores ){
-      //   firebase.database().ref('Argus/supervisores/' + supervisores)
-      //     .on('value', function(snapshot){
-      //       vm.supervisorData = snapshot.val();
-      //       zona = vm.supervisorData.usuarioZona;
-      //       // console.log(vm.supervisorData.usuarioNombre);
-      //       // console.log(vm.supervisorData.usuarioZona);
-      //
-      //
-      //       supervisores = fecha[supervisores];
-      //       for (var observaciones in supervisores) {
-      //         console.log(observaciones);
-      //         console.log(supervisores[observaciones].hora);
-      //         console.log(supervisores[observaciones].observacion);
-      //
-      //         var hora = supervisores[observaciones].hora;
-      //
-      //         // vm.fullRecords.push({
-      //         //   vm.fullDate: {
-      //         //     vm.supervisorData.usuarioNombre:{
-      //         //       vm.observacion:{
-      //         //         'zona': vm.supervisorData.usuarioZona,
-      //         //         'hora': supervisores[observaciones].hora,
-      //         //         'observacion': supervisores[observaciones].observacion
-      //         //       }
-      //         //     }
-      //         //   }
-      //         // });
-      //
-      //         vm.fullRecords.push({
-      //           'vm.fullDate':{
-      //             supervisor: {
-      //               observacion: {
-      //                 zona: vm.supervisorData.usuarioZona,
-      //                 'hora': hora,
-      //                 observacion: supervisores[observaciones].observacion
-      //               }
-      //             }
-      //           }
-      //         });
-      //
-      //         console.log(vm.fullRecords);
-      //       }
-      //
-      //     });
-      //
-      //
-      // }
 
       function getFullDate(fecha){
         vm.day = fecha.substr(6,7);
@@ -154,6 +121,29 @@ argus
           }
         }
 
+      }
+
+      function deleteNotification(Notificationkey, confirmationAssist) {
+        if(confirmationAssist){
+          firebase.database().ref('Argus/NotificacionTmp/' + Notificationkey).remove();
+        }else{
+          alertService.confirm('Eliminar notificacion', '¿Estas seguro que quieres eliminar esta notificacion?').then(function () {
+            firebase.database().ref('Argus/NotificacionTmp/' + Notificationkey).remove();
+          });
+        }
+      }
+
+      function confirmSignature(fecha, guardKey, client) {
+
+        var updates = {};
+        updates['Argus/Bitacora/' + fecha + '/' + guardKey + '/asistio'] = true;
+        updates['Argus/Clientes/' + client + '/clienteGuardias/' + guardKey + '/usuarioAsistenciaDelDia'] = 'asistio';
+
+        firebase.database().ref().update(updates);
+
+        deleteNotification(vm.notificationKey, true);
+
+        vm.modal.dismiss()
       }
 
     }

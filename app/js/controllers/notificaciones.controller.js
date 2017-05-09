@@ -20,16 +20,6 @@ argus
       //private functions
       function activate() {
 
-        // var user = firebase.auth().currentUser;
-        // $timeout( function(){
-        //   if (user) {
-        //     // User is signed in.
-        //   } else {
-        //     $location.path('/login');
-        //     // $rootScope.$apply();
-        //   }
-        // }, 100 );
-
         firebase.database().ref('Argus/Notificacion')
           .on('value', function (snapshot) {
             vm.notifications = snapshot.val();
