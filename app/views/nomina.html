@@ -107,7 +107,7 @@
                 {{nomina.bono}}
               </td>
               <td class="bitacora-align-middle">
-                {{ vm.bond | currency }}
+                {{ vm.bonoTotal ? vm.bonoTotal : 0 | currency  }}
               </td>
               <td class="bitacora-align-middle">
                 {{nomina.sueldoTotal | currency}}

@@ -88,14 +88,8 @@ argus
             vm.guardias = snapshot.val();
             // console.log(vm.guardias);
         });
-
-        firebase.database().ref('Argus/Nomina/configuracion')
-          .on('value', function (snapshot) {
-            vm.salary = snapshot.val().salario;
-            vm.bond = snapshot.val().bono;
-          })
-
       }
+
       activate();
 
       vm.script = script;
@@ -123,10 +117,6 @@ argus
       }
 
       function openModal() {
-
-        vm.paysheetSettings.salary = vm.salary;
-        vm.paysheetSettings.bond = vm.bond;
-
         vm.modal = $uibModal.open({
           animation: true,
           templateUrl: 'views/modals/paysheetSettings.modal.html',
@@ -159,7 +149,6 @@ argus
           vm.rangeTwoForPaysheet = vm.year + '' + formatmonth + '31';
         }
 
-
         /*Deducimos el numero de quincena mediante los ultimos dos digitos de la fecha inicial*/
         vm.quincena = vm.rangeOneForPaysheet.substr(6, 7);
         /*Dependiendo del numero de quincena deducida asignamos un identificador*/
@@ -169,6 +158,7 @@ argus
           if (findmonth<10) {
             findmonth = '0' + findmonth;
           }
+
           firebase.database().ref('Argus/Bitacora')
             .orderByChild('fecha')
             .startAt(vm.year + findmonth + '25')
@@ -190,12 +180,6 @@ argus
               vm.fechasQuincenaAnterior = snapshot.val();
             });
         }
-
-        // /*Obtener las nomimas ya generadas*/
-        // firebase.database().ref('Argus/Nomina')
-        // .on('value', function(snapshot){
-        //   vm.nominasGeneradas = snapshot.val();
-        // });
 
         /*Codigo para obtener todos las asistencias de la bitacora*/
         firebase.database().ref('Argus/Bitacora')
@@ -261,17 +245,14 @@ argus
                   }
                 }
               }
-              if (vm.guardias[guardia].usuarioTipoGuardia == 'guardiaJefe') {
-                vm.sueldoBase=266;
-                vm.sueldoTotal+= (vm.sueldoBase * vm.assistence) + 400;
-              }
-              else {
-                vm.sueldoBase = calculateBaseSalary(vm.fortnight, vm.month.month, vm.year, vm.salary);
-                vm.sueldoTotal += (vm.sueldoBase * vm.assistence);
-              }
+
+              vm.sueldoBase = calculateBaseSalary(vm.fortnight, vm.month.month, vm.year, 1600);
+              vm.sueldoTotal += (vm.sueldoBase * vm.assistence);
+
 
               if (vm.inasistencias == 0 && vm.asistenciaBono >= 12) {
-                vm.sueldoTotal += vm.bond;
+                vm.sueldoTotal += vm.guardias[guardia].usuarioSueldoBase - 1600;
+                vm.bonoTotal += vm.guardias[guardia].usuarioSueldoBase - 1600;
                 vm.bono = 'Si';
               }
 
@@ -296,6 +277,7 @@ argus
                 'dobleTurno': vm.assistence_dobleT,
                 'horasExtra': vm.horasExtras,
                 'bono': vm.bono,
+                'bonoTotal': vm.bonoTotal,
                 'sueldoTotal': vm.sueldoTotal
               });
 
@@ -308,6 +290,7 @@ argus
                 'dobleTurno': vm.assistence_dobleT,
                 'horasExtra': vm.horasExtras,
                 'bono': vm.bono,
+                'bonoTotal': vm.bonoTotal,
                 'sueldoTotal': vm.sueldoTotal
               });
 

@@ -97,22 +97,11 @@
             </svg>
           </div>
 
-          <!--Tipo de guardia-->
+          <!--Sueldo base del guardia-->
           <div class="col-xs-5" ng-if="vm.user.usuarioTipo == 'guardia'">
-
-            <!--<span>Teléfono Casa</span>-->
-            <!--<div class="fg-line m-l-10">-->
-              <!--<input type="number" ng-model="vm.user.usuarioTelefonoCasa" class="form-control"-->
-                     <!--placeholder="Numero de teléfono" required>-->
-            <!--</div>-->
-
             <span>Sueldo base</span>
             <div class="fg-line m-l-10">
-              <select class="form-control" ng-model="vm.user.usuarioTipoGuardia">
-                <option value="guardiaPlaza">Guardia en plaza</option>
-                <option value="guardiaHospital">Guardia en hospital cima</option>
-                <option value="guardiaJefe">Jefe de grupo</option>
-              </select>
+              <input type="text" ng-model="vm.user.usuarioSueldoBase" class="form-control">
             </div>
           </div>
 
@@ -183,6 +172,7 @@
           </div>
         </div>
       </div>
+
     </div>
   </div>
 

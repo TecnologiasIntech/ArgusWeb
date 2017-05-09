@@ -192,6 +192,7 @@ argus
               usuarioNombre: vm.user.usuarioNombre,
               usuarioTelefono: vm.user.usuarioTelefono,
               usuarioDomicilio: vm.user.usuarioDomicilio,
+              usuarioSueldoBase: vm.user.usuarioSueldoBase,
               usuarioTurno: vm.user.usuarioTurno
             });
             break;
