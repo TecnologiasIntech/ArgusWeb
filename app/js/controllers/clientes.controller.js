@@ -338,7 +338,7 @@ argus
           vm.isEditConsigna = false;
           getConsignas();
 
-          vm.modalConsigna.dismiss();
+          vm.modalConsigna.dismiss()
         })
 
 
