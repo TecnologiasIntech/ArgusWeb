@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7f4ae1f1-b0de-4894-a4d9-423677ee78ea" name="Default" comment="- Zonas: validar caracteres no permitidos en el nombre de la zona como la diagonal y el punto">
+    <list default="true" id="7f4ae1f1-b0de-4894-a4d9-423677ee78ea" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controllers/clientes.controller.js" afterPath="$PROJECT_DIR$/app/js/controllers/clientes.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controllers/supervisores.controller.js" afterPath="$PROJECT_DIR$/app/js/controllers/supervisores.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/clientes.html" afterPath="$PROJECT_DIR$/app/views/clientes.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/modals/clientes.modal.html" afterPath="$PROJECT_DIR$/app/views/modals/clientes.modal.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -70,8 +66,8 @@
       <file leaf-file-name="clientes.controller.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/js/controllers/clientes.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="683">
-              <caret line="345" column="7" lean-forward="true" selection-start-line="345" selection-start-column="7" selection-end-line="345" selection-end-column="7" />
+            <state relative-caret-position="543">
+              <caret line="338" column="16" lean-forward="false" selection-start-line="338" selection-start-column="16" selection-end-line="338" selection-end-column="16" />
               <folding>
                 <element signature="e#1814#2223#0" expanded="false" />
                 <element signature="e#2271#2517#0" expanded="false" />
@@ -545,7 +541,7 @@
       <workItem from="1494009930539" duration="22272000" />
       <workItem from="1494285799224" duration="24000" />
       <workItem from="1494306819838" duration="7553000" />
-      <workItem from="1494351352019" duration="4896000" />
+      <workItem from="1494351352019" duration="5150000" />
     </task>
     <task id="LOCAL-00001" summary="cambios generales&#10;">
       <created>1489812407890</created>
@@ -659,11 +655,18 @@
       <option name="project" value="LOCAL" />
       <updated>1494315092355</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="- Bugs arreglados">
+      <created>1494368594385</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1494368594385</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="816807000" />
+    <option name="totallyTimeSpent" value="817061000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -744,7 +747,8 @@
     <MESSAGE value="- Correcion de confirmar asistencias&#10;- Funcionalidad para borrar notificacion por notificacion" />
     <MESSAGE value="- Filtro por supervisores en bitacora registro" />
     <MESSAGE value="- Zonas: validar caracteres no permitidos en el nombre de la zona como la diagonal y el punto" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Zonas: validar caracteres no permitidos en el nombre de la zona como la diagonal y el punto" />
+    <MESSAGE value="- Bugs arreglados" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Bugs arreglados" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1131,8 +1135,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/js/controllers/clientes.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="683">
-          <caret line="345" column="7" lean-forward="true" selection-start-line="345" selection-start-column="7" selection-end-line="345" selection-end-column="7" />
+        <state relative-caret-position="543">
+          <caret line="338" column="16" lean-forward="false" selection-start-line="338" selection-start-column="16" selection-end-line="338" selection-end-column="16" />
           <folding>
             <element signature="e#1814#2223#0" expanded="false" />
             <element signature="e#2271#2517#0" expanded="false" />
