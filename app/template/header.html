@@ -48,13 +48,13 @@
                 ng-repeat="notification in vm.notifications | toArray | orderBy : ' -fecha'"
                 >
               <div class="row">
-                <div class="col-xs-2" ng-click="vm.verifyAction(notification.accion, notification.informacion, notification.$key, notification)">
+                <div class="col-xs-2" ng-click="vm.verifyAction(notification.accion, notification.informacion, notification.bitacoraInformacion, notification.$key, notification)">
                   <i class="zmdi zmdi-account-add zmdi-hc-2x" ng-if="notification.accion == 'AG'"></i>
                   <i class="zmdi zmdi-accounts zmdi-hc-2x" ng-if="notification.accion == 'MG'"></i>
                   <i class="zmdi zmdi-alert-circle zmdi-hc-2x" ng-if="notification.accion == 'AI'"></i>
                   <i class="zmdi zmdi-check-circle zmdi-hc-2x" ng-if="notification.accion == 'CF'"></i>
                 </div>
-                <p class="col-xs-8 p-l-0 m-b-0" ng-click="vm.verifyAction(notification.accion, notification.informacion, notification.$key, notification)">{{notification.descripcion}}</p>
+                <p class="col-xs-8 p-l-0 m-b-0" ng-click="vm.verifyAction(notification.accion, notification.informacion, notification.bitacoraInformacion, notification.$key, notification)">{{notification.descripcion}}</p>
 
                 <div class="col-xs-2">
                   <i class="zmdi zmdi-close cursor-pointer"
