@@ -31,6 +31,7 @@ argus
       vm.updateZone = updateZone;
       vm.editZoneCancel = editZoneCancel;
       vm.verifyCharacter = verifyCharacter;
+      vm.selectAllCustomers = selectAllCustomers;
 
       //private functions
       function activate() {
@@ -168,6 +169,19 @@ argus
           })
         }else{
           vm.customersToZone.splice(clientIndex, 1);
+
+        }
+      }
+
+      function selectAllCustomers(check){
+        if (check) {
+          vm.customersToZone = [];
+          for (var customer in vm.customers) {
+            if (vm.customers[customer].clienteDisponible) {
+              vm.customersToZone.push({
+                'clienteNombre': customer});
+            }
+          }
         }
       }
 

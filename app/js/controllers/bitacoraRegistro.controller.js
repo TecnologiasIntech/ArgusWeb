@@ -21,7 +21,6 @@ argus
       vm.fullRecords = [];
       vm.supervisorData = {};
       vm.supervisores = {};
-      vm.bitacoraInformacion = {};
 
 
       // Public functions
@@ -30,7 +29,6 @@ argus
       vm.getFullDate = getFullDate;
       vm.deleteNotification = deleteNotification;
       vm.confirmSignature = confirmSignature;
-      vm.changeStatus = changeStatus;
 
 
       //private functions
@@ -44,7 +42,6 @@ argus
         if(sessionStorage.getItem('notificationConfirm') === null){
         }else{
           vm.notification = JSON.parse(sessionStorage['notificationConfirm']);
-          vm.bitacoraInformacion = JSON.parse(sessionStorage['bitacoraInformacion']);
           sessionStorage.clear();
           openModal();
         }
@@ -62,12 +59,8 @@ argus
         $scope.$on('notificacion:key', function (event, notificationKey) {
           vm.notificationKey = notificationKey;
         })
-        $scope.$on('notificacion:bitacora', function (event, bitacoraInfo) {
-          vm.bitacoraInformacion = bitacoraInfo;
-        })
 
       }
-
       activate();
 
       function openModal() {
@@ -145,21 +138,12 @@ argus
         var updates = {};
         updates['Argus/Bitacora/' + fecha + '/' + guardKey + '/asistio'] = true;
         updates['Argus/Clientes/' + client + '/clienteGuardias/' + guardKey + '/usuarioAsistenciaDelDia'] = 'asistio';
-        updates['Argus/BitacoraRegistro/' + vm.bitacoraInformacion.codigoFecha + '/' + vm.bitacoraInformacion.llaveSupervisor + '/' + vm.bitacoraInformacion.llaveObservacion + '/semaforo'] = 1;
 
         firebase.database().ref().update(updates);
 
         deleteNotification(vm.notificationKey, true);
 
         vm.modal.dismiss()
-      }
-
-      function changeStatus() {
-
-        var updates = {};
-        updates['Argus/BitacoraRegistro/' + vm.bitacoraInformacion.codigoFecha + '/' + vm.bitacoraInformacion.llaveSupervisor + '/' + vm.bitacoraInformacion.llaveObservacion + '/semaforo'] = 1;
-        firebase.database().ref().update(updates);
-
       }
 
     }

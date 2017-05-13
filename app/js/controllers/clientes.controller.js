@@ -134,6 +134,10 @@ argus
         // Obtener las consignas de este cliente
         getConsignasNames( clientName );
 
+        // Obtener los responsables del cliente
+        getResponsibles( clientName );
+
+
         vm.openModal();
       }
 
@@ -178,28 +182,55 @@ argus
 
       function registerClient() {
 
-        vm.client.clienteDisponible = true;
-        firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).set(vm.client);
-
-        for(var i = 0; i < vm.guardsToClient.length; i++){
-          // Asignar los guardias al cliente
-          firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteGuardias/' + vm.guardsToClient[i].usuarioKey).set({
-            usuarioNombre: vm.guardsToClient[i].usuarioNombre,
-            usuarioKey: vm.guardsToClient[i].usuarioKey
-          });
-
-          // Agregar referencia del cliente en el guardia
-          var updates = {};
-          updates['Argus/guardias/' + vm.guardsToClient[i].usuarioKey + '/usuarioClienteAsignado'] = vm.client.clienteNombre;
-          updates['Argus/guardias/'+ vm.guardsToClient[i].usuarioKey+'/usuarioDisponible']= false;
-          firebase.database().ref().update(updates);
-
+        if (vm.listResponsibles.length == -1) {
+          growl.error('¡Debe agregar a un responsable del servicio como minimo!', vm.config);
         }
-        vm.client = {};
-        vm.client.clienteDisponible = true;
-        vm.guardsToClient = [];
-        growl.success('Cliente Agregado!', vm.config);
-        vm.modal.dismiss();
+        else {
+          vm.client.clienteDisponible = true;
+          firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).set(vm.client);
+
+          for(var i = 0; i < vm.guardsToClient.length; i++){
+            // Asignar los guardias al cliente
+            firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteGuardias/' + vm.guardsToClient[i].usuarioKey).set({
+              usuarioNombre: vm.guardsToClient[i].usuarioNombre,
+              usuarioKey: vm.guardsToClient[i].usuarioKey
+            });
+
+            // Agregar referencia del cliente en el guardia
+            var updates = {};
+            updates['Argus/guardias/' + vm.guardsToClient[i].usuarioKey + '/usuarioClienteAsignado'] = vm.client.clienteNombre;
+            updates['Argus/guardias/'+ vm.guardsToClient[i].usuarioKey+'/usuarioDisponible']= false;
+            firebase.database().ref().update(updates);
+
+          }
+
+          // Agregar responsables a cliente
+          var domicilio = ""; //variable auxiliar para concatenar los campos del domicilio
+          for (var responsible in vm.listResponsibles) {
+            domicilio = vm.listResponsibles[responsible].responsibleColony + " " + vm.listResponsibles[responsible].responsibleStreet;
+            firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteResponsables').push({
+              responsableNombre: vm.listResponsibles[responsible].responsibleName,
+              responsableTelefono:vm.listResponsibles[responsible].responsiblePhone,
+              responsableDomicilio: domicilio,
+              responsableCorreo: vm.listResponsibles[responsible].responsibleEmail
+            });
+          }
+
+          //Agregar horario
+          for (var index in vm.listDaysSchedule) {
+            // firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteHorario/diasLaborados').push({
+            //   ''
+            // });
+          }
+          vm.client = {};
+          vm.client.clienteDisponible = true;
+          vm.guardsToClient = [];
+          vm.listResponsibles = [];
+          vm.listDaysSchedule =[];
+          vm.responsibleId = 1;
+          growl.success('Cliente Agregado!', vm.config);
+          vm.modal.dismiss();
+        }
       }
 
       function addOrDeleteItemInAssignment(guard, guardKey) {
@@ -227,37 +258,57 @@ argus
       }
 
       function updateClient() {
-        for (var guardia in vm.saveGuardias) {
-          firebase.database().ref('Argus/guardias/'+ vm.saveGuardias[guardia]).child('usuarioClienteAsignado').remove();
+
+        if (vm.listResponsibles < 1) {
+          growl.error('¡Debe agregar a un responsable del servicio como minimo!', vm.config);
         }
-        vm.saveGuardias=[];
-        firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).update({
-          clienteNumeroGuardias: vm.client.clienteNumeroGuardias,
-          clienteDomicilio: vm.client.clienteDomicilio
-        });
-
-        firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteGuardias').remove();
-
-        for(var i = 0; i < vm.guardsToClient.length; i++){
-          firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteGuardias/' +  vm.guardsToClient[i].usuarioKey).set({
-            usuarioNombre: vm.guardsToClient[i].usuarioNombre,
-            usuarioKey: vm.guardsToClient[i].usuarioKey
+        else {
+          for (var guardia in vm.saveGuardias) {
+            firebase.database().ref('Argus/guardias/'+ vm.saveGuardias[guardia]).child('usuarioClienteAsignado').remove();
+          }
+          vm.saveGuardias=[];
+          firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).update({
+            clienteNumeroGuardias: vm.client.clienteNumeroGuardias,
+            clienteDomicilio: vm.client.clienteDomicilio
           });
 
-          // Agregar referencia del cliente en el guardia
-          var updates = {};
-          updates['Argus/guardias/' + vm.guardsToClient[i].usuarioKey + '/usuarioClienteAsignado'] = vm.client.clienteNombre;
-          updates['Argus/guardias/'+ vm.guardsToClient[i].usuarioKey+'/usuarioDisponible']= false;
-          firebase.database().ref().update(updates);
+          firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteGuardias').remove();
 
+          for(var i = 0; i < vm.guardsToClient.length; i++){
+            firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteGuardias/' +  vm.guardsToClient[i].usuarioKey).set({
+              usuarioNombre: vm.guardsToClient[i].usuarioNombre,
+              usuarioKey: vm.guardsToClient[i].usuarioKey
+            });
+
+            // Agregar referencia del cliente en el guardia
+            var updates = {};
+            updates['Argus/guardias/' + vm.guardsToClient[i].usuarioKey + '/usuarioClienteAsignado'] = vm.client.clienteNombre;
+            updates['Argus/guardias/'+ vm.guardsToClient[i].usuarioKey+'/usuarioDisponible']= false;
+            firebase.database().ref().update(updates);
+
+          }
+          // Agregar responsables actualizados a cliente
+          var domicilio = ""; //variable auxiliar para concatenar los campos del domicilio
+          firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteResponsables').remove();
+          for (var responsible in vm.listResponsibles) {
+            domicilio = vm.listResponsibles[responsible].responsibleColony + " " + vm.listResponsibles[responsible].responsibleStreet;
+            firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteResponsables').push({
+              responsableNombre: vm.listResponsibles[responsible].responsibleName,
+              responsableTelefono:vm.listResponsibles[responsible].responsiblePhone,
+              responsableDomicilio: domicilio,
+              responsableCorreo: vm.listResponsibles[responsible].responsibleEmail
+            });
+          }
+
+          vm.client = {};
+          vm.client.clienteDisponible = true;
+          vm.guardsToClient = [];
+          vm.listResponsibles = [];
+          vm.isEdit = false;
+          vm.view = 'general';
+          growl.info('Cliente Actualizado!', vm.config);
+          vm.modal.dismiss();
         }
-        vm.client = {};
-        vm.client.clienteDisponible = true;
-        vm.guardsToClient = [];
-        vm.isEdit = false;
-        vm.view = 'general';
-        growl.info('Cliente Actualizado!', vm.config);
-        vm.modal.dismiss();
       }
 
       function addConsigna( titleConsigna ) {
@@ -338,7 +389,7 @@ argus
           vm.isEditConsigna = false;
           getConsignas();
 
-          vm.modalConsigna.dismiss()
+          vm.modalConsigna.dismiss();
         })
 
 
@@ -363,5 +414,104 @@ argus
         growl.error('Tiene que asignar un nombre al servicio antes de crear Consignas', vm.config)
       }
 
+      vm.openModalAddResponsible = openModalAddResponsible;
+      function openModalAddResponsible(){
+        vm.modalResponsible = $uibModal.open({
+          animation: true,
+          templateUrl: 'views/modals/addResponsible.modal.html',
+          scope: $scope,
+          size: 'ar',
+          backdrop: 'static'
+        });
+      }
+
+      vm.saveResponsible = saveResponsible;
+      vm.listResponsibles = [];
+      vm.responsibleId = 1;
+      function saveResponsible(){
+        if (!vm.isEditResponsible) {
+          vm.responsible.responsibleId = vm.responsibleId;
+          vm.listResponsibles.push(vm.responsible);
+          vm.modalResponsible.dismiss();
+          vm.responsible = "";
+          vm.responsibleId++;
+        }
+      }
+
+      vm.removeResponsible = removeResponsible;
+      function removeResponsible( idResponsible){
+        for (var index in vm.listResponsibles) {
+          var x = vm.listResponsibles[index].responsibleId;
+          if (vm.listResponsibles[index].responsibleId == idResponsible) {
+            vm.listResponsibles.splice(index, 1);
+            break;
+          }
+        }
+        vm.listResponsibles.splice(responsableId-1, 1);
+      }
+
+      vm.editResponsible = editResponsible;
+      vm.isEditResponsible;
+      function editResponsible(responsibleName) {
+        for (var index in vm.listResponsibles) {
+          if (vm.listResponsibles[index].responsibleName == responsibleName) {
+            vm.responsible = {
+              'responsibleName' : vm.listResponsibles[index].responsibleName,
+              'responsiblePhone' : vm.listResponsibles[index].responsiblePhone,
+              'responsibleColony' : vm.listResponsibles[index].responsibleColony,
+              'responsibleStreet' : vm.listResponsibles[index].responsibleStreet,
+              'responsibleEmail' : vm.listResponsibles[index].responsibleEmail,
+              'responsibleId' :  vm.listResponsibles[index].responsibleId
+            };
+          }
+        }
+      }
+
+      vm.updateResponsible = updateResponsible;
+      function updateResponsible( responsibleId ) {
+        for (var index in vm.listResponsibles) {
+          if (vm.listResponsibles[index].responsibleId == responsibleId) {
+            vm.listResponsibles.splice(index, 1, vm.responsible);
+          }
+        }
+        vm.modalResponsible.dismiss();
+        vm.isEditResponsible = false;
+      }
+
+      function getResponsibles( clientName ) {
+        vm.listResponsibles = [];
+        firebase.database().ref('Argus/Clientes/'+ clientName +'/clienteResponsables')
+         .on('value', function(snapshot){
+           vm.listaResponsables = snapshot.val();
+           for (var responsible in vm.listaResponsables) {
+             var arrayDomicilio = vm.listaResponsables[responsible].responsableDomicilio.split(",");
+             vm.listResponsibles.push({
+               'responsibleName' : vm.listaResponsables[responsible].responsableNombre,
+               'responsiblePhone' : vm.listaResponsables[responsible].responsableTelefono,
+               'responsibleColony' : arrayDomicilio[0],
+               'responsibleStreet' : arrayDomicilio[1],
+               'responsibleEmail' : vm.listaResponsables[responsible].responsableCorreo,
+               'responsibleId' :  vm.responsibleId
+             });
+             vm.responsibleId++;
+           }
+         });
+      }
+
+      vm.daysSelected = daysSelected;
+      vm.listDaysSchedule = [];
+      function daysSelected( addOrDeleteDay, day ){
+        if (addOrDeleteDay) {
+          vm.listDaysSchedule.push(day);
+        }
+        else {
+          for (var index in vm.listDaysSchedule) {
+            if (vm.listDaysSchedule[index] == day) {
+              vm.listDaysSchedule.splice(index, 1);
+            }
+          }
+        }
+
+      }
     }
   ]);

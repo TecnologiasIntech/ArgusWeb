@@ -35,15 +35,31 @@
           <div class="col-xs-offset-1 col-xs-5">
             <span>Asignar clientes a la zona:</span>
           </div>
+
+        </div>
           <div class="row">
-            <div class="col-xs-offset-5 col-xs-5 m-r-20" align="right">
+            <!-- m-r-20 -->
+            <!-- col-xs-offset-5 -->
+
+            <div class="col-xs-offset-2 col-xs-4" style="padding-top: 5px">
               <div class="zmdi zmdi-search display-inline"></div>
               <label>
                 <input type="text" class="form-control supervisor-search  display-inline" placeholder="Buscar..."
                        ng-model="vm.searchInClients">
               </label>
             </div>
+            <div class="col-xs-4" align="right">
+              <div class="checkbox m-t-0 m-b-0  m-t-15"  >
+                <label >
+                  <input type="checkbox" ng-model="check" ng-click="vm.selectAllCustomers(check)" >
+                  <i class="input-helper"></i>
+                  <span>Seleccionar todos</span>
+                </label>
+              </div>
+            </div>
+
           </div>
+
 
           <div class="row">
             <div class="col-xs-offset-2 col-xs-8 m-t-10 p-l-0 p-r-0 table-guardias table-box">

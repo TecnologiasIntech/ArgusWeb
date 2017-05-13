@@ -6,17 +6,17 @@
       <li class="{{vm.view == 'general' ? 'active' : ''}}">
         <a href="" ng-click="vm.view = 'general'">General</a>
       </li>
+      <li class="{{vm.view == 'responsibles' ? 'active' : ''}}" >
+        <a href="" ng-click="vm.view = 'responsibles'">Responsables</a>
+      </li>
       <li class="{{vm.view == 'assignment' ? 'active' : ''}}" >
         <a href="" ng-click="vm.view = 'assignment'">Asignación</a>
-
       </li>
       <li class="{{vm.view == 'consignas' ? 'active' : ''}}" ng-if="vm.isEdit" >
         <a href="" ng-click="vm.view = 'consignas'">Consignas</a>
-
       </li>
       <li class="{{vm.view == 'consignas' ? 'active' : ''}}" ng-if="!vm.isEdit">
         <a href="" ng-click="vm.client.clienteNombre ? vm.view = 'consignas' : vm.errorConsignaUndeclaredClientName()" >Consignas</a>
-
       </li>
     </ul>
   </div>
@@ -54,7 +54,7 @@
 
         <div class="row m-t-30" ng-if="vm.user.usuarioTipo != 'guardia'">
 
-          <!--NUMERO DE GUARDIAS-->
+          <!-- NUMERO DE GUARDIAS -->
           <div class="col-xs-offset-1 col-xs-5">
             <span>Numero de guardias</span>
             <div class="fg-line m-l-10">
@@ -62,52 +62,123 @@
                      required>
             </div>
           </div>
-
-
         </div>
 
-        <!--DATOS DEL RESPONSABLE-->
-        <h4 style="color: #616161; margin-top: 30px; margin-bottom: 0px; margin-left: 30px;">Datos del responsable</h4>
-        <div class="row m-t-15" ng-if="vm.user.usuarioTipo != 'guardia'">
-
-          <!--NOMBRE DEL RESPONSABLE-->
-          <div class="col-xs-offset-1 col-xs-5">
-            <span>Nombre del responsable</span>
-            <div class="fg-line m-l-10">
-              <input type="text" ng-model="vm.client.nombreResponsable" class="form-control" placeholder="Escribe el nombre completo..."
-                     required>
+        <!-- <div class="row m-t-30">
+          <div class="row">
+            <div class="col-xs-offset-1 col-xs-11">
+              <span>Horario</span>
             </div>
           </div>
-
-          <!--DOMICILIO DEL RESPONSABLE-->
-          <div class=" col-xs-5">
-            <span>Domicilio</span>
-            <div class="fg-line m-l-10">
-              <input type="text" ng-model="vm.client.domicilioResponsable" class="form-control" placeholder="Escribe el domicilio..."
-                     required>
+          <div class="col-xs-12 m-t-15" align="center">
+            <div class="checkbox m-b-15" style="display: inline">
+              <label>
+                <input type="checkbox" ng-model="vm.monday" ng-click="vm.daysSelected(vm.monday, 'Lunes')">
+                <i class="input-helper"></i>
+                Lunes
+              </label>
+            </div>
+            <div class="checkbox m-b-15" style="display: inline">
+              <label>
+                <input type="checkbox" ng-model="vm.thusday" ng-click="vm.daysSelected(vm.thusday, 'Martes')">
+                <i class="input-helper"></i>
+                Martes
+              </label>
+            </div>
+            <div class="checkbox m-b-15" style="display: inline">
+              <label>
+                <input type="checkbox" ng-model="vm.wednesday" ng-click="vm.daysSelected(vm.wednesday, 'Miercoles')">
+                <i class="input-helper"></i>
+                Miercoles
+              </label>
+            </div>
+            <div class="checkbox m-b-15" style="display: inline">
+              <label>
+                <input type="checkbox" ng-model="vm.thursday" ng-click="vm.daysSelected(vm.thursday, 'Jueves')">
+                <i class="input-helper"></i>
+                Jueves
+              </label>
+            </div>
+            <div class="checkbox m-b-15" style="display: inline">
+              <label>
+                <input type="checkbox" ng-model="vm.friday" ng-click="vm.daysSelected(vm.friday, 'Viernes')">
+                <i class="input-helper"></i>
+                Viernes
+              </label>
+            </div>
+            <div class="checkbox m-b-15" style="display: inline">
+              <label>
+                <input type="checkbox" ng-model="vm.saturday" ng-click="vm.daysSelected(vm.saturday, 'Sabado')">
+                <i class="input-helper"></i>
+                Sabado
+              </label>
+            </div>
+            <div class="checkbox m-b-15" style="display: inline">
+              <label>
+                <input type="checkbox" ng-model="vm.sunday" ng-click="vm.daysSelected(vm.sunday, 'Domingo')">
+                <i class="input-helper"></i>
+                Domingo
+              </label>
             </div>
           </div>
-
-
         </div>
 
-        <div class="row m-t-30" ng-if="vm.user.usuarioTipo != 'guardia'">
+        <div class="row m-t-30">
+          <div class="col-xs-6" align="right">
+            <span>Hora de apertura:</span>
+            <input type="time" name="" value="" ng-model="vm.openingTime">
+          </div>
+          <div class="col-xs-6">
+            <span>Hora de cierre:</span>
+            <input type="time" name="" value="" ng-model="vm.closingTime">
+          </div>
+        </div> -->
 
-          <!--EMAIL DEL RESPONSABLE-->
-          <div class="col-xs-offset-1 col-xs-5">
-            <span>Correo Electrónico</span>
-            <div class="fg-line m-l-10">
-              <input type="text" ng-model="vm.client.emailResponsable" class="form-control" placeholder="Escribe el correo electrónico..."
-                     required>
+      </div>
+
+      <!-- Responsables -->
+      <div ng-if="vm.view == 'responsibles'">
+        <div class="m-t-20">
+          <!-- Card para los reponsables que existen -->
+          <div class="col-xs-6 m-t-10" ng-repeat="responsible in vm.listResponsibles">
+            <div class="card responsible-small cursor-pointer" ng-click="vm.isEditResponsible = true; vm.editResponsible(responsible.responsibleName); vm.openModalAddResponsible()" align="center">
+              <div class="row">
+                <div class="col-xs-9"></div>
+                <div class="col-xs-3">
+                  <img src="img/cancelar.png" class="responsive" ng-click="vm.removeResponsible(responsible.responsibleId)">
+                </div>
+              </div>
+              <div class="row" style="margin-top:5px">
+                <div class="col-xs-12" align="center">
+                  <span class="f-25">{{responsible.responsibleName}}</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12" align="center">
+                  <span class="f-15">{{responsible.responsiblePhone}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Card para el registro de un nuevo responsable -->
+          <div class="col-xs-6 m-t-10" ng-if="vm.listResponsibles.length >= 1">
+            <div class="cardAddResponsible cursor-pointer"
+                 align="center"
+                 ng-mouseover="cardFocus = true"
+                 ng-mouseleave="cardFocus = false"
+                 ng-init="cardFocus = false"
+                 ng-click="vm.openModalAddResponsible()">
+              <i class="zmdi zmdi-plus zmdi-hc-5x d-block {{ cardFocus ? 'color-consigna-text' : 'color-consigna-text-hover' }}" style="margin-top: 40px"></i>
             </div>
           </div>
 
-          <!--TELEFONO DEL RESPONSABLE-->
-          <div class="col-xs-5">
-            <span>Télefono</span>
-            <div class="fg-line m-l-10">
-              <input type="text" ng-model="vm.client.telefonoResponsable" class="form-control" placeholder="Escribe el télefono..."
-                     required>
+          <div class="col-xs-offset-2 col-xs-8 cursor-pointer"
+               ng-click="vm.openModalAddResponsible()" ng-if="vm.listResponsibles.length < 1">
+            <div class="row" align="center">
+              <div class="zmdi zmdi-quote m-t-20 not-found-quote">
+              </div>
+              <div class="not-found">No se encontraron responsables</div>
+              <div class="m-b-30 not-found m-t-15">Da clic para agregar uno</div>
             </div>
           </div>
 
@@ -212,95 +283,6 @@
 
         </div>
       </div>
-
-      <!--Menos de 4 Consignas-->
-      <!--<div ng-if="vm.view == 'consignas'" class="scroll-consigna">-->
-      <div ng-if="false" class="scroll-consigna">
-        <div class="" style="width: 2000px;" >
-
-          <!--Card para agregar nueva consigna-->
-          <div class="consigna">
-            <div class="cardRegistrarConsigna cursor-pointer"
-                 align="center"
-                 ng-mouseover="cardFocus = true"
-                 ng-mouseleave="cardFocus = false"
-                 ng-init="cardFocus = false"
-                 ng-click="vm.verifyClientName()">
-
-              <h2 class="title-registerConsigna {{ cardFocus ? 'color-consigna-text' : 'color-consigna-text-hover' }}">Registrar nueva Consigna</h2>
-
-              <i class="zmdi zmdi-plus zmdi-hc-5x {{ cardFocus ? 'color-consigna-text' : 'color-consigna-text-hover' }}"></i>
-
-            </div>
-          </div>
-
-          <!--Card de consigna-->
-          <div class="consigna" ng-repeat="consigna in vm.consignasArray | toArray">
-            <div class="card scroll-tareas"
-                 style="box-shadow:0px 0px 3px #2B2B2B; border-radius: 3px 3px 3px 3px; height: 350px; max-height: 350px;"
-                 >
-              <div class="card-header p-t-15 p-b-15">
-
-                <div class="row">
-                  <div class="col-xs-10 p-l-0 p-r-0" style="word-wrap: break-word;">
-                    <h2>{{ consigna.$key }}</h2>
-                  </div>
-
-                  <div class="col-xs-2 p-l-0 p-r-0">
-                    <div class="col-xs-2 p-l-0 p-r-0">
-                    <i class="zmdi zmdi-close zmdi-hc-2x cursor-pointer"
-                        style="color: #e74c3c; font-size: 20px !important;"
-                        ng-click="vm.deleteConsigna( consigna.$key )"></i>
-                    </div>
-                  </div>
-
-                </div>
-
-                <div class="row">
-                  <hr class=" m-t-10 m-b-10">
-                </div>
-
-                <div class="row m-t-0">
-                  <div class="col-xs-9 p-r-0 p-l-0">
-                    <div class="fg-line m-l-5">
-                      <input id="{{ consigna.$key }}" my-enter="vm.addItemToConsigna( consigna.$key )" type="text" placeholder="Nueva tarea..." class="form-control p-l-5">
-                    </div>
-                  </div>
-                  <div class="col-xs-2 m-t-5 cursor-pointer">
-                    <i class="zmdi zmdi-plus zmdi-hc-2x" ng-click="vm.addItemToConsigna( consigna.$key )"></i>
-                  </div>
-                </div>
-
-              </div>
-
-              <div class="card-body p-l-15">
-
-                <div class="m-t-5" ng-repeat="tarea in vm.consignasArray[consigna.$key]">
-
-                  <div class="row">
-                    <div class="col-xs-10 p-r-0">
-                      <p class="m-b-0">° {{ tarea.consignaNombre }}</p>
-                    </div>
-                    <!--<div class="col-xs-2 p-l-0 p-r-0">-->
-                      <!--<i class="zmdi zmdi-close cursor-pointer"-->
-                         <!--style="color: #e74c3c"-->
-                         <!--ng-click="vm.removeItem(consigna.$key, tarea.$key)"></i>-->
-                    <!--</div>-->
-                  </div>
-
-                  <hr class="m-l-5 m-r-15 m-t-10 m-b-10">
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-
-
-
-        </div>
-      </div>
-
 
     </div>
   </div>
