@@ -70,14 +70,14 @@
             <thead >
             <tr align="center">
               <th>Guardia</th>
-              <th>Sueldo Base</th>
+              <th>Sueldo Base Diario</th>
               <th>Asistencias</th>
               <th>Inasistencias</th>
               <th>Descansos Laborados</th>
               <th>Dobles Turnos</th>
               <th>Horas Extra</th>
-              <th>Bono</th>
               <th>Bono total</th>
+              <th>Sueldo</th>
               <th>Sueldo Total</th>
             </tr>
             </thead>
@@ -104,10 +104,10 @@
                 {{nomina.horasExtra ? nomina.horasExtra: '0'}}
               </td>
               <td class="bitacora-align-middle">
-                {{nomina.bono}}
+                {{ vm.bonoTotal ? vm.bonoTotal : 0 | currency  }}
               </td>
               <td class="bitacora-align-middle">
-                {{ vm.bonoTotal ? vm.bonoTotal : 0 | currency  }}
+                {{ nomina.sueldo | currency  }}
               </td>
               <td class="bitacora-align-middle">
                 {{nomina.sueldoTotal | currency}}

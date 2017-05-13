@@ -248,6 +248,7 @@ argus
 
               vm.sueldoBase = calculateBaseSalary(vm.fortnight, vm.month.month, vm.year, 1600);
               vm.sueldoTotal += (vm.sueldoBase * vm.assistence);
+              vm.salary = vm.sueldoTotal;
 
 
               if (vm.inasistencias == 0 && vm.asistenciaBono >= 12) {
@@ -276,8 +277,8 @@ argus
                 'cubreGuardias': vm.assistence_cubreG,
                 'dobleTurno': vm.assistence_dobleT,
                 'horasExtra': vm.horasExtras,
-                'bono': vm.bono,
                 'bonoTotal': vm.bonoTotal,
+                'sueldo': vm.salary,
                 'sueldoTotal': vm.sueldoTotal
               });
 
@@ -289,8 +290,8 @@ argus
                 'cubreGuardias': vm.assistence_cubreG,
                 'dobleTurno': vm.assistence_dobleT,
                 'horasExtra': vm.horasExtras,
-                'bono': vm.bono,
                 'bonoTotal': vm.bonoTotal,
+                'sueldo': vm.salary,
                 'sueldoTotal': vm.sueldoTotal
               });
 
@@ -367,16 +368,6 @@ argus
 
       function settingsUpdate() {
 
-        var updates = {};
-        updates['Argus/Nomina/configuracion/salario'] = vm.paysheetSettings.salary;
-        updates['Argus/Nomina/configuracion/bono'] = vm.paysheetSettings.bond;
-
-        firebase.database().ref().update(updates);
-
-        vm.paysheetSettings = {};
-        location.reload();
-        // vm.modal.dismiss();
-        // growl.info('Configuración de nomina Actualizada!', vm.config);
       }
 
       function calculateBaseSalary(quincena, month, year, salary) {
