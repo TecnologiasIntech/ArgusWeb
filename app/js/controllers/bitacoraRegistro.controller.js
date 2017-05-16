@@ -21,6 +21,11 @@ argus
       vm.fullRecords = [];
       vm.supervisorData = {};
       vm.supervisores = {};
+      vm.bitacoraInformacion = {};
+      vm.bitacoraRegistroNoResuelto = {};
+      vm.view = 'bitacora';
+      vm.bitacoraSupervisores = {};
+      vm.bitacoraObservaciones = {};
 
 
       // Public functions
@@ -29,6 +34,9 @@ argus
       vm.getFullDate = getFullDate;
       vm.deleteNotification = deleteNotification;
       vm.confirmSignature = confirmSignature;
+      vm.changeStatus = changeStatus;
+      vm.BitacoraNoResuelto = BitacoraNoResuelto;
+      vm.assignTaskToSupervisor = assignTaskToSupervisor;
 
 
       //private functions
@@ -37,6 +45,11 @@ argus
         firebase.database().ref('Argus/supervisores/')
         .on('value', function (snapshot) {
           vm.supervisores = snapshot.val();
+        });
+
+        firebase.database().ref('Argus/BitacoraRegistroNoResuelto/')
+        .on('value', function (snapshot) {
+          vm.bitacoraRegistroNoResuelto = snapshot.val();
         });
 
         if(sessionStorage.getItem('notificationConfirm') === null){
@@ -86,8 +99,31 @@ argus
             .once('value', function (snapshot) {
               vm.datesRecords ={};
               vm.datesRecords = snapshot.val();
-              console.log(vm.datesRecords);
+
+              // for(supervisor in vm.supervisores){
+              //
+              //   firebase.database().ref('Argus/BitacoraRegistroNoResuelto/' + supervisor)
+              //     .on('value', function (snapshot) {
+              //       vm.bitacoraRegistroNoResuelto[supervisor] = snapshot.val();
+              //       $rootScope.$apply();
+              //     })
+              // }
+
+              for( fecha in vm.datesRecords ) {
+
+                for (supervisor in vm.datesRecords[fecha]) {
+
+                  for (observacion in vm.datesRecords[fecha][supervisor]) {
+
+                    vm.bitacoraObservaciones[fecha] = vm.datesRecords[fecha][supervisor][observacion];
+
+                  }
+
+                }
+              }
+
               $timeout(100 )
+              // $rootScope.$apply();
             });
         } else {
           // growl.warning('No has seleccionado la primera fecha', vm.config);
@@ -146,5 +182,41 @@ argus
         vm.modal.dismiss()
       }
 
+      function changeStatus() {
+
+        var updates = {};
+        updates['Argus/BitacoraRegistro/' + vm.bitacoraInformacion.codigoFecha + '/' + vm.bitacoraInformacion.llaveSupervisor + '/' + vm.bitacoraInformacion.llaveObservacion + '/semaforo'] = 1;
+        firebase.database().ref().update(updates);
+
+      }
+
+      function BitacoraNoResuelto( supervisorKey ) {
+
+        firebase.database().ref('Argus/BitacoraRegistroNoResuelto/' + supervisorKey)
+          .on('value', function (snapshot) {
+            vm.bitacoraRegistroNoResuelto[supervisorKey] = snapshot.val();
+          })
+      }
+
+      function assignTaskToSupervisor( supervisorKey, ObservacionKey, idCheckBox ) {
+
+        var tasToSupervisor = document.getElementById(idCheckBox);
+        if(tasToSupervisor.checked){
+
+          firebase.database().ref('Argus/BitacoraRegistroNoResuelto/' + supervisorKey + '/' + ObservacionKey).update({
+            supervisorResponsibility: false
+          })
+
+        }else{
+
+          firebase.database().ref('Argus/BitacoraRegistroNoResuelto/' + supervisorKey + '/' + ObservacionKey).update({
+            supervisorResponsibility: true
+          })
+
+        }
+
+
+
+      }
     }
   ]);

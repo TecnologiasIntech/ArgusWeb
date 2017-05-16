@@ -1,120 +1,112 @@
-<header id="header" data-current-skin={{mactrl.currentSkin}} data-ng-include="'template/header.html'"
-        data-ng-controller="headerCtrl as hctrl">
+<div class="card m-l-20 m-r-20">
 
-</header>
-<section id="main">
-  <aside id="sidebar" data-ng-include="'template/sidebar-left.html'"
-         data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }"></aside>
-
-  <section id="content">
-    <div class="card m-l-20 m-r-20">
-
-      <!--INPUT DATE-->
-      <div class="row">
-        <div class="col-xs-offset-1 col-xs-3 p-r-0  m-t-20 p-r-0">
-          <div class="datepickerdemoBasicUsage">
-            <md-content class="size-datepicker">
-              <md-datepicker ng-model="vm.secondDate" md-placeholder="Introduzca fecha"></md-datepicker>
-            </md-content>
-          </div>
-        </div>
-        <div class="col-xs-1 p-l-0 p-r-0  m-t-20 p-l-0 p-r-0">
-          <div class="a-datepicker" align="center">a</div>
-        </div>
-        <div class="col-xs-3  m-t-20">
-          <div class="datepickerdemoBasicUsage">
-            <md-content class="size-datepicker">
-              <md-datepicker ng-model="vm.myDate" md-placeholder="Introduzca fecha"></md-datepicker>
-            </md-content>
-          </div>
-        </div>
-        <div class="col-xs-2  m-t-25">
-          <button class="btn btn-waves btn-success" ng-click="vm.records = {}; vm.viewRecords()">Ver resultados</button>
-        </div>
-        <div class="col-xs-2 m-t-25">
-          <button class="btn waves-effect btn-primary" ng-click="vm.downloadCSV({ filename: 'stock-data.csv' });">Exportar</button>
-        </div>
-        <!--<button ng-click="vm.createBitacora();">Crear 100 años</button>-->
-      </div>
-
-      <!--<div class="row" ng-if="!vm.records" align="center">-->
-        <!--<div class="zmdi zmdi-quote m-t-20 not-found-quote">-->
-        <!--</div>-->
-        <!--<div class="not-found">No se encontraron</div>-->
-        <!--<div class="m-b-30 not-found">Registros</div>-->
-      <!--</div>-->
-
-      <!--FILTROS-->
-      <div class="row m-t-15" ng-if="vm.recordsLength > 0">
-        <div class="col-xs-offset-1 col-xs-2">
-          <div class="m-l-10">
-            <input type="text" class="form-control" placeholder="Filtrar por zona..." ng-model="vm.filterZone">
-          </div>
-        </div>
-        <div class="col-xs-offset-1 col-xs-2">
-          <div class="m-l-10">
-            <input type="text" class="form-control" placeholder="Filtrar por servicio..." ng-model="vm.filterClient">
-          </div>
-        </div>
-        <div class="col-xs-offset-1 col-xs-3">
-          <div class="zmdi zmdi-search display-inline"></div>
-          <label>
-            <input type="text" class="form-control supervisor-search  display-inline" placeholder="Buscar guardias..."
-                   ng-model="vm.filterGuard" style="width: 150px;">
-          </label>
-        </div>
-      </div>
-
-
-      <!--Tabla de bitacora-->
-      <div class="row m-t-20" ng-if="vm.recordsLength > 0">
-        <div class="col-xs-offset-1 col-xs-9 m-t-10 m-b-30 p-l-0 p-r-0 table-box">
-          <table class="table table-striped table-hover-gray">
-            <thead>
-            <tr>
-              <th>Zona</th>
-              <th>Servicio</th>
-              <th>Guardia</th>
-              <th>Turno</th>
-              <th>Firma</th>
-              <!--<th>Status</th>-->
-              <th>Fecha</th>
-            </tr>
-            </thead>
-            <tbody ng-repeat="record in vm.records | toArray">
-
-            <!--ADMINISTRADORES-->
-            <tr ng-repeat="guard in vm.records[record.$key] | toArray | filter: {cliente: vm.filterClient, guardiaNombre: vm.filterGuard, zona: vm.filterZone}" ng-if="guard.guardiaNombre">
-              <td class="bitacora-align-middle">
-                {{guard.zona}}
-              </td>
-              <td class="bitacora-align-middle">
-                {{guard.cliente}}
-              </td>
-              <td class="bitacora-align-middle">
-                {{guard.guardiaNombre}}
-              </td>
-              <td class="bitacora-align-middle">
-                {{guard.turno}}
-              </td>
-              <td class="bitacora-align-middle">
-                <img src="{{guard.firma}}" alt="" style="width: 50px; height: 50px;" ng-click="vm.openPicture(guard.firma)">
-              </td>
-              <td class="bitacora-align-middle">
-                {{guard.fecha}}
-              </td>
-              <td class="bitacora-align-middle">
-                <a href="">
-                  <i class="zmdi zmdi-close-circle" style="font-size: 20px; color: #e74c3c" ng-click="vm.cancelAsssist(record.$key, guard.$key, guard.cliente)"></i>
-                </a>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
+  <!--INPUT DATE-->
+  <div class="row">
+    <div class="col-xs-offset-1 col-xs-3 p-r-0  m-t-20 p-r-0">
+      <div class="datepickerdemoBasicUsage">
+        <md-content class="size-datepicker">
+          <md-datepicker ng-model="vm.secondDate" md-placeholder="Introduzca fecha"></md-datepicker>
+        </md-content>
       </div>
     </div>
-  </section>
-</section>
+    <div class="col-xs-1 p-l-0 p-r-0  m-t-20 p-l-0 p-r-0">
+      <div class="a-datepicker" align="center">a</div>
+    </div>
+    <div class="col-xs-3  m-t-20">
+      <div class="datepickerdemoBasicUsage">
+        <md-content class="size-datepicker">
+          <md-datepicker ng-model="vm.myDate" md-placeholder="Introduzca fecha"></md-datepicker>
+        </md-content>
+      </div>
+    </div>
+    <div class="col-xs-2  m-t-25">
+      <button class="btn btn-waves btn-success" ng-click="vm.records = {}; vm.viewRecords()">Ver resultados</button>
+    </div>
+    <div class="col-xs-2 m-t-25">
+      <button class="btn waves-effect btn-primary" ng-click="vm.downloadCSV({ filename: 'stock-data.csv' });">Exportar
+      </button>
+    </div>
+    <!--<button ng-click="vm.createBitacora();">Crear 100 años</button>-->
+  </div>
 
-<footer id="footer" data-ng-include="'template/footer.html'"></footer>
+  <!--<div class="row" ng-if="!vm.records" align="center">-->
+  <!--<div class="zmdi zmdi-quote m-t-20 not-found-quote">-->
+  <!--</div>-->
+  <!--<div class="not-found">No se encontraron</div>-->
+  <!--<div class="m-b-30 not-found">Registros</div>-->
+  <!--</div>-->
+
+  <!--FILTROS-->
+  <div class="row m-t-15" ng-if="vm.recordsLength > 0">
+    <div class="col-xs-offset-1 col-xs-2">
+      <div class="m-l-10">
+        <input type="text" class="form-control" placeholder="Filtrar por zona..." ng-model="vm.filterZone">
+      </div>
+    </div>
+    <div class="col-xs-offset-1 col-xs-2">
+      <div class="m-l-10">
+        <input type="text" class="form-control" placeholder="Filtrar por servicio..." ng-model="vm.filterClient">
+      </div>
+    </div>
+    <div class="col-xs-offset-1 col-xs-3">
+      <div class="zmdi zmdi-search display-inline"></div>
+      <label>
+        <input type="text" class="form-control supervisor-search  display-inline" placeholder="Buscar guardias..."
+               ng-model="vm.filterGuard" style="width: 150px;">
+      </label>
+    </div>
+  </div>
+
+
+  <!--Tabla de bitacora-->
+  <div class="row m-t-20" ng-if="vm.recordsLength > 0">
+    <div class="col-xs-offset-1 col-xs-9 m-t-10 m-b-30 p-l-0 p-r-0 table-box">
+      <table class="table table-striped table-hover-gray">
+        <thead>
+        <tr>
+          <th>Zona</th>
+          <th>Servicio</th>
+          <th>Guardia</th>
+          <th>Turno</th>
+          <th>Firma</th>
+          <!--<th>Status</th>-->
+          <th>Fecha</th>
+        </tr>
+        </thead>
+        <tbody ng-repeat="record in vm.records | toArray">
+
+        <!--ADMINISTRADORES-->
+        <tr
+          ng-repeat="guard in vm.records[record.$key] | toArray | filter: {cliente: vm.filterClient, guardiaNombre: vm.filterGuard, zona: vm.filterZone}"
+          ng-if="guard.guardiaNombre">
+          <td class="bitacora-align-middle">
+            {{guard.zona}}
+          </td>
+          <td class="bitacora-align-middle">
+            {{guard.cliente}}
+          </td>
+          <td class="bitacora-align-middle">
+            {{guard.guardiaNombre}}
+          </td>
+          <td class="bitacora-align-middle">
+            {{guard.turno}}
+          </td>
+          <td class="bitacora-align-middle">
+            <img src="{{guard.firma}}" alt="" style="width: 50px; height: 50px;" ng-click="vm.openPicture(guard.firma)">
+          </td>
+          <td class="bitacora-align-middle">
+            {{guard.fecha}}
+          </td>
+          <td class="bitacora-align-middle">
+            <a href="">
+              <i class="zmdi zmdi-close-circle" style="font-size: 20px; color: #e74c3c"
+                 ng-click="vm.cancelAsssist(record.$key, guard.$key, guard.cliente)"></i>
+            </a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

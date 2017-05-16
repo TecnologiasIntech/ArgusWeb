@@ -1,86 +1,77 @@
-<header id="header" data-current-skin={{mactrl.currentSkin}} data-ng-include="'template/header.html'"
-        data-ng-controller="headerCtrl as hctrl">
+<div class="row  m-b-10" style="">
+  <div class="col-xs-offset-7 col-xs-4 m-t-10" style="position: fixed;">
 
-</header>
-<section id="main">
-  <aside id="sidebar" data-ng-include="'template/sidebar-left.html'"
-         data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }"></aside>
-
-  <section id="content" style="height: auto; background-color: #edecec;">
-
-    <div class="row  m-b-10" style="">
-      <div class="col-xs-offset-7 col-xs-4 m-t-10" style="position: fixed;">
-
-        <div class="row m-t-15">
-          <div class="col-xs-2 p-r-0">
-            <button class="btn btn-primary btn-icon waves-effect waves-circle di-block" style="height: 30px; width: 30px; background-color: #e74c3c"></button>
-          </div>
-          <div class="col-xs-4 p-l-0 p-t-5">
-            <span class="di-block">Incidente</span>
-          </div>
-        </div>
-
-        <div class="row m-t-15">
-          <div class="col-xs-2 p-r-0">
-            <button class="btn btn-primary btn-icon waves-effect waves-circle di-block" style="height: 30px; width: 30px; background-color: #3498db"></button>
-          </div>
-          <div class="col-xs-4 p-l-0 p-t-5">
-            <span class="di-block">Guardia Movido</span>
-          </div>
-        </div>
-
-        <div class="row m-t-15">
-          <div class="col-xs-2 p-r-0">
-            <button class="btn btn-primary btn-icon waves-effect waves-circle di-block" style="height: 30px; width: 30px; background-color: #2ecc71"></button>
-          </div>
-          <div class="col-xs-4 p-l-0 p-t-5">
-            <span class="di-block">Guardia Agregado</span>
-          </div>
-        </div>
-
-        <div class="row m-t-15">
-          <div class="col-xs-2 p-r-0">
-            <button class="btn btn-primary btn-icon waves-effect waves-circle di-block" style="height: 30px; width: 30px; background-color: #e67e22"></button>
-          </div>
-          <div class="col-xs-6 p-l-0 p-t-5">
-            <span class="di-block">Confirmación de asistencia</span>
-          </div>
-        </div>
+    <div class="row m-t-15">
+      <div class="col-xs-2 p-r-0">
+        <button class="btn btn-primary btn-icon waves-effect waves-circle di-block"
+                style="height: 30px; width: 30px; background-color: #e74c3c"></button>
+      </div>
+      <div class="col-xs-4 p-l-0 p-t-5">
+        <span class="di-block">Incidente</span>
       </div>
     </div>
 
-    <div class="row m-t-10">
-      <div class="col-xs-offset-2 col-xs-7">
-        <div class="timeline">
-          <div class="t-view" ng-repeat="notification in vm.notifications | toArray | orderBy : ' -fecha'" data-tv-type="{{notification.accion}}">
-            <div class="tv-header media p-t-0 p-b-0">
-              <div class="media-body p-t-5 p-b-15">
-                <p class="p-t-10 m-b-0" style="font-size: 14px">{{notification.descripcion}}</p>
-                <small class="p-l-5" style="color: #95a5a6;">{{notification.fecha}}</small>
-              </div>
+    <div class="row m-t-15">
+      <div class="col-xs-2 p-r-0">
+        <button class="btn btn-primary btn-icon waves-effect waves-circle di-block"
+                style="height: 30px; width: 30px; background-color: #3498db"></button>
+      </div>
+      <div class="col-xs-4 p-l-0 p-t-5">
+        <span class="di-block">Guardia Movido</span>
+      </div>
+    </div>
 
-              <ul class="actions hidden-xs m-t-5">
-                <li class="dropdown" uib-dropdown>
-                  <a href="" uib-dropdown-toggle>
-                    <i class="zmdi zmdi-more-vert"></i>
-                  </a>
+    <div class="row m-t-15">
+      <div class="col-xs-2 p-r-0">
+        <button class="btn btn-primary btn-icon waves-effect waves-circle di-block"
+                style="height: 30px; width: 30px; background-color: #2ecc71"></button>
+      </div>
+      <div class="col-xs-4 p-l-0 p-t-5">
+        <span class="di-block">Guardia Agregado</span>
+      </div>
+    </div>
 
-                  <ul class="dropdown-menu dropdown-menu-right">
-                    <li>
-                      <a href="" ng-click="vm.viewDetails(notification)">Ver detalles</a>
-                    </li>
-                    <!--<li>-->
-                      <!--<a href="" ng-click="vm.deleteNotification(notification.$key)">Delete</a>-->
-                    <!--</li>-->
-                  </ul>
+    <div class="row m-t-15">
+      <div class="col-xs-2 p-r-0">
+        <button class="btn btn-primary btn-icon waves-effect waves-circle di-block"
+                style="height: 30px; width: 30px; background-color: #e67e22"></button>
+      </div>
+      <div class="col-xs-6 p-l-0 p-t-5">
+        <span class="di-block">Confirmación de asistencia</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row m-t-10">
+  <div class="col-xs-offset-2 col-xs-7">
+    <div class="timeline">
+      <div class="t-view" ng-repeat="notification in vm.notifications | toArray | orderBy : ' -fecha'"
+           data-tv-type="{{notification.accion}}">
+        <div class="tv-header media p-t-0 p-b-0">
+          <div class="media-body p-t-5 p-b-15">
+            <p class="p-t-10 m-b-0" style="font-size: 14px">{{notification.descripcion}}</p>
+            <small class="p-l-5" style="color: #95a5a6;">{{notification.fecha}}</small>
+          </div>
+
+          <ul class="actions hidden-xs m-t-5">
+            <li class="dropdown" uib-dropdown>
+              <a href="" uib-dropdown-toggle>
+                <i class="zmdi zmdi-more-vert"></i>
+              </a>
+
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li>
+                  <a href="" ng-click="vm.viewDetails(notification)">Ver detalles</a>
                 </li>
+                <!--<li>-->
+                <!--<a href="" ng-click="vm.deleteNotification(notification.$key)">Delete</a>-->
+                <!--</li>-->
               </ul>
-            </div>
-          </div>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
-  </section>
-</section>
-
-<footer id="footer" data-ng-include="'template/footer.html'" style="position: relative;"></footer>
+  </div>
+</div>
