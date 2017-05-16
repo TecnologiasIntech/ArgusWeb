@@ -52,6 +52,10 @@
 .modal-c{
   width: 300px;
 }
+.modal-ar{
+  width: 350px;
+}
+
 
 
 .select-account{
@@ -273,6 +277,18 @@
   /*background-color: #ecf0f1;*/
 }
 
+.responsible-small{
+  height: 157px;
+  box-shadow:0px 0px 3px #2B2B2B;
+  border-radius: 3px 3px 3px 3px;
+  /*padding-top: 3%;*/
+}
+
+.responsible-small:hover{
+  background-color: rgba(213,213,213,0.53);
+  /*background-color: #ecf0f1;*/
+}
+
 .title-consignaSmall{
   font-size: 20px;
   font-weight: 400;
@@ -298,6 +314,34 @@
   border-width: 4px;
 }
 
+
+.cardAddResponsible{
+  height: 157px;
+  border-style: dashed;
+  border-color: #d2d0d0;
+  background-color: #f6f5f5;
+  box-shadow: 0px 0px 3px #f6f5f5;
+  border-radius: 3px;
+  border-width: 4px;
+}
+.cardAddResponsible:hover{
+  height: 157px;
+  border-style: dashed;
+  border-color: #f6f5f5;
+  background-color: #d2d0d0;
+  box-shadow: 0px 0px 3px #2B2B2B;
+  border-radius: 3px;
+  border-width: 4px;
+}
+
 .title-registerConsignaSmall{
   font-size: 20px;
+}
+
+.f-25{
+  font-size: 25px;
+}
+
+.f-15{
+  font-size: 15px;
 }
