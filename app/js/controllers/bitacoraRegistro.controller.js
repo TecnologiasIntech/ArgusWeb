@@ -37,6 +37,7 @@ argus
       vm.changeStatus = changeStatus;
       vm.BitacoraNoResuelto = BitacoraNoResuelto;
       vm.assignTaskToSupervisor = assignTaskToSupervisor;
+      vm.getIncidentes = getIncidentes;
 
 
       //private functions
@@ -80,6 +81,15 @@ argus
         vm.modal = $uibModal.open({
           animation: true,
           templateUrl: 'views/modals/notificaciones.modal.html',
+          scope: $scope,
+          size: 'lm',
+          backdrop: 'static'
+        });
+      }
+      function openIncidentes() {
+        vm.modal = $uibModal.open({
+          animation: true,
+          templateUrl: 'views/modals/incidentesNoResueltos.modal.html',
           scope: $scope,
           size: 'lm',
           backdrop: 'static'
@@ -218,5 +228,12 @@ argus
 
 
       }
+
+      function getIncidentes(  ) {
+
+        openIncidentes();
+
+      }
+
     }
   ]);

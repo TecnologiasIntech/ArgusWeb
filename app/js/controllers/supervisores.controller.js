@@ -203,6 +203,13 @@ argus
                vm.saveUser=[];
                vm.user = {};
              });
+
+
+            fireService.get('Argus/Supervisores').then(function (response) {
+
+
+
+            })
           }
         }
         vm.saveUser=[];
@@ -399,7 +406,7 @@ argus
           vm.isLoadingRegister = false;
           $rootScope.$apply();
         }).then(function(){
-          if (vm.existingError == false) {
+          if (!vm.existingError) {
             //Cerramos sesion
             firebase.auth().signOut().then(function () {
               // Iniciamos sesion
