@@ -55,15 +55,17 @@ argus
 
       activate();
 
-      function verifyAction(action, information, key, notificacion) {
+      function verifyAction(action, information, bitacoraInformation, key, notificacion) {
         switch (action){
           case 'AG':
             if($location.path() !== '/supervisores'){
               sessionStorage['guardiaInformacion'] = JSON.stringify(information);
+              sessionStorage['bitacoraInformacion'] = JSON.stringify(bitacoraInformation);
               sessionStorage['notificacionKey'] = key;
               $location.path('/supervisores');
             }else{
               $rootScope.$broadcast('notificacion:agregar', information);
+              $rootScope.$broadcast('notificacion:bitacora', bitacoraInformation);
               $rootScope.$broadcast('notificacion:key', key);
             }
             break;
@@ -72,15 +74,27 @@ argus
             break;
 
           case 'AI':
-            break;
-
-          case 'CF':
             if($location.path() === '/bitacoraRegistro'){
               $rootScope.$broadcast('notificaciones:confirmar', notificacion);
               $rootScope.$broadcast('notificacion:key', key);
             }else{
 
               sessionStorage['notificationConfirm'] = JSON.stringify(notificacion);
+              sessionStorage['notificacionKey'] = key;
+              $location.path('/bitacoraRegistro');
+
+            }
+            break;
+
+          case 'CF':
+            if($location.path() === '/bitacoraRegistro'){
+              $rootScope.$broadcast('notificaciones:confirmar', notificacion);
+              $rootScope.$broadcast('notificacion:bitacora', bitacoraInformation);
+              $rootScope.$broadcast('notificacion:key', key);
+            }else{
+
+              sessionStorage['notificationConfirm'] = JSON.stringify(notificacion);
+              sessionStorage['bitacoraInformacion'] = JSON.stringify(bitacoraInformation);
               sessionStorage['notificacionKey'] = key;
               $location.path('/bitacoraRegistro');
 

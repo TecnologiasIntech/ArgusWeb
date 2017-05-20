@@ -36,6 +36,7 @@ argus
       vm.validar = validar;
       vm.zonasDisponibles = [];
       vm.update = false;
+      vm.notificationBitacora = {};
 
       //public functions
       vm.openModal = openModal;
@@ -94,6 +95,7 @@ argus
         if (sessionStorage.getItem("guardiaInformacion") === null && sessionStorage.getItem('notificacionKey') === null) {
         } else {
           vm.guardiaInformacion = JSON.parse(sessionStorage['guardiaInformacion']);
+          vm.notificationBitacora = JSON.parse(sessionStorage['bitacoraInformacion']);
           vm.notificationkey = sessionStorage.getItem('notificacionKey');
 
           vm.user = vm.guardiaInformacion;
@@ -113,6 +115,10 @@ argus
         $scope.$on('notificacion:key', function (event, key) {
           vm.notificationkey = key;
         })
+
+        $scope.$on('notificacion:bitacora', function (event, bitacoraInfo) {
+          vm.notificationBitacora = bitacoraInfo;
+        });
 
       }
 
@@ -468,7 +474,13 @@ argus
 
               vm.isAssignmentToZone = false;
               vm.notificationkey = '';
-            })
+            });
+
+          // actualizar estatus de la bitacora a verde
+          firebase.database().ref('Argus/BitacoraRegistro/' + vm.notificationBitacora.codigoFecha + '/' + vm.notificationBitacora.llaveSupervisor + '/' + vm.notificationBitacora.llaveObservacion + '/')
+            .update({
+              semaforo: 1
+            });
         }
         vm.user = {};
         vm.user.usuarioTipo = 'guardia';
