@@ -1,80 +1,99 @@
-<div class="row " ng-repeat="supervisor in vm.bitacoraRegistroNoResuelto | toArray"
-     ng-if="supervisor.$key != '$$hashKey' ">
+<div class="modal-header"></div>
 
-  <div class="row m-t-15">
-    <div class="col-lg-offset-1" ng-if="supervisor.$key != '$$hashKey'">
-      <!--{{ vm.getSupervisor( supervisor.$key ) }}-->
-      <label class="f-17 m-l-20">{{ supervisor.supervisor }}</label>
+<div class="modal-body" style="overflow-y: auto; max-height: 450px">
+
+  <div class="row m-l-10 m-r-10" ng-repeat="supervisor in vm.bitacoraRegistroNoResuelto | toArray"
+       ng-if="supervisor.$key != '$$hashKey' ">
+
+    <div class="row m-t-15">
+      <div class="col-lg-offset-1" ng-if="supervisor.$key != '$$hashKey'">
+        <!--{{ vm.getSupervisor( supervisor.$key ) }}-->
+        <label class="f-17 m-l-20">{{ supervisor.supervisor }}</label>
+
+      </div>
+    </div>
+    <div class="row">
+
+      <table class="table table-striped table-hover-gray">
+        <thead>
+        <tr>
+          <th class="col-lg-9">Observaciones</th>
+          <th class="col-lg-3">Hora</th>
+          <th class="col-lg-3">Estatus</th>
+          <th class="col-lg-3">Asignación</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="observacion in supervisor " ng-if="observacion.supervisor"
+        >
+          <td class="bitacora-align-middle col-lg-9">
+            {{observacion.observacion}}
+          </td>
+          <td class="bitacora-align-middle col-lg-3">
+            {{observacion.hora}}
+          </td>
+          <td class="bitacora-align-middle col-lg-3">
+
+
+            <div class="lv-actions actions dropdown" uib-dropdown="">
+              <a class="cursor-pointer dropdown-toggle" uib-dropdown-toggle=""
+                 aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-primary btn-icon waves-effect waves-circle di-block"
+                        style="height: 30px; width: 30px; background-color: #e74c3c"
+                        ng-if="observacion.semaforo == 3"></button>
+                <button class="btn btn-primary btn-icon waves-effect waves-circle di-block"
+                        style="height: 30px; width: 30px; background-color: #e67e22"
+                        ng-if="observacion.semaforo == 2"></button>
+                <button class="btn btn-primary btn-icon waves-effect waves-circle di-block"
+                        style="height: 30px; width: 30px; background-color: #2ecc71"
+                        ng-if="observacion.semaforo == 1"></button>
+              </a>
+              <!--<ul class="dropdown-menu pull-right actions-supervisor" style="min-width: 75px !important;">-->
+              <!--<li class="action-edit cursor-pointer"-->
+              <!--ng-click="vm.editUser(supervisor, supervisor.$key, 'supervisor')">-->
+              <!--<button class="btn btn-primary btn-icon waves-effect waves-circle di-block"-->
+              <!--style="height: 30px; width: 30px; background-color: #e74c3c"></button>-->
+              <!--</li>-->
+              <!--<li class="action-delete cursor-pointer" ng-click="vm.deleteUser(supervisor, 'supervisores', supervisor.key)">-->
+              <!--<button class="btn btn-primary btn-icon waves-effect waves-circle di-block" style="height: 30px; width: 30px; background-color: #e67e22"></button>-->
+              <!--</li>-->
+              <!--<li class="action-delete cursor-pointer p-t-5" ng-click="vm.deleteUser(supervisor, 'supervisores', supervisor.key)">-->
+              <!--<button class="btn btn-primary btn-icon waves-effect waves-circle di-block" style="height: 30px; width: 30px; background-color: #2ecc71" ></button>-->
+              <!--</li>-->
+              <!--</ul>-->
+            </div>
+          </td>
+          <td>
+
+            <!--{{ observacion }}-->
+
+            <div class="checkbox m-b-15"
+                 ng-click="vm.assignTaskToSupervisor( supervisor.$key, observacion.observacionKey, observacion.observacionKey )">
+              <label>
+                <input type="checkbox" id="{{ observacion.observacionKey }}"
+                       ng-checked="observacion.supervisorResponsibility">
+                <i class="input-helper"></i>
+                Asignar Supervisor
+              </label>
+            </div>
+
+          </td>
+        </tr>
+        </tbody>
+      </table>
 
     </div>
   </div>
-  <div class="row">
 
-    <table class="table table-striped table-hover-gray">
-      <thead>
-      <tr>
-        <th class="col-lg-9">Observaciones</th>
-        <th class="col-lg-3">Hora</th>
-        <th class="col-lg-3">Estatus</th>
-        <th class="col-lg-3">Asignación</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr ng-repeat="observacion in vm.bitacoraRegistroNoResuelto[supervisor.$key]"
-      >
-        <td class="bitacora-align-middle col-lg-9">
-          {{observacion.observacion}}
-        </td>
-        <td class="bitacora-align-middle col-lg-3">
-          {{observacion.hora}}
-        </td>
-        <td class="bitacora-align-middle col-lg-3">
-
-
-          <div class="lv-actions actions dropdown" uib-dropdown="">
-            <a class="cursor-pointer dropdown-toggle" uib-dropdown-toggle=""
-               aria-haspopup="true" aria-expanded="false">
-              <button class="btn btn-primary btn-icon waves-effect waves-circle di-block"
-                      style="height: 30px; width: 30px; background-color: #e74c3c"
-                      ng-if="observacion.semaforo == 3"></button>
-              <button class="btn btn-primary btn-icon waves-effect waves-circle di-block"
-                      style="height: 30px; width: 30px; background-color: #e67e22"
-                      ng-if="observacion.semaforo == 2"></button>
-              <button class="btn btn-primary btn-icon waves-effect waves-circle di-block"
-                      style="height: 30px; width: 30px; background-color: #2ecc71"
-                      ng-if="observacion.semaforo == 1"></button>
-            </a>
-            <!--<ul class="dropdown-menu pull-right actions-supervisor" style="min-width: 75px !important;">-->
-            <!--<li class="action-edit cursor-pointer"-->
-            <!--ng-click="vm.editUser(supervisor, supervisor.$key, 'supervisor')">-->
-            <!--<button class="btn btn-primary btn-icon waves-effect waves-circle di-block"-->
-            <!--style="height: 30px; width: 30px; background-color: #e74c3c"></button>-->
-            <!--</li>-->
-            <!--<li class="action-delete cursor-pointer" ng-click="vm.deleteUser(supervisor, 'supervisores', supervisor.key)">-->
-            <!--<button class="btn btn-primary btn-icon waves-effect waves-circle di-block" style="height: 30px; width: 30px; background-color: #e67e22"></button>-->
-            <!--</li>-->
-            <!--<li class="action-delete cursor-pointer p-t-5" ng-click="vm.deleteUser(supervisor, 'supervisores', supervisor.key)">-->
-            <!--<button class="btn btn-primary btn-icon waves-effect waves-circle di-block" style="height: 30px; width: 30px; background-color: #2ecc71" ></button>-->
-            <!--</li>-->
-            <!--</ul>-->
-          </div>
-        </td>
-        <td>
-
-          <!--<div class="checkbox m-b-15"-->
-          <!--ng-click="vm.assignTaskToSupervisor( supervisor.$key, observacion.$key, observacion.$key )">-->
-          <!--<label>-->
-          <!--<input type="checkbox" id="{{ observacion.$key }}"-->
-          <!--ng-checked="observacion.supervisorResponsibility">-->
-          <!--<i class="input-helper"></i>-->
-          <!--Asignar Supervisor-->
-          <!--</label>-->
-          <!--</div>-->
-
-        </td>
-      </tr>
-      </tbody>
-    </table>
-
-  </div>
 </div>
+
+<div class="modal-footer">
+
+  <button class="btn btn-danger waves-effect" ng-click="vm.modal.dismiss()">
+    Cerrar
+  </button>
+
+</div>
+
+
+

@@ -91,7 +91,7 @@ argus
           animation: true,
           templateUrl: 'views/modals/incidentesNoResueltos.modal.html',
           scope: $scope,
-          size: 'lm',
+          size: 'incidentes',
           backdrop: 'static'
         });
       }
