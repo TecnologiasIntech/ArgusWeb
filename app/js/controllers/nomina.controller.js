@@ -88,6 +88,19 @@ argus
             vm.guardias = snapshot.val();
             // console.log(vm.guardias);
         });
+
+        firebase.database().ref('Argus/Clientes')
+          .on('value', function (snapshot) {
+            vm.clientes = snapshot.val();
+            // console.log(vm.guardias);
+          });
+
+        firebase.database().ref('Argus/Zonas')
+          .on('value', function (snapshot) {
+            vm.zonas = snapshot.val();
+            // console.log(vm.guardias);
+            $rootScope.$apply();
+          });
       }
 
       activate();
@@ -257,6 +270,18 @@ argus
                 vm.bono = 'Si';
               }
 
+              // Obtener la zona del guardia mediante el servicio donde està
+              var clienteDelGuardia = {};
+              for( cliente in vm.clientes ){
+                if(vm.clientes[cliente].clienteNombre ==  vm.guardias[guardia].usuarioClienteAsignado){
+
+                  clienteDelGuardia = vm.clientes[cliente];
+
+                }
+              }
+
+
+
               firebase.database().ref('Argus/Nomina/'+ vm.numQuincena + '/' + guardia).update({
                 'nombreGuardia': vm.guardias[guardia].usuarioNombre,
                 'sueldoBase': vm.sueldoBase,
@@ -271,6 +296,7 @@ argus
 
               vm.nomina.push({
                 'nombreGuardia': vm.guardias[guardia].usuarioNombre,
+                'zona': clienteDelGuardia.clienteZonaAsignada,
                 'sueldoBase': vm.sueldoBase,
                 'asistencia': vm.assistence,
                 'inasistencias': vm.inasistencias,
@@ -284,6 +310,7 @@ argus
 
               vm.exportToCsv.push({
                 'nombreGuardia': vm.guardias[guardia].usuarioNombre,
+                'zona': clienteDelGuardia.clienteZonaAsignada,
                 'sueldoBase': vm.sueldoBase,
                 'asistencia': vm.assistence,
                 'inasistencias': vm.inasistencias,

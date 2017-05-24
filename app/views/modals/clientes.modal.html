@@ -202,7 +202,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-xs-offset-2 col-xs-8 m-t-10 p-l-0 p-r-0 table-guardias table-box">
+          <div class="m-l-30 col-xs-7 m-t-10 p-l-0 p-r-0 table-guardias table-box">
             <table class="table table-hover table-bordered ">
               <tbody>
               <tr ng-repeat="guard in vm.guards | toArray |filter: {usuarioNombre: vm.searchInGuards} " ng-if="!mostrar">
@@ -214,6 +214,13 @@
                       <span>{{guard.usuarioNombre}}</span>
                       [<span>{{guard.usuarioTurno}}</span>]
                     </label>
+                  </div>
+                </td>
+                <td  ng-if="guard.usuarioDisponible" align="center">
+                  <div class="lv-actions actions dropdown" uib-dropdown="" ng-click="vm.guardInfo = guard">
+                    <div class="cursor-pointer dropdown-toggle">
+                      <i class="zmdi zmdi-info-outline zmdi-hc-2x actions-size"></i>
+                    </div>
                   </div>
                 </td>
               </tr>
@@ -233,6 +240,47 @@
               </tbody>
             </table>
           </div>
+
+          <div class="col-xs-4 m-t-10">
+            <div class="card-body card-padding table-guardias card-info-guardias" style="">
+
+              <div>
+                <div>Guardia</div>
+                <div class="text-info-guardia">
+                  {{ vm.guardInfo.usuarioNombre }}
+                </div>
+              </div>
+
+              <div class="m-t-10">
+                <div>Telefono: </div>
+                <div class="text-info-guardia">
+                 {{ vm.guardInfo.usuarioTelefono }}
+                </div>
+              </div>
+
+              <div class="m-t-10">
+                <div>Domicilio:</div>
+                <div class="text-info-guardia">
+                  {{ vm.guardInfo.usuarioDomicilio }}
+                </div>
+              </div>
+
+              <div class="m-t-10">
+                <div>Turno: </div>
+                <div class="text-info-guardia">
+                  {{ vm.guardInfo.usuarioTurno }}
+                </div>
+              </div>
+
+              <div class="m-t-20" style="width: 90%; bottom: 15px; position: absolute">
+                <div class="text-info-guardia cursor-pointer" style="padding-right: 40px;" align="center">
+                  Ver mas detalles
+                </div>
+              </div>
+
+            </div>
+          </div>
+
         </div>
       </div>
 

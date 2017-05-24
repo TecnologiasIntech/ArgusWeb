@@ -31,6 +31,7 @@ argus
       vm.responsibleId = 1;
       vm.isEditResponsible;
       vm.listDaysSchedule = [];
+      vm.guardInfo = {};
 
 
       //public functions
@@ -538,8 +539,6 @@ argus
         }
 
       }
-
-
 
     }
   ]);

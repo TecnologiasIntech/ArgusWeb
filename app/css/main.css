@@ -33,7 +33,7 @@
   box-shadow: 0px 0px 5px #BDC3C7;
 }
 .table-guardias{
-  height: 240px;
+  height: 320px;
   overflow-y: auto;
   overflow-x: auto;
 }
@@ -346,5 +346,18 @@
 }
 
 .f-15{
+  font-size: 15px;
+}
+
+.card-info-guardias{
+  background-color: #5bc0de;
+  color:white;
+  border-radius: 5px 5px 5px 5px;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border: 0px solid #000000;
+}
+
+.text-info-guardia{
   font-size: 15px;
 }
