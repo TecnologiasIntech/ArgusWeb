@@ -179,7 +179,10 @@
               <ul class="dropdown-menu pull-right actions-supervisor">
                 <li class="action-edit cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key)">Editar</li>
                 <li class="action-delete cursor-pointer" ng-click="vm.deleteUser(guardia, 'guardias', guardia.$key)">
-                  Eliminar
+                  Eliminar Permanentemente
+                </li>
+                <li class="action-delete cursor-pointer" ng-click="vm.suspenderGuardia(guardia.$key)">
+                  Suspender
                 </li>
               </ul>
             </div>

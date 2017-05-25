@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="7f4ae1f1-b0de-4894-a4d9-423677ee78ea" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/modals/clientes.modal.html" afterPath="$PROJECT_DIR$/app/views/modals/clientes.modal.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controllers/supervisores.controller.js" afterPath="$PROJECT_DIR$/app/js/controllers/supervisores.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/supervisores.html" afterPath="$PROJECT_DIR$/app/views/supervisores.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -25,35 +26,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="clientes.modal.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views/modals/clientes.modal.html">
+      <file leaf-file-name="supervisores.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/supervisores.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="279" column="0" lean-forward="true" selection-start-line="279" selection-start-column="0" selection-end-line="279" selection-end-column="0" />
-              <folding>
-                <element signature="n#div#0;n#form#0;n#!!top" expanded="false" />
-                <element signature="n#div#0;n#div#0;n#div#1;n#form#0;n#!!top" expanded="false" />
-                <element signature="n#div#1;n#div#0;n#div#1;n#form#0;n#!!top" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="clientes.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/clientes.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
-              <caret line="44" column="15" lean-forward="false" selection-start-line="44" selection-start-column="15" selection-end-line="44" selection-end-column="15" />
+            <state relative-caret-position="295">
+              <caret line="184" column="27" lean-forward="true" selection-start-line="184" selection-start-column="27" selection-end-line="184" selection-end-column="27" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="clientes.controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/js/controllers/clientes.controller.js">
+      <file leaf-file-name="supervisores.controller.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/js/controllers/supervisores.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+            <state relative-caret-position="375">
+              <caret line="528" column="11" lean-forward="true" selection-start-line="528" selection-start-column="11" selection-end-line="528" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -72,8 +59,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>select</find>
-      <find>option</find>
       <find>consigna</find>
       <find>x</find>
       <find>get</find>
@@ -102,6 +87,8 @@
       <find>fecha</find>
       <find>nomina</find>
       <find>zonas</find>
+      <find>deleteuser</find>
+      <find>eliminar</find>
     </findStrings>
     <replaceStrings>
       <replace>sm</replace>
@@ -153,7 +140,6 @@
         <option value="$PROJECT_DIR$/app/views/bitacoras.html" />
         <option value="$PROJECT_DIR$/app/views/incidentes.html" />
         <option value="$PROJECT_DIR$/app/views/notificaciones.html" />
-        <option value="$PROJECT_DIR$/app/views/supervisores.html" />
         <option value="$PROJECT_DIR$/app/views/zonas.html" />
         <option value="$PROJECT_DIR$/app/services/alert.service.js" />
         <option value="$PROJECT_DIR$/app/views/bitacoraRegistro.html" />
@@ -161,7 +147,6 @@
         <option value="$PROJECT_DIR$/app/js/controllers/header.Controller.js" />
         <option value="$PROJECT_DIR$/app/js/controllers/bitacoraRegistro.controller.js" />
         <option value="$PROJECT_DIR$/app/views/modals/notificaciones.modal.html" />
-        <option value="$PROJECT_DIR$/app/js/controllers/supervisores.controller.js" />
         <option value="$PROJECT_DIR$/app/template/sidebar-left.html" />
         <option value="$PROJECT_DIR$/app/js/controllers/nomina.controller.js" />
         <option value="$PROJECT_DIR$/app/views/nomina.html" />
@@ -169,6 +154,8 @@
         <option value="$PROJECT_DIR$/app/js/controllers/clientes.controller.js" />
         <option value="$PROJECT_DIR$/app/views/clientes.html" />
         <option value="$PROJECT_DIR$/app/views/modals/clientes.modal.html" />
+        <option value="$PROJECT_DIR$/app/views/supervisores.html" />
+        <option value="$PROJECT_DIR$/app/js/controllers/supervisores.controller.js" />
       </list>
     </option>
   </component>
@@ -517,7 +504,8 @@
       <workItem from="1495481227973" duration="1058000" />
       <workItem from="1495498590837" duration="1918000" />
       <workItem from="1495555732972" duration="2850000" />
-      <workItem from="1495639292281" duration="8014000" />
+      <workItem from="1495639292281" duration="8121000" />
+      <workItem from="1495722562627" duration="920000" />
     </task>
     <task id="LOCAL-00001" summary="cambios generales&#10;">
       <created>1489812407890</created>
@@ -680,11 +668,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495648812860</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="- ocultar boton de ver mas detalles del guardia en servicios">
+      <created>1495651068930</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1495651068930</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="875091000" />
+    <option name="totallyTimeSpent" value="876118000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -696,15 +691,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17408586" sideWeight="0.8527005" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Grunt " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22321428" sideWeight="0.09328969" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32026145" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32026145" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3107511" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17559524" sideWeight="0.14729951" order="3" side_tool="true" content_ui="tabs" />
@@ -772,7 +766,9 @@
     <MESSAGE value="- mostrar incidentes no resueltos" />
     <MESSAGE value="- Bug arreglado para confirmar asistencia de un guardia&#10;- Bug arreglado para agregar un guardia temporal" />
     <MESSAGE value="- Poder ver informacion del guardia cuando estes en servicios&#10;- Filtro por zonas en la prenomina" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Poder ver informacion del guardia cuando estes en servicios&#10;- Filtro por zonas en la prenomina" />
+    <MESSAGE value="- ocultar boton de ver mas detalles del guardia en servicios" />
+    <MESSAGE value="- Opcion para suspender guardia y para eliminar permanentemente" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Opcion para suspender guardia y para eliminar permanentemente" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -965,13 +961,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/supervisores.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="694">
-          <caret line="192" column="0" lean-forward="false" selection-start-line="192" selection-start-column="0" selection-end-line="192" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/zonas.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="580">
@@ -1042,13 +1031,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/controllers/supervisores.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="484" column="21" lean-forward="true" selection-start-line="484" selection-start-column="21" selection-end-line="484" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/js/controllers/header.Controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -1074,7 +1056,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="14" column="81" lean-forward="true" selection-start-line="14" selection-start-column="81" selection-end-line="14" selection-end-column="81" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1089,7 +1070,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1097,7 +1077,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="79" column="40" lean-forward="false" selection-start-line="79" selection-start-column="40" selection-end-line="79" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1105,21 +1084,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
           <caret line="360" column="18" lean-forward="false" selection-start-line="360" selection-start-column="1" selection-end-line="360" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/controllers/clientes.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/clientes.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
+        <state relative-caret-position="748">
           <caret line="44" column="15" lean-forward="false" selection-start-line="44" selection-start-column="15" selection-end-line="44" selection-end-column="15" />
           <folding />
         </state>
@@ -1127,13 +1097,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/modals/clientes.modal.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="279" column="0" lean-forward="true" selection-start-line="279" selection-start-column="0" selection-end-line="279" selection-end-column="0" />
+        <state relative-caret-position="119">
+          <caret line="272" column="20" lean-forward="true" selection-start-line="272" selection-start-column="20" selection-end-line="272" selection-end-column="20" />
           <folding>
             <element signature="n#div#0;n#form#0;n#!!top" expanded="false" />
             <element signature="n#div#0;n#div#0;n#div#1;n#form#0;n#!!top" expanded="false" />
             <element signature="n#div#1;n#div#0;n#div#1;n#form#0;n#!!top" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controllers/clientes.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/supervisores.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="184" column="27" lean-forward="true" selection-start-line="184" selection-start-column="27" selection-end-line="184" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controllers/supervisores.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="528" column="11" lean-forward="true" selection-start-line="528" selection-start-column="11" selection-end-line="528" selection-end-column="11" />
+          <folding />
         </state>
       </provider>
     </entry>

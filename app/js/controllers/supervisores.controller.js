@@ -47,6 +47,7 @@ argus
       vm.updateUser = updateUser;
       vm.editUserCancel = editUserCancel;
       vm.verifyUser = verifyUser;
+      vm.suspenderGuardia = suspenderGuardia;
 
       //private functions
       function activate() {
@@ -515,6 +516,17 @@ argus
             }
           }
         }
+      }
+
+      function suspenderGuardia( guardKey ) {
+
+        alertService.confirm('Suspender Guardia', 'Estas seguro que deseas suspender a este guardia?').then(function () {
+
+          firebase.database().ref('Argus/guardias/' + guardKey).update({
+            usuarioClienteAsignado: null
+          })
+
+        });
       }
 
     }
