@@ -39,7 +39,7 @@
       </label>
       <button
         class="btn btn-primary waves-effect display-inline"
-        ng-click="vm.user = {}; vm.user.usuarioTipo = vm.searchTypeUser ; vm.verifyUser(vm.searchTypeUser)">Agregar
+        ng-click="vm.user = {}; vm.user.usuarioTipo = vm.searchTypeUser ; vm.verifyUser(vm.searchTypeUser); vm.availableZones()">Agregar
       </button>
 
     </div>
@@ -118,16 +118,17 @@
 
         <tr ng-repeat="supervisor in vm.supervisores | toArray | filter: {usuarioNombre: vm.buscarUsuario}"
             ng-if="vm.searchTypeUser == 'supervisor'">
-          <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(supervisor, supervisor.$key, 'supervisor')">
+          <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(supervisor, supervisor.$key, 'supervisor', supervisor.usuarioTurno)">
             <span>{{supervisor.usuarioNombre}}</span>
           </td>
-          <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(supervisor, supervisor.$key, 'supervisor')">
-            <span>{{supervisor.usuarioZona}}</span>
+          <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(supervisor, supervisor.$key, 'supervisor', supervisor.usuarioTurno)">
+            <span ng-if="supervisor.usuarioZona != undefined">{{supervisor.usuarioZona}}</span>
+            <span ng-if="supervisor.usuarioZona == undefined">Sin zona asignada</span>
           </td>
-          <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(supervisor, supervisor.$key, 'supervisor')">
+          <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(supervisor, supervisor.$key, 'supervisor', supervisor.usuarioTurno)">
             <span>{{supervisor.usuarioTurno}}</span>
           </td>
-          <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(supervisor, supervisor.$key, 'supervisor')">
+          <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(supervisor, supervisor.$key, 'supervisor', supervisor.usuarioTurno)">
             <span>{{supervisor.usuarioTelefono}}</span>
           </td>
           <td align="right" style="width: 50px">
@@ -138,10 +139,10 @@
               </a>
               <ul class="dropdown-menu pull-right actions-supervisor">
                 <li class="action-edit cursor-pointer"
-                    ng-click="vm.editUser(supervisor, supervisor.$key, 'supervisor')">Editar
+                    ng-click="vm.editUser(supervisor, supervisor.$key, 'supervisor', supervisor.usuarioTurno)">Editar
                 </li>
                 <li class="action-delete cursor-pointer"
-                    ng-click="vm.deleteUser(supervisor, 'supervisores', supervisor.$key)">
+                    ng-click="vm.deleteUser(supervisor, 'supervisores', supervisor.$key, supervisor.usuarioTurno)">
                   Eliminar
                 </li>
               </ul>
@@ -162,7 +163,7 @@
             <span>{{guardia.usuarioNombre}}</span>
           </td>
           <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key)">
-            <span>{{guardia.usuarioTelefono}}</span>
+            <span>{{guardia.usuarioTelefonoCelular}}</span>
           </td>
           <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key)">
             <span>{{guardia.usuarioTurno}}</span>
@@ -177,9 +178,9 @@
                 <i class="zmdi zmdi-more-vert zmdi-hc-2x actions-size"></i>
               </a>
               <ul class="dropdown-menu pull-right actions-supervisor">
-                <li class="action-edit cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key)">Editar</li>
-                <li class="action-delete cursor-pointer" ng-click="vm.deleteUser(guardia, 'guardias', guardia.$key)">
-                  Eliminar Permanentemente
+                <li class="action-edit cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key, supervisor.usuarioTurno)">Editar</li>
+                <li class="action-edit cursor-pointer" ng-click="vm.deleteUser(guardia, 'guardias', guardia.$key)">
+                  Eliminar
                 </li>
                 <li class="action-delete cursor-pointer" ng-click="vm.suspenderGuardia(guardia.$key)">
                   Suspender

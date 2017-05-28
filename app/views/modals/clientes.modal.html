@@ -62,8 +62,16 @@
                      required>
             </div>
           </div>
+          <div class="col-xs-5">
+            <span>Zona</span>
+            <div class="fg-line m-l-10">
+              <select class="form-control" ng-model="vm.client.clienteZonaAsignada">
+                <option value="{{zona.zonaNombre}}" ng-repeat="zona in vm.zonas" >{{zona.zonaNombre}}</option>
+              </select>
+            </div>
+          </div>
         </div>
-        <h4 style="color: #616161; margin-top: 30px; margin-left: 30px;">Horario</h4>
+        <h4 style="color: #616161; margin-top: 20px; margin-left: 30px;">Horario</h4>
         <div class="row">
           <div class="col-xs-12 m-t-15" align="center">
             <div class="checkbox m-b-15" style="display: inline">
@@ -121,11 +129,31 @@
         <div class="row m-t-30">
           <div class="col-xs-6" align="right">
             <span>Hora de apertura:</span>
-            <input type="time" name="" value="" ng-model="vm.openingTime">
+            <input type="time" name="" id="tiempoAperturah1" ng-value="vm.openingTimeh1">
           </div>
           <div class="col-xs-6">
             <span>Hora de cierre:</span>
-            <input type="time" name="" value="" ng-model="vm.closingTime">
+            <input type="time" name="" id="tiempoCierreh1" ng-value="vm.closingTimeh1">
+          </div>
+        </div>
+        <div class="row m-t-15">
+          <div class="col-xs-6" align="right">
+            <span>Hora de apertura:</span>
+            <input type="time" name="" id="tiempoAperturah2" ng-value="vm.openingTimeh2">
+          </div>
+          <div class="col-xs-6">
+            <span>Hora de cierre:</span>
+            <input type="time" name="" id="tiempoCierreh2" ng-value="vm.closingTimeh2">
+          </div>
+        </div>
+        <div class="row m-t-15">
+          <div class="col-xs-6" align="right">
+            <span>Hora de apertura:</span>
+            <input type="time" name="" id="tiempoAperturah3" ng-value="vm.openingTimeh3">
+          </div>
+          <div class="col-xs-6">
+            <span>Hora de cierre:</span>
+            <input type="time" name="" id="tiempoCierreh3" ng-value="vm.closingTimeh3">
           </div>
         </div>
 
@@ -216,6 +244,15 @@
                     </label>
                   </div>
                 </td>
+                <td ng-if="guard.usuarioDisponible" class="col-xs-2">
+                  <select ng-model="vm.selectedCustomer">
+                    <option value="{{customer.clienteNombre}}" ng-repeat="customer in vm.customers">{{customer.clienteNombre}}</option>
+                  </select>
+                </td>
+                <td ng-if="guard.usuarioDisponible" class="col-xs-1">
+                  <button class="btn btn-primary btn-sm waves-effect" ng-click="vm.moveGuardService(guard, vm.selectedCustomer)">Mover</button>
+                </td>
+
                 <td  ng-if="guard.usuarioDisponible" align="center">
                   <div class="lv-actions actions dropdown" uib-dropdown="" ng-click="vm.guardInfo = guard">
                     <div class="cursor-pointer dropdown-toggle">
@@ -229,7 +266,7 @@
                 <td align="left">
                   <div class="checkbox m-t-0 m-b-0">
                     <label>
-                      <input type="checkbox" disabled ng-checked="vm.verifyChecked(guard.usuarioNombre) > -1" >
+                      <input type="checkbox" disabled ng-checked="vm.verifyChecked(guard.usuarioNombre) > -1; vm.isAssigned" >
                       <i class="input-helper"></i>
                       <span>{{guard.usuarioNombre}}</span>
                       <!--[<span>{{guard.usuarioTurno}}</span>]-->
@@ -282,6 +319,11 @@
           </div>
 
         </div>
+        <div class="row">
+         <div class="col-xs-12 m-t-15" align="center">
+           <button class="btn btn-primary waves-effect" ng-controller="supervisorCtrl as vm" ng-click="vm.isNewGuardiaofSeivice = true; vm.verifyUser('guardia')">Nuevo Guardia</button>
+         </div>
+       </div>
       </div>
 
       <!--Más de 3 Consignas-->
@@ -337,8 +379,8 @@
       <button class="btn btn-primary waves-effect" ng-click="vm.view = 'general'; vm.responsibleId = 1" type="submit" ng-if="!vm.isEdit">Aceptar</button>
       <div class="btn btn-primary waves-effect" ng-click="vm.updateClient(); vm.clearConsignas(); vm.responsibleId = 1" ng-if="vm.isEdit">Aceptar</div>
 
-      <div class="btn btn-primary waves-effect" ng-if="!vm.isEdit" ng-click="vm.modal.dismiss(); vm.deleteAllConsignas( vm.client.clienteNombre ); vm.guardsToClient = []; vm.client = {}; vm.isEdit = false; vm.client.clienteDisponible = true; vm.editClientCancel(); vm.clearConsignas(); vm.responsibleId = 1">Cancelar</div>
-      <div class="btn btn-primary waves-effect" ng-if="vm.isEdit" ng-click="vm.modal.dismiss(); vm.guardsToClient = []; vm.client = {}; vm.isEdit = false; vm.client.clienteDisponible = true; vm.editClientCancel(); vm.clearConsignas(); vm.responsibleId = 1">Cancelar</div>
+      <div class="btn btn-primary waves-effect" ng-if="!vm.isEdit" ng-click="vm.modal.dismiss(); vm.deleteAllConsignas( vm.client.clienteNombre ); vm.guardsToClient = []; vm.client = {}; vm.isEdit = false; vm.client.clienteDisponible = true; vm.editClientCancel(); vm.clearConsignas(); vm.responsibleId = 1; vm.clearSchedule(); vm.listResponsibles = []">Cancelar</div>
+      <div class="btn btn-primary waves-effect" ng-if="vm.isEdit" ng-click="vm.modal.dismiss(); vm.guardsToClient = []; vm.client = {}; vm.isEdit = false; vm.client.clienteDisponible = true; vm.editClientCancel(); vm.clearConsignas(); vm.responsibleId = 1; vm.clearSchedule(); vm.listResponsibles = []">Cancelar</div>
     </div>
   </div>
 </form>

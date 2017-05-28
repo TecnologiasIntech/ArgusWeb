@@ -135,8 +135,11 @@ argus
       function registerZone() {
 
         firebase.database().ref('Argus/Zonas/' + vm.zone.zonaNombre).set({
-          zonaNombre: vm.zone.zonaNombre,
-          disponibilidadZona: true
+          zonaNombre: vm.zone.zonaNombre
+        });
+        firebase.database().ref('Argus/Zonas/' + vm.zone.zonaNombre + '/disponibilidadZona').set({
+          disponibilidadDia: true,
+          disponibilidadNoche: true
         });
 
         for(var i = 0; i < vm.customersToZone.length; i++){

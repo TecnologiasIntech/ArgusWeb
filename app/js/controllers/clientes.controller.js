@@ -32,6 +32,7 @@ argus
       vm.isEditResponsible;
       vm.listDaysSchedule = [];
       vm.guardInfo = {};
+      vm.saveZona;
 
 
       //public functions
@@ -58,6 +59,8 @@ argus
       vm.editResponsible = editResponsible;
       vm.updateResponsible = updateResponsible;
       vm.daysSelected = daysSelected;
+      vm.clearSchedule = clearSchedule;
+      vm.moveGuardService = moveGuardService;
 
       //private functions
       function activate() {
@@ -73,6 +76,11 @@ argus
         firebase.database().ref('Argus/guardias')
           .on('value', function (snapshot) {
             vm.guards = snapshot.val();
+          });
+
+        firebase.database().ref('Argus/Zonas')
+          .on('value', function(snapshot){
+            vm.zonas = snapshot.val();
           });
 
       }
@@ -130,6 +138,7 @@ argus
       function editClient(client, clientName) {
         vm.isEdit = true;
         vm.client = client;
+        vm.saveZona = vm.client.clienteZonaAsignada;
         for(var guard in vm.client.clienteGuardias){
           vm.saveGuardias.push(guard);
           vm.guardsToClient.push({
@@ -147,6 +156,8 @@ argus
         // Obtener los responsables del cliente
         getResponsibles( clientName );
 
+        //Obtener el horario
+        getSchedule( clientName );
 
         vm.openModal();
       }
@@ -191,8 +202,19 @@ argus
       }
 
       function registerClient() {
-        vm.client.clienteDisponible = true;
+
+        if (vm.client.clienteZonaAsignada != undefined && vm.client.clienteZonaAsignada != "Sin Asignar") {
+          vm.client.clienteDisponible = false;
+        }
+        else {
+          vm.client.clienteDisponible = true;
+        }
         firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).set(vm.client);
+
+        //Agregar referencia del servicio en la zona
+        firebase.database().ref('Argus/Zonas/' + vm.client.clienteZonaAsignada + '/zonaClientes/' + vm.client.clienteNombre).set({
+          clienteNombre: vm.client.clienteNombre
+        });
 
         for(var i = 0; i < vm.guardsToClient.length; i++){
           // Asignar los guardias al cliente
@@ -248,6 +270,28 @@ argus
               break;
           }
         }
+        var openingTimeh1 = document.getElementById("tiempoAperturah1").value;
+        var closingTimeh1 = document.getElementById("tiempoCierreh1").value;
+
+        var openingTimeh2 = document.getElementById("tiempoAperturah2").value;
+        var closingTimeh2 = document.getElementById("tiempoCierreh2").value;
+
+        var openingTimeh3 = document.getElementById("tiempoAperturah3").value;
+        var closingTimeh3 = document.getElementById("tiempoCierreh3").value;
+
+        firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).child('clienteHorario/primerHorario').set({
+          'horaApertura': openingTimeh1,
+          'horaCierre': closingTimeh1
+        });
+        firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).child('clienteHorario/segundoHorario').set({
+          'horaApertura': openingTimeh2,
+          'horaCierre': closingTimeh2
+        });
+        firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).child('clienteHorario/tercerHorario').set({
+          'horaApertura': openingTimeh3,
+          'horaCierre': closingTimeh3
+        });
+
         firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteHorario/diasLaborados').set({
           'lunes': l,
           'martes': ma,
@@ -257,10 +301,10 @@ argus
           'sabado': s,
           'domingo': d
         });
-        firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteHorario').set({
-          'horaApertura': vm.openingTime,
-          'horaCierre': vm.closingTime
-        });
+        // firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteHorario').set({
+        //   'horaApertura': vm.openingTime,
+        //   'horaCierre': vm.closingTime
+        // });
 
 
         vm.client = {};
@@ -303,9 +347,24 @@ argus
           firebase.database().ref('Argus/guardias/'+ vm.saveGuardias[guardia]).child('usuarioClienteAsignado').remove();
         }
         vm.saveGuardias=[];
+        //Actulizar referencia del servicio en la zona
+        if (vm.saveZona != vm.client.clienteZonaAsignada) {
+          firebase.database().ref('Argus/Zonas/' + vm.saveZona + '/zonaClientes/' + vm.client.clienteNombre).remove();
+          firebase.database().ref('Argus/Zonas/' + vm.client.clienteZonaAsignada + '/zonaClientes').child(vm.client.clienteNombre).set({
+            clienteNombre: vm.client.clienteNombre
+          });
+          firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).update({
+            clienteZonaAsignada: vm.client.clienteZonaAsignada
+          });
+        }
+        // firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).update({
+        //   clienteNumeroGuardias: vm.client.clienteNumeroGuardias,
+        //   clienteDomicilio: vm.client.clienteDomicilio
+        // });
         firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).update({
           clienteNumeroGuardias: vm.client.clienteNumeroGuardias,
-          clienteDomicilio: vm.client.clienteDomicilio
+          clienteDomicilio: vm.client.clienteDomicilio,
+          clienteZonaAsignada: vm.client.clienteZonaAsignada
         });
 
         firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteGuardias').remove();
@@ -336,10 +395,73 @@ argus
           });
         }
 
+        //Actualizar horario
+        var l=false, ma= false, mi=false, j=false, v=false, s=false, d=false;
+        for (var index in vm.listDaysSchedule) {
+          switch (vm.listDaysSchedule[index]) {
+            case 'lunes':
+              l = true;
+              break;
+            case 'martes':
+              ma = true;
+              break;
+            case 'miercoles':
+              mi = true;
+              break;
+            case 'jueves':
+              j = true;
+              break;
+            case 'viernes':
+              v = true;
+              break;
+            case 'sabado':
+              s = true;
+              break;
+            case 'domingo':
+              d = true;
+              break;
+          }
+        }
+
+        var openingTimeh1 = document.getElementById("tiempoAperturah1").value;
+        var closingTimeh1 = document.getElementById("tiempoCierreh1").value;
+
+        var openingTimeh2 = document.getElementById("tiempoAperturah2").value;
+        var closingTimeh2 = document.getElementById("tiempoCierreh2").value;
+
+        var openingTimeh3 = document.getElementById("tiempoAperturah3").value;
+        var closingTimeh3 = document.getElementById("tiempoCierreh3").value;
+
+        firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).child('clienteHorario/primerHorario').update({
+          'horaApertura': openingTimeh1,
+          'horaCierre': closingTimeh1
+        });
+
+        firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).child('clienteHorario/segundoHorario').update({
+          'horaApertura': openingTimeh2,
+          'horaCierre': closingTimeh2
+        });
+
+        firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).child('clienteHorario/tercerHorario').update({
+          'horaApertura': openingTimeh3,
+          'horaCierre': closingTimeh3
+        });
+
+        firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteHorario/diasLaborados').update({
+          'lunes': l,
+          'martes': ma,
+          'miercoles': mi,
+          'jueves': j,
+          'viernes': v,
+          'sabado': s,
+          'domingo': d
+        });
+
         vm.client = {};
         vm.client.clienteDisponible = true;
         vm.guardsToClient = [];
         vm.listResponsibles = [];
+        vm.listDaysSchedule =[];
         vm.isEdit = false;
         vm.view = 'general';
         growl.info('Cliente Actualizado!', vm.config);
@@ -525,7 +647,6 @@ argus
          });
       }
 
-
       function daysSelected( addOrDeleteDay, day ){
         if (addOrDeleteDay) {
           vm.listDaysSchedule.push(day);
@@ -537,7 +658,82 @@ argus
             }
           }
         }
+      }
 
+      function getSchedule( clientName ) {
+        vm.listDaysSchedule = []; vm.saturday = false; vm.thusday = false; vm.wednesday = false;
+        vm.thursday = false; vm.friday = false; vm.monday = false; vm.sunday = false;
+        firebase.database().ref('Argus/Clientes/' + clientName + '/clienteHorario')
+          .on('value', function(snapshot){
+            var horario = snapshot.val();
+            if (horario.diasLaborados.lunes) {
+              vm.listDaysSchedule.push('lunes');
+              vm.monday = true;
+            }
+            if (horario.diasLaborados.martes) {
+              vm.listDaysSchedule.push('martes');
+              vm.thusday = true;
+            }
+            if (horario.diasLaborados.miercoles) {
+              vm.listDaysSchedule.push('miercoles');
+              vm.wednesday = true;
+            }
+            if (horario.diasLaborados.jueves) {
+              vm.listDaysSchedule.push('jueves');
+              vm.thursday = true;
+            }
+            if (horario.diasLaborados.viernes) {
+              vm.listDaysSchedule.push('viernes');
+              vm.friday = true;
+            }
+            if (horario.diasLaborados.sabado) {
+              vm.listDaysSchedule.push('sabado');
+              vm.saturday = true;
+            }
+            if (horario.diasLaborados.domingo) {
+              vm.listDaysSchedule.push('domingo');
+              vm.sunday = true;
+            }
+            var timeOpeningh1 = horario.primerHorario.horaApertura.split(":");
+            var timeClosingh1 = horario.primerHorario.horaCierre.split(":");
+            vm.openingTimeh1 = timeOpeningh1[0] + ":" + timeOpeningh1[1];
+            vm.closingTimeh1 = timeClosingh1[0] + ":" + timeClosingh1[1];
+
+            var timeOpeningh2 = horario.segundoHorario.horaApertura.split(":");
+            var timeClosingh2 = horario.segundoHorario.horaCierre.split(":");
+            vm.openingTimeh2 = timeOpeningh2[0] + ":" + timeOpeningh2[1];
+            vm.closingTimeh2 = timeClosingh2[0] + ":" + timeClosingh2[1];
+
+            var timeOpeningh3 = horario.tercerHorario.horaApertura.split(":");
+            var timeClosingh3 = horario.tercerHorario.horaCierre.split(":");
+            vm.openingTimeh3 = timeOpeningh3[0] + ":" + timeOpeningh3[1];
+            vm.closingTimeh3 = timeClosingh3[0] + ":" + timeClosingh3[1];
+
+
+          });
+      }
+
+      function clearSchedule() {
+        vm.listDaysSchedule = [];
+        vm.openingTimeh1 = "";
+        vm.closingTimeh1 = "";
+        vm.openingTimeh2 = "";
+        vm.closingTimeh2 = "";
+        vm.openingTimeh3 = "";
+        vm.closingTimeh3 = "";
+        vm.saturday = false; vm.thusday = false; vm.wednesday = false;
+        vm.thursday = false; vm.friday = false; vm.monday = false; vm.sunday = false;
+      }
+
+      function moveGuardService( guard, service ) {
+        firebase.database().ref('Argus/Clientes/' + service + '/clienteGuardias/').child(guard.$key).set({
+          usuarioKey: guard.$key,
+          usuarioNombre: guard.usuarioNombre
+        });
+        firebase.database().ref('Argus/guardias/' + guard.$key).update({
+          'usuarioClienteAsignado': service,
+          'usuarioDisponible': false
+        });
       }
 
     }
