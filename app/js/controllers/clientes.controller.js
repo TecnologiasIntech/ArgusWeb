@@ -37,6 +37,7 @@ argus
 
       //public functions
       vm.openModal = openModal;
+      vm.openGuardiaDetails = openGuardiaDetails;
       vm.editClient = editClient;
       vm.deleteClient = deleteClient;
       vm.registerClient = registerClient;
@@ -94,6 +95,17 @@ argus
           templateUrl: 'views/modals/clientes.modal.html',
           scope: $scope,
           size: 'lm',
+          backdrop: 'static'
+        });
+      }
+
+      function openGuardiaDetails() {
+        //saveGuardias=[];
+        vm.modalGuardiaDetails = $uibModal.open({
+          animation: true,
+          templateUrl: 'views/modals/guardiasDetalles.modal.html',
+          scope: $scope,
+          size: 'xxm',
           backdrop: 'static'
         });
       }

@@ -219,18 +219,18 @@
                      ng-model="vm.searchInGuards">
             </label>
           </div>
-          <div class="col-xs-3 m-r-20" align="left">
-            <div class="checkbox m-b-15">
-              <label>
-                <input type="checkbox" ng-model="mostrar">
-                <i class="input-helper"></i>
-                Mostrar Asignados
-              </label>
-            </div>
-          </div>
+          <!--<div class="col-xs-3 m-r-20" align="left">-->
+            <!--<div class="checkbox m-b-15">-->
+              <!--<label>-->
+                <!--<input type="checkbox" ng-model="mostrar">-->
+                <!--<i class="input-helper"></i>-->
+                <!--Mostrar Asignados-->
+              <!--</label>-->
+            <!--</div>-->
+          <!--</div>-->
         </div>
         <div class="row">
-          <div class="m-l-30 col-xs-7 m-t-10 p-l-0 p-r-0 table-guardias table-box">
+          <div class="m-l-30 col-xs-11 m-t-10 p-l-0 p-r-0 table-guardias table-box">
             <table class="table table-hover table-bordered ">
               <tbody>
               <tr ng-repeat="guard in vm.guards | toArray |filter: {usuarioNombre: vm.searchInGuards} " ng-if="!mostrar">
@@ -254,7 +254,7 @@
                 </td>
 
                 <td  ng-if="guard.usuarioDisponible" align="center">
-                  <div class="lv-actions actions dropdown" uib-dropdown="" ng-click="vm.guardInfo = guard">
+                  <div class="lv-actions actions dropdown" uib-dropdown="" ng-click="vm.guardInfo = guard; vm.openGuardiaDetails();">
                     <div class="cursor-pointer dropdown-toggle">
                       <i class="zmdi zmdi-info-outline zmdi-hc-2x actions-size"></i>
                     </div>
@@ -262,60 +262,20 @@
                 </td>
               </tr>
 
-              <tr ng-repeat="guard in vm.guardsToClient | filter: {usuarioNombre: vm.searchInGuards} " ng-if="mostrar">
-                <td align="left">
-                  <div class="checkbox m-t-0 m-b-0">
-                    <label>
-                      <input type="checkbox" disabled ng-checked="vm.verifyChecked(guard.usuarioNombre) > -1; vm.isAssigned" >
-                      <i class="input-helper"></i>
-                      <span>{{guard.usuarioNombre}}</span>
-                      <!--[<span>{{guard.usuarioTurno}}</span>]-->
-                    </label>
-                  </div>
-                </td>
-              </tr>
+              <!--<tr ng-repeat="guard in vm.guardsToClient | filter: {usuarioNombre: vm.searchInGuards} " ng-if="mostrar">-->
+                <!--<td align="left">-->
+                  <!--<div class="checkbox m-t-0 m-b-0">-->
+                    <!--<label>-->
+                      <!--<input type="checkbox" disabled ng-checked="vm.verifyChecked(guard.usuarioNombre) > -1; vm.isAssigned" >-->
+                      <!--<i class="input-helper"></i>-->
+                      <!--<span>{{guard.usuarioNombre}}</span>-->
+                      <!--&lt;!&ndash;[<span>{{guard.usuarioTurno}}</span>]&ndash;&gt;-->
+                    <!--</label>-->
+                  <!--</div>-->
+                <!--</td>-->
+              <!--</tr>-->
               </tbody>
             </table>
-          </div>
-
-          <div class="col-xs-4 m-t-10">
-            <div class="card-body card-padding table-guardias card-info-guardias" style="">
-
-              <div>
-                <div>Guardia</div>
-                <div class="text-info-guardia">
-                  {{ vm.guardInfo.usuarioNombre }}
-                </div>
-              </div>
-
-              <div class="m-t-10">
-                <div>Telefono: </div>
-                <div class="text-info-guardia">
-                 {{ vm.guardInfo.usuarioTelefono }}
-                </div>
-              </div>
-
-              <div class="m-t-10">
-                <div>Domicilio:</div>
-                <div class="text-info-guardia">
-                  {{ vm.guardInfo.usuarioDomicilio }}
-                </div>
-              </div>
-
-              <div class="m-t-10">
-                <div>Turno: </div>
-                <div class="text-info-guardia">
-                  {{ vm.guardInfo.usuarioTurno }}
-                </div>
-              </div>
-
-              <!--<div class="m-t-20" style="width: 90%; bottom: 15px; position: absolute">-->
-                <!--<div class="text-info-guardia cursor-pointer" style="padding-right: 40px;" align="center">-->
-                  <!--Ver mas detalles-->
-                <!--</div>-->
-              <!--</div>-->
-
-            </div>
           </div>
 
         </div>

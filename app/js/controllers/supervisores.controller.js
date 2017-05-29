@@ -33,7 +33,6 @@ argus
       vm.saveUser=[];
       vm.clienteDelGuardia = "";
       vm.existingError = false;
-      vm.validar = validar;
       vm.zonasDisponibles = [];
       vm.update = false;
       vm.notificationBitacora = {};
@@ -52,6 +51,7 @@ argus
       vm.verifyUser = verifyUser;
       vm.suspenderGuardia = suspenderGuardia;
       vm.availableZones = availableZones;
+      vm.validar = validar;
 
       //private functions
       function activate() {
