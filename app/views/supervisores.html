@@ -1,17 +1,17 @@
 <div growl></div>
-<div class="card m-l-20 m-r-20">
+<div class="card m-l-20 m-r-20" ng-init="vm.searchTypeUser = 'supervisor'">
   <div class="row">
     <div class="col-xs-offset-1 col-xs-9 m-t-20" align="right">
 
       <!--TIPOS DE BUSQUEDA-->
-      <!--Guardia-->
-      <div class="radio radio-search">
-        <label>
-          <input class="form-control" type="radio" value="guardia" ng-model="vm.searchTypeUser">
-          <i class="input-helper"></i>
-          Guardia
-        </label>
-      </div>
+      <!--&lt;!&ndash;Guardia&ndash;&gt;-->
+      <!--<div class="radio radio-search">-->
+        <!--<label>-->
+          <!--<input class="form-control" type="radio" value="guardia" ng-model="vm.searchTypeUser">-->
+          <!--<i class="input-helper"></i>-->
+          <!--Guardia-->
+        <!--</label>-->
+      <!--</div>-->
 
       <!--Supervisor-->
       <div class="radio radio-search">
@@ -56,12 +56,12 @@
   </div>
 
   <!--No se encontró guardias-->
-  <div class="row" ng-if="vm.searchTypeUser == 'guardia' && !vm.guardias" align="center">
-    <div class="zmdi zmdi-quote m-t-20 not-found-quote">
-    </div>
-    <div class="not-found">No se encontraron</div>
-    <div class="m-b-30 not-found">guardias</div>
-  </div>
+  <!--<div class="row" ng-if="vm.searchTypeUser == 'guardia' && !vm.guardias" align="center">-->
+    <!--<div class="zmdi zmdi-quote m-t-20 not-found-quote">-->
+    <!--</div>-->
+    <!--<div class="not-found">No se encontraron</div>-->
+    <!--<div class="m-b-30 not-found">guardias</div>-->
+  <!--</div>-->
 
   <!--No se encontró administradores-->
   <div class="row" ng-if="vm.searchTypeUser == 'administrador' && !vm.administradores" align="center">
@@ -151,44 +151,44 @@
         </tr>
 
         <!--GUARDIAS-->
-        <th ng-if="vm.searchTypeUser == 'guardia'">Nombre</th>
-        <th ng-if="vm.searchTypeUser == 'guardia'">Telefono</th>
-        <th ng-if="vm.searchTypeUser == 'guardia'">Turno</th>
-        <th ng-if="vm.searchTypeUser == 'guardia'">Servicio</th>
-        <th ng-if="vm.searchTypeUser == 'guardia'"></th>
+        <!--<th ng-if="vm.searchTypeUser == 'guardia'">Nombre</th>-->
+        <!--<th ng-if="vm.searchTypeUser == 'guardia'">Telefono</th>-->
+        <!--<th ng-if="vm.searchTypeUser == 'guardia'">Turno</th>-->
+        <!--<th ng-if="vm.searchTypeUser == 'guardia'">Servicio</th>-->
+        <!--<th ng-if="vm.searchTypeUser == 'guardia'"></th>-->
 
-        <tr ng-repeat="guardia in vm.guardias | toArray | filter: {usuarioNombre: vm.buscarUsuario}"
-            ng-if="vm.searchTypeUser == 'guardia'">
-          <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key)">
-            <span>{{guardia.usuarioNombre}}</span>
-          </td>
-          <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key)">
-            <span>{{guardia.usuarioTelefonoCelular}}</span>
-          </td>
-          <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key)">
-            <span>{{guardia.usuarioTurno}}</span>
-          </td>
-          <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key)">
-            <span>{{ guardia.usuarioClienteAsignado ? guardia.usuarioClienteAsignado: 'No asignado' }}</span>
-          </td>
-          <td align="right" style="width: 50px">
-            <div class="lv-actions actions dropdown" uib-dropdown="">
-              <a class="cursor-pointer dropdown-toggle" uib-dropdown-toggle=""
-                 aria-haspopup="true" aria-expanded="false">
-                <i class="zmdi zmdi-more-vert zmdi-hc-2x actions-size"></i>
-              </a>
-              <ul class="dropdown-menu pull-right actions-supervisor">
-                <li class="action-edit cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key, supervisor.usuarioTurno)">Editar</li>
-                <li class="action-edit cursor-pointer" ng-click="vm.deleteUser(guardia, 'guardias', guardia.$key)">
-                  Eliminar
-                </li>
-                <li class="action-delete cursor-pointer" ng-click="vm.suspenderGuardia(guardia.$key)">
-                  Suspender
-                </li>
-              </ul>
-            </div>
-          </td>
-        </tr>
+        <!--<tr ng-repeat="guardia in vm.guardias | toArray | filter: {usuarioNombre: vm.buscarUsuario}"-->
+            <!--ng-if="vm.searchTypeUser == 'guardia'">-->
+          <!--<td class="p-t-15 cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key)">-->
+            <!--<span>{{guardia.usuarioNombre}}</span>-->
+          <!--</td>-->
+          <!--<td class="p-t-15 cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key)">-->
+            <!--<span>{{guardia.usuarioTelefonoCelular}}</span>-->
+          <!--</td>-->
+          <!--<td class="p-t-15 cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key)">-->
+            <!--<span>{{guardia.usuarioTurno}}</span>-->
+          <!--</td>-->
+          <!--<td class="p-t-15 cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key)">-->
+            <!--<span>{{ guardia.usuarioClienteAsignado ? guardia.usuarioClienteAsignado: 'No asignado' }}</span>-->
+          <!--</td>-->
+          <!--<td align="right" style="width: 50px">-->
+            <!--<div class="lv-actions actions dropdown" uib-dropdown="">-->
+              <!--<a class="cursor-pointer dropdown-toggle" uib-dropdown-toggle=""-->
+                 <!--aria-haspopup="true" aria-expanded="false">-->
+                <!--<i class="zmdi zmdi-more-vert zmdi-hc-2x actions-size"></i>-->
+              <!--</a>-->
+              <!--<ul class="dropdown-menu pull-right actions-supervisor">-->
+                <!--<li class="action-edit cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key, supervisor.usuarioTurno)">Editar</li>-->
+                <!--<li class="action-edit cursor-pointer" ng-click="vm.deleteUser(guardia, 'guardias', guardia.$key)">-->
+                  <!--Eliminar-->
+                <!--</li>-->
+                <!--<li class="action-delete cursor-pointer" ng-click="vm.suspenderGuardia(guardia.$key)">-->
+                  <!--Suspender-->
+                <!--</li>-->
+              <!--</ul>-->
+            <!--</div>-->
+          <!--</td>-->
+        <!--</tr>-->
         </tbody>
       </table>
     </div>

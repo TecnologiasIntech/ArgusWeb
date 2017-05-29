@@ -164,10 +164,14 @@ argus
       function editUser(user, userKey, userType, turno) {
         vm.isEdit = true;
         vm.user = user;
-        var domicilio = user.usuarioDomicilio.split(",");
-        vm.user.usuarioKey = userKey;
-        vm.user.usuarioColony = domicilio[0];
-        vm.user.usuarioStreet = domicilio[1];
+
+        if(userType == 'supervisor') {
+          var domicilio = user.usuarioDomicilio.split(",");
+          vm.user.usuarioColony = domicilio[0];
+          vm.user.usuarioStreet = domicilio[1];
+          vm.user.usuarioKey = userKey;
+        }
+
         vm.saveUser.push(user);
         vm.saveService = user.usuarioClienteAsignado;
 
@@ -221,12 +225,6 @@ argus
                vm.user = {};
              });
 
-
-            fireService.get('Argus/Supervisores').then(function (response) {
-
-
-
-            })
           }
         }
         vm.saveUser=[];
@@ -237,7 +235,7 @@ argus
         switch (vm.user.usuarioTipo) {
 
           case 'guardia':
-          if (vm.user.usuarioClienteAsignado != undefined && vm.user.usuarioClienteAsignado != 'Sin asignar') {
+          if(vm.user.usuarioClienteAsignado != undefined && vm.user.usuarioClienteAsignado != 'Sin asignar') {
              vm.user.usuarioDisponible = false;
            }
            else {
