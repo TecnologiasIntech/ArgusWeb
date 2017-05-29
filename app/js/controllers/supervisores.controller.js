@@ -14,6 +14,7 @@ argus
       vm.user = {};
       vm.administradores = {};
       vm.supervisores = {};
+      vm.coordinadores = {};
       vm.guardias = {};
       vm.zonas = {};
       vm.zonesAvailable=[];
@@ -33,6 +34,7 @@ argus
       vm.saveUser=[];
       vm.clienteDelGuardia = "";
       vm.existingError = false;
+      vm.validar = validar;
       vm.zonasDisponibles = [];
       vm.update = false;
       vm.notificationBitacora = {};
@@ -51,7 +53,6 @@ argus
       vm.verifyUser = verifyUser;
       vm.suspenderGuardia = suspenderGuardia;
       vm.availableZones = availableZones;
-      vm.validar = validar;
 
       //private functions
       function activate() {
@@ -93,6 +94,13 @@ argus
         firebase.database().ref('Argus/administradores/')
           .on('value', function (snapshot) {
             vm.administradores = snapshot.val();
+            vm.isLoading = false;
+            $rootScope.$apply();
+          });
+
+        firebase.database().ref('Argus/coordinadores/')
+          .on('value', function (snapshot) {
+            vm.coordinadores = snapshot.val();
             vm.isLoading = false;
             $rootScope.$apply();
           });
@@ -161,17 +169,20 @@ argus
         vm.view = view;
       }
 
-      function editUser(user, userKey, userType, turno) {
+      function editUser(user, userKey, userType, turno, zona) {
         vm.isEdit = true;
         vm.user = user;
-
+        vm.saveZonaSupervisor = zona;
         if(userType == 'supervisor') {
           var domicilio = user.usuarioDomicilio.split(",");
           vm.user.usuarioColony = domicilio[0];
           vm.user.usuarioStreet = domicilio[1];
           vm.user.usuarioKey = userKey;
         }
-
+        // var domicilio = user.usuarioDomicilio.split(",");
+        // vm.user.usuarioKey = userKey;
+        // vm.user.usuarioColony = domicilio[0];
+        // vm.user.usuarioStreet = domicilio[1];
         vm.saveUser.push(user);
         vm.saveService = user.usuarioClienteAsignado;
 
@@ -225,6 +236,12 @@ argus
                vm.user = {};
              });
 
+
+            fireService.get('Argus/Supervisores').then(function (response) {
+
+
+
+            })
           }
         }
         vm.saveUser=[];
@@ -235,7 +252,7 @@ argus
         switch (vm.user.usuarioTipo) {
 
           case 'guardia':
-          if(vm.user.usuarioClienteAsignado != undefined && vm.user.usuarioClienteAsignado != 'Sin asignar') {
+          if (vm.user.usuarioClienteAsignado != undefined && vm.user.usuarioClienteAsignado != 'Sin asignar') {
              vm.user.usuarioDisponible = false;
            }
            else {
@@ -271,6 +288,7 @@ argus
 
           case 'supervisor':
           // ACTUALIZAR SUPERVISORES
+
             firebase.database().ref('Argus/Zonas/' + vm.user.usuarioZona +'/disponibilidadZona')
               .once('value', function(snapshot){
                 vm.zonaUsuario = snapshot.val();
@@ -339,7 +357,6 @@ argus
           vm.modal.dismiss();
           // update = false;
         }
-
       }
 
       function deleteUser(user, type, userKey, turno) {
@@ -395,8 +412,6 @@ argus
                });
              }
             });
-
-
           }
           else{
             firebase.database().ref('Argus/' + type + '/' + user.$key).remove();
@@ -405,8 +420,6 @@ argus
             }
           }
         });
-
-
       }
 
       function registerUser() {
