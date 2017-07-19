@@ -1,0 +1,36 @@
+[debug] ----------------------------------------------------------------------
+[debug] Command:      C:\Program Files\nodejs\node.exe C:\Users\Luis Bahena\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy
+[debug] CLI Version:  3.7.0
+[debug] Platform:     win32
+[debug] Node Version: v6.9.5
+[debug] Time:         Fri Jun 02 2017 10:32:46 GMT-0700 (Hora estándar Montañas, EE.UU.)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[debug] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/cyeVSgUr5kDk5VAPdY9TIRiXDByO0FGs37ZxGgtWeao',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Fri Jun 02 2017 10:32:46 GMT-0700 (Hora estándar Montañas, EE.UU.)
+[debug] <<< HTTP RESPONSE 200
+[debug] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/argusseguridad-41e35  
+ Fri Jun 02 2017 10:32:47 GMT-0700 (Hora estándar Montañas, EE.UU.)
+[debug] <<< HTTP RESPONSE 200
+[debug] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/argusseguridad-41e35/tokens  
+ Fri Jun 02 2017 10:32:48 GMT-0700 (Hora estándar Montañas, EE.UU.)
+[debug] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'argusseguridad-41e35'...
+[info] 
+[info] i  deploying database, hosting
+[info] +  database: rules ready to deploy.
+[info] i  hosting: preparing app directory for upload...
+[debug] >>> HTTP REQUEST PUT https://deploy.firebase.com/v1/hosting/argusseguridad-41e35/uploads/-KldrSyj6B6cOR6_YxG6?fileCount=18473&message=  
+ Fri Jun 02 2017 10:33:29 GMT-0700 (Hora estándar Montañas, EE.UU.)
+[debug] Error: read ECONNRESET
+    at exports._errnoException (util.js:1022:11)
+    at TLSWrap.onread (net.js:569:26)
+[error] 
+[error] Error: Server Error. read ECONNRESET

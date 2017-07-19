@@ -252,7 +252,7 @@ argus
         switch (vm.user.usuarioTipo) {
 
           case 'guardia':
-          if (vm.user.usuarioClienteAsignado != undefined && vm.user.usuarioClienteAsignado != 'Sin asignar') {
+          if(vm.user.usuarioClienteAsignado != undefined && vm.user.usuarioClienteAsignado != 'Sin asignar') {
              vm.user.usuarioDisponible = false;
            }
            else {
