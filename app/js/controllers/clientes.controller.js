@@ -780,11 +780,26 @@ argus
 
       function moveGuardService( guard, service, guardKey ) {
 
+        var servicioAnterior = '';
 
+          //Al servicio que vamos enviarlo le asignamos el guardia
           firebase.database().ref('Argus/Clientes/' + document.getElementById(guardKey).value + '/clienteGuardias/').child(guard.$key).set({
             usuarioKey: guard.$key,
             usuarioNombre: guard.usuarioNombre
           });
+
+          //Obtenemos el servicio actual del guardia
+          firebase.database().ref('Argus/guardias/' + guardKey + '/usuarioClienteAsignado')
+            .once('value', function (dataSnapshot) {
+              servicioAnterior = dataSnapshot.val();
+            });
+
+          //Eliminamos al guardia del cliente anterior si es que el guardia ya tenia un cliente anterior
+          if(servicioAnterior.length > 0){
+            firebase.database().ref('Argus/Clientes/' + servicioAnterior + '/clienteGuardias/' + guardKey).remove();
+          }
+
+          //Al guardia le asignamos el nuevo servicio
           firebase.database().ref('Argus/guardias/' + guard.$key).update({
             'usuarioClienteAsignado': document.getElementById(guardKey).value,
             'usuarioDisponible': false

@@ -532,6 +532,12 @@ argus
               usuarioKey: key,
               usuarioNombre: vm.user.usuarioNombre
             });
+
+            firebase.database().ref('Argus/guardias/' + key).update(
+              {
+                usuarioKey: key
+              }
+            )
           }
           else {
             vm.user.usuarioDisponible = true;
@@ -623,6 +629,16 @@ argus
 
         });
       }
+
+      // vm.insertarKey = function (key) {
+      //
+      //   firebase.database().ref('Argus/guardias/' + key).update({
+      //     usuarioKey: key
+      //   })
+      //
+      // }
+
+
 
     }
   ]);

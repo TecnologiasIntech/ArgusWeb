@@ -6,6 +6,9 @@
       <li class="{{vm.view == 'general' ? 'active' : ''}}">
         <a href="" ng-click="vm.view = 'general'">General</a>
       </li>
+      <li class="{{vm.view == 'horarios' ? 'active' : ''}}">
+        <a href="" ng-click="vm.view = 'horarios'">Horarios</a>
+      </li>
       <li class="{{vm.view == 'responsibles' ? 'active' : ''}}" >
         <a href="" ng-click="vm.view = 'responsibles'">Responsables</a>
       </li>
@@ -54,15 +57,8 @@
 
         <div class="row m-t-30" ng-if="vm.user.usuarioTipo != 'guardia'">
 
-          <!-- NUMERO DE GUARDIAS -->
+
           <div class="col-xs-offset-1 col-xs-5">
-            <span>Numero de guardias</span>
-            <div class="fg-line m-l-10">
-              <input type="number" ng-model="vm.client.clienteNumeroGuardias" class="form-control" placeholder="Escribe numero de guardias..."
-                     required>
-            </div>
-          </div>
-          <div class="col-xs-5">
             <span>Zona</span>
             <div class="fg-line m-l-10">
               <select class="form-control" ng-model="vm.client.clienteZonaAsignada">
@@ -155,6 +151,19 @@
             <span>Hora de cierre:</span>
             <input type="time" name="" id="tiempoCierreh3" ng-value="vm.closingTimeh3" ng-model="vm.closingTimeh3">
           </div>
+        </div>
+
+      </div>
+
+      <div ng-if="vm.view == 'horarios'">
+
+        <div class="m-t-20">
+
+          <div class="col-xs-6">
+
+
+          </div>
+
         </div>
 
       </div>
