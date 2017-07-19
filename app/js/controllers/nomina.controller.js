@@ -268,6 +268,8 @@ argus
                 vm.sueldoTotal += vm.guardias[guardia].usuarioSueldoBase - 1600;
                 vm.bonoTotal += vm.guardias[guardia].usuarioSueldoBase - 1600;
                 vm.bono = 'Si';
+              }else{
+                vm.bonoTotal = 0;
               }
 
               // Obtener la zona del guardia mediante el servicio donde està
@@ -309,17 +311,17 @@ argus
               });
 
               vm.exportToCsv.push({
-                'nombreGuardia': vm.guardias[guardia].usuarioNombre,
-                'zona': clienteDelGuardia.clienteZonaAsignada,
-                'sueldoBase': vm.sueldoBase,
-                'asistencia': vm.assistence,
-                'inasistencias': vm.inasistencias,
-                'cubreGuardias': vm.assistence_cubreG,
-                'dobleTurno': vm.assistence_dobleT,
-                'horasExtra': vm.horasExtras,
-                'bonoTotal': vm.bonoTotal,
-                'sueldo': vm.salary,
-                'sueldoTotal': vm.sueldoTotal
+                'Nombre Guardia': vm.guardias[guardia].usuarioNombre,
+                'Zona': clienteDelGuardia.clienteZonaAsignada,
+                'Sueldo Base': vm.sueldoBase,
+                'Asistencia': vm.assistence,
+                'Inasistencias': vm.inasistencias,
+                'Cubre Guardias': vm.assistence_cubreG,
+                'Doble Turno': vm.assistence_dobleT,
+                'Horas Extra': vm.horasExtras,
+                'Bono Total': vm.bonoTotal,
+                'Sueldo': vm.salary,
+                'Sueldo Total': vm.sueldoTotal
               });
 
               vm.assistence = 0;
@@ -342,55 +344,76 @@ argus
       }
 
       function convertArrayOfObjectsToCSV(args) {
-        var result, ctr, keys, columnDelimiter, lineDelimiter, data;
-
-        data = args.data || null;
-        if (data == null || !data.length) {
-          return null;
-        }
-
-        columnDelimiter = args.columnDelimiter || ',';
-        lineDelimiter = args.lineDelimiter || '\n';
-
-        keys = Object.keys(data[0]);
-
-        result = '';
-        result += keys.join(columnDelimiter);
-        result += lineDelimiter;
-
-        data.forEach(function(item) {
-          ctr = 0;
-          keys.forEach(function(key) {
-            if (ctr > 0) result += columnDelimiter;
-
-            result += item[key];
-            ctr++;
-          });
-          result += lineDelimiter;
-        });
-
-        return result;
+        // var result, ctr, keys, columnDelimiter, lineDelimiter, data;
+        //
+        // data = args.data || null;
+        // if (data == null || !data.length) {
+        //   return null;
+        // }
+        //
+        // columnDelimiter = args.columnDelimiter || ',';
+        // lineDelimiter = args.lineDelimiter || '\n';
+        //
+        // keys = Object.keys(data[0]);
+        //
+        // result = '';
+        // result += keys.join(columnDelimiter);
+        // result += lineDelimiter;
+        //
+        // data.forEach(function(item) {
+        //   ctr = 0;
+        //   keys.forEach(function(key) {
+        //     if (ctr > 0) result += columnDelimiter;
+        //
+        //     result += item[key];
+        //     ctr++;
+        //   });
+        //   result += lineDelimiter;
+        // });
+        //
+        // return result;
       }
 
       function downloadCSV(args) {
-        var data, filename, link;
+        // var data, filename, link;
+        // var csv = convertArrayOfObjectsToCSV({
+        //   data: vm.exportToCsv
+        // });
+        // if (csv == null) return;
+        //
+        // filename = args.filename || 'export.csv';
+        //
+        // if (!csv.match(/^data:text\/csv/i)) {
+        //   csv = 'data:text/csv;charset=utf-8,' + csv;
+        // }
+        // data = encodeURI(csv);
+        //
+        // link = document.createElement('a');
+        // link.setAttribute('href', data);
+        // link.setAttribute('download', filename);
+        // link.click();
+      }
+      vm.exportToExcel = exportToExcel;
+      function exportToExcel() {
 
-        var csv = convertArrayOfObjectsToCSV({
-          data: vm.exportToCsv
-        });
-        if (csv == null) return;
 
-        filename = args.filename || 'export.csv';
+        alasql('SELECT * INTO XLSX("ReporteTramites.xlsx",{headers:true}) FROM ?', [vm.exportToCsv]);
 
-        if (!csv.match(/^data:text\/csv/i)) {
-          csv = 'data:text/csv;charset=utf-8,' + csv;
-        }
-        data = encodeURI(csv);
-
-        link = document.createElement('a');
-        link.setAttribute('href', data);
-        link.setAttribute('download', filename);
-        link.click();
+        // var mystyle = {
+        //    headers:true,
+        //    column: {style:{Font:{Bold:"1"}}},
+        //   //  rows: {1:{style:{Font:{Color:"#FF0077"}}}},
+        //   //  cells: {1:{1:{
+        //   //    style: {Font:{Color:"#00FFFF"}}
+        //   //  }}}
+        //  };
+        // alasql.options.columnlookup = 10;
+        //  alasql.promise('SELECT * INTO XLSXML("Nomina.xls",?) FROM ?',[mystyle, vm.exportToCsv])
+        //    .then(function(data){
+        //         console.log('Data saved');
+        //    }).catch(function(err){
+        //         console.log('Error:', err);
+        //   });
       }
 
       function settingsUpdate() {

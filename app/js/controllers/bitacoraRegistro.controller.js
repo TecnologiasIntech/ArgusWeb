@@ -188,14 +188,35 @@ argus
 
       function confirmSignature(fecha, guardKey, client) {
 
-        var updates = {};
-        updates['Argus/Bitacora/' + fecha + '/' + guardKey + '/asistio'] = true;
-        updates['Argus/Clientes/' + client + '/clienteGuardias/' + guardKey + '/usuarioAsistenciaDelDia'] = 'asistio';
-        updates['Argus/BitacoraRegistro/' + vm.bitacoraInformacion.codigoFecha + '/' + vm.bitacoraInformacion.llaveSupervisor + '/' + vm.bitacoraInformacion.llaveObservacion + '/semaforo'] = 1;
-
-        firebase.database().ref().update(updates);
-
         deleteNotification(vm.notificationKey, true);
+
+        // Quitar informacion de bitacoraRegistroNoResuelto
+        firebase.database().ref('Argus/BitacoraRegistroNoResuelto/' + vm.bitacoraInformacion.supervisorKey + '/' + vm.bitacoraInformacion.observacionKey )
+          .once('value', function (snapshot) {
+
+            var informacionObservacion = snapshot.val();
+
+            // Eliminar la observacion
+            firebase.database().ref('Argus/BitacoraRegistroNoResuelto/' + vm.bitacoraInformacion.supervisorKey + '/' + vm.bitacoraInformacion.observacionKey ).remove();
+
+
+            // Añadir la informacion quitada a BitacoraRegistro
+            firebase.database().ref('Argus/BitacoraRegistro/' + vm.bitacoraInformacion.dateCreationKey + '/' + vm.bitacoraInformacion.supervisorKey + '/' + vm.bitacoraInformacion.observacionKey ).set(
+              informacionObservacion
+            );
+
+            // Hacer actualizaciones
+            var updates = {};
+            updates['Argus/Bitacora/' + fecha + '/' + guardKey + '/asistio'] = true;
+            updates['Argus/Clientes/' + client + '/clienteGuardias/' + guardKey + '/usuarioAsistenciaDelDia'] = 'asistio';
+            updates['Argus/BitacoraRegistro/' + vm.bitacoraInformacion.dateCreationKey + '/' + vm.bitacoraInformacion.supervisorKey + '/' + vm.bitacoraInformacion.observacionKey + '/semaforo'] = 1;
+            updates['Argus/Clientes/' + vm.bitacoraInformacion.servicio + '/clienteGuardias/' + vm.bitacoraInformacion.referenceKey + '/usuarioAsistio'] = true;
+
+            firebase.database().ref().update(updates);
+
+          });
+
+
 
         vm.modal.dismiss()
       }
@@ -203,7 +224,7 @@ argus
       function changeStatus() {
 
         var updates = {};
-        updates['Argus/BitacoraRegistro/' + vm.bitacoraInformacion.codigoFecha + '/' + vm.bitacoraInformacion.llaveSupervisor + '/' + vm.bitacoraInformacion.llaveObservacion + '/semaforo'] = 1;
+        updates['Argus/BitacoraRegistro/' + vm.bitacoraInformacion.dateCreationKey + '/' + vm.bitacoraInformacion.supervisorKey + '/' + vm.bitacoraInformacion.observacionKey + '/semaforo'] = 1;
         firebase.database().ref().update(updates);
 
       }

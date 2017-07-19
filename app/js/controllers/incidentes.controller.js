@@ -99,3 +99,5 @@ argus.controller('incidentesCtrl', ['$scope', '$rootScope', 'growl', '$uibModal'
     //fin del bloque
       }
 ]);
+
+

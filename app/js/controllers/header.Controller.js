@@ -33,7 +33,6 @@ argus
                 vm.i = '';
                 for (var ja in vm.notifications) {
                   vm.i = vm.notifications[ja].descripcion;
-                  console.log(vm.i);
                 }
                 $notification('Notificación de Argus', {
                   body: vm.i,

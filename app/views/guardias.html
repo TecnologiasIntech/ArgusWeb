@@ -44,13 +44,13 @@
         <tbody>
 
         <!--GUARDIAS-->
-        <th ng-if="vm.searchTypeUser == 'guardia'">Nombre</th>
+        <th ng-if="vm.searchTypeUser == 'guardia'" ng-click="vm.filter = '-usuarioNombre'">Nombre</th>
         <th ng-if="vm.searchTypeUser == 'guardia'">Telefono</th>
-        <th ng-if="vm.searchTypeUser == 'guardia'">Turno</th>
-        <th ng-if="vm.searchTypeUser == 'guardia'">Servicio</th>
-        <th ng-if="vm.searchTypeUser == 'guardia'"></th>
+        <th ng-if="vm.searchTypeUser == 'guardia'" ng-click="vm.filter = '-usuarioTurno'">Turno</th>
+        <th ng-if="vm.searchTypeUser == 'guardia'" ng-click="vm.filter = '-usuarioClienteAsignado'">Servicio</th>
+        <th ng-if="vm.searchTypeUser == 'guardia'" ></th>
 
-        <tr ng-repeat="guardia in vm.guardias | toArray | filter: {usuarioNombre: vm.buscarUsuario}"
+        <tr ng-repeat="guardia in vm.guardias | toArray  | orderBy : vm.filter:true | filter: {usuarioNombre: vm.buscarUsuario}"
             ng-if="vm.searchTypeUser == 'guardia'">
           <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key)">
             <span>{{guardia.usuarioNombre}}</span>

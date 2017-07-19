@@ -27,7 +27,7 @@
         <tr ng-repeat="observacion in supervisor " ng-if="observacion.supervisor"
         >
           <td class="bitacora-align-middle col-lg-9">
-            {{observacion.observacion}}
+            {{observacion.observacion ? observacion.observacion : observacion.descripcion }}
           </td>
           <td class="bitacora-align-middle col-lg-3">
             {{observacion.hora}}

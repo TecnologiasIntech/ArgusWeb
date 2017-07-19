@@ -113,7 +113,7 @@
               <tr ng-repeat="observacion in supervisores[supervisor.$key]"
                   ng-if="observacion.$key != '$$hashKey' && observacion.$key != 'supervisor' && observacion.$key != 'zona'">
                 <td class="bitacora-align-middle col-lg-9">
-                  {{observacion.observacion}}
+                  {{observacion.observacion ? observacion.observacion : observacion.descripcion }}
                 </td>
                 <td class="bitacora-align-middle col-lg-3">
                   {{observacion.hora}}

@@ -20,10 +20,11 @@ argus
         templateUrl: 'views/supervisores.html',
         controller: 'supervisorCtrl as vm'
       })
+
       .state('guardias', {
         url: '/guardias',
         templateUrl: 'views/guardias.html',
-        controller: 'supervisorCtrl as vm'
+        controller: 'guardiaCtrl as vm'
       })
 
       .state('clientes', {

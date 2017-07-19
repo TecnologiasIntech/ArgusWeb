@@ -33,6 +33,13 @@ argus
       vm.listDaysSchedule = [];
       vm.guardInfo = {};
       vm.saveZona;
+      vm.openingTimeh1 = "00:00";
+      vm.closingTimeh1 = "00:00";
+      vm.openingTimeh2 = "00:00";
+      vm.closingTimeh2 = "00:00";
+      vm.openingTimeh3 = "00:00";
+      vm.closingTimeh3 = "00:00";
+      vm.filter = '-clienteNombre';
 
 
       //public functions
@@ -71,7 +78,10 @@ argus
           .on('value', function (snapshot) {
             vm.customers = snapshot.val();
             vm.isLoading = false;
-            $rootScope.$apply();
+            // $rootScope.$apply();
+            $timeout( function(){
+
+            }, 200 );
           });
 
         firebase.database().ref('Argus/guardias')
@@ -90,6 +100,9 @@ argus
 
       function openModal() {
         //saveGuardias=[];
+
+
+
         vm.modal = $uibModal.open({
           animation: true,
           templateUrl: 'views/modals/clientes.modal.html',
@@ -282,14 +295,23 @@ argus
               break;
           }
         }
-        var openingTimeh1 = document.getElementById("tiempoAperturah1").value;
-        var closingTimeh1 = document.getElementById("tiempoCierreh1").value;
+        var openingTimeh1 = verificarValoDeHorarios('tiempoAperturah1');
+        var closingTimeh1 = verificarValoDeHorarios('tiempoCierreh1');
 
-        var openingTimeh2 = document.getElementById("tiempoAperturah2").value;
-        var closingTimeh2 = document.getElementById("tiempoCierreh2").value;
+        var openingTimeh2 = verificarValoDeHorarios('tiempoAperturah2');
+        var closingTimeh2 = verificarValoDeHorarios('tiempoCierreh2');
 
-        var openingTimeh3 = document.getElementById("tiempoAperturah3").value;
-        var closingTimeh3 = document.getElementById("tiempoCierreh3").value;
+        var openingTimeh3 = verificarValoDeHorarios('tiempoAperturah3');
+        var closingTimeh3 = verificarValoDeHorarios('tiempoCierreh3');
+
+        // var openingTimeh1 = vm.openingTimeh1;
+        // var closingTimeh1 = vm.closingTimeh1;
+        //
+        // var openingTimeh2 = vm.openingTimeh2;
+        // var closingTimeh2 = vm.closingTimeh2;
+        //
+        // var openingTimeh3 = vm.openingTimeh3;
+        // var closingTimeh3 = vm.closingTimeh3;
 
         firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).child('clienteHorario/primerHorario').set({
           'horaApertura': openingTimeh1,
@@ -355,9 +377,9 @@ argus
       }
 
       function updateClient() {
-        for (var guardia in vm.saveGuardias) {
-          firebase.database().ref('Argus/guardias/'+ vm.saveGuardias[guardia]).child('usuarioClienteAsignado').remove();
-        }
+        // for (var guardia in vm.saveGuardias) {
+        //   firebase.database().ref('Argus/guardias/'+ vm.saveGuardias[guardia]).child('usuarioClienteAsignado').remove();
+        // }
         vm.saveGuardias=[];
         //Actulizar referencia del servicio en la zona
         if (vm.saveZona != vm.client.clienteZonaAsignada) {
@@ -376,7 +398,7 @@ argus
         firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).update({
           clienteNumeroGuardias: vm.client.clienteNumeroGuardias,
           clienteDomicilio: vm.client.clienteDomicilio,
-          clienteZonaAsignada: vm.client.clienteZonaAsignada
+          clienteZonaAsignada: vm.client.clienteZonaAsignada ? vm.client.clienteZonaAsignada : ''
         });
 
         firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteGuardias').remove();
@@ -397,15 +419,25 @@ argus
         // Agregar responsables actualizados a cliente
         var domicilio = ""; //variable auxiliar para concatenar los campos del domicilio
         firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteResponsables').remove();
+
         for (var responsible in vm.listResponsibles) {
-          domicilio = vm.listResponsibles[responsible].responsibleColony + "," + vm.listResponsibles[responsible].responsibleStreet;
-          firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteResponsables').push({
-            responsableNombre: vm.listResponsibles[responsible].responsibleName,
-            responsableTelefono:vm.listResponsibles[responsible].responsiblePhone,
-            responsableDomicilio: domicilio,
-            responsableCorreo: vm.listResponsibles[responsible].responsibleEmail
-          });
+         domicilio = vm.listResponsibles[responsible].responsibleColony + "," + vm.listResponsibles[responsible].responsibleStreet;
+         firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteResponsables').push({
+           responsableNombre: vm.listResponsibles[responsible].responsibleName,
+           responsableTelefono:vm.listResponsibles[responsible].responsiblePhone,
+           responsableDomicilio: domicilio,
+           responsableCorreo: vm.listResponsibles[responsible].responsibleEmail
+         });
         }
+        // getResponsibles( vm.client.clienteNombre );
+
+        // firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteResponsables').push({
+        //   // jsonResponsibles
+        //   responsableNombre: vm.listResponsibles[responsible].responsibleName,
+        //   responsableTelefono:vm.listResponsibles[responsible].responsiblePhone,
+        //   responsableDomicilio: domicilio,
+        //   responsableCorreo: vm.listResponsibles[responsible].responsibleEmail
+        // });
 
         //Actualizar horario
         var l=false, ma= false, mi=false, j=false, v=false, s=false, d=false;
@@ -435,14 +467,23 @@ argus
           }
         }
 
-        var openingTimeh1 = document.getElementById("tiempoAperturah1").value;
-        var closingTimeh1 = document.getElementById("tiempoCierreh1").value;
+        var openingTimeh1 = verificarValoDeHorarios('tiempoAperturah1');
+        var closingTimeh1 = verificarValoDeHorarios('tiempoCierreh1');
 
-        var openingTimeh2 = document.getElementById("tiempoAperturah2").value;
-        var closingTimeh2 = document.getElementById("tiempoCierreh2").value;
+        var openingTimeh2 = verificarValoDeHorarios('tiempoAperturah2');
+        var closingTimeh2 = verificarValoDeHorarios('tiempoCierreh2');
 
-        var openingTimeh3 = document.getElementById("tiempoAperturah3").value;
-        var closingTimeh3 = document.getElementById("tiempoCierreh3").value;
+        var openingTimeh3 = verificarValoDeHorarios('tiempoAperturah3');
+        var closingTimeh3 = verificarValoDeHorarios('tiempoCierreh3');
+
+        // var openingTimeh1 = vm.openingTimeh1;
+        // var closingTimeh1 = vm.closingTimeh1;
+        //
+        // var openingTimeh2 = vm.openingTimeh2;
+        // var closingTimeh2 = vm.closingTimeh2;
+        //
+        // var openingTimeh3 = vm.openingTimeh3;
+        // var closingTimeh3 = vm.closingTimeh3;
 
         firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).child('clienteHorario/primerHorario').update({
           'horaApertura': openingTimeh1,
@@ -472,12 +513,12 @@ argus
         vm.client = {};
         vm.client.clienteDisponible = true;
         vm.guardsToClient = [];
-        vm.listResponsibles = [];
+        // vm.listResponsibles = [];
         vm.listDaysSchedule =[];
         vm.isEdit = false;
         vm.view = 'general';
         growl.info('Cliente Actualizado!', vm.config);
-        vm.modal.dismiss();
+
       }
 
       function addConsigna( titleConsigna ) {
@@ -727,25 +768,38 @@ argus
 
       function clearSchedule() {
         vm.listDaysSchedule = [];
-        vm.openingTimeh1 = "";
-        vm.closingTimeh1 = "";
-        vm.openingTimeh2 = "";
-        vm.closingTimeh2 = "";
-        vm.openingTimeh3 = "";
-        vm.closingTimeh3 = "";
+        vm.openingTimeh1 = "00:00";
+        vm.closingTimeh1 = "00:00";
+        vm.openingTimeh2 = "00:00";
+        vm.closingTimeh2 = "00:00";
+        vm.openingTimeh3 = "00:00";
+        vm.closingTimeh3 = "00:00";
         vm.saturday = false; vm.thusday = false; vm.wednesday = false;
         vm.thursday = false; vm.friday = false; vm.monday = false; vm.sunday = false;
       }
 
-      function moveGuardService( guard, service ) {
-        firebase.database().ref('Argus/Clientes/' + service + '/clienteGuardias/').child(guard.$key).set({
-          usuarioKey: guard.$key,
-          usuarioNombre: guard.usuarioNombre
-        });
-        firebase.database().ref('Argus/guardias/' + guard.$key).update({
-          'usuarioClienteAsignado': service,
-          'usuarioDisponible': false
-        });
+      function moveGuardService( guard, service, guardKey ) {
+
+
+          firebase.database().ref('Argus/Clientes/' + document.getElementById(guardKey).value + '/clienteGuardias/').child(guard.$key).set({
+            usuarioKey: guard.$key,
+            usuarioNombre: guard.usuarioNombre
+          });
+          firebase.database().ref('Argus/guardias/' + guard.$key).update({
+            'usuarioClienteAsignado': document.getElementById(guardKey).value,
+            'usuarioDisponible': false
+          });
+
+      }
+
+      function verificarValoDeHorarios( id ) {
+
+        if(document.getElementById(id).value == null){
+          return '00:00';
+        }else{
+          return document.getElementById(id).value;
+        }
+
       }
 
     }

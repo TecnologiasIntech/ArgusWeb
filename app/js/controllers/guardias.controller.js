@@ -2,7 +2,7 @@
  * Created by Toshiba on 14/02/2017.
  */
 argus
-  .controller('supervisorCtrl', ['$location', '$scope', '$rootScope', 'alertService', '$uibModal', 'growl', '$timeout',
+  .controller('guardiaCtrl', ['$location', '$scope', '$rootScope', 'alertService', '$uibModal', 'growl', '$timeout',
     function ($location, $scope, $rootScope, alertService, $uibModal, growl, $timeout) {
 
       //public var
@@ -41,6 +41,7 @@ argus
       vm.isNewGuardiaofSeivice = false;
       vm.customers = {};
       vm.zonasDisponibles = [];
+      vm.filter = '-usuarioNombre';
 
       //public functions
       vm.openModal = openModal;
@@ -66,16 +67,6 @@ argus
         .on('value', function(snapshot){
           vm.zonas = snapshot.val();
         });
-        //
-        var user = firebase.auth().currentUser;
-        $timeout( function(){
-          if (user) {
-            // User is signed in.
-          } else {
-            $location.path('/login');
-            // $rootScope.$apply();
-          }
-        }, 200 );
 
         vm.isLoading = true;
 
@@ -580,31 +571,11 @@ argus
               vm.notificationkey = '';
             });
 
-          // Quitar informacion de bitacoraRegistroNoResuelto
-          firebase.database().ref('Argus/BitacoraRegistroNoResuelto/' + vm.notificationBitacora.supervisorKey + '/' + vm.notificationBitacora.observacionKey )
-            .once('value', function (snapshot) {
-
-              var informacionObservacion = snapshot.val();
-
-              // Eliminar la observacion
-              firebase.database().ref('Argus/BitacoraRegistroNoResuelto/' + vm.notificationBitacora.supervisorKey + '/' + vm.notificationBitacora.observacionKey ).remove();
-
-
-              // Añadir la informacion quitada a BitacoraRegistro
-              firebase.database().ref('Argus/BitacoraRegistro/' + vm.notificationBitacora.dateCreationKey + '/' + vm.notificationBitacora.supervisorKey + '/' + vm.notificationBitacora.observacionKey ).set(
-                informacionObservacionm
-              );
-
-              // Hacer actualizaciones
-              var updates = {};
-              updates['Argus/BitacoraRegistro/' + vm.notificationBitacora.dateCreationKey + '/' + vm.notificationBitacora.supervisorKey + '/' + vm.notificationBitacora.observacionKey + '/semaforo'] = 1;
-
-              firebase.database().ref().update(updates);
-
-
+          // actualizar estatus de la bitacora a verde
+          firebase.database().ref('Argus/BitacoraRegistro/' + vm.notificationBitacora.codigoFecha + '/' + vm.notificationBitacora.llaveSupervisor + '/' + vm.notificationBitacora.llaveObservacion + '/')
+            .update({
+              semaforo: 1
             });
-          //
-
         }
         vm.user = {};
         vm.user.usuarioTipo = 'guardia';

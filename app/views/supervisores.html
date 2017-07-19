@@ -93,7 +93,7 @@
         <th ng-if="vm.searchTypeUser == 'administrador'">Correo electrónico</th>
         <th ng-if="vm.searchTypeUser == 'administrador'"></th>
 
-        <tr ng-repeat="administrador in vm.administradores | toArray | filter: {usuarioNombre: vm.buscarUsuario}"
+        <tr ng-repeat="administrador in vm.administradores | toArray | orderBy: '-usuarioNombre':true | filter: {usuarioNombre: vm.buscarUsuario}"
             ng-if="vm.searchTypeUser == 'administrador'">
           <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(administrador, administrador.$key)">
             <span>{{administrador.usuarioNombre}}</span>
@@ -126,7 +126,7 @@
         <th ng-if="vm.searchTypeUser == 'supervisor'">Teléfono</th>
         <th ng-if="vm.searchTypeUser == 'supervisor'"></th>
 
-        <tr ng-repeat="supervisor in vm.supervisores | toArray | filter: {usuarioNombre: vm.buscarUsuario}"
+        <tr ng-repeat="supervisor in vm.supervisores | toArray | orderBy: '-usuarioNombre':true | filter: {usuarioNombre: vm.buscarUsuario}"
             ng-if="vm.searchTypeUser == 'supervisor'">
           <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(supervisor, supervisor.$key, 'supervisor', supervisor.usuarioTurno, supervisor.usuarioZona)">
             <span>{{supervisor.usuarioNombre}}</span>
