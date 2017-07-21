@@ -135,9 +135,10 @@
 
             <!--SUPERVISORES-->
             <th ng-if="vm.searchTypeUser == 'supervisor'">Nombre</th>
+            <th ng-if="vm.searchTypeUser == 'supervisor'">Correo electronico</th>
             <th ng-if="vm.searchTypeUser == 'supervisor'">Zona</th>
             <th ng-if="vm.searchTypeUser == 'supervisor'">Turno</th>
-            <th ng-if="vm.searchTypeUser == 'supervisor'">Teléfono</th>
+            <th ng-if="vm.searchTypeUser == 'supervisor'">Teléfono Celular</th>
             <th ng-if="vm.searchTypeUser == 'supervisor'"></th>
 
             <tr
@@ -146,6 +147,10 @@
               <td class="p-t-15 cursor-pointer"
                   ng-click="vm.editUser(supervisor, supervisor.$key, 'supervisor', supervisor.usuarioTurno, supervisor.usuarioZona)">
                 <span>{{supervisor.usuarioNombre}}</span>
+              </td>
+              <td class="p-t-15 cursor-pointer"
+                  ng-click="vm.editUser(supervisor, supervisor.$key, 'supervisor', supervisor.usuarioTurno, supervisor.usuarioZona)">
+                <span>{{supervisor.usuarioEmail}}</span>
               </td>
               <td class="p-t-15 cursor-pointer"
                   ng-click="vm.editUser(supervisor, supervisor.$key, 'supervisor', supervisor.usuarioTurno, supervisor.usuarioZona)">
@@ -158,7 +163,7 @@
               </td>
               <td class="p-t-15 cursor-pointer"
                   ng-click="vm.editUser(supervisor, supervisor.$key, 'supervisor', supervisor.usuarioTurno, supervisor.usuarioZona)">
-                <span>{{supervisor.usuarioTelefono}}</span>
+                <span>{{supervisor.usuarioTelefonoCelular}}</span>
               </td>
               <td align="right" style="width: 50px">
                 <div class="lv-actions actions dropdown" uib-dropdown="">

@@ -2,25 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7f4ae1f1-b0de-4894-a4d9-423677ee78ea" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/bower_components/es6-promise/es6-promise.auto.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/bower_components/es6-promise/es6-promise.auto.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/bower_components/es6-promise/es6-promise.auto.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/bower_components/es6-promise/es6-promise.auto.min.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/bower_components/es6-promise/es6-promise.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/bower_components/es6-promise/es6-promise.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/bower_components/es6-promise/es6-promise.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/bower_components/es6-promise/es6-promise.min.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/bower_components/ng-csv/npm-debug.log" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/firebase-debug.log" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/bower.json" afterPath="$PROJECT_DIR$/app/bower.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/bower_components/es6-promise/.bower.json" afterPath="$PROJECT_DIR$/app/bower_components/es6-promise/.bower.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/bower_components/es6-promise/bower.json" afterPath="$PROJECT_DIR$/app/bower_components/es6-promise/bower.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index.html" afterPath="$PROJECT_DIR$/app/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controllers/bitacoraRegistro.controller.js" afterPath="$PROJECT_DIR$/app/js/controllers/bitacoraRegistro.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controllers/clientes.controller.js" afterPath="$PROJECT_DIR$/app/js/controllers/clientes.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controllers/nomina.controller.js" afterPath="$PROJECT_DIR$/app/js/controllers/nomina.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/bitacoraRegistro.html" afterPath="$PROJECT_DIR$/app/views/bitacoraRegistro.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/nomina.html" afterPath="$PROJECT_DIR$/app/views/nomina.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/supervisores.html" afterPath="$PROJECT_DIR$/app/views/supervisores.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -41,22 +25,36 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="bitacoraRegistro.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views/bitacoraRegistro.html">
+      <file leaf-file-name="supervisores.controller.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/js/controllers/supervisores.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="115" column="25" lean-forward="true" selection-start-line="115" selection-start-column="25" selection-end-line="115" selection-end-column="25" />
+            <state relative-caret-position="359">
+              <caret line="549" column="14" lean-forward="true" selection-start-line="549" selection-start-column="14" selection-end-line="549" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bitacoraRegistro.controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/js/controllers/bitacoraRegistro.controller.js">
+      <file leaf-file-name="guardias.controller.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/js/controllers/guardias.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="556">
-              <caret line="138" column="17" lean-forward="true" selection-start-line="138" selection-start-column="17" selection-end-line="138" selection-end-column="17" />
+            <state relative-caret-position="206">
+              <caret line="531" column="30" lean-forward="true" selection-start-line="531" selection-start-column="30" selection-end-line="531" selection-end-column="30" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="supervisores.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/supervisores.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="350">
+              <caret line="165" column="57" lean-forward="false" selection-start-line="165" selection-start-column="57" selection-end-line="165" selection-end-column="57" />
+              <folding>
+                <element signature="n#style#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#4;n#div#1;n#section#0;n#section#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#5;n#tr#1;n#tbody#0;n#table#0;n#div#0;n#div#4;n#div#1;n#section#0;n#section#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#4;n#tr#2;n#tbody#0;n#table#0;n#div#0;n#div#4;n#div#1;n#section#0;n#section#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -74,8 +72,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>agregar</find>
-      <find>vm.datesRecords</find>
       <find>vm.guards</find>
       <find>datesrecords</find>
       <find>turno</find>
@@ -103,7 +99,9 @@
       <find>alas</find>
       <find>dow</find>
       <find>find</find>
+      <find>saveuseri</find>
       <find>register</find>
+      <find>saveuserin</find>
     </findStrings>
     <replaceStrings>
       <replace>sm</replace>
@@ -120,7 +118,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/views/bitacora.html" />
         <option value="$PROJECT_DIR$/app/js/controllers/main.js" />
         <option value="$PROJECT_DIR$/app/js/controllers/sidebar.Controller.js" />
         <option value="$PROJECT_DIR$/app/css/datepicker.css" />
@@ -159,10 +156,8 @@
         <option value="$PROJECT_DIR$/app/css/main.css" />
         <option value="$PROJECT_DIR$/app/views/modals/guardiasDetalles.modal.html" />
         <option value="$PROJECT_DIR$/app/views/modals/zonas.modal.html" />
-        <option value="$PROJECT_DIR$/app/js/controllers/supervisores.controller.js" />
         <option value="$PROJECT_DIR$/app/views/zonas.html" />
         <option value="$PROJECT_DIR$/app/views/guardias.html" />
-        <option value="$PROJECT_DIR$/app/views/supervisores.html" />
         <option value="$PROJECT_DIR$/app/views/clientes.html" />
         <option value="$PROJECT_DIR$/app/views/bitacoras.html" />
         <option value="$PROJECT_DIR$/app/index.html" />
@@ -171,6 +166,9 @@
         <option value="$PROJECT_DIR$/app/js/controllers/clientes.controller.js" />
         <option value="$PROJECT_DIR$/app/js/controllers/bitacoraRegistro.controller.js" />
         <option value="$PROJECT_DIR$/app/views/bitacoraRegistro.html" />
+        <option value="$PROJECT_DIR$/app/js/controllers/supervisores.controller.js" />
+        <option value="$PROJECT_DIR$/app/js/controllers/guardias.controller.js" />
+        <option value="$PROJECT_DIR$/app/views/supervisores.html" />
       </list>
     </option>
   </component>
@@ -230,25 +228,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="NodeModulesDirectoryManager">
-    <handled-path value="$PROJECT_DIR$/app/bower_components/angular-toArrayFilter/node_modules" />
-    <handled-path value="$PROJECT_DIR$/app/bower_components/bootstrap/node_modules" />
-    <handled-path value="$PROJECT_DIR$/app/bower_components/ng-csv/node_modules" />
     <handled-path value="$PROJECT_DIR$/app/node_modules" />
-    <handled-path value="$PROJECT_DIR$/app/vendors/bower_components/Waves/node_modules" />
-    <handled-path value="$PROJECT_DIR$/app/vendors/bower_components/angular-nouislider/node_modules" />
-    <handled-path value="$PROJECT_DIR$/app/vendors/bower_components/autosize/node_modules" />
-    <handled-path value="$PROJECT_DIR$/app/vendors/bower_components/bootstrap-sweetalert/node_modules" />
-    <handled-path value="$PROJECT_DIR$/app/vendors/bower_components/eonasdan-bootstrap-datetimepicker/node_modules" />
-    <handled-path value="$PROJECT_DIR$/app/vendors/bower_components/install/node_modules" />
-    <handled-path value="$PROJECT_DIR$/app/vendors/bower_components/jquery.easy-pie-chart/node_modules" />
-    <handled-path value="$PROJECT_DIR$/app/vendors/bower_components/lightgallery/node_modules" />
-    <handled-path value="$PROJECT_DIR$/app/vendors/bower_components/summernote/node_modules" />
-    <handled-path value="$PROJECT_DIR$/app/vendors/bower_components/sweetalert/node_modules" />
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="PackageJsonUpdateNotifier">
-    <dismissed value="$PROJECT_DIR$/app/bower_components/js-xls/package.json" />
-    <dismissed value="$PROJECT_DIR$/app/bower_components/js-xlsx/package.json" />
     <dismissed value="$PROJECT_DIR$/app/vendors/bower_components/angular-loading-bar/package.json" />
     <dismissed value="$PROJECT_DIR$/app/vendors/bower_components/angular-nouislider/package.json" />
     <dismissed value="$PROJECT_DIR$/app/vendors/bower_components/animate.css/package.json" />
@@ -278,7 +261,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -290,7 +273,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -302,7 +285,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="js-jscs-package" value="C:\GEEB\node_modules\jscs" />
-    <property name="SearchEverywhereHistoryKey" value="bitacora&#9;FILE&#9;file://C:/ArgusWeb/app/views/bitacoras.html&#10;nomina&#9;FILE&#9;file://C:/ArgusWeb/app/views/nomina.html&#10;bitacoras&#9;FILE&#9;file://C:/ArgusWeb/app/views/bitacoras.html&#10;cliente&#9;FILE&#9;file://C:/ArgusWeb/app/views/clientes.html&#10;guardias&#9;FILE&#9;file://C:/ArgusWeb/app/views/guardias.html&#10;super&#9;FILE&#9;file://C:/ArgusWeb/app/views/supervisores.html&#10;growlse&#9;FILE&#9;file://C:/ArgusWeb.git/app/services/growl.service.js&#10;disponibilidadZona&#9;null&#9;null&#10;zona&#9;FILE&#9;file://C:/ArgusWeb.git/app/js/controllers/zonas.controller.js&#10;app&#9;FILE&#9;file://C:/ArgusWeb.git/app/css/app.min.2.css&#10;client&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/clientes.html&#10;clientes&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/modals/clientes.modal.html&#10;zonas&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/modals/zonas.modal.html&#10;login&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/login.html&#10;zon&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/zonas.html&#10;inde&#9;FILE&#9;file://C:/ArgusWeb.git/app/index.html&#10;config&#9;FILE&#9;file://C:/ArgusWeb.git/app/js/config.js&#10;sid&#9;FILE&#9;file://C:/ArgusWeb.git/app/template/sidebar-left.html&#10;componen&#9;FILE&#9;file://C:/ArgusWeb.git/app/js/modules/components.js&#10;sidebar&#9;FILE&#9;file://C:/ArgusWeb.git/app/template/sidebar-left.html&#10;main&#9;FILE&#9;file://C:/ArgusWeb.git/app/css/main.css&#10;SU&#9;FILE&#9;file://C:/ArgusWeb.git/app/js/controllers/supervisores.controller.js&#10;index&#9;FILE&#9;file://C:/ArgusWeb.git/app/index.html&#10;sett&#9;FILE&#9;file://C:/ArgusWeb.git/app/config/settings.js&#10;footer&#9;FILE&#9;file://C:/ArgusWeb.git/app/template/footer.html&#10;supervi&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/supervisores.html&#10;lo&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/login.html&#10;profile&#9;FILE&#9;file://C:/GEEB/app/views/profile.html&#10;maestro&#9;FILE&#9;file://C:/GEEB/app/js/controllers/buscarMaestro.Controller.js&#10;regis&#9;FILE&#9;file://C:/GEEB/app/views/register.html&#10;logi&#9;FILE&#9;file://C:/GEEB/app/views/login.html&#10;ma&#9;FILE&#9;file://C:/GEEB/app/js/controllers/main.js&#10;controller&#9;FILE&#9;file://C:/GEEB/app/js/controllers/perfilMestro.Controller.js&#10;maestros&#9;FILE&#9;file://C:/GEEB/app/views/maestros.html&#10;comentarios&#9;FILE&#9;file://C:/GEEB/app/views/profile-comentarios.html&#10;bus&#9;FILE&#9;file://C:/GEEB/app/js/controllers/buscarMaestro.Controller.js&#10;a&#9;FILE&#9;file://C:/GEEB/app/css/app.css&#10;admi&#9;FILE&#9;file://C:/GEEB/app/views/PreHorarios/administracion.html&#10;resetP&#9;FILE&#9;file://C:/GEEB/app/views/resetPassword.html&#10;controll&#9;FILE&#9;file://C:/GEEB/app/js/controllers/perfilMestro.Controller.js&#10;maes&#9;FILE&#9;file://C:/GEEB/app/views/maestros.html&#10;buscar&#9;FILE&#9;file://C:/GEEB/app/js/controllers/buscarMaestro.Controller.js&#10;busca&#9;FILE&#9;file://C:/GEEB/app/js/controllers/buscarMaestro.Controller.js&#10;pass&#9;FILE&#9;file://C:/GEEB/app/views/resetPassword.html" />
+    <property name="SearchEverywhereHistoryKey" value="guardia&#9;FILE&#9;file:///Users/sergiosilva/ArgusWeb/app/js/controllers/guardias.controller.js&#10;super&#9;FILE&#9;file:///Users/sergiosilva/ArgusWeb/app/views/supervisores.html&#10;cliente&#9;FILE&#9;file:///Users/sergiosilva/ArgusWeb/app/js/controllers/clientes.controller.js&#10;bitacora&#9;FILE&#9;file://C:/ArgusWeb/app/views/bitacoras.html&#10;nomina&#9;FILE&#9;file://C:/ArgusWeb/app/views/nomina.html&#10;bitacoras&#9;FILE&#9;file://C:/ArgusWeb/app/views/bitacoras.html&#10;guardias&#9;FILE&#9;file://C:/ArgusWeb/app/views/guardias.html&#10;growlse&#9;FILE&#9;file://C:/ArgusWeb.git/app/services/growl.service.js&#10;disponibilidadZona&#9;null&#9;null&#10;zona&#9;FILE&#9;file://C:/ArgusWeb.git/app/js/controllers/zonas.controller.js&#10;app&#9;FILE&#9;file://C:/ArgusWeb.git/app/css/app.min.2.css&#10;client&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/clientes.html&#10;clientes&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/modals/clientes.modal.html&#10;zonas&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/modals/zonas.modal.html&#10;login&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/login.html&#10;zon&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/zonas.html&#10;inde&#9;FILE&#9;file://C:/ArgusWeb.git/app/index.html&#10;config&#9;FILE&#9;file://C:/ArgusWeb.git/app/js/config.js&#10;sid&#9;FILE&#9;file://C:/ArgusWeb.git/app/template/sidebar-left.html&#10;componen&#9;FILE&#9;file://C:/ArgusWeb.git/app/js/modules/components.js&#10;sidebar&#9;FILE&#9;file://C:/ArgusWeb.git/app/template/sidebar-left.html&#10;main&#9;FILE&#9;file://C:/ArgusWeb.git/app/css/main.css&#10;SU&#9;FILE&#9;file://C:/ArgusWeb.git/app/js/controllers/supervisores.controller.js&#10;index&#9;FILE&#9;file://C:/ArgusWeb.git/app/index.html&#10;sett&#9;FILE&#9;file://C:/ArgusWeb.git/app/config/settings.js&#10;footer&#9;FILE&#9;file://C:/ArgusWeb.git/app/template/footer.html&#10;supervi&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/supervisores.html&#10;lo&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/login.html&#10;profile&#9;FILE&#9;file://C:/GEEB/app/views/profile.html&#10;maestro&#9;FILE&#9;file://C:/GEEB/app/js/controllers/buscarMaestro.Controller.js&#10;regis&#9;FILE&#9;file://C:/GEEB/app/views/register.html&#10;logi&#9;FILE&#9;file://C:/GEEB/app/views/login.html&#10;ma&#9;FILE&#9;file://C:/GEEB/app/js/controllers/main.js&#10;controller&#9;FILE&#9;file://C:/GEEB/app/js/controllers/perfilMestro.Controller.js&#10;maestros&#9;FILE&#9;file://C:/GEEB/app/views/maestros.html&#10;comentarios&#9;FILE&#9;file://C:/GEEB/app/views/profile-comentarios.html&#10;bus&#9;FILE&#9;file://C:/GEEB/app/js/controllers/buscarMaestro.Controller.js&#10;a&#9;FILE&#9;file://C:/GEEB/app/css/app.css&#10;admi&#9;FILE&#9;file://C:/GEEB/app/views/PreHorarios/administracion.html&#10;resetP&#9;FILE&#9;file://C:/GEEB/app/views/resetPassword.html&#10;controll&#9;FILE&#9;file://C:/GEEB/app/js/controllers/perfilMestro.Controller.js&#10;maes&#9;FILE&#9;file://C:/GEEB/app/views/maestros.html&#10;buscar&#9;FILE&#9;file://C:/GEEB/app/js/controllers/buscarMaestro.Controller.js&#10;busca&#9;FILE&#9;file://C:/GEEB/app/js/controllers/buscarMaestro.Controller.js&#10;pass&#9;FILE&#9;file://C:/GEEB/app/views/resetPassword.html" />
     <property name="editor.config.accepted" value="true" />
     <property name="js.buildTools.grunt.grunt-cli.package" value="$USER_HOME$/AppData/Roaming/npm/node_modules/grunt-cli" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
@@ -708,11 +691,18 @@
       <option name="project" value="LOCAL" />
       <updated>1496046795619</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="- bug corregido al editar un guardia sin servicio">
+      <created>1500667418431</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1500667418431</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="892706000" />
+    <option name="totallyTimeSpent" value="893823000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -723,28 +713,40 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="827" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1581876" sideWeight="0.8527005" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14799154" sideWeight="0.8527005" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Grunt " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22321428" sideWeight="0.09328969" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2199074" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23148148" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21994536" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3107511" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17559524" sideWeight="0.14729951" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17559524" sideWeight="0.14729951" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2199074" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23148148" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3107511" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1581876" sideWeight="0.8527005" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Grunt " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22321428" sideWeight="0.09328969" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="CSS-X-Fire" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17559524" sideWeight="0.14729951" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -795,7 +797,8 @@
     <MESSAGE value="- Opcion para suspender guardia y para eliminar permanentemente" />
     <MESSAGE value="- Separacion de guardias en la seccion de usuarios, ahora guardias será una sección unica." />
     <MESSAGE value="- Diseño en la seccion de asignacion en Servicios limpio.&#10;- Detalles de guardias visualizados en un modal." />
-    <option name="LAST_COMMIT_MESSAGE" value="- Diseño en la seccion de asignacion en Servicios limpio.&#10;- Detalles de guardias visualizados en un modal." />
+    <MESSAGE value="- bug corregido al editar un guardia sin servicio" />
+    <option name="LAST_COMMIT_MESSAGE" value="- bug corregido al editar un guardia sin servicio" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -804,13 +807,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/directives/ngEnter.Directive.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="12" column="33" lean-forward="true" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/services/growl.service.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
@@ -1050,13 +1046,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/controllers/supervisores.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="632" column="0" lean-forward="false" selection-start-line="632" selection-start-column="0" selection-end-line="632" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/zonas.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1078,24 +1067,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/guardias.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="774">
-          <caret line="104" column="10" lean-forward="false" selection-start-line="104" selection-start-column="10" selection-end-line="104" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/supervisores.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="676">
-          <caret line="280" column="0" lean-forward="false" selection-start-line="280" selection-start-column="0" selection-end-line="280" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/clientes.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="81" column="0" lean-forward="false" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
+        <state relative-caret-position="1200">
+          <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1108,8 +1084,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/nomina.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="45" column="84" lean-forward="false" selection-start-line="45" selection-start-column="75" selection-end-line="45" selection-end-column="84" />
+        <state relative-caret-position="254">
+          <caret line="129" column="19" lean-forward="true" selection-start-line="129" selection-start-column="19" selection-end-line="129" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -1124,25 +1100,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="102" column="0" lean-forward="false" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/controllers/clientes.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="241" column="7" lean-forward="true" selection-start-line="241" selection-start-column="7" selection-end-line="241" selection-end-column="7" />
-          <folding />
+        <state relative-caret-position="525">
+          <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding>
+            <marker date="1500666568000" expanded="true" signature="8529:8581" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/bitacoras.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-38">
-          <caret line="96" column="48" lean-forward="true" selection-start-line="96" selection-start-column="48" selection-end-line="96" selection-end-column="48" />
-          <folding />
+        <state relative-caret-position="1785">
+          <caret line="119" column="20" lean-forward="false" selection-start-line="119" selection-start-column="20" selection-end-line="119" selection-end-column="20" />
+          <folding>
+            <element signature="n#style#0;n#input#0;n#label#0;n#div#2;n#div#1;n#div#0;n#section#0;n#section#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1156,9 +1128,65 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/bitacoraRegistro.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="115" column="25" lean-forward="true" selection-start-line="115" selection-start-column="25" selection-end-line="115" selection-end-column="25" />
+        <state relative-caret-position="2700">
+          <caret line="180" column="0" lean-forward="false" selection-start-line="180" selection-start-column="0" selection-end-line="180" selection-end-column="0" />
+          <folding>
+            <marker date="1500666568000" expanded="true" signature="5242:5273" ph="..." />
+            <marker date="1500666568000" expanded="true" signature="5337:5406" ph="..." />
+            <marker date="1500666568000" expanded="true" signature="5470:7917" ph="..." />
+            <marker date="1500666568000" expanded="true" signature="5552:7891" ph="..." />
+            <marker date="1500666568000" expanded="true" signature="5642:6566" ph="..." />
+            <marker date="1500666568000" expanded="true" signature="5815:5987" ph="..." />
+            <marker date="1500666568000" expanded="false" signature="5857:5909" ph="..." />
+            <marker date="1500666568000" expanded="true" signature="6090:6262" ph="..." />
+            <marker date="1500666568000" expanded="false" signature="6132:6184" ph="..." />
+            <marker date="1500666568000" expanded="true" signature="6365:6537" ph="..." />
+            <marker date="1500666568000" expanded="false" signature="6407:6459" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controllers/clientes.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="236" column="22" lean-forward="true" selection-start-line="236" selection-start-column="22" selection-end-line="236" selection-end-column="22" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/guardias.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="104" column="10" lean-forward="false" selection-start-line="104" selection-start-column="10" selection-end-line="104" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controllers/supervisores.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="359">
+          <caret line="549" column="14" lean-forward="true" selection-start-line="549" selection-start-column="14" selection-end-line="549" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controllers/guardias.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="531" column="30" lean-forward="true" selection-start-line="531" selection-start-column="30" selection-end-line="531" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/supervisores.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="165" column="57" lean-forward="false" selection-start-line="165" selection-start-column="57" selection-end-line="165" selection-end-column="57" />
+          <folding>
+            <element signature="n#style#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#4;n#div#1;n#section#0;n#section#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#5;n#tr#1;n#tbody#0;n#table#0;n#div#0;n#div#4;n#div#1;n#section#0;n#section#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#4;n#tr#2;n#tbody#0;n#table#0;n#div#0;n#div#4;n#div#1;n#section#0;n#section#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
