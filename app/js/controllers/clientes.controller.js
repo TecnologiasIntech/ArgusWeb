@@ -226,130 +226,151 @@ argus
 
       }
 
+      function serviceExists(service) {
+        var data = false;
+        firebase.database().ref('Argus/Clientes/' + service)
+          .once('value', function (dataSnapshot) {
+            data = dataSnapshot.val();
+          });
+
+        if(data != null){
+          return true;
+        }else{
+          return false;
+        }
+
+      }
+
       function registerClient() {
 
-        if (vm.client.clienteZonaAsignada != undefined && vm.client.clienteZonaAsignada != "Sin Asignar") {
-          vm.client.clienteDisponible = false;
-        }
-        else {
-          vm.client.clienteDisponible = true;
-        }
-        firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).set(vm.client);
+        if(serviceExists(vm.client.clienteNombre)){
 
-        //Agregar referencia del servicio en la zona
-        firebase.database().ref('Argus/Zonas/' + vm.client.clienteZonaAsignada + '/zonaClientes/' + vm.client.clienteNombre).set({
-          clienteNombre: vm.client.clienteNombre
-        });
+          alertService.error("Servicio existente", "El servicio ya existe, intente con otro nombre");
 
-        for(var i = 0; i < vm.guardsToClient.length; i++){
-          // Asignar los guardias al cliente
-          firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteGuardias/' + vm.guardsToClient[i].usuarioKey).set({
-            usuarioNombre: vm.guardsToClient[i].usuarioNombre,
-            usuarioKey: vm.guardsToClient[i].usuarioKey
-          });
+        }else {
 
-          // Agregar referencia del cliente en el guardia
-          var updates = {};
-          updates['Argus/guardias/' + vm.guardsToClient[i].usuarioKey + '/usuarioClienteAsignado'] = vm.client.clienteNombre;
-          updates['Argus/guardias/'+ vm.guardsToClient[i].usuarioKey+'/usuarioDisponible']= false;
-          firebase.database().ref().update(updates);
-
-        }
-
-        // Agregar responsables a cliente
-        var domicilio = ""; //variable auxiliar para concatenar los campos del domicilio
-        for (var responsible in vm.listResponsibles) {
-          domicilio = vm.listResponsibles[responsible].responsibleColony + "," + vm.listResponsibles[responsible].responsibleStreet;
-          firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteResponsables').push({
-            responsableNombre: vm.listResponsibles[responsible].responsibleName,
-            responsableTelefono:vm.listResponsibles[responsible].responsiblePhone,
-            responsableDomicilio: domicilio,
-            responsableCorreo: vm.listResponsibles[responsible].responsibleEmail
-          });
-        }
-
-        //Agregar horario
-        var l=false, ma= false, mi=false, j=false, v=false, s=false, d=false;
-        for (var index in vm.listDaysSchedule) {
-          switch (vm.listDaysSchedule[index]) {
-            case 'lunes':
-              l = true;
-              break;
-            case 'martes':
-              ma = true;
-              break;
-            case 'miercoles':
-              mi = true;
-              break;
-            case 'jueves':
-              j = true;
-              break;
-            case 'viernes':
-              v = true;
-              break;
-            case 'sabado':
-              s = true;
-              break;
-            case 'domingo':
-              d = true;
-              break;
+          if (vm.client.clienteZonaAsignada != undefined && vm.client.clienteZonaAsignada != "Sin Asignar") {
+            vm.client.clienteDisponible = false;
           }
+          else {
+            vm.client.clienteDisponible = true;
+          }
+          firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).set(vm.client);
+
+          //Agregar referencia del servicio en la zona
+          firebase.database().ref('Argus/Zonas/' + vm.client.clienteZonaAsignada + '/zonaClientes/' + vm.client.clienteNombre).set({
+            clienteNombre: vm.client.clienteNombre
+          });
+
+          for (var i = 0; i < vm.guardsToClient.length; i++) {
+            // Asignar los guardias al cliente
+            firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteGuardias/' + vm.guardsToClient[i].usuarioKey).set({
+              usuarioNombre: vm.guardsToClient[i].usuarioNombre,
+              usuarioKey: vm.guardsToClient[i].usuarioKey
+            });
+
+            // Agregar referencia del cliente en el guardia
+            var updates = {};
+            updates['Argus/guardias/' + vm.guardsToClient[i].usuarioKey + '/usuarioClienteAsignado'] = vm.client.clienteNombre;
+            updates['Argus/guardias/' + vm.guardsToClient[i].usuarioKey + '/usuarioDisponible'] = false;
+            firebase.database().ref().update(updates);
+
+          }
+
+          // Agregar responsables a cliente
+          var domicilio = ""; //variable auxiliar para concatenar los campos del domicilio
+          for (var responsible in vm.listResponsibles) {
+            domicilio = vm.listResponsibles[responsible].responsibleColony + "," + vm.listResponsibles[responsible].responsibleStreet;
+            firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteResponsables').push({
+              responsableNombre: vm.listResponsibles[responsible].responsibleName,
+              responsableTelefono: vm.listResponsibles[responsible].responsiblePhone,
+              responsableDomicilio: domicilio,
+              responsableCorreo: vm.listResponsibles[responsible].responsibleEmail
+            });
+          }
+
+          //Agregar horario
+          var l = false, ma = false, mi = false, j = false, v = false, s = false, d = false;
+          for (var index in vm.listDaysSchedule) {
+            switch (vm.listDaysSchedule[index]) {
+              case 'lunes':
+                l = true;
+                break;
+              case 'martes':
+                ma = true;
+                break;
+              case 'miercoles':
+                mi = true;
+                break;
+              case 'jueves':
+                j = true;
+                break;
+              case 'viernes':
+                v = true;
+                break;
+              case 'sabado':
+                s = true;
+                break;
+              case 'domingo':
+                d = true;
+                break;
+            }
+          }
+          var openingTimeh1 = verificarValoDeHorarios('tiempoAperturah1');
+          var closingTimeh1 = verificarValoDeHorarios('tiempoCierreh1');
+
+          var openingTimeh2 = verificarValoDeHorarios('tiempoAperturah2');
+          var closingTimeh2 = verificarValoDeHorarios('tiempoCierreh2');
+
+          var openingTimeh3 = verificarValoDeHorarios('tiempoAperturah3');
+          var closingTimeh3 = verificarValoDeHorarios('tiempoCierreh3');
+
+          // var openingTimeh1 = vm.openingTimeh1;
+          // var closingTimeh1 = vm.closingTimeh1;
+          //
+          // var openingTimeh2 = vm.openingTimeh2;
+          // var closingTimeh2 = vm.closingTimeh2;
+          //
+          // var openingTimeh3 = vm.openingTimeh3;
+          // var closingTimeh3 = vm.closingTimeh3;
+
+          firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).child('clienteHorario/primerHorario').set({
+            'horaApertura': openingTimeh1,
+            'horaCierre': closingTimeh1
+          });
+          firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).child('clienteHorario/segundoHorario').set({
+            'horaApertura': openingTimeh2,
+            'horaCierre': closingTimeh2
+          });
+          firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).child('clienteHorario/tercerHorario').set({
+            'horaApertura': openingTimeh3,
+            'horaCierre': closingTimeh3
+          });
+
+          firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteHorario/diasLaborados').set({
+            'lunes': l,
+            'martes': ma,
+            'miercoles': mi,
+            'jueves': j,
+            'viernes': v,
+            'sabado': s,
+            'domingo': d
+          });
+          // firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteHorario').set({
+          //   'horaApertura': vm.openingTime,
+          //   'horaCierre': vm.closingTime
+          // });
+
+
+          vm.client = {};
+          vm.client.clienteDisponible = true;
+          vm.guardsToClient = [];
+          vm.listResponsibles = [];
+          vm.listDaysSchedule = [];
+          vm.responsibleId = 1;
+          growl.success('Cliente Agregado!', vm.config);
+          vm.modal.dismiss();
         }
-        var openingTimeh1 = verificarValoDeHorarios('tiempoAperturah1');
-        var closingTimeh1 = verificarValoDeHorarios('tiempoCierreh1');
-
-        var openingTimeh2 = verificarValoDeHorarios('tiempoAperturah2');
-        var closingTimeh2 = verificarValoDeHorarios('tiempoCierreh2');
-
-        var openingTimeh3 = verificarValoDeHorarios('tiempoAperturah3');
-        var closingTimeh3 = verificarValoDeHorarios('tiempoCierreh3');
-
-        // var openingTimeh1 = vm.openingTimeh1;
-        // var closingTimeh1 = vm.closingTimeh1;
-        //
-        // var openingTimeh2 = vm.openingTimeh2;
-        // var closingTimeh2 = vm.closingTimeh2;
-        //
-        // var openingTimeh3 = vm.openingTimeh3;
-        // var closingTimeh3 = vm.closingTimeh3;
-
-        firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).child('clienteHorario/primerHorario').set({
-          'horaApertura': openingTimeh1,
-          'horaCierre': closingTimeh1
-        });
-        firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).child('clienteHorario/segundoHorario').set({
-          'horaApertura': openingTimeh2,
-          'horaCierre': closingTimeh2
-        });
-        firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).child('clienteHorario/tercerHorario').set({
-          'horaApertura': openingTimeh3,
-          'horaCierre': closingTimeh3
-        });
-
-        firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteHorario/diasLaborados').set({
-          'lunes': l,
-          'martes': ma,
-          'miercoles': mi,
-          'jueves': j,
-          'viernes': v,
-          'sabado': s,
-          'domingo': d
-        });
-        // firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteHorario').set({
-        //   'horaApertura': vm.openingTime,
-        //   'horaCierre': vm.closingTime
-        // });
-
-
-        vm.client = {};
-        vm.client.clienteDisponible = true;
-        vm.guardsToClient = [];
-        vm.listResponsibles = [];
-        vm.listDaysSchedule =[];
-        vm.responsibleId = 1;
-        growl.success('Cliente Agregado!', vm.config);
-        vm.modal.dismiss();
-
       }
 
       function addOrDeleteItemInAssignment(guard, guardKey) {

@@ -139,6 +139,7 @@ argus
                 }
               }
 
+              console.log(vm.datesRecords);
               $timeout(100 )
               // $rootScope.$apply();
             });
