@@ -532,17 +532,17 @@ argus
               usuarioKey: key,
               usuarioNombre: vm.user.usuarioNombre
             });
-
-            firebase.database().ref('Argus/guardias/' + key).update(
-              {
-                usuarioKey: key
-              }
-            )
           }
           else {
             vm.user.usuarioDisponible = true;
             var key = firebase.database().ref('Argus/' + vm.user.usuarioTipo + tipoPlural).push(vm.user).key;
           }
+
+          firebase.database().ref('Argus/guardias/' + key).update(
+            {
+              usuarioKey: key
+            }
+          )
         }
         else {
           var key = firebase.database().ref('Argus/' + vm.user.usuarioTipo + tipoPlural).push(vm.user).key;
