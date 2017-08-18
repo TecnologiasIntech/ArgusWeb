@@ -7,7 +7,7 @@
   <aside id="sidebar" data-ng-include="'template/sidebar-left.html'"
          data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }"></aside>
 
-  <section id="content">
+  <section id="content" class="animated fadeIn">
 
     <div class="card m-l-20 m-r-20">
 
@@ -110,7 +110,8 @@
               <td class="bitacora-align-middle">
                 {{guard.fecha}}
               </td>
-              <td class="bitacora-align-middle">
+              <td class="bitacora-align-middle"
+                  ng-if="vm.userType == 'coordinador' || vm.userType == 'administrador'">
                 <a href="">
                   <i class="zmdi zmdi-close-circle" style="font-size: 20px; color: #e74c3c"
                      ng-click="vm.cancelAsssist(record.$key, guard.$key, guard.cliente)"></i>

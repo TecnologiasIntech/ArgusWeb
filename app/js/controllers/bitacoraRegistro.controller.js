@@ -3,8 +3,8 @@
  */
 
 argus
-  .controller('bitacoraRegistroCtrl', ['$scope', '$rootScope', 'alertService', '$uibModal', 'growl','$location', '$timeout',
-    function ($scope, $rootScope, alertService, $uibModal, growl, $location, $timeout) {
+  .controller('bitacoraRegistroCtrl', ['$scope', '$rootScope', 'alertService', '$uibModal', 'growl','$location', '$timeout', 'userService',
+    function ($scope, $rootScope, alertService, $uibModal, growl, $location, $timeout, userService) {
 
       //public var
       var vm = this;
@@ -12,7 +12,7 @@ argus
       // vm.recordsCurrentDate = {};
       // vm.month;
       // vm.fecha = new Date();
-      vm.months = new Array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+      vm.months = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
       vm.firstDate = new Date();
       vm.secondDate = vm.firstDate;
       // vm.firstDate;
@@ -80,6 +80,22 @@ argus
         $scope.$on('notificacion:bitacora', function (event, bitacoraInfo) {
           vm.bitacoraInformacion = bitacoraInfo;
         })
+
+        firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+
+            if(user.providerData[0].providerId == 'password'){
+              vm.usuarioNombre = user.email;
+
+              userService.getUserType(user.email).then(function (response) {
+                vm.userType = response;
+              })
+            }else{
+              vm.usuarioNombre = user.displayName;
+              vm.usuarioFotoPerfil = user.photoURL;
+            }
+          }
+        });
 
       }
       activate();

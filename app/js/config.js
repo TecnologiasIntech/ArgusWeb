@@ -100,6 +100,8 @@ argus
         templateUrl: 'views/wall.html'
       })
 
+
+    //Produccion
     var config = {
       apiKey: "AIzaSyC0yuNCG-G00bF80ecXmio8Fg5lgrCoDZI",
       authDomain: "argusseguridad-41e35.firebaseapp.com",
@@ -107,6 +109,16 @@ argus
       storageBucket: "argusseguridad-41e35.appspot.com",
       messagingSenderId: "792155953924"
     };
+
+    //Pruebas
+    // var config = {
+    //   apiKey: "AIzaSyD8Qa_VcmY7VleJDvJBkTyCVYdKyZRXt7M",
+    //   authDomain: "argus-zona-de-pruebas.firebaseapp.com",
+    //   databaseURL: "https://argus-zona-de-pruebas.firebaseio.com",
+    //   projectId: "argus-zona-de-pruebas",
+    //   storageBucket: "",
+    //   messagingSenderId: "124997949648"
+    // };
     firebase.initializeApp(config);
   });
 

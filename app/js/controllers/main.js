@@ -4,12 +4,12 @@ argus
         //Welcome Message
         // growlService.growl('Bienvenido Alumno :)', 'inverse')
 
-
         // Detact Mobile Browser
         if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
            angular.element('html').addClass('ismobile');
         }
-
+        var vm = this;
+        vm.location =
         // By default Sidbars are hidden in boxed layout and in wide layout only the right sidebar is hidden.
         this.sidebarToggle = {
             left: true,

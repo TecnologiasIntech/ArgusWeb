@@ -1,6 +1,6 @@
 <div class="sidebar-inner c-overflow" ng-controller="sidebarCtrl as vm">
   <div class="profile-menu toggled">
-    <a href="" >
+    <a href="">
       <div class="profile-pic">
         <img src="{{vm.usuarioFotoPerfil}}" alt="" ng-show="vm.usuarioFotoPerfil">
         <img src="img/profile-pics/fondo.jpg" alt="" ng-hide="vm.usuarioFotoPerfil">
@@ -31,48 +31,45 @@
 
   <ul class="main-menu">
 
-    <li data-ui-sref-active="active">
+    <li data-ui-sref-active="active" ng-if="vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador' || vm.userType == 'director'">
       <a data-ui-sref="supervisores" data-ng-click="mactrl.sidebarStat($event)"><i
         class="zmdi zmdi-accounts-list zmdi-hc-fw"></i> Usuarios</a>
     </li>
 
-    <li data-ui-sref-active="active">
+    <li data-ui-sref-active="active" ng-if="vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador' || vm.userType == 'director'">
       <a data-ui-sref="guardias" data-ng-click="mactrl.sidebarStat($event)"><i
         class="zmdi zmdi-shield-check zmdi-hc-fw"></i> Guardias</a>
     </li>
 
-    <li data-ui-sref-active="active">
+    <li data-ui-sref-active="active" ng-if="vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador' || vm.userType == 'director'">
       <a data-ui-sref="zonas" data-ng-click="mactrl.sidebarStat($event)"><i
         class="zmdi zmdi-pin zmdi-hc-fw"></i> Zonas</a>
     </li>
 
-    <li data-ui-sref-active="active">
+    <li data-ui-sref-active="active" ng-if="vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador' || vm.userType == 'director'">
       <a data-ui-sref="clientes" data-ng-click="mactrl.sidebarStat($event)"><i
         class="zmdi zmdi-store zmdi-hc-fw"></i> Servicios</a>
     </li>
 
+    <li data-ui-sref-active="active" ng-if="vm.userType == 'coordinador' || vm.userType == 'administrador' || vm.userType == 'director'">
+      <a data-ui-sref="bitacoraRegistro" data-ng-click="mactrl.sidebarStat($event)"><i
+        class="zmdi zmdi-file-text zmdi-hc-fw"></i>Bitacora</a>
+    </li>
 
-        <li data-ui-sref-active="active">
-          <a data-ui-sref="bitacoraRegistro" data-ng-click="mactrl.sidebarStat($event)"><i
-            class="zmdi zmdi-file-text zmdi-hc-fw"></i>Bitacora</a>
-        </li>
-
-    <li data-ui-sref-active="active">
+    <li data-ui-sref-active="active" ng-if="vm.userType == 'coordinador' || vm.userType == 'administrador' || vm.userType == 'director'">
       <a data-ui-sref="bitacoras" data-ng-click="mactrl.sidebarStat($event)"><i
         class="zmdi zmdi-format-list-bulleted zmdi-hc-fw"></i> Lista de asistencia</a>
     </li>
 
     <!--<li data-ui-sref-active="active">-->
-      <!--<a data-ui-sref="incidentes" data-ng-click="mactrl.sidebarStat($event)"><i-->
-        <!--class="zmdi zmdi-alert-circle zmdi-hc-fw"></i> Incidentes</a>-->
+    <!--<a data-ui-sref="incidentes" data-ng-click="mactrl.sidebarStat($event)"><i-->
+    <!--class="zmdi zmdi-alert-circle zmdi-hc-fw"></i> Incidentes</a>-->
     <!--</li>-->
 
-
-    <li data-ui-sref-active="active">
+    <li data-ui-sref-active="active" ng-if="vm.userType == 'encargadoNomina' || vm.userType == 'director'">
       <a data-ui-sref="nomina" data-ng-click="mactrl.sidebarStat($event)"><i
         class="zmdi zmdi-money-box zmdi-hc-fw"></i> Pre - Nomina</a>
     </li>
-
 
   </ul>
 </div>

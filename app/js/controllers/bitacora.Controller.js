@@ -3,8 +3,8 @@
  */
 
 argus
-  .controller('bitacoraCtrl', ['$scope', '$rootScope', 'alertService', '$uibModal', 'growl','$location', '$timeout',
-    function ($scope, $rootScope, alertService, $uibModal, growl, $location, $timeout) {
+  .controller('bitacoraCtrl', ['$scope', '$rootScope', 'alertService', '$uibModal', 'growl','$location', '$timeout', 'userService',
+    function ($scope, $rootScope, alertService, $uibModal, growl, $location, $timeout, userService) {
 
       //public var
       var vm = this;
@@ -36,6 +36,22 @@ argus
         //     // $rootScope.$apply();
         //   }
         // }, 100 );
+
+        firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+
+            if(user.providerData[0].providerId == 'password'){
+              vm.usuarioNombre = user.email;
+
+              userService.getUserType(user.email).then(function (response) {
+                vm.userType = response;
+              })
+            }else{
+              vm.usuarioNombre = user.displayName;
+              vm.usuarioFotoPerfil = user.photoURL;
+            }
+          }
+        });
       }
 
 

@@ -7,7 +7,7 @@
   <aside id="sidebar" data-ng-include="'template/sidebar-left.html'"
          data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }"></aside>
 
-  <section id="content">
+  <section id="content" class="animated fadeIn">
 
     <div class="card m-l-20 m-r-20">
       <div class="row p-t-20">
@@ -160,6 +160,8 @@
 
 
     </div>
+
+    {{ vm.diaSemana }}
 
 
   </section>

@@ -2,8 +2,8 @@
  * Created by Toshiba on 20/02/2017.
  */
 argus
-  .controller('clienteCtrl', ['$scope', '$rootScope', 'alertService', '$uibModal', 'growl', '$location', '$timeout', 'focusService',
-    function ($scope, $rootScope, alertService, $uibModal, growl, $location, $timeout, focusService) {
+  .controller('clienteCtrl', ['$scope', '$rootScope', 'alertService', '$uibModal', 'growl', '$location', '$timeout', 'focusService', 'userService',
+    function ($scope, $rootScope, alertService, $uibModal, growl, $location, $timeout, focusService, userService) {
 
       //public var
       var vm = this;
@@ -94,6 +94,22 @@ argus
             vm.zonas = snapshot.val();
           });
 
+        firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+
+            if(user.providerData[0].providerId == 'password'){
+              vm.usuarioNombre = user.email;
+
+              userService.getUserType(user.email).then(function (response) {
+                vm.userType = response;
+              })
+            }else{
+              vm.usuarioNombre = user.displayName;
+              vm.usuarioFotoPerfil = user.photoURL;
+            }
+          }
+        });
+
       }
 
       activate();
@@ -161,30 +177,32 @@ argus
       }
 
       function editClient(client, clientName) {
-        vm.isEdit = true;
-        vm.client = client;
-        vm.saveZona = vm.client.clienteZonaAsignada;
-        for(var guard in vm.client.clienteGuardias){
-          vm.saveGuardias.push(guard);
-          vm.guardsToClient.push({
-            usuarioNombre : vm.client.clienteGuardias[guard].usuarioNombre,
-            usuarioKey : vm.client.clienteGuardias[guard].usuarioKey
-          });
-          firebase.database().ref('Argus/guardias/'+ vm.client.clienteGuardias[guard].usuarioKey).update({
-            usuarioDisponible: true
-          });
+        if(vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador') {
+          vm.isEdit = true;
+          vm.client = client;
+          vm.saveZona = vm.client.clienteZonaAsignada;
+          for (var guard in vm.client.clienteGuardias) {
+            vm.saveGuardias.push(guard);
+            vm.guardsToClient.push({
+              usuarioNombre: vm.client.clienteGuardias[guard].usuarioNombre,
+              usuarioKey: vm.client.clienteGuardias[guard].usuarioKey
+            });
+            firebase.database().ref('Argus/guardias/' + vm.client.clienteGuardias[guard].usuarioKey).update({
+              usuarioDisponible: true
+            });
+          }
+
+          // Obtener las consignas de este cliente
+          getConsignasNames(clientName);
+
+          // Obtener los responsables del cliente
+          getResponsibles(clientName);
+
+          //Obtener el horario
+          getSchedule(clientName);
+
+          vm.openModal();
         }
-
-        // Obtener las consignas de este cliente
-        getConsignasNames( clientName );
-
-        // Obtener los responsables del cliente
-        getResponsibles( clientName );
-
-        //Obtener el horario
-        getSchedule( clientName );
-
-        vm.openModal();
       }
 
       function editClientCancel(){

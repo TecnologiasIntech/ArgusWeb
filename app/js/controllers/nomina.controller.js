@@ -2,8 +2,8 @@
  * Created by Toshiba on 23/03/2017.
  */
 argus
-  .controller('nominaCtrl', ['$scope', '$rootScope', 'alertService', '$uibModal', 'growl','$location', '$timeout',
-    function ($scope, $rootScope, alertService, $uibModal, growl, $location, $timeout) {
+  .controller('nominaCtrl', ['$scope', '$rootScope', 'alertService', '$uibModal', 'growl', '$location', '$timeout', 'userService', 'dayOfWeekService',
+    function ($scope, $rootScope, alertService, $uibModal, growl, $location, $timeout, userService, dayOfWeekService) {
 
       //public var
       var vm = this;
@@ -29,12 +29,12 @@ argus
       vm.fechasQuincenaAnterior = {};
       vm.nominaFirebase = {};
       vm.numQuincena = '';
-      vm.assistence=0;
-      vm.assistence_cubreG=0;
-      vm.assistence_dobleT=0;
+      vm.assistence = 0;
+      vm.assistence_cubreG = 0;
+      vm.assistence_dobleT = 0;
       vm.estadoNomina = 0;
       vm.quincena = '';
-      vm.sueldoBase=0;
+      vm.sueldoBase = 0;
       vm.sueldoTotal = 0;
       vm.rangoInicial = '';
       vm.totalPagado = 0;
@@ -52,7 +52,7 @@ argus
       var date = new Date();
       vm.year = date.getFullYear();
       vm.years = [];
-      for(var i = 2017; i <= vm.year; i++ ){
+      for (var i = 2017; i <= vm.year; i++) {
         vm.years.push(i);
       }
 
@@ -68,9 +68,15 @@ argus
       vm.openModal = openModal;
       vm.exportToExcel = exportToExcel;
 
+      function obtenerDiaSemana() {
+
+        vm.diaSemana = dayOfWeekService.getDayOfWeek(2017, 8, 18)
+
+      }
+
       //private functions
       function activate() {
-
+        obtenerDiaSemana();
         // var user = firebase.auth().currentUser;
         // $timeout( function(){
         //   if (user) {
@@ -86,7 +92,7 @@ argus
           .on('value', function (snapshot) {
             vm.guardias = snapshot.val();
             // console.log(vm.guardias);
-        });
+          });
 
         firebase.database().ref('Argus/Clientes')
           .on('value', function (snapshot) {
@@ -100,23 +106,40 @@ argus
             // console.log(vm.guardias);
             $rootScope.$apply();
           });
+
+        firebase.auth().onAuthStateChanged(function (user) {
+          if (user) {
+
+            if (user.providerData[0].providerId == 'password') {
+              vm.usuarioNombre = user.email;
+
+              userService.getUserType(user.email).then(function (response) {
+                vm.userType = response;
+              })
+            } else {
+              vm.usuarioNombre = user.displayName;
+              vm.usuarioFotoPerfil = user.photoURL;
+            }
+          }
+        });
       }
 
       activate();
 
       vm.script = script;
+
       function script() {
         var fecha = 20170401;
 
-        for(fecha; fecha <= 20170415; fecha++){
-          if(fecha == 20170415){
+        for (fecha; fecha <= 20170415; fecha++) {
+          if (fecha == 20170415) {
             firebase.database().ref('Argus/Bitacora/' + fecha + '/-KhZRSL02I7Csjl-hHBZ').set({
               asistio: false,
               cubreDescanso: true,
               dobleTurno: false,
               guardiaNombre: "CERVANTES BALDENEBRO JESUS RAMON"
             })
-          }else{
+          } else {
             firebase.database().ref('Argus/Bitacora/' + fecha + '/-KhZRSL02I7Csjl-hHBZ').set({
               asistio: true,
               cubreDescanso: false,
@@ -144,8 +167,7 @@ argus
         vm.nomina = [];
         vm.fechasQuincenaAnterior = {};
         vm.loading = true;
-
-                                                          //  indice  nombreMes
+        //  indice  nombreMes
         var findmonth = _.findIndex(vm.monthArray, {'month': vm.month.month}) + 1;
 
         // Da formato a los meses que son del 1 al 9 => 01,02,03,04.....
@@ -153,10 +175,10 @@ argus
 
         // Fotrnight == Quincena
         // Fortnight es el valor de los radios buttons al elegir entre "Quincena 1" y "Quincena 2"
-        if(vm.fortnight == 1){
+        if (vm.fortnight == 1) {
           vm.rangeOneForPaysheet = vm.year + '' + formatmonth + '01';
           vm.rangeTwoForPaysheet = vm.year + '' + formatmonth + '15';
-        }else{
+        } else {
           vm.rangeOneForPaysheet = vm.year + '' + formatmonth + '16';
           vm.rangeTwoForPaysheet = vm.year + '' + formatmonth + '31';
         }
@@ -166,8 +188,8 @@ argus
         /*Dependiendo del numero de quincena deducida asignamos un identificador*/
         if (vm.quincena == '01') {
           vm.numQuincena = vm.month.month + '-Uno';
-          findmonth -=1;
-          if (findmonth<10) {
+          findmonth -= 1;
+          if (findmonth < 10) {
             findmonth = '0' + findmonth;
           }
 
@@ -180,8 +202,8 @@ argus
             });
         }
         else {
-          vm.numQuincena= vm.month.month + '-Dos';
-          if (findmonth<10) {
+          vm.numQuincena = vm.month.month + '-Dos';
+          if (findmonth < 10) {
             findmonth = '0' + findmonth;
           }
           firebase.database().ref('Argus/Bitacora')
@@ -216,7 +238,7 @@ argus
                   if (asistencias[Guardia].guardiaNombre == vm.guardias[guardia].usuarioNombre) {
                     if (asistencias[Guardia].asistio == false && asistencias[Guardia].cubreDescanso == false && asistencias[Guardia].dobleTurno == false) {
                       vm.inasistencias += 1;
-                    }else{
+                    } else {
                       vm.asistenciaBono += 1;
                     }
                     break;
@@ -245,11 +267,11 @@ argus
                         vm.sueldoTotal += 250;
                         vm.assistence_cubreG += 1;
                       }
-                      if (vm.asistencias[asistencia].dobleTurno ) {
+                      if (vm.asistencias[asistencia].dobleTurno) {
                         vm.sueldoTotal += 300;
                         vm.assistence_dobleT += 1;
                       }
-                      if(vm.asistencias[asistencia].horasExtra){
+                      if (vm.asistencias[asistencia].horasExtra) {
                         vm.sueldoTotal += vm.asistencias[asistencia].horasExtra * 20;
                         vm.horasExtras += vm.asistencias[asistencia].horasExtra;
                       }
@@ -267,23 +289,21 @@ argus
                 vm.sueldoTotal += vm.guardias[guardia].usuarioSueldoBase - 1600;
                 vm.bonoTotal += vm.guardias[guardia].usuarioSueldoBase - 1600;
                 vm.bono = 'Si';
-              }else{
+              } else {
                 vm.bonoTotal = 0;
               }
 
               // Obtener la zona del guardia mediante el servicio donde està
               var clienteDelGuardia = {};
-              for( cliente in vm.clientes ){
-                if(vm.clientes[cliente].clienteNombre ==  vm.guardias[guardia].usuarioClienteAsignado){
+              for (cliente in vm.clientes) {
+                if (vm.clientes[cliente].clienteNombre == vm.guardias[guardia].usuarioClienteAsignado) {
 
                   clienteDelGuardia = vm.clientes[cliente];
 
                 }
               }
 
-
-
-              firebase.database().ref('Argus/Nomina/'+ vm.numQuincena + '/' + guardia).update({
+              firebase.database().ref('Argus/Nomina/' + vm.numQuincena + '/' + guardia).update({
                 'nombreGuardia': vm.guardias[guardia].usuarioNombre,
                 'sueldoBase': vm.sueldoBase,
                 'asistencia': vm.assistence,
@@ -334,18 +354,18 @@ argus
             for (var empleado in vm.nomina) {
               vm.totalPagado += vm.nomina[empleado].sueldoTotal;
             }
-            firebase.database().ref('Argus/Nomina/'+ vm.numQuincena).child('totalPagado').set(vm.totalPagado);
+            firebase.database().ref('Argus/Nomina/' + vm.numQuincena).child('totalPagado').set(vm.totalPagado);
             // vm.exportToCsv = vm.nomina;
             vm.loading = false;
             $rootScope.$apply()
 
-        });
+          });
       }
 
       function exportToExcel(year, month, fortnight) {
 
         month = _.findIndex(vm.monthArray, {'month': vm.month.month}) + 1;
-        alasql('SELECT * INTO XLSX("nomina '+ year + '-' + month + ' quincena ' + fortnight + '.xlsx",{headers:true}) FROM ?', [vm.exportToCsv]);
+        alasql('SELECT * INTO XLSX("nomina ' + year + '-' + month + ' quincena ' + fortnight + '.xlsx",{headers:true}) FROM ?', [vm.exportToCsv]);
 
         // var mystyle = {
         //    headers:true,
@@ -367,19 +387,19 @@ argus
       function calculateBaseSalary(quincena, month, year, salary) {
         var baseSalary = 0;
 
-        if(quincena == 2) {
+        if (quincena == 2) {
           if (month === 'Abril' || month === 'Junio' || month === 'Septiembre' || month === 'Noviembre') {
             baseSalary = salary / 13;
           } else if (month === 'Febrero') {
-            if(year == 2020 || year == 2024 || year == 2028 || year == 2032 || year == 2036 || year == 2040 || year == 2044 || year == 2048 || year == 2052){
-             baseSalary = salary / 12;
-            }else {
+            if (year == 2020 || year == 2024 || year == 2028 || year == 2032 || year == 2036 || year == 2040 || year == 2044 || year == 2048 || year == 2052) {
+              baseSalary = salary / 12;
+            } else {
               baseSalary = salary / 11;
             }
           } else {
             baseSalary = salary / 14;
           }
-        }else{
+        } else {
           baseSalary = salary / 13;
         }
 

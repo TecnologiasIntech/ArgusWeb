@@ -7,7 +7,7 @@
   <aside id="sidebar" data-ng-include="'template/sidebar-left.html'"
          data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }"></aside>
 
-  <section id="content">
+  <section id="content" class="animated fadeIn">
 
     <div growl></div>
     <div class="card m-l-20 m-r-20">
@@ -18,7 +18,10 @@
             <input type="text" class="form-control supervisor-search  display-inline " placeholder="Buscar..."
                    ng-model="vm.searchInZones">
           </label>
-          <button class="btn btn-primary waves-effect display-inline" ng-click="vm.openModal()">Agregar</button>
+          <button class="btn btn-primary waves-effect display-inline" ng-click="vm.openModal()"
+                  ng-if="vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador'">
+            Agregar
+          </button>
         </div>
         <div class="col-xs-1"></div>
       </div>
@@ -43,7 +46,8 @@
               <td class="p-t-15 cursor-pointer" ng-click="vm.editZone(zone)">
                 <span>{{zone.zonaNombre}}</span>
               </td>
-              <td align="right">
+              <td align="right"
+                  ng-if="vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador'">
                 <div class="lv-actions actions dropdown" uib-dropdown="">
                   <a class="cursor-pointer dropdown-toggle" uib-dropdown-toggle=""
                      aria-haspopup="true" aria-expanded="false">

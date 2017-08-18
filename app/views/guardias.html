@@ -7,7 +7,7 @@
   <aside id="sidebar" data-ng-include="'template/sidebar-left.html'"
          data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }"></aside>
 
-  <section id="content">
+  <section id="content" class="animated fadeIn">
 
     <div growl></div>
     <div class="card m-l-20 m-r-20">
@@ -32,7 +32,8 @@
           </label>
           <button
             class="btn btn-primary waves-effect display-inline"
-            ng-click="vm.user = {}; vm.user.usuarioTipo = vm.searchTypeUser ; vm.verifyUser(vm.searchTypeUser); vm.availableZones()">
+            ng-click="vm.user = {}; vm.user.usuarioTipo = vm.searchTypeUser ; vm.verifyUser(vm.searchTypeUser); vm.availableZones()"
+            ng-if="vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador'">
             Agregar
           </button>
 
@@ -77,7 +78,8 @@
               <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key)">
                 <span>{{ guardia.usuarioClienteAsignado ? guardia.usuarioClienteAsignado: 'No asignado' }}</span>
               </td>
-              <td align="right" style="width: 50px">
+              <td align="right" style="width: 50px"
+                  ng-if="vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador'">
                 <div class="lv-actions actions dropdown" uib-dropdown="">
                   <a class="cursor-pointer dropdown-toggle" uib-dropdown-toggle=""
                      aria-haspopup="true" aria-expanded="false">

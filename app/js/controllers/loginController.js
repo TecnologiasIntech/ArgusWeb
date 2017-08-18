@@ -40,7 +40,7 @@ argus
           .on('value', function (snapshot) {
             vm.isAdmin = snapshot.val();
 
-            if(vm.isAdmin){
+            if(vm.isAdmin != null){
               firebase.auth().signInWithEmailAndPassword(vm.email, vm.password).then(function () {
                 //Comprobamos si está autenticado
                 firebase.auth().onAuthStateChanged(function (user) {

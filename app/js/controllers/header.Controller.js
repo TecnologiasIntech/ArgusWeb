@@ -2,8 +2,8 @@
  * Created by Toshiba on 03/03/2017.
  */
 argus
-  .controller('headerCtrl', ['$scope', '$rootScope', 'alertService', '$uibModal', '$location', '$interval', '$notification', '$timeout',
-    function ($scope, $rootScope, alertService, $uibModal, $location, $interval, $notification, $timeout) {
+  .controller('headerCtrl', ['$scope', '$rootScope', 'alertService', '$uibModal', '$location', '$interval', '$notification', '$timeout', 'userService',
+    function ($scope, $rootScope, alertService, $uibModal, $location, $interval, $notification, $timeout, userService) {
 
       //public var
       var vm = this;
@@ -50,55 +50,73 @@ argus
             $timeout(10);
             vm.isReadyToNotification = true;
           })
+
+        firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+
+            if(user.providerData[0].providerId == 'password'){
+              vm.usuarioNombre = user.email;
+
+              userService.getUserType(user.email).then(function (response) {
+                vm.userType = response;
+              })
+            }else{
+              vm.usuarioNombre = user.displayName;
+              vm.usuarioFotoPerfil = user.photoURL;
+            }
+          }
+        });
       }
 
       activate();
 
       function verifyAction(action, information, bitacoraInformation, key, notificacion) {
-        switch (action){
-          case 'AG':
-            if($location.path() !== '/supervisores'){
-              sessionStorage['guardiaInformacion'] = JSON.stringify(information);
-              sessionStorage['bitacoraInformacion'] = JSON.stringify(bitacoraInformation);
-              sessionStorage['notificacionKey'] = key;
-              $location.path('/supervisores');
-            }else{
-              $rootScope.$broadcast('notificacion:agregar', information);
-              $rootScope.$broadcast('notificacion:bitacora', bitacoraInformation);
-              $rootScope.$broadcast('notificacion:key', key);
-            }
-            break;
+        if(vm.userType != 'director') {
+          switch (action) {
+            case 'AG':
+              if ($location.path() !== '/supervisores') {
+                sessionStorage['guardiaInformacion'] = JSON.stringify(information);
+                sessionStorage['bitacoraInformacion'] = JSON.stringify(bitacoraInformation);
+                sessionStorage['notificacionKey'] = key;
+                $location.path('/supervisores');
+              } else {
+                $rootScope.$broadcast('notificacion:agregar', information);
+                $rootScope.$broadcast('notificacion:bitacora', bitacoraInformation);
+                $rootScope.$broadcast('notificacion:key', key);
+              }
+              break;
 
-          case 'MG':
-            break;
+            case 'MG':
+              break;
 
-          case 'AI':
-            if($location.path() === '/bitacoraRegistro'){
-              $rootScope.$broadcast('notificaciones:confirmar', notificacion);
-              $rootScope.$broadcast('notificacion:key', key);
-            }else{
+            case 'AI':
+              if ($location.path() === '/bitacoraRegistro') {
+                $rootScope.$broadcast('notificaciones:confirmar', notificacion);
+                $rootScope.$broadcast('notificacion:key', key);
+              } else {
 
-              sessionStorage['notificationConfirm'] = JSON.stringify(notificacion);
-              sessionStorage['notificacionKey'] = key;
-              $location.path('/bitacoraRegistro');
+                sessionStorage['notificationConfirm'] = JSON.stringify(notificacion);
+                sessionStorage['notificacionKey'] = key;
+                $location.path('/bitacoraRegistro');
 
-            }
-            break;
+              }
+              break;
 
-          case 'CF':
-            if($location.path() === '/bitacoraRegistro'){
-              $rootScope.$broadcast('notificaciones:confirmar', notificacion);
-              $rootScope.$broadcast('notificacion:bitacora', bitacoraInformation);
-              $rootScope.$broadcast('notificacion:key', key);
-            }else{
+            case 'CF':
+              if ($location.path() === '/bitacoraRegistro') {
+                $rootScope.$broadcast('notificaciones:confirmar', notificacion);
+                $rootScope.$broadcast('notificacion:bitacora', bitacoraInformation);
+                $rootScope.$broadcast('notificacion:key', key);
+              } else {
 
-              sessionStorage['notificationConfirm'] = JSON.stringify(notificacion);
-              sessionStorage['bitacoraInformacion'] = JSON.stringify(bitacoraInformation);
-              sessionStorage['notificacionKey'] = key;
-              $location.path('/bitacoraRegistro');
+                sessionStorage['notificationConfirm'] = JSON.stringify(notificacion);
+                sessionStorage['bitacoraInformacion'] = JSON.stringify(bitacoraInformation);
+                sessionStorage['notificacionKey'] = key;
+                $location.path('/bitacoraRegistro');
 
-            }
-            break;
+              }
+              break;
+          }
         }
       }
 
@@ -114,11 +132,11 @@ argus
       }
 
       function deleteNotification(Notificationkey) {
-
-        alertService.confirm('Eliminar notificacion', '¿Estas seguro que quieres eliminar esta notificacion?').then(function () {
-          firebase.database().ref('Argus/NotificacionTmp/' + Notificationkey).remove();
-        });
-
+        if(vm.userType != 'director') {
+          alertService.confirm('Eliminar notificacion', '¿Estas seguro que quieres eliminar esta notificacion?').then(function () {
+            firebase.database().ref('Argus/NotificacionTmp/' + Notificationkey).remove();
+          });
+        }
       }
 
     }

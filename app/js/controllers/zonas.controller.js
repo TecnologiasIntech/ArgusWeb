@@ -2,8 +2,8 @@
  * Created by Toshiba on 23/02/2017.
  */
 argus
-  .controller('zonaCtrl', ['$scope', '$rootScope', 'alertService', '$uibModal', 'growl','$location', '$timeout',
-    function ($scope, $rootScope, alertService, $uibModal, growl, $location, $timeout) {
+  .controller('zonaCtrl', ['$scope', '$rootScope', 'alertService', '$uibModal', 'growl','$location', '$timeout', 'userService',
+    function ($scope, $rootScope, alertService, $uibModal, growl, $location, $timeout, userService) {
 
       //public var
       var vm = this;
@@ -61,6 +61,23 @@ argus
             vm.customers = snapshot.val();
             $rootScope.$apply();
           });
+
+        firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+
+            if(user.providerData[0].providerId == 'password'){
+              vm.usuarioNombre = user.email;
+
+              userService.getUserType(user.email).then(function (response) {
+                vm.userType = response;
+              })
+            }else{
+              vm.usuarioNombre = user.displayName;
+              vm.usuarioFotoPerfil = user.photoURL;
+            }
+          }
+        });
+
       }
       activate();
 
@@ -76,18 +93,20 @@ argus
       }
 
       function editZone(zone) {
-        vm.customersToZone = [];
-        vm.isEdit = true;
-        vm.zone = zone;
-        for(var client in vm.zone.zonaClientes){
-          vm.customersToZone.push({clienteNombre : vm.zone.zonaClientes[client].clienteNombre});
-          vm.saveClients.push(vm.zone.zonaClientes[client].clienteNombre);
-          firebase.database().ref('Argus/Clientes/'+ vm.zone.zonaClientes[client].clienteNombre).update({
-            clienteDisponible: true
-          });
-          // firebase.database().ref('Argus/Clientes/'+ vm.zone.zonaClientes[client].clienteNombre + '/clienteZonaAsignada').remove();
+        if(vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador') {
+          vm.customersToZone = [];
+          vm.isEdit = true;
+          vm.zone = zone;
+          for (var client in vm.zone.zonaClientes) {
+            vm.customersToZone.push({clienteNombre: vm.zone.zonaClientes[client].clienteNombre});
+            vm.saveClients.push(vm.zone.zonaClientes[client].clienteNombre);
+            firebase.database().ref('Argus/Clientes/' + vm.zone.zonaClientes[client].clienteNombre).update({
+              clienteDisponible: true
+            });
+            // firebase.database().ref('Argus/Clientes/'+ vm.zone.zonaClientes[client].clienteNombre + '/clienteZonaAsignada').remove();
+          }
+          vm.openModal();
         }
-        vm.openModal();
       }
 
       function editZoneCancel(){

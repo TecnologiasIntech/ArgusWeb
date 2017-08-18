@@ -2,8 +2,8 @@
  * Created by Toshiba on 14/02/2017.
  */
 argus
-  .controller('guardiaCtrl', ['$location', '$scope', '$rootScope', 'alertService', '$uibModal', 'growl', '$timeout',
-    function ($location, $scope, $rootScope, alertService, $uibModal, growl, $timeout) {
+  .controller('guardiaCtrl', ['$location', '$scope', '$rootScope', 'alertService', '$uibModal', 'growl', '$timeout', 'userService',
+    function ($location, $scope, $rootScope, alertService, $uibModal, growl, $timeout, userService) {
 
       //public var
       var vm = this;
@@ -96,6 +96,22 @@ argus
             $rootScope.$apply();
           });
 
+        firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+
+            if(user.providerData[0].providerId == 'password'){
+              vm.usuarioNombre = user.email;
+
+              userService.getUserType(user.email).then(function (response) {
+                vm.userType = response;
+              })
+            }else{
+              vm.usuarioNombre = user.displayName;
+              vm.usuarioFotoPerfil = user.photoURL;
+            }
+          }
+        });
+
 
 
         vm.emailAdmin = localStorage.getItem('email');
@@ -161,39 +177,41 @@ argus
       }
 
       function editUser(user, userKey, userType, turno, zona) {
-        vm.isEdit = true;
-        vm.user = user;
-        vm.saveZonaSupervisor = zona;
-        if(userType == 'supervisor') {
-          var domicilio = user.usuarioDomicilio.split(",");
-          vm.user.usuarioColony = domicilio[0];
-          vm.user.usuarioStreet = domicilio[1];
-          vm.user.usuarioKey = userKey;
-        }
-        // var domicilio = user.usuarioDomicilio.split(",");
-        // vm.user.usuarioKey = userKey;
-        // vm.user.usuarioColony = domicilio[0];
-        // vm.user.usuarioStreet = domicilio[1];
-        vm.saveUser.push(user);
-        vm.saveService = user.usuarioClienteAsignado;
+        if(vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador') {
+          vm.isEdit = true;
+          vm.user = user;
+          vm.saveZonaSupervisor = zona;
+          if (userType == 'supervisor') {
+            var domicilio = user.usuarioDomicilio.split(",");
+            vm.user.usuarioColony = domicilio[0];
+            vm.user.usuarioStreet = domicilio[1];
+            vm.user.usuarioKey = userKey;
+          }
+          // var domicilio = user.usuarioDomicilio.split(",");
+          // vm.user.usuarioKey = userKey;
+          // vm.user.usuarioColony = domicilio[0];
+          // vm.user.usuarioStreet = domicilio[1];
+          vm.saveUser.push(user);
+          vm.saveService = user.usuarioClienteAsignado;
 
-        //Solo cuando se es supervisor
-        if(userType === 'supervisor'){
-          if (vm.user.usuarioZona != undefined) {
-            if (user.usuarioTurno == 'Día' /*vm.user.usuarioTurno == 'Día'*/) {
-              firebase.database().ref('Argus/Zonas/'+ vm.user.usuarioZona +'/disponibilidadZona').update({
-                disponibilidadDia: true
-              });
-            }
-            else {
-              firebase.database().ref('Argus/Zonas/'+ vm.user.usuarioZona +'/disponibilidadZona').update({
-                disponibilidadNoche: true
-              });
+          //Solo cuando se es supervisor
+          if (userType === 'supervisor') {
+            if (vm.user.usuarioZona != undefined) {
+              if (user.usuarioTurno == 'Día' /*vm.user.usuarioTurno == 'Día'*/) {
+                firebase.database().ref('Argus/Zonas/' + vm.user.usuarioZona + '/disponibilidadZona').update({
+                  disponibilidadDia: true
+                });
+              }
+              else {
+                firebase.database().ref('Argus/Zonas/' + vm.user.usuarioZona + '/disponibilidadZona').update({
+                  disponibilidadNoche: true
+                });
+              }
             }
           }
+          availableZones();
+          openModal();
         }
-        availableZones();
-        openModal();
         // console.log(user);
       }
 

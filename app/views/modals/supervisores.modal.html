@@ -31,6 +31,7 @@
                 <option value="supervisor">Supervisor</option>
                 <option value="administrador">Administrador</option>
                 <option value="coordinador">Coordinador</option>
+                <option value="recursosHumanos">Recursos Humanos</option>
               </select>
             </div>
 
@@ -82,7 +83,6 @@
 
         <div class="row m-t-30">
 
-          <!--// TODO: poner telefono de casa y telegono de celular-->
           <!--TELEFONO-->
           <div class="col-xs-offset-1 col-xs-5">
             <span>Teléfono celular</span>
@@ -151,12 +151,12 @@
           </div>
         </div>
 
-        <div class="row m-t-30" ng-if="vm.user.usuarioTipo != 'administrador'">
+        <div class="row m-t-30" ng-if="vm.user.usuarioTipo == 'supervisor' || vm.user.usuarioTipo == 'guardia'">
           <div class="col-xs-offset-1 col-xs-10">
             <span>Domicilio</span>
           </div>
         </div>
-        <div class="row" ng-if="vm.user.usuarioTipo != 'administrador'">
+        <div class="row" ng-if="vm.user.usuarioTipo == 'supervisor' || vm.user.usuarioTipo == 'guardia'">
           <!-- Colonia -->
           <div class="col-xs-offset-1 col-xs-5" >
             <div class="fg-line m-l-10">

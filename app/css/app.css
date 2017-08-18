@@ -16171,7 +16171,7 @@ select.chosen {
 
 }
 .card-login{
-  margin-top: 10%;
+  margin-top: 20%;
   padding-left: 36px;
   padding-right: 36px;
   box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27) !important;
@@ -16190,7 +16190,7 @@ select.chosen {
   width:397px !important;
 }
 .form-log{
-  min-height: 311px !important;
+  min-height: 260px !important;
   /*min-height: 372px !important;*/
   width:397px !important;
 
