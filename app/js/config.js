@@ -33,6 +33,12 @@ argus
         controller: 'clienteCtrl as vm'
       })
 
+      .state('preNomina', {
+        url: '/preNomina',
+        templateUrl: 'views/preNomina.html',
+        controller: 'preNominaCtrl as vm'
+      })
+
       .state('zonas', {
         url: '/zonas',
         templateUrl: 'views/zonas.html',

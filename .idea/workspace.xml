@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7f4ae1f1-b0de-4894-a4d9-423677ee78ea" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/firebase-debug.log" afterPath="" />
+    <list default="true" id="7f4ae1f1-b0de-4894-a4d9-423677ee78ea" name="Default" comment="-">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/controllers/preNomina.Controller.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/services/date.service.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/services/objects.service.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/preNomina.html" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/services/diaDeSemana.service.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/supervisores.html" afterPath="$PROJECT_DIR$/app/views/supervisores.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index.html" afterPath="$PROJECT_DIR$/app/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/config.js" afterPath="$PROJECT_DIR$/app/js/config.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controllers/guardias.controller.js" afterPath="$PROJECT_DIR$/app/js/controllers/guardias.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controllers/nomina.controller.js" afterPath="$PROJECT_DIR$/app/js/controllers/nomina.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/template/header.html" afterPath="$PROJECT_DIR$/app/template/header.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/bitacoras.html" afterPath="$PROJECT_DIR$/app/views/bitacoras.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/guardias.html" afterPath="$PROJECT_DIR$/app/views/guardias.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/modals/supervisores.modal.html" afterPath="$PROJECT_DIR$/app/views/modals/supervisores.modal.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -25,36 +36,61 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="supervisores.controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/js/controllers/supervisores.controller.js">
+      <file leaf-file-name="nomina.controller.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/js/controllers/nomina.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="359">
-              <caret line="549" column="14" lean-forward="true" selection-start-line="549" selection-start-column="14" selection-end-line="549" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="guardias.controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/js/controllers/guardias.controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="531" column="30" lean-forward="true" selection-start-line="531" selection-start-column="30" selection-end-line="531" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="supervisores.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views/supervisores.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="165" column="57" lean-forward="false" selection-start-line="165" selection-start-column="57" selection-end-line="165" selection-end-column="57" />
+            <state relative-caret-position="921">
+              <caret line="379" column="35" lean-forward="true" selection-start-line="379" selection-start-column="35" selection-end-line="379" selection-end-column="35" />
               <folding>
-                <element signature="n#style#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#4;n#div#1;n#section#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#5;n#tr#1;n#tbody#0;n#table#0;n#div#0;n#div#4;n#div#1;n#section#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#4;n#tr#2;n#tbody#0;n#table#0;n#div#0;n#div#4;n#div#1;n#section#0;n#section#0;n#!!top" expanded="true" />
+                <element signature="e#2272#3742#0" expanded="false" />
+                <element signature="e#3814#4525#0" expanded="false" />
+                <element signature="e#4554#4781#0" expanded="false" />
+                <element signature="e#14037#14728#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="preNomina.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/preNomina.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1155">
+              <caret line="139" column="38" lean-forward="false" selection-start-line="139" selection-start-column="38" selection-end-line="139" selection-end-column="38" />
+              <folding>
+                <element signature="n#style#0;n#div#2;n#div#0;n#section#0;n#section#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#1;n#tbody#0;n#table#0;n#div#2;n#div#0;n#section#0;n#section#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#5;n#tr#1;n#tbody#0;n#table#0;n#div#2;n#div#0;n#section#0;n#section#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="preNomina.controller.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/js/controllers/preNomina.controller.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="186">
+              <caret line="87" column="40" lean-forward="false" selection-start-line="87" selection-start-column="40" selection-end-line="87" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="date.service.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/services/date.service.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="20" column="20" lean-forward="true" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="objects.service.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/services/objects.service.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="21">
+              <caret line="1" column="24" lean-forward="false" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="24" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -65,43 +101,43 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>vm.guards</find>
-      <find>datesrecords</find>
-      <find>turno</find>
-      <find>rootscope</find>
-      <find>update</find>
-      <find>consig</find>
-      <find>offs</find>
-      <find>acep</find>
-      <find>salary</find>
-      <find>BitacoraNoResuelto</find>
-      <find>timeo</find>
-      <find>filter</find>
-      <find>subs</find>
-      <find>updates</find>
-      <find>then</find>
-      <find>color: #e74c3c</find>
-      <find>fecha</find>
-      <find>nomina</find>
-      <find>zonas</find>
-      <find>deleteuser</find>
-      <find>eliminar</find>
+      <find>no se enc</find>
+      <find>agregar</find>
+      <find>super</find>
+      <find>coordina</find>
+      <find>submi</find>
+      <find>edituser</find>
+      <find>saveuser</find>
+      <find>anima</find>
+      <find>coord</find>
+      <find>vm.coordi</find>
+      <find>updateuser</find>
+      <find>month</find>
+      <find>controller</find>
+      <find>tog</find>
+      <find>layoutType</find>
+      <find>service</find>
+      <find>monthArray</find>
+      <find>forma</find>
+      <find>dateFormat</find>
+      <find>format</find>
+      <find>getMonth</find>
+      <find>firma</find>
+      <find>vm.myDate</find>
       <find>export</find>
-      <find>downloadCSV</find>
-      <find>download</find>
-      <find>alas</find>
-      <find>dow</find>
-      <find>find</find>
-      <find>saveuseri</find>
-      <find>register</find>
-      <find>saveuserin</find>
+      <find>vm.toDate</find>
+      <find>sear</find>
+      <find>por</find>
+      <find>servicio</find>
+      <find>saveuserinfo</find>
+      <find>editar</find>
     </findStrings>
     <replaceStrings>
       <replace>sm</replace>
@@ -109,6 +145,7 @@
       <replace>mouth</replace>
       <replace>mouthArray</replace>
       <replace>month</replace>
+      <replace>code</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -118,57 +155,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/js/controllers/main.js" />
-        <option value="$PROJECT_DIR$/app/js/controllers/sidebar.Controller.js" />
-        <option value="$PROJECT_DIR$/app/css/datepicker.css" />
-        <option value="$PROJECT_DIR$/app/views/login.html" />
-        <option value="$PROJECT_DIR$/app/views/modals/bitacora.modal.html" />
-        <option value="$PROJECT_DIR$/app/css/app.min.2.css" />
-        <option value="$PROJECT_DIR$/app/js/app.js" />
-        <option value="$PROJECT_DIR$/bower_components/bootstrap/less/variables.less" />
-        <option value="$PROJECT_DIR$/bower_components/bootstrap/less/dropdowns.less" />
-        <option value="$PROJECT_DIR$/app/views/modals/paysheetSettings.modal.html" />
-        <option value="$PROJECT_DIR$/database.rules.json" />
-        <option value="$PROJECT_DIR$/app/services/currentUser.service.js" />
-        <option value="$PROJECT_DIR$/app/js/controllers/loginController.js" />
-        <option value="$PROJECT_DIR$/app/js/controllers/bitacora.Controller.js" />
-        <option value="$PROJECT_DIR$/app/js/controllers/incidentes.controller.js" />
-        <option value="$PROJECT_DIR$/app/services/focus.service.js" />
-        <option value="$PROJECT_DIR$/app/js/services.js" />
         <option value="$PROJECT_DIR$/app/css/app.min.1.css" />
         <option value="$PROJECT_DIR$/app/views/modals/asignarNombreConsigna.modal.html" />
         <option value="$PROJECT_DIR$/app/js/controllers/notificaciones.controller.js" />
-        <option value="$PROJECT_DIR$/app/js/controllers/zonas.controller.js" />
-        <option value="$PROJECT_DIR$/app/template/header.html" />
         <option value="$PROJECT_DIR$/app/filters/search.filter.js" />
         <option value="$PROJECT_DIR$/app/filters/formatoFecha.filter.js" />
         <option value="$PROJECT_DIR$/app/views/incidentes.html" />
         <option value="$PROJECT_DIR$/app/views/notificaciones.html" />
         <option value="$PROJECT_DIR$/app/services/alert.service.js" />
         <option value="$PROJECT_DIR$/app/views/modals/incidentesNoResueltos.modal.html" />
-        <option value="$PROJECT_DIR$/app/js/controllers/header.Controller.js" />
         <option value="$PROJECT_DIR$/app/views/modals/notificaciones.modal.html" />
-        <option value="$PROJECT_DIR$/app/js/config.js" />
-        <option value="$PROJECT_DIR$/app/template/sidebar-left.html" />
-        <option value="$PROJECT_DIR$/app/views/modals/supervisores.modal.html" />
         <option value="$PROJECT_DIR$/app/views/modals/incidentes.modal.html" />
         <option value="$PROJECT_DIR$/app/views/modals/clientes.modal.html" />
         <option value="$PROJECT_DIR$/app/css/main.css" />
         <option value="$PROJECT_DIR$/app/views/modals/guardiasDetalles.modal.html" />
         <option value="$PROJECT_DIR$/app/views/modals/zonas.modal.html" />
-        <option value="$PROJECT_DIR$/app/views/zonas.html" />
-        <option value="$PROJECT_DIR$/app/views/guardias.html" />
-        <option value="$PROJECT_DIR$/app/views/clientes.html" />
-        <option value="$PROJECT_DIR$/app/views/bitacoras.html" />
-        <option value="$PROJECT_DIR$/app/index.html" />
-        <option value="$PROJECT_DIR$/app/views/nomina.html" />
-        <option value="$PROJECT_DIR$/app/js/controllers/nomina.controller.js" />
+        <option value="$PROJECT_DIR$/app/constants/constants.js" />
+        <option value="$PROJECT_DIR$/app/views/login.html" />
+        <option value="$PROJECT_DIR$/app/js/controllers/loginController.js" />
+        <option value="$PROJECT_DIR$/app/services/userService.js" />
+        <option value="$PROJECT_DIR$/app/services/user.service.js" />
+        <option value="$PROJECT_DIR$/app/template/sidebar-left.html" />
+        <option value="$PROJECT_DIR$/app/js/controllers/sidebar.Controller.js" />
         <option value="$PROJECT_DIR$/app/js/controllers/clientes.controller.js" />
+        <option value="$PROJECT_DIR$/app/js/controllers/zonas.controller.js" />
+        <option value="$PROJECT_DIR$/app/js/controllers/bitacora.Controller.js" />
         <option value="$PROJECT_DIR$/app/js/controllers/bitacoraRegistro.controller.js" />
-        <option value="$PROJECT_DIR$/app/views/bitacoraRegistro.html" />
+        <option value="$PROJECT_DIR$/app/js/controllers/header.Controller.js" />
         <option value="$PROJECT_DIR$/app/js/controllers/supervisores.controller.js" />
-        <option value="$PROJECT_DIR$/app/js/controllers/guardias.controller.js" />
+        <option value="$PROJECT_DIR$/app/views/zonas.html" />
+        <option value="$PROJECT_DIR$/app/views/clientes.html" />
+        <option value="$PROJECT_DIR$/app/views/bitacoraRegistro.html" />
+        <option value="$PROJECT_DIR$/app/js/controllers/main.js" />
         <option value="$PROJECT_DIR$/app/views/supervisores.html" />
+        <option value="$PROJECT_DIR$/app/views/nomina.html" />
+        <option value="$PROJECT_DIR$/app/services/diaDeSemana.service.js" />
+        <option value="$PROJECT_DIR$/app/js/controllers/preNomina.Controller.js" />
+        <option value="$PROJECT_DIR$/app/js/config.js" />
+        <option value="$PROJECT_DIR$/app/template/header.html" />
+        <option value="$PROJECT_DIR$/app/views/bitacoras.html" />
+        <option value="$PROJECT_DIR$/app/services/getDate.service.js" />
+        <option value="$PROJECT_DIR$/app/js/controllers/nomina.controller.js" />
+        <option value="$PROJECT_DIR$/app/services/objets.service.js" />
+        <option value="$PROJECT_DIR$/app/index.html" />
+        <option value="$PROJECT_DIR$/app/services/objects.service.js" />
+        <option value="$PROJECT_DIR$/app/css/app.css" />
+        <option value="$PROJECT_DIR$/app/views/preNomina.html" />
+        <option value="$PROJECT_DIR$/app/js/controllers/guardias.controller.js" />
+        <option value="$PROJECT_DIR$/app/views/modals/supervisores.modal.html" />
+        <option value="$PROJECT_DIR$/app/js/controllers/preNomina.controller.js" />
+        <option value="$PROJECT_DIR$/app/services/date.service.js" />
+        <option value="$PROJECT_DIR$/app/views/guardias.html" />
       </list>
     </option>
   </component>
@@ -228,23 +265,40 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/app/bower_components/angular-toArrayFilter/node_modules" />
+    <handled-path value="$PROJECT_DIR$/app/bower_components/bootstrap/node_modules" />
+    <handled-path value="$PROJECT_DIR$/app/bower_components/ng-csv/node_modules" />
     <handled-path value="$PROJECT_DIR$/app/node_modules" />
+    <handled-path value="$PROJECT_DIR$/app/vendors/bower_components/Waves/node_modules" />
+    <handled-path value="$PROJECT_DIR$/app/vendors/bower_components/angular-nouislider/node_modules" />
+    <handled-path value="$PROJECT_DIR$/app/vendors/bower_components/autosize/node_modules" />
+    <handled-path value="$PROJECT_DIR$/app/vendors/bower_components/bootstrap-sweetalert/node_modules" />
+    <handled-path value="$PROJECT_DIR$/app/vendors/bower_components/eonasdan-bootstrap-datetimepicker/node_modules" />
+    <handled-path value="$PROJECT_DIR$/app/vendors/bower_components/install/node_modules" />
+    <handled-path value="$PROJECT_DIR$/app/vendors/bower_components/jquery.easy-pie-chart/node_modules" />
+    <handled-path value="$PROJECT_DIR$/app/vendors/bower_components/lightgallery/node_modules" />
+    <handled-path value="$PROJECT_DIR$/app/vendors/bower_components/summernote/node_modules" />
+    <handled-path value="$PROJECT_DIR$/app/vendors/bower_components/sweetalert/node_modules" />
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/app/bower_components/js-xls/package.json" />
+    <dismissed value="$PROJECT_DIR$/app/bower_components/js-xlsx/package.json" />
     <dismissed value="$PROJECT_DIR$/app/vendors/bower_components/angular-loading-bar/package.json" />
     <dismissed value="$PROJECT_DIR$/app/vendors/bower_components/angular-nouislider/package.json" />
     <dismissed value="$PROJECT_DIR$/app/vendors/bower_components/animate.css/package.json" />
     <dismissed value="$PROJECT_DIR$/app/vendors/bower_components/bootstrap/package.json" />
     <dismissed value="$PROJECT_DIR$/app/vendors/bower_components/flot/package.json" />
     <dismissed value="$PROJECT_DIR$/app/vendors/bower_components/simpleWeather/package.json" />
+    <dismissed value="$PROJECT_DIR$/bower_components/angular-web-notification/package.json" />
     <dismissed value="$PROJECT_DIR$/bower_components/bootstrap/package.json" />
+    <dismissed value="$PROJECT_DIR$/bower_components/simple-web-notification/package.json" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="width" value="1296" />
+    <option name="height" value="1000" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -261,34 +315,24 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="ArgusWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ArgusWeb" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="Scope" />
+      <pane id="ProjectPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="C:/ComunidadITH" />
+    <property name="last_opened_file_path" value="C:/firebaseFunctions" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="js-jscs-package" value="C:\GEEB\node_modules\jscs" />
-    <property name="SearchEverywhereHistoryKey" value="guardia&#9;FILE&#9;file:///Users/sergiosilva/ArgusWeb/app/js/controllers/guardias.controller.js&#10;super&#9;FILE&#9;file:///Users/sergiosilva/ArgusWeb/app/views/supervisores.html&#10;cliente&#9;FILE&#9;file:///Users/sergiosilva/ArgusWeb/app/js/controllers/clientes.controller.js&#10;bitacora&#9;FILE&#9;file://C:/ArgusWeb/app/views/bitacoras.html&#10;nomina&#9;FILE&#9;file://C:/ArgusWeb/app/views/nomina.html&#10;bitacoras&#9;FILE&#9;file://C:/ArgusWeb/app/views/bitacoras.html&#10;guardias&#9;FILE&#9;file://C:/ArgusWeb/app/views/guardias.html&#10;growlse&#9;FILE&#9;file://C:/ArgusWeb.git/app/services/growl.service.js&#10;disponibilidadZona&#9;null&#9;null&#10;zona&#9;FILE&#9;file://C:/ArgusWeb.git/app/js/controllers/zonas.controller.js&#10;app&#9;FILE&#9;file://C:/ArgusWeb.git/app/css/app.min.2.css&#10;client&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/clientes.html&#10;clientes&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/modals/clientes.modal.html&#10;zonas&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/modals/zonas.modal.html&#10;login&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/login.html&#10;zon&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/zonas.html&#10;inde&#9;FILE&#9;file://C:/ArgusWeb.git/app/index.html&#10;config&#9;FILE&#9;file://C:/ArgusWeb.git/app/js/config.js&#10;sid&#9;FILE&#9;file://C:/ArgusWeb.git/app/template/sidebar-left.html&#10;componen&#9;FILE&#9;file://C:/ArgusWeb.git/app/js/modules/components.js&#10;sidebar&#9;FILE&#9;file://C:/ArgusWeb.git/app/template/sidebar-left.html&#10;main&#9;FILE&#9;file://C:/ArgusWeb.git/app/css/main.css&#10;SU&#9;FILE&#9;file://C:/ArgusWeb.git/app/js/controllers/supervisores.controller.js&#10;index&#9;FILE&#9;file://C:/ArgusWeb.git/app/index.html&#10;sett&#9;FILE&#9;file://C:/ArgusWeb.git/app/config/settings.js&#10;footer&#9;FILE&#9;file://C:/ArgusWeb.git/app/template/footer.html&#10;supervi&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/supervisores.html&#10;lo&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/login.html&#10;profile&#9;FILE&#9;file://C:/GEEB/app/views/profile.html&#10;maestro&#9;FILE&#9;file://C:/GEEB/app/js/controllers/buscarMaestro.Controller.js&#10;regis&#9;FILE&#9;file://C:/GEEB/app/views/register.html&#10;logi&#9;FILE&#9;file://C:/GEEB/app/views/login.html&#10;ma&#9;FILE&#9;file://C:/GEEB/app/js/controllers/main.js&#10;controller&#9;FILE&#9;file://C:/GEEB/app/js/controllers/perfilMestro.Controller.js&#10;maestros&#9;FILE&#9;file://C:/GEEB/app/views/maestros.html&#10;comentarios&#9;FILE&#9;file://C:/GEEB/app/views/profile-comentarios.html&#10;bus&#9;FILE&#9;file://C:/GEEB/app/js/controllers/buscarMaestro.Controller.js&#10;a&#9;FILE&#9;file://C:/GEEB/app/css/app.css&#10;admi&#9;FILE&#9;file://C:/GEEB/app/views/PreHorarios/administracion.html&#10;resetP&#9;FILE&#9;file://C:/GEEB/app/views/resetPassword.html&#10;controll&#9;FILE&#9;file://C:/GEEB/app/js/controllers/perfilMestro.Controller.js&#10;maes&#9;FILE&#9;file://C:/GEEB/app/views/maestros.html&#10;buscar&#9;FILE&#9;file://C:/GEEB/app/js/controllers/buscarMaestro.Controller.js&#10;busca&#9;FILE&#9;file://C:/GEEB/app/js/controllers/buscarMaestro.Controller.js&#10;pass&#9;FILE&#9;file://C:/GEEB/app/views/resetPassword.html" />
+    <property name="SearchEverywhereHistoryKey" value="nom&#9;FILE&#9;file://C:/ArgusWeb/app/js/controllers/nomina.controller.js&#10;bitacora&#9;FILE&#9;file://C:/ArgusWeb/app/views/bitacoras.html&#10;nomina&#9;FILE&#9;file://C:/ArgusWeb/app/views/nomina.html&#10;bitacoras&#9;FILE&#9;file://C:/ArgusWeb/app/views/bitacoras.html&#10;cliente&#9;FILE&#9;file://C:/ArgusWeb/app/views/clientes.html&#10;guardias&#9;FILE&#9;file://C:/ArgusWeb/app/views/guardias.html&#10;super&#9;FILE&#9;file://C:/ArgusWeb/app/views/supervisores.html&#10;growlse&#9;FILE&#9;file://C:/ArgusWeb.git/app/services/growl.service.js&#10;disponibilidadZona&#9;null&#9;null&#10;zona&#9;FILE&#9;file://C:/ArgusWeb.git/app/js/controllers/zonas.controller.js&#10;app&#9;FILE&#9;file://C:/ArgusWeb.git/app/css/app.min.2.css&#10;client&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/clientes.html&#10;clientes&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/modals/clientes.modal.html&#10;zonas&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/modals/zonas.modal.html&#10;login&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/login.html&#10;zon&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/zonas.html&#10;inde&#9;FILE&#9;file://C:/ArgusWeb.git/app/index.html&#10;config&#9;FILE&#9;file://C:/ArgusWeb.git/app/js/config.js&#10;sid&#9;FILE&#9;file://C:/ArgusWeb.git/app/template/sidebar-left.html&#10;componen&#9;FILE&#9;file://C:/ArgusWeb.git/app/js/modules/components.js&#10;sidebar&#9;FILE&#9;file://C:/ArgusWeb.git/app/template/sidebar-left.html&#10;main&#9;FILE&#9;file://C:/ArgusWeb.git/app/css/main.css&#10;SU&#9;FILE&#9;file://C:/ArgusWeb.git/app/js/controllers/supervisores.controller.js&#10;index&#9;FILE&#9;file://C:/ArgusWeb.git/app/index.html&#10;sett&#9;FILE&#9;file://C:/ArgusWeb.git/app/config/settings.js&#10;footer&#9;FILE&#9;file://C:/ArgusWeb.git/app/template/footer.html&#10;supervi&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/supervisores.html&#10;lo&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/login.html&#10;profile&#9;FILE&#9;file://C:/GEEB/app/views/profile.html&#10;maestro&#9;FILE&#9;file://C:/GEEB/app/js/controllers/buscarMaestro.Controller.js&#10;regis&#9;FILE&#9;file://C:/GEEB/app/views/register.html&#10;logi&#9;FILE&#9;file://C:/GEEB/app/views/login.html&#10;ma&#9;FILE&#9;file://C:/GEEB/app/js/controllers/main.js&#10;controller&#9;FILE&#9;file://C:/GEEB/app/js/controllers/perfilMestro.Controller.js&#10;maestros&#9;FILE&#9;file://C:/GEEB/app/views/maestros.html&#10;comentarios&#9;FILE&#9;file://C:/GEEB/app/views/profile-comentarios.html&#10;bus&#9;FILE&#9;file://C:/GEEB/app/js/controllers/buscarMaestro.Controller.js&#10;a&#9;FILE&#9;file://C:/GEEB/app/css/app.css&#10;admi&#9;FILE&#9;file://C:/GEEB/app/views/PreHorarios/administracion.html&#10;resetP&#9;FILE&#9;file://C:/GEEB/app/views/resetPassword.html&#10;controll&#9;FILE&#9;file://C:/GEEB/app/js/controllers/perfilMestro.Controller.js&#10;maes&#9;FILE&#9;file://C:/GEEB/app/views/maestros.html&#10;buscar&#9;FILE&#9;file://C:/GEEB/app/js/controllers/buscarMaestro.Controller.js&#10;busca&#9;FILE&#9;file://C:/GEEB/app/js/controllers/buscarMaestro.Controller.js&#10;pass&#9;FILE&#9;file://C:/GEEB/app/views/resetPassword.html" />
     <property name="editor.config.accepted" value="true" />
     <property name="js.buildTools.grunt.grunt-cli.package" value="$USER_HOME$/AppData/Roaming/npm/node_modules/grunt-cli" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
@@ -507,7 +551,23 @@
       <workItem from="1500490078990" duration="1067000" />
       <workItem from="1500595492181" duration="213000" />
       <workItem from="1500596154109" duration="1998000" />
-      <workItem from="1500598237942" duration="4215000" />
+      <workItem from="1500598237942" duration="6154000" />
+      <workItem from="1500676398282" duration="1309000" />
+      <workItem from="1501012792475" duration="1320000" />
+      <workItem from="1501180192163" duration="597000" />
+      <workItem from="1501712191972" duration="94000" />
+      <workItem from="1501712396680" duration="2179000" />
+      <workItem from="1501717461197" duration="63000" />
+      <workItem from="1502321378972" duration="1549000" />
+      <workItem from="1502894119106" duration="14425000" />
+      <workItem from="1502991757142" duration="13403000" />
+      <workItem from="1503093336419" duration="1981000" />
+      <workItem from="1503326406836" duration="3423000" />
+      <workItem from="1503332036483" duration="7429000" />
+      <workItem from="1503422141457" duration="21267000" />
+      <workItem from="1503498313456" duration="19701000" />
+      <workItem from="1503596022437" duration="13761000" />
+      <workItem from="1503686861962" duration="5889000" />
     </task>
     <task id="LOCAL-00001" summary="cambios generales&#10;">
       <created>1489812407890</created>
@@ -691,18 +751,25 @@
       <option name="project" value="LOCAL" />
       <updated>1496046795619</updated>
     </task>
-    <task id="LOCAL-00027" summary="- bug corregido al editar un guardia sin servicio">
-      <created>1500667418431</created>
+    <task id="LOCAL-00027" summary="- Bugs de bitacora arreglados&#10;- Alerta de servicio duplicado">
+      <created>1500602513810</created>
       <option name="number" value="00027" />
       <option name="presentableId" value="LOCAL-00027" />
       <option name="project" value="LOCAL" />
-      <updated>1500667418431</updated>
+      <updated>1500602513810</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="- Diferentes permisos de accesibilidad para los usuarios&#10;- Nuevo rol en el sistema &quot;Recursos Humanos&quot;">
+      <created>1503098524480</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1503098524480</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="893823000" />
+    <option name="totallyTimeSpent" value="1003035000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -713,40 +780,28 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="827" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14799154" sideWeight="0.8527005" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16852146" sideWeight="0.8527005" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Grunt " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22321428" sideWeight="0.09328969" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21994536" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2199074" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23148148" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3107511" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3101852" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17559524" sideWeight="0.14729951" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2199074" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23148148" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3107511" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1581876" sideWeight="0.8527005" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Grunt " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22321428" sideWeight="0.09328969" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="CSS-X-Fire" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17559524" sideWeight="0.14729951" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -797,8 +852,9 @@
     <MESSAGE value="- Opcion para suspender guardia y para eliminar permanentemente" />
     <MESSAGE value="- Separacion de guardias en la seccion de usuarios, ahora guardias será una sección unica." />
     <MESSAGE value="- Diseño en la seccion de asignacion en Servicios limpio.&#10;- Detalles de guardias visualizados en un modal." />
-    <MESSAGE value="- bug corregido al editar un guardia sin servicio" />
-    <option name="LAST_COMMIT_MESSAGE" value="- bug corregido al editar un guardia sin servicio" />
+    <MESSAGE value="- Bugs de bitacora arreglados&#10;- Alerta de servicio duplicado" />
+    <MESSAGE value="- Diferentes permisos de accesibilidad para los usuarios&#10;- Nuevo rol en el sistema &quot;Recursos Humanos&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Diferentes permisos de accesibilidad para los usuarios&#10;- Nuevo rol en el sistema &quot;Recursos Humanos&quot;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -807,123 +863,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/services/growl.service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/services.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="276" column="26" lean-forward="true" selection-start-line="276" selection-start-column="26" selection-end-line="276" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/focus.service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/modules/template.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="103" column="57" lean-forward="false" selection-start-line="103" selection-start-column="50" selection-end-line="103" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/webstorm.jar!/resources/html5-schema/html5/web-forms2.rnc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="495" column="21" lean-forward="true" selection-start-line="495" selection-start-column="21" selection-end-line="495" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/css/app.min.1.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="10360" column="9" lean-forward="false" selection-start-line="10360" selection-start-column="1" selection-end-line="10360" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/bower_components/angular-toArrayFilter/toArrayFilter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/css/app.min.2.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="911" column="19" lean-forward="true" selection-start-line="911" selection-start-column="19" selection-end-line="911" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/vendors/bower_components/material-design-iconic-font/svg/google/action/supervisor-account.svg">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="60" lean-forward="true" selection-start-line="0" selection-start-column="60" selection-end-line="0" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Downloads/argusseguridad-41e35-export.json" />
-    <entry file="file://$PROJECT_DIR$/app/js/controllers/notificaciones.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="78" column="25" lean-forward="true" selection-start-line="78" selection-start-column="25" selection-end-line="78" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/controllers/zonas.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="131" column="7" lean-forward="true" selection-start-line="131" selection-start-column="7" selection-end-line="131" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/modals/asignarNombreConsigna.modal.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="91" column="80" lean-forward="false" selection-start-line="91" selection-start-column="80" selection-end-line="91" selection-end-column="97" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/filters/search.filter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/filters/formatoFecha.filter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="11" column="40" lean-forward="false" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/common.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/home.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/notificaciones.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="694">
-          <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -934,27 +877,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/controllers/loginController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="52" column="50" lean-forward="false" selection-start-line="52" selection-start-column="50" selection-end-line="52" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/alert.service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="34" column="29" lean-forward="true" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/controllers/bitacora.Controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="83" column="48" lean-forward="true" selection-start-line="83" selection-start-column="48" selection-end-line="83" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/modals/notificaciones.modal.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="71">
@@ -962,59 +884,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/controllers/header.Controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="85" column="13" lean-forward="true" selection-start-line="85" selection-start-column="13" selection-end-line="85" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/template/header.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="37">
-          <caret line="59" column="59" lean-forward="false" selection-start-line="59" selection-start-column="59" selection-end-line="59" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/template/sidebar-left.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="27" column="11" lean-forward="true" selection-start-line="27" selection-start-column="11" selection-end-line="27" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/modals/supervisores.modal.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="30" column="48" lean-forward="false" selection-start-line="30" selection-start-column="48" selection-end-line="30" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/modals/bitacora.modal.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="123" lean-forward="false" selection-start-line="0" selection-start-column="109" selection-end-line="0" selection-end-column="123" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/modals/incidentes.modal.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/modals/guardiasDetalles.modal.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="38" column="49" lean-forward="false" selection-start-line="38" selection-start-column="49" selection-end-line="38" selection-end-column="49" />
         </state>
       </provider>
     </entry>
@@ -1046,32 +919,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/zonas.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="27" lean-forward="false" selection-start-line="0" selection-start-column="27" selection-end-line="0" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/incidentes.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="692">
           <caret line="69" column="0" lean-forward="true" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/clientes.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1200">
-          <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1082,111 +933,305 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/nomina.html">
+    <entry file="file://$PROJECT_DIR$/app/constants/constants.js" />
+    <entry file="file://$PROJECT_DIR$/app/services/focus.service.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="129" column="19" lean-forward="true" selection-start-line="129" selection-start-column="19" selection-end-line="129" selection-end-column="19" />
-          <folding />
+        <state relative-caret-position="252">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/controllers/nomina.controller.js">
+    <entry file="file://$PROJECT_DIR$/app/services/growl.service.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="252" column="53" lean-forward="false" selection-start-line="252" selection-start-column="53" selection-end-line="252" selection-end-column="53" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/index.html">
+    <entry file="file://$PROJECT_DIR$/app/services/alert.service.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding>
-            <marker date="1500666568000" expanded="true" signature="8529:8581" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/bitacoras.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1785">
-          <caret line="119" column="20" lean-forward="false" selection-start-line="119" selection-start-column="20" selection-end-line="119" selection-end-column="20" />
-          <folding>
-            <element signature="n#style#0;n#input#0;n#label#0;n#div#2;n#div#1;n#div#0;n#section#0;n#section#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/controllers/bitacoraRegistro.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="556">
-          <caret line="138" column="17" lean-forward="true" selection-start-line="138" selection-start-column="17" selection-end-line="138" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/bitacoraRegistro.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2700">
-          <caret line="180" column="0" lean-forward="false" selection-start-line="180" selection-start-column="0" selection-end-line="180" selection-end-column="0" />
-          <folding>
-            <marker date="1500666568000" expanded="true" signature="5242:5273" ph="..." />
-            <marker date="1500666568000" expanded="true" signature="5337:5406" ph="..." />
-            <marker date="1500666568000" expanded="true" signature="5470:7917" ph="..." />
-            <marker date="1500666568000" expanded="true" signature="5552:7891" ph="..." />
-            <marker date="1500666568000" expanded="true" signature="5642:6566" ph="..." />
-            <marker date="1500666568000" expanded="true" signature="5815:5987" ph="..." />
-            <marker date="1500666568000" expanded="false" signature="5857:5909" ph="..." />
-            <marker date="1500666568000" expanded="true" signature="6090:6262" ph="..." />
-            <marker date="1500666568000" expanded="false" signature="6132:6184" ph="..." />
-            <marker date="1500666568000" expanded="true" signature="6365:6537" ph="..." />
-            <marker date="1500666568000" expanded="false" signature="6407:6459" ph="..." />
-          </folding>
+        <state relative-caret-position="504">
+          <caret line="19" column="8" lean-forward="false" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="34" />
+          <caret line="34" column="10" lean-forward="false" selection-start-line="34" selection-start-column="10" selection-end-line="34" selection-end-column="29" />
+          <caret line="36" column="8" lean-forward="false" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/js/controllers/clientes.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="236" column="22" lean-forward="true" selection-start-line="236" selection-start-column="22" selection-end-line="236" selection-end-column="22" />
+        <state relative-caret-position="823">
+          <caret line="204" column="9" lean-forward="false" selection-start-line="204" selection-start-column="9" selection-end-line="204" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controllers/zonas.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="529">
+          <caret line="67" column="62" lean-forward="true" selection-start-line="67" selection-start-column="62" selection-end-line="67" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controllers/bitacoraRegistro.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="777">
+          <caret line="97" column="11" lean-forward="false" selection-start-line="97" selection-start-column="11" selection-end-line="97" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/guardias.html">
+    <entry file="file://$PROJECT_DIR$/app/views/notificaciones.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="104" column="10" lean-forward="false" selection-start-line="104" selection-start-column="10" selection-end-line="104" selection-end-column="10" />
+        <state relative-caret-position="966">
+          <caret line="61" column="0" lean-forward="true" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/vendors/bower_components/material-design-iconic-font/svg/google/notification/sd-card.svg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/zonas.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="9" column="46" lean-forward="false" selection-start-line="9" selection-start-column="46" selection-end-line="9" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/clientes.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="8" column="46" lean-forward="false" selection-start-line="8" selection-start-column="46" selection-end-line="8" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/services/user.service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="9" column="25" lean-forward="true" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controllers/loginController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="107" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/vendors/bower_components/material-design-iconic-font/svg/2.0/21 - other/satellite.svg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="41" column="23" lean-forward="true" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-42">
+          <caret line="33" column="25" lean-forward="true" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controllers/sidebar.Controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="22" column="44" lean-forward="true" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/template/sidebar-left.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="18" column="40" lean-forward="false" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controllers/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controllers/header.Controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="923">
+          <caret line="64" column="51" lean-forward="true" selection-start-line="64" selection-start-column="51" selection-end-line="64" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/services/objets.service.js" />
+    <entry file="file://$PROJECT_DIR$/app/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="430">
+          <caret line="135" column="48" lean-forward="false" selection-start-line="135" selection-start-column="48" selection-end-line="135" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/template/header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="6" column="34" lean-forward="false" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="214" column="0" lean-forward="false" selection-start-line="214" selection-start-column="0" selection-end-line="214" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/services/objects.service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="1" column="24" lean-forward="false" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="24" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/modals/bitacora.modal.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controllers/bitacora.Controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/css/app.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="676">
+          <caret line="16317" column="1" lean-forward="false" selection-start-line="16317" selection-start-column="1" selection-end-line="16317" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/bitacoraRegistro.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="24" column="14" lean-forward="true" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/bitacoras.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="31">
+          <caret line="67" column="18" lean-forward="true" selection-start-line="67" selection-start-column="18" selection-end-line="67" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/nomina.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="651">
+          <caret line="106" column="48" lean-forward="true" selection-start-line="106" selection-start-column="48" selection-end-line="106" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/modals/guardiasDetalles.modal.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-87">
+          <caret line="21" column="16" lean-forward="true" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+          <folding>
+            <element signature="n#style#0;n#div#4;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/js/controllers/supervisores.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="549" column="14" lean-forward="true" selection-start-line="549" selection-start-column="14" selection-end-line="549" selection-end-column="14" />
+        <state relative-caret-position="598">
+          <caret line="203" column="42" lean-forward="true" selection-start-line="203" selection-start-column="42" selection-end-line="203" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/preNomina.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1155">
+          <caret line="139" column="38" lean-forward="false" selection-start-line="139" selection-start-column="38" selection-end-line="139" selection-end-column="38" />
+          <folding>
+            <element signature="n#style#0;n#div#2;n#div#0;n#section#0;n#section#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#1;n#tbody#0;n#table#0;n#div#2;n#div#0;n#section#0;n#section#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#5;n#tr#1;n#tbody#0;n#table#0;n#div#2;n#div#0;n#section#0;n#section#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controllers/preNomina.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="87" column="40" lean-forward="false" selection-start-line="87" selection-start-column="40" selection-end-line="87" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/js/controllers/guardias.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="531" column="30" lean-forward="true" selection-start-line="531" selection-start-column="30" selection-end-line="531" selection-end-column="30" />
+        <state relative-caret-position="409">
+          <caret line="554" column="45" lean-forward="false" selection-start-line="554" selection-start-column="45" selection-end-line="554" selection-end-column="45" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/modals/supervisores.modal.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="514">
+          <caret line="205" column="50" lean-forward="true" selection-start-line="205" selection-start-column="50" selection-end-line="205" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controllers/nomina.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="921">
+          <caret line="379" column="35" lean-forward="true" selection-start-line="379" selection-start-column="35" selection-end-line="379" selection-end-column="35" />
+          <folding>
+            <element signature="e#2272#3742#0" expanded="false" />
+            <element signature="e#3814#4525#0" expanded="false" />
+            <element signature="e#4554#4781#0" expanded="false" />
+            <element signature="e#14037#14728#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/supervisores.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="165" column="57" lean-forward="false" selection-start-line="165" selection-start-column="57" selection-end-line="165" selection-end-column="57" />
-          <folding>
-            <element signature="n#style#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#4;n#div#1;n#section#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#5;n#tr#1;n#tbody#0;n#table#0;n#div#0;n#div#4;n#div#1;n#section#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#4;n#tr#2;n#tbody#0;n#table#0;n#div#0;n#div#4;n#div#1;n#section#0;n#section#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="823">
+          <caret line="151" column="17" lean-forward="true" selection-start-line="151" selection-start-column="17" selection-end-line="151" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/guardias.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="60" column="68" lean-forward="true" selection-start-line="60" selection-start-column="68" selection-end-line="60" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/services/date.service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="20" column="20" lean-forward="true" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>

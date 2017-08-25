@@ -14,21 +14,21 @@
     <a data-ui-sref="home" data-ng-click="mactrl.sidebarStat($event)">Argus Seguridad</a>
   </li>
 
-  <li class="pull-right">
+  <li class="pull-right" ng-controller="headerCtrl as vm">
     <ul class="top-menu">
 
-      <!--<li id="toggle-width">-->
-        <!--<div class="toggle-switch">-->
-          <!--<input id="tw-switch" type="checkbox" checked="checked" hidden="hidden"-->
-                 <!--data-change-layout="mactrl.layoutType">-->
-          <!--<label for="tw-switch" class="ts-helper"></label>-->
-        <!--</div>-->
-      <!--</li>-->
+      <li id="toggle-width" ng-if="vm.userType == 'encargadoNomina'">
+        <div class="toggle-switch">
+          <input id="tw-switch" type="checkbox" checked="checked" hidden="hidden"
+                 data-change-layout="mactrl.layoutType">
+          <label for="tw-switch" class="ts-helper"></label>
+        </div>
+      </li>
 
       <!--<li id="top-search">-->
       <!--<a href="" data-ng-click="hctrl.openSearch()"><i class="tm-icon zmdi zmdi-search"></i></a>-->
       <!--</li>-->
-      <li id="toggle-width" ng-controller="headerCtrl as vm">
+      <li id="" >
         <div class="lv-actions actions dropdown" uib-dropdown="">
           <a class="cursor-pointer dropdown-toggle notification-opacity" uib-dropdown-toggle=""
              aria-haspopup="true" aria-expanded="false">

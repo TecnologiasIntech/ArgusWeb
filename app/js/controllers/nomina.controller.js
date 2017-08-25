@@ -2,8 +2,8 @@
  * Created by Toshiba on 23/03/2017.
  */
 argus
-  .controller('nominaCtrl', ['$scope', '$rootScope', 'alertService', '$uibModal', 'growl', '$location', '$timeout', 'userService', 'dayOfWeekService',
-    function ($scope, $rootScope, alertService, $uibModal, growl, $location, $timeout, userService, dayOfWeekService) {
+  .controller('nominaCtrl', ['$scope', '$rootScope', 'alertService', '$uibModal', 'growl', '$location', '$timeout', 'userService', 'dateService',
+    function ($scope, $rootScope, alertService, $uibModal, growl, $location, $timeout, userService, dateService) {
 
       //public var
       var vm = this;
@@ -70,7 +70,7 @@ argus
 
       function obtenerDiaSemana() {
 
-        vm.diaSemana = dayOfWeekService.getDayOfWeek(2017, 8, 18)
+        vm.diaSemana = dateService.getDayOfWeek(2017, 8, 18)
 
       }
 

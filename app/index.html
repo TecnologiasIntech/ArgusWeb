@@ -32,7 +32,7 @@
         <link rel="stylesheet" href="bower_components/angular-growl-v2/build/angular-growl.css">
     </head>
 
-    <body data-ng-class=" 'sw-toggled'">
+    <body data-ng-class="{ 'sw-toggled': mactrl.layoutType === '1'}">
 
             <!-- Vistas -->
             <data ui-view>
@@ -125,13 +125,15 @@
         <script src="js/controllers/nomina.controller.js"></script>
         <script src="js/controllers/bitacoraRegistro.controller.js"></script>
         <script src="js/controllers/guardias.controller.js"></script>
+        <script src="js/controllers/preNomina.controller.js"></script>
 
         <!--Services-->
         <script src="services/alert.service.js"></script>
         <script src="services/growl.service.js"></script>
         <script src="services/focus.service.js"></script>
         <script src="services/user.service.js"></script>
-        <script src="services/diaDeSemana.service.js"></script>
+        <script src="services/date.service.js"></script>
+        <script src="services/objects.service.js"></script>
 
         <!--Filter-->
         <script src="filters/search.filter.js"></script>

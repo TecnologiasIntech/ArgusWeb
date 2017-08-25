@@ -1,0 +1,154 @@
+<header id="header" data-current-skin={{mactrl.currentSkin}} data-ng-include="'template/header.html'"
+        data-ng-controller="headerCtrl as hctrl">
+</header>
+
+<section id="main">
+
+  <aside id="sidebar" data-ng-include="'template/sidebar-left.html'"
+         data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === false }"></aside>
+
+  <section id="content" class="animated fadeIn">
+
+    <div class="card m-l-20 m-r-20">
+
+      <!--SELECCIONAR EL RANGO DE FECHAS-->
+      <div class="row">
+        <div class="col-xs-offset-1 col-xs-3 p-r-0  m-t-20 p-r-0">
+          <div class="datepickerdemoBasicUsage">
+            <md-content class="size-datepicker">
+              <md-datepicker ng-model="fromDate" md-placeholder="Introduzca fecha"></md-datepicker>
+            </md-content>
+          </div>
+        </div>
+        <div class="col-xs-1 p-l-0 p-r-0  m-t-20 p-l-0 p-r-0">
+          <div class="a-datepicker" align="center">a</div>
+        </div>
+        <div class="col-xs-3  m-t-20">
+          <div class="datepickerdemoBasicUsage">
+            <md-content class="size-datepicker">
+              <md-datepicker ng-model="vm.toDate" md-placeholder="Introduzca fecha"></md-datepicker>
+            </md-content>
+          </div>
+        </div>
+        <div class="col-xs-2  m-t-25">
+          <button class="btn btn-waves btn-success" ng-click="vm.getPaySheet(fromDate, vm.toDate)">Ver resultados</button>
+        </div>
+        <div class="col-xs-2 m-t-25">
+          <button class="btn waves-effect btn-primary" ng-click="vm.exportToExcel()">
+            Exportar
+          </button>
+        </div>
+        <!--<button ng-click="vm.createBitacora();">Crear 100 años</button>-->
+      </div>
+
+      <!--FILTROS-->
+      <div class="row m-t-15">
+        <h4 class="col-xs-offset-1 m-t-0">Filtros</h4>
+        <div class="col-xs-offset-1 col-xs-3">
+          <div class="fg-line">
+            <input type="text" class="form-control" placeholder="Por Zonas" ng-model="vm.searchByZone">
+          </div>
+        </div>
+
+        <div class=" col-xs-3">
+          <div class="fg-line">
+            <input type="text" class="form-control" placeholder="Por Servicios" ng-model="vm.searchByService">
+          </div>
+        </div>
+
+        <div class="col-xs-3">
+          <div class="fg-line">
+            <input type="text" class="form-control" placeholder="Por Guardias" ng-model="vm.searchByGuardName">
+          </div>
+        </div>
+      </div>
+
+      <!--LISTA DE PRE-NOMINA-->
+      <div class="row p-t-20 m-l-20 m-r-20" style="overflow-x: auto">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>ZONA RIO</th>
+            <th>SALARIO</th>
+            <th>DESCUENTO FALTA</th>
+            <th>ADELANTO</th>
+            <th></th>
+
+            <th align="center" ng-repeat="day in vm.rangeOfDates">{{ day.numberDay }}</th>
+
+            <th></th>
+            <th>DL</th>
+            <th>DT</th>
+            <th>P</th>
+            <th>PP</th>
+            <th>E</th>
+            <th>F</th>
+            <th>N</th>
+            <th>i</th>
+            <th>v</th>
+            <th>TOTAL DL</th>
+            <th>TOTAL DT</th>
+            <th>TOTAL DT Y DL</th>
+            <th>TOTAL DL, DT Y F</th>
+            <th>SUB. TOT.</th>
+            <th>PRESTAMO Y O.P.</th>
+            <th>SUB. TOT. FINAL</th>
+            <th>TOTAL</th>
+            <th>COMENTARIOS GENERALES</th>
+          </tr>
+          </thead>
+          <tbody>
+
+          <tr>
+
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td align="center" ng-repeat="day in vm.rangeOfDates">{{ day.letterDay }}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+          </tr>
+
+          <tr class="" ng-repeat="guard in vm.paySheet | toArray | filter: { nombreGuardia: vm.searchByGuardName, zona: vm.searchByZone, servicio: vm.searchByService }">
+            <td style="    width: auto; max-width: 500px; min-width: 300px;">{{ guard.nombreGuardia }}</td>
+            <td align="right">{{ guard.salario }}</td>
+            <td align="right">{{ guard.descuentoPorFalta }}</td>
+            <td align="right">{{ guard.bono }}</td>
+            <td></td>
+
+            <td style="color: white;  {{ status == 'F' ? 'background-color: #e74c3c' : ( status == 'DL' ? 'background-color: #e67e22' : ( status == 'DT' ? 'background-color: #3498db' : ( status == 'D' ? 'background-color: #27ae60' : 'background-color: white')))}}" align="center" ng-repeat="status in guard.status">{{ status == 'A' ? '' : status }}</td>
+
+            <td></td>
+            <td align="center">{{ guard.descansosLaborados }}</td>
+            <td align="center">{{ guard.dobleTurnos }}</td>
+            <td align="center">0</td>
+            <td align="center">0</td>
+            <td align="center">0</td>
+            <td align="center">{{ guard.inasistencias }}</td>
+            <td align="center">0</td>
+            <td align="center">0</td>
+            <td align="center">0</td>
+            <td align="right">{{ guard.descansosLaboradosTotal }}</td>
+            <td align="right">{{ guard.dobleTurnosTotal }}</td>
+            <td align="right">300</td>
+            <td align="right">300</td>
+            <td align="right">2700</td>
+            <td align="right">300</td>
+            <td align="right">2700</td>
+            <td align="right">3000</td>
+            <td></td>
+          </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+</section>
+
+<footer id="footer" data-ng-include="'template/footer.html'"></footer>
