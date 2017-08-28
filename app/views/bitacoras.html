@@ -104,8 +104,8 @@
                 {{guard.turno}}
               </td>
               <td class="bitacora-align-middle">
-                <img src="{{guard.firma}}" alt="" style="width: 50px; height: 50px;"
-                     ng-click="vm.openPicture(guard.firma)">
+                <img src="{{guard.firma ? guard.firma : ''}}" alt="" style="width: 50px; height: 50px;"
+                     ng-click="guard.firma ? vm.openPicture(guard.firma) : ''">
               </td>
               <td class="bitacora-align-middle">
                 {{guard.fecha}}

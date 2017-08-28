@@ -92,21 +92,21 @@ argus
             .orderByChild('fecha')
             .startAt(secondDate)
             .endAt(primaryDate)
-            .on('value', function (snapshot) {
+            .once('value', function (snapshot) {
               vm.records = {};
               vm.records = snapshot.val();
-
-              vm.result = Object.keys(vm.records).map(function (e) {
-                return Number(e), vm.records[e];
-              });
+              //
+              // vm.result = Object.keys(vm.records).map(function (e) {
+              //   return Number(e), vm.records[e];
+              // });
 
               // console.log(vm.records[20170318]);
-              vm.recordsLength = Object.keys(vm.records).length;
-              if (vm.recordsLength != 0) {
-                vm.isReady = true;
-              } else {
-                vm.isReady = false;
-              }
+              // vm.recordsLength = Object.keys(vm.records).length;
+              // if (vm.recordsLength != 0) {
+              //   vm.isReady = true;
+              // } else {
+              //   vm.isReady = false;
+              // }
 
 
 

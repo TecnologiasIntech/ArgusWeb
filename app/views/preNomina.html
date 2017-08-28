@@ -4,11 +4,6 @@
 
 <section id="main">
 
-  <aside id="sidebar" data-ng-include="'template/sidebar-left.html'"
-         data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === false }"></aside>
-
-  <section id="content" class="animated fadeIn">
-
     <div class="card m-l-20 m-r-20">
 
       <!--SELECCIONAR EL RANGO DE FECHAS-->
@@ -42,7 +37,7 @@
       </div>
 
       <!--FILTROS-->
-      <div class="row m-t-15">
+      <div class="row m-t-15" ng-if="vm.objectService.getObjectLength(vm.paySheet) != 0">
         <h4 class="col-xs-offset-1 m-t-0">Filtros</h4>
         <div class="col-xs-offset-1 col-xs-3">
           <div class="fg-line">
@@ -63,8 +58,16 @@
         </div>
       </div>
 
+      <div class="col-lg-offset-5 col-lg-6 m-t-30" ng-if="vm.isLoading">
+        <div class="preloader pls-blue pl-xl" align="center">
+          <svg class="pl-circular" viewBox="25 25 50 50">
+            <circle class="plc-path" cx="50" cy="50" r="20"></circle>
+          </svg>
+        </div>
+      </div>
+
       <!--LISTA DE PRE-NOMINA-->
-      <div class="row p-t-20 m-l-20 m-r-20" style="overflow-x: auto">
+      <div class="row p-t-20 m-l-20 m-r-20" style="overflow-x: auto" ng-if="vm.objectService.getObjectLength(vm.paySheet) != 0">
         <table class="table table-hover">
           <thead>
           <tr>
@@ -140,14 +143,15 @@
             <td align="right">300</td>
             <td align="right">2700</td>
             <td align="right">3000</td>
-            <td></td>
+            <td>
+              <input type="text" value="{{ guard.comentariosGenerales }}" ng-blur="vm.updatePaySheetOfGuard()" ng-keyup="$event.keyCode == 13 ? vm.updatePaySheetOfGuard() : ''">
+            </td>
           </tr>
 
           </tbody>
         </table>
       </div>
     </div>
-  </section>
 
 </section>
 

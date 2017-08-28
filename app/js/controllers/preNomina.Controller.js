@@ -17,10 +17,13 @@ argus
       vm.searchByGuardName = '';
       vm.searchByService = '';
       vm.searchByZone = '';
+      vm.objectService = objetService;
+      vm.isLoading = false;
 
       //public functions
       vm.getPaySheet = getPaySheet;
       vm.exportToExcel = exportToExcel;
+      vm.updatePaySheetOfGuard = updatePaySheetOfGuard;
 
       //private functions
       function activate() {
@@ -34,13 +37,12 @@ argus
           .once('value', function (dataSnapshot) {
             vm.services = dataSnapshot.val();
           })
-
-        firebase.database().ref('Argus/Nomina/20170815to20170824').remove();
       }
 
       activate();
 
       function getPaySheet(fromDate, toDate) {
+        vm.isLoading = true;
 
         vm.fDate = parseInt(dateService.getDateFormatWithOnlyNumbers(fromDate));
         vm.tDate = parseInt(dateService.getDateFormatWithOnlyNumbers(toDate));
@@ -50,7 +52,6 @@ argus
           .startAt(vm.fDate)
           .endAt(vm.tDate)
           .once('value', function (dataSnapshot) {
-
             var attendanceList = dataSnapshot.val();
 
             for (guard in vm.securityGuards) {
@@ -79,7 +80,7 @@ argus
                   'letterDay': dateService.getDayOfWeekWithDateInNumbersTogether(attendanceDate),
                   'numberDay': ( attendanceDate.toString() ).substr(6, 2)
                 }
-                if(guard == '-KkqU92w0BaiA3elmdKi'){
+                if (guard == '-KkqU92w0BaiA3elmdKi') {
                   console.log('gola')
                 }
 
@@ -94,6 +95,7 @@ argus
                     statusOfDays[attendanceDate] = 'DL';
                     isLack = false;
                     restWorked++;
+                    lacks--;
                   }
                   if (guardInfo.dobleTurno) {
                     statusOfDays[attendanceDate] = 'DT';
@@ -132,18 +134,17 @@ argus
                   }
                   isLack = true;
                   existGuard = true;
-                } else if(vm.securityGuards[guard].diaDescanso == dateService.getDayOfWeekAsNumber(attendanceDate)) {
+                } else if (vm.securityGuards[guard].diaDescanso == dateService.getDayOfWeekAsNumber(attendanceDate)) {
                   statusOfDays[attendanceDate] = 'D';
-                }else{
+                } else {
                   statusOfDays[attendanceDate] = 'F';
                   lacks++;
                 }
-
               }
 
               totalSalary += 1600;
 
-              if (lacks == 0) {
+              if (lacks <= 0) {
                 isBondForAssistence = true;
               }
 
@@ -180,7 +181,7 @@ argus
                     'incapacidad': incapacity,
                     'vacaciones': vacation,
                     'prestamo': 0,
-                    'comentarioGenerales': '',
+                    'comentariosGenerales': '',
                     'descuentoPorFalta': ( isBondForAssistence ? 0 : vm.securityGuards[guard].usuarioSueldoBase == 0 ? 0 : 1600 - vm.securityGuards[guard].usuarioSueldoBase ),
                     'bono': vm.securityGuards[guard].usuarioSueldoBase == 0 ? 0 : vm.securityGuards[guard].usuarioSueldoBase - 1600
                   })
@@ -192,6 +193,7 @@ argus
                 vm.paySheet = dataSnapshot2.val();
                 console.log(vm.rangeOfDates);
                 console.log(statusOfDays);
+                vm.isLoading = false;
                 $rootScope.$apply();
               })
           })
@@ -201,6 +203,12 @@ argus
 
         alasql('SELECT * INTO XLSX("nomina.xlsx",{headers:true}) FROM ?', [vm.paySheet]);
 
+      }
+
+      function updatePaySheetOfGuard(dataToUpdate, attribute, guardKey, dataPaySheetKey ) {
+        var update = {};
+
+        update['Argus/Nomina/' + dataPaySheetKey + '/' + guardKey + '/' + attribute]
       }
 
     }
