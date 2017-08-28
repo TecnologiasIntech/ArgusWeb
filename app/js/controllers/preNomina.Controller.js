@@ -24,6 +24,8 @@ argus
       vm.getPaySheet = getPaySheet;
       vm.exportToExcel = exportToExcel;
       vm.updatePaySheetOfGuard = updatePaySheetOfGuard;
+      vm.updateStatusOfGuard = updateStatusOfGuard;
+      vm.selectAllText = selectAllText;
 
       //private functions
       function activate() {
@@ -57,166 +59,195 @@ argus
                 vm.isLoading = false;
                 // $rootScope.$apply();
               } else {
-                firebase.database().ref('Argus/Bitacora')
-                  .orderByChild('fecha')
-                  .startAt(vm.fDate)
-                  .endAt(vm.tDate)
-                  .once('value', function (dataSnapshot) {
-                    var attendanceList = dataSnapshot.val();
-
-                    for (guard in vm.securityGuards) {
-                      var lacks = 0;
-                      var isBondForAssistence = false;
-                      var assistence = 0;
-                      var doubleTurn = 0;
-                      var restWorked = 0;
-                      var extraHours = 0;
-                      var totalSalary = 0;
-                      var existGuard = false;
-                      var doubleTurnTotal = 0;
-                      var restWorkedTotal = 0;
-                      var lacksTotal = 0;
-                      var extraHoursTotal = 0;
-                      var statusOfDays = {};
-                      var sick = 0;
-                      var noSignature = 0;
-                      var vacation = 0;
-                      var incapacity = 0;
-                      var isLack = true;
-
-                      for (attendanceDate in attendanceList) {
-
-                        vm.rangeOfDates[attendanceDate] = {
-                          'letterDay': dateService.getDayOfWeekWithDateInNumbersTogether(attendanceDate),
-                          'numberDay': ( attendanceDate.toString() ).substr(6, 2)
-                        }
-                        if (guard == '-KkqU92w0BaiA3elmdKi') {
-                          console.log('gola')
-                        }
-
-                        if (objetService.existInObject(attendanceList[attendanceDate], guard)) {
-                          var guardInfo = attendanceList[parseInt(attendanceDate)][guard];
-                          if (guardInfo.asistio) {
-                            statusOfDays[attendanceDate] = 'A';
-                            isLack = false;
-                            assistence++;
-                          }
-                          if (guardInfo.cubreDescanso) {
-                            statusOfDays[attendanceDate] = 'DL';
-                            isLack = false;
-                            restWorked++;
-                            lacks--;
-                          }
-                          if (guardInfo.dobleTurno) {
-                            statusOfDays[attendanceDate] = 'DT';
-                            isLack = false;
-                            doubleTurn++;
-                          }
-                          if (guardInfo.enfermo) {
-                            statusOfDays[attendanceDate] = 'E';
-                            isLack = false;
-                            sick++;
-                          }
-                          if (guardInfo.noFirma) {
-                            statusOfDays[attendanceDate] = 'NF';
-                            isLack = false;
-                            noSignature++;
-                          }
-                          if (guardInfo.incapacidad) {
-                            statusOfDays[attendanceDate] = 'I';
-                            isLack = false;
-                            incapacity++;
-                          }
-                          if (guardInfo.vacaciones) {
-                            statusOfDays[attendanceDate] = 'V';
-                            isLack = false;
-                            vacation++;
-                          }
-                          if (guardInfo.descanso) {
-                          }
-                          if (guardInfo.horasExtra) {
-                            extraHours += guardInfo.horasExtra;
-                            isLack = false;
-                          }
-                          if (isLack) {
-                            statusOfDays[attendanceDate] = 'F';
-                            lacks++;
-                          }
-                          isLack = true;
-                          existGuard = true;
-                        } else if (vm.securityGuards[guard].diaDescanso == dateService.getDayOfWeekAsNumber(attendanceDate)) {
-                          statusOfDays[attendanceDate] = 'D';
-                        } else {
-                          statusOfDays[attendanceDate] = 'F';
-                          lacks++;
-                        }
-                      }
-
-                      if (lacks <= 0) {
-                        isBondForAssistence = true;
-                      }
-
-                      doubleTurnTotal = doubleTurn * vm.doubleTurnPayment;
-                      restWorkedTotal = restWorked * vm.restWorkedPayment;
-                      extraHoursTotal = extraHours * vm.extraHoursPayment;
-                      var totalExtras = restWorkedTotal + doubleTurnTotal + extraHoursTotal;
-
-                      var descuentoFalta = ( isBondForAssistence ? 0 : vm.securityGuards[guard].usuarioSueldoBase == 0 ? 0 : 1600 - vm.securityGuards[guard].usuarioSueldoBase );
-                      var totalExtrasYFaltas = totalExtras - descuentoFalta;
-                      var bond = vm.securityGuards[guard].usuarioSueldoBase == 0 ? 0 : vm.securityGuards[guard].usuarioSueldoBase - 1600;
-                      var subTotal = ( totalExtrasYFaltas < 0 ? bond + totalExtrasYFaltas : totalExtrasYFaltas + bond );
-
-                      if (vm.securityGuards[guard].usuarioClienteAsignado != null) {
-
-                        firebase.database().ref('Argus/Nomina/' + vm.fDate + 'to' + vm.tDate + '/' + guard)
-                          .update({
-                            'nombreGuardia': vm.securityGuards[guard].usuarioNombre,
-                            'guardiaKey': guard,
-                            'nominaKey': vm.fDate + 'to' + vm.tDate,
-                            'zona': vm.services[vm.securityGuards[guard].usuarioClienteAsignado].clienteZonaAsignada,
-                            'servicio': vm.securityGuards[guard].usuarioClienteAsignado,
-                            'salario': 1600,
-                            'asistencias': assistence,
-                            'status': statusOfDays,
-                            'inasistencias': lacks,
-                            'descansosLaborados': restWorked,
-                            'descansosLaboradosTotal': restWorkedTotal,
-                            'dobleTurnos': doubleTurn,
-                            'dobleTurnosTotal': doubleTurnTotal,
-                            'horasExtras': extraHours,
-                            'horasExtrasTotal': extraHoursTotal,
-                            'totalExtras' : totalExtras,
-                            'totalExtrasYFaltas' : totalExtrasYFaltas,
-                            'subTotal' :  subTotal,
-                            'sueldoTotal': subTotal,
-                            'permiso': 0,
-                            'premisoPagado': 0,
-                            'enfermo': sick,
-                            'noFirmo': noSignature,
-                            'incapacidad': incapacity,
-                            'vacaciones': vacation,
-                            'comentariosGenerales': '',
-                            'prestamosOP': '',
-                            'descuentoPorFalta': descuentoFalta,
-                            'bono': bond
-                          })
-                      }
-                    }
-
-                    firebase.database().ref('Argus/Nomina/' + vm.fDate + 'to' + vm.tDate)
-                      .once('value', function (dataSnapshot2) {
-                        vm.paySheet = dataSnapshot2.val();
-                        console.log(vm.rangeOfDates);
-                        console.log(statusOfDays);
-                        vm.isLoading = false;
-                        $rootScope.$apply();
-                      })
-                  })
-
+                getPayShet();
               }
             })
           })
 
+      }
+
+      function getPayShet() {
+        firebase.database().ref('Argus/Bitacora')
+          .orderByChild('fecha')
+          .startAt(vm.fDate)
+          .endAt(vm.tDate)
+          .once('value', function (dataSnapshot) {
+            var attendanceList = dataSnapshot.val();
+
+            for (guard in vm.securityGuards) {
+              var lacks = 0;
+              var isBondForAssistence = false;
+              var assistence = 0;
+              var doubleTurn = 0;
+              var restWorked = 0;
+              var extraHours = 0;
+              var totalSalary = 0;
+              var existGuard = false;
+              var doubleTurnTotal = 0;
+              var restWorkedTotal = 0;
+              var lacksTotal = 0;
+              var extraHoursTotal = 0;
+              var statusOfDays = {};
+              var sick = 0;
+              var noSignature = 0;
+              var vacation = 0;
+              var incapacity = 0;
+              var isLack = true;
+
+              for (attendanceDate in attendanceList) {
+
+                vm.rangeOfDates[attendanceDate] = {
+                  'letterDay': dateService.getDayOfWeekWithDateInNumbersTogether(attendanceDate),
+                  'numberDay': ( attendanceDate.toString() ).substr(6, 2)
+                }
+                if (objetService.existInObject(attendanceList[attendanceDate], guard)) {
+                  var guardInfo = attendanceList[parseInt(attendanceDate)][guard];
+                  if (guardInfo.asistio) {
+                    statusOfDays[attendanceDate] = {
+                      'status': 'A',
+                      'statusKey': attendanceDate
+                    }
+                    isLack = false;
+                    assistence++;
+                  }
+                  if (guardInfo.cubreDescanso) {
+                    statusOfDays[attendanceDate] = {
+                      'status': 'DL',
+                      'statusKey': attendanceDate
+                    }
+                    isLack = false;
+                    restWorked++;
+                    lacks--;
+                  }
+                  if (guardInfo.dobleTurno) {
+                    statusOfDays[attendanceDate] = {
+                      'status': 'DT',
+                      'statusKey': attendanceDate
+                    }
+                    isLack = false;
+                    doubleTurn++;
+                  }
+                  if (guardInfo.enfermo) {
+                    statusOfDays[attendanceDate] = {
+                      'status': 'E',
+                      'statusKey': attendanceDate
+                    }
+                    isLack = false;
+                    sick++;
+                  }
+                  if (guardInfo.noFirma) {
+                    statusOfDays[attendanceDate] = {
+                      'status': 'NF',
+                      'statusKey': attendanceDate
+                    }
+                    isLack = false;
+                    noSignature++;
+                  }
+                  if (guardInfo.incapacidad) {
+                    statusOfDays[attendanceDate] = {
+                      'status': 'I',
+                      'statusKey': attendanceDate
+                    }
+                    isLack = false;
+                    incapacity++;
+                  }
+                  if (guardInfo.vacaciones) {
+                    statusOfDays[attendanceDate] = {
+                      'status': 'V',
+                      'statusKey': attendanceDate
+                    }
+                    isLack = false;
+                    vacation++;
+                  }
+                  if (guardInfo.descanso) {
+                  }
+                  if (guardInfo.horasExtra) {
+                    extraHours += guardInfo.horasExtra;
+                    isLack = false;
+                  }
+                  if (isLack) {
+                    statusOfDays[attendanceDate] = {
+                      'status': 'F',
+                      'statusKey': attendanceDate
+                    }
+                    lacks++;
+                  }
+                  isLack = true;
+                  existGuard = true;
+                } else if (vm.securityGuards[guard].diaDescanso == dateService.getDayOfWeekAsNumber(attendanceDate)) {
+                  statusOfDays[attendanceDate] = {
+                    'status': 'D',
+                    'statusKey': attendanceDate
+                  }
+                } else {
+                  statusOfDays[attendanceDate] = {
+                    'status': 'F',
+                    'statusKey': attendanceDate
+                  }
+                  lacks++;
+                }
+              }
+
+              if (lacks <= 0) {
+                isBondForAssistence = true;
+              }
+
+              doubleTurnTotal = doubleTurn * vm.doubleTurnPayment;
+              restWorkedTotal = restWorked * vm.restWorkedPayment;
+              extraHoursTotal = extraHours * vm.extraHoursPayment;
+              var totalExtras = restWorkedTotal + doubleTurnTotal + extraHoursTotal;
+
+              var descuentoFalta = ( isBondForAssistence ? 0 : vm.securityGuards[guard].usuarioSueldoBase == 0 ? 0 : 1600 - vm.securityGuards[guard].usuarioSueldoBase );
+              var totalExtrasYFaltas = totalExtras - descuentoFalta;
+              var bond = vm.securityGuards[guard].usuarioSueldoBase == 0 ? 0 : vm.securityGuards[guard].usuarioSueldoBase - 1600;
+              var subTotal = ( totalExtrasYFaltas < 0 ? bond + totalExtrasYFaltas : totalExtrasYFaltas + bond );
+
+              if (vm.securityGuards[guard].usuarioClienteAsignado != null) {
+
+                firebase.database().ref('Argus/Nomina/' + vm.fDate + 'to' + vm.tDate + '/' + guard)
+                  .update({
+                    'nombreGuardia': vm.securityGuards[guard].usuarioNombre,
+                    'guardiaKey': guard,
+                    'nominaKey': vm.fDate + 'to' + vm.tDate,
+                    'zona': vm.services[vm.securityGuards[guard].usuarioClienteAsignado].clienteZonaAsignada,
+                    'servicio': vm.securityGuards[guard].usuarioClienteAsignado,
+                    'salario': 1600,
+                    'asistencias': assistence,
+                    'status': statusOfDays,
+                    'inasistencias': lacks,
+                    'descansosLaborados': restWorked,
+                    'descansosLaboradosTotal': restWorkedTotal,
+                    'dobleTurnos': doubleTurn,
+                    'dobleTurnosTotal': doubleTurnTotal,
+                    'horasExtras': extraHours,
+                    'horasExtrasTotal': extraHoursTotal,
+                    'totalExtras': totalExtras,
+                    'totalExtrasYFaltas': totalExtrasYFaltas,
+                    'subTotal': subTotal,
+                    'sueldoTotal': subTotal,
+                    'permiso': 0,
+                    'premisoPagado': 0,
+                    'enfermo': sick,
+                    'noFirmo': noSignature,
+                    'incapacidad': incapacity,
+                    'vacaciones': vacation,
+                    'comentariosGenerales': '',
+                    'prestamosOP': '',
+                    'descuentoPorFalta': descuentoFalta,
+                    'bono': bond
+                  })
+              }
+            }
+
+            firebase.database().ref('Argus/Nomina/' + vm.fDate + 'to' + vm.tDate)
+              .once('value', function (dataSnapshot2) {
+                vm.paySheet = dataSnapshot2.val();
+                console.log(vm.rangeOfDates);
+                console.log(statusOfDays);
+                vm.isLoading = false;
+                $rootScope.$apply();
+              })
+          })
       }
 
       function exportToExcel() {
@@ -228,10 +259,25 @@ argus
       function updatePaySheetOfGuard(dataToUpdateById, attribute, guardKey, dataPaySheetKey) {
         var update = {};
 
-        console.log(dataPaySheetKey + ' ' + guardKey + ' ' + attribute + ' ' + document.getElementById(dataToUpdateById).value)
+        // console.log(dataPaySheetKey + ' ' + guardKey + ' ' + attribute + ' ' + document.getElementById(dataToUpdateById).value)
         update['Argus/Nomina/' + dataPaySheetKey + '/' + guardKey + '/' + attribute] = document.getElementById(dataToUpdateById).value;
 
         firebase.database().ref().update(update);
+      }
+
+      function updateStatusOfGuard(newStatusById, statusKey, dataPaySheetKey, guardKey) {
+        var update = {};
+
+        update['Argus/Nomina/' + dataPaySheetKey + '/' + guardKey + '/status/' + statusKey + '/status'] = document.getElementById(newStatusById).value;
+        vm.paySheet[guardKey]['status'][statusKey]['status'] = document.getElementById(newStatusById).value;
+
+        firebase.database().ref().update(update);
+
+        // getPayShet();
+      }
+
+      function selectAllText(inputId) {
+        document.getElementById(inputId).select();
       }
 
     }
