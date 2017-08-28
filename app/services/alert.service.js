@@ -52,7 +52,34 @@ argus
         });
 
         return deferred.promise;
+      },
+
+      confirmOrCancel: function (title, message, textConfirm, textCancel) {
+        var deferred = $q.defer();
+
+        swal({
+          title: title,
+          text: message,
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: textConfirm,
+          cancelButtonText: textCancel,
+          confirmButtonClass: 'btn btn-success',
+          cancelButtonClass: 'btn btn-danger',
+          buttonsStyling: false
+        }).then(function () {
+          deferred.resolve(true);
+        }, function (dismiss) {
+          if (dismiss === 'cancel') {
+            deferred.resolve(false);
+          }
+        })
+
+        return deferred.promise;
       }
+
     }
 
   }])

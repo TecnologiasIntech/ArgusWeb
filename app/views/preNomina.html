@@ -82,6 +82,7 @@
             <th></th>
             <th>DL</th>
             <th>DT</th>
+            <th>HE</th>
             <th>P</th>
             <th>PP</th>
             <th>E</th>
@@ -91,11 +92,11 @@
             <th>v</th>
             <th>TOTAL DL</th>
             <th>TOTAL DT</th>
-            <th>TOTAL DT Y DL</th>
-            <th>TOTAL DL, DT Y F</th>
+            <th>TOTAL HE</th>
+            <th>TOTAL DT, DL y HE</th>
+            <th>TOTAL DL, DT, HE Y F</th>
             <th>SUB. TOT.</th>
             <th>PRESTAMO Y O.P.</th>
-            <th>SUB. TOT. FINAL</th>
             <th>TOTAL</th>
             <th>COMENTARIOS GENERALES</th>
           </tr>
@@ -128,6 +129,7 @@
             <td></td>
             <td align="center">{{ guard.descansosLaborados }}</td>
             <td align="center">{{ guard.dobleTurnos }}</td>
+            <td align="center">{{ guard.horasExtras }}</td>
             <td align="center">0</td>
             <td align="center">0</td>
             <td align="center">0</td>
@@ -137,14 +139,16 @@
             <td align="center">0</td>
             <td align="right">{{ guard.descansosLaboradosTotal }}</td>
             <td align="right">{{ guard.dobleTurnosTotal }}</td>
-            <td align="right">300</td>
-            <td align="right">300</td>
-            <td align="right">2700</td>
-            <td align="right">300</td>
-            <td align="right">2700</td>
-            <td align="right">3000</td>
+            <td align="right">{{ guard.horasExtrasTotal }}</td>
+            <td align="right">{{ guard.totalExtras }}</td>
+            <td align="right">{{ guard.totalExtrasYFaltas }}</td>
+            <td align="right">{{ guard.subTotal }}</td>
+            <td align="right">
+              <input class="" id="{{ guard.guardiaKey+'prestamos' }}" type="text" value="{{ guard.prestamosOP }}" ng-blur="vm.updatePaySheetOfGuard(guard.guardiaKey+'prestamos', 'prestamosOP', guard.guardiaKey, guard.nominaKey)" ng-keyup="$event.keyCode == 13 ? vm.updatePaySheetOfGuard(guard.guardiaKey+'prestamos', 'prestamosOP', guard.guardiaKey, guard.nominaKey) : ''">
+            </td>
+            <td align="right">{{ guard.sueldoTotal }}</td>
             <td>
-              <input type="text" value="{{ guard.comentariosGenerales }}" ng-blur="vm.updatePaySheetOfGuard()" ng-keyup="$event.keyCode == 13 ? vm.updatePaySheetOfGuard() : ''">
+              <input class="" id="{{ guard.guardiaKey+'comentarios' }}" type="text" value="{{ guard.comentariosGenerales }}" ng-blur="vm.updatePaySheetOfGuard(guard.guardiaKey+'comentarios', 'comentariosGenerales', guard.guardiaKey, guard.nominaKey)" ng-keyup="$event.keyCode == 13 ? vm.updatePaySheetOfGuard(guard.guardiaKey+'comentarios', 'comentariosGenerales', guard.guardiaKey, guard.nominaKey) : ''">
             </td>
           </tr>
 
