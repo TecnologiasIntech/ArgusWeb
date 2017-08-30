@@ -19,13 +19,16 @@ argus
       vm.searchByZone = '';
       vm.objectService = objetService;
       vm.isLoading = false;
+      vm.guardSalarys = {};
 
       //public functions
-      vm.getPaySheet = getPaySheet;
+      vm.verifyPaySheet = verifyPaySheet;
       vm.exportToExcel = exportToExcel;
       vm.updatePaySheetOfGuard = updatePaySheetOfGuard;
       vm.updateStatusOfGuard = updateStatusOfGuard;
       vm.selectAllText = selectAllText;
+      vm.updateAllPaySheetOfGuard = updateAllPaySheetOfGuard;
+      vm.paySheetDays_keyUpEvent = paySheetDays_keyUpEvent;
 
       //private functions
       function activate() {
@@ -43,30 +46,53 @@ argus
 
       activate();
 
-      function getPaySheet(fromDate, toDate) {
+      function verifyPaySheet(fromDate, toDate) {
         vm.isLoading = true;
 
         vm.fDate = parseInt(dateService.getDateFormatWithOnlyNumbers(fromDate));
         vm.tDate = parseInt(dateService.getDateFormatWithOnlyNumbers(toDate));
+        vm.paySheet = {};
 
         firebase.database().ref('Argus/Nomina/' + vm.fDate + 'to' + vm.tDate)
           .once('value', function (dataSnapshot) {
             var data = dataSnapshot.val();
 
-            alertService.confirmOrCancel('Pre-nomina en existencia', '¿Desea continuar con la pre-nomina existente?', 'Si, continuar', 'No, sobreescribir').then(function (response) {
-              if (response) {
-                vm.paySheet = data;
-                vm.isLoading = false;
-                // $rootScope.$apply();
-              } else {
-                getPayShet();
-              }
-            })
+            if (data != null) {
+              alertService.confirmOrCancel('Pre-nomina en existencia', '¿Desea continuar con la pre-nomina existente?', 'Si, continuar', 'No, sobreescribir').then(function (response) {
+                if (response) {
+                  //Obtener los dias de la nomina
+                  firebase.database().ref('Argus/Bitacora')
+                    .orderByChild('fecha')
+                    .startAt(vm.fDate)
+                    .endAt(vm.tDate)
+                    .once('value', function (dataSnapshot) {
+                      var attendanceList = dataSnapshot.val();
+
+                      for (attendanceDate in attendanceList) {
+
+                        vm.rangeOfDates[attendanceDate] = {
+                          'letterDay': dateService.getDayOfWeekWithDateInNumbersTogether(attendanceDate),
+                          'numberDay': ( attendanceDate.toString() ).substr(6, 2)
+                        }
+                      }
+
+                      vm.paySheet = data;
+                      saveGuardSalarys(vm.paySheet);
+                      vm.isLoading = false;
+                      $rootScope.$apply();
+                    });
+                } else {
+                  getPaySheet();
+                }
+              })
+            } else {
+              getPaySheet();
+            }
           })
 
       }
 
-      function getPayShet() {
+      function getPaySheet() {
         firebase.database().ref('Argus/Bitacora')
           .orderByChild('fecha')
           .startAt(vm.fDate)
@@ -226,7 +252,7 @@ argus
                     'subTotal': subTotal,
                     'sueldoTotal': subTotal,
                     'permiso': 0,
-                    'premisoPagado': 0,
+                    'permisoPagado': 0,
                     'enfermo': sick,
                     'noFirmo': noSignature,
                     'incapacidad': incapacity,
@@ -242,12 +268,21 @@ argus
             firebase.database().ref('Argus/Nomina/' + vm.fDate + 'to' + vm.tDate)
               .once('value', function (dataSnapshot2) {
                 vm.paySheet = dataSnapshot2.val();
-                console.log(vm.rangeOfDates);
-                console.log(statusOfDays);
+                saveGuardSalarys(vm.paySheet);
                 vm.isLoading = false;
                 $rootScope.$apply();
               })
           })
+      }
+
+      function saveGuardSalarys(paySheets) {
+
+        for(guard in paySheets){
+          vm.guardSalarys[guard] = {
+            'salary' : paySheets[guard].sueldoTotal
+          }
+        }
+
       }
 
       function exportToExcel() {
@@ -259,7 +294,16 @@ argus
       function updatePaySheetOfGuard(dataToUpdateById, attribute, guardKey, dataPaySheetKey) {
         var update = {};
 
-        // console.log(dataPaySheetKey + ' ' + guardKey + ' ' + attribute + ' ' + document.getElementById(dataToUpdateById).value)
+        if(attribute == 'prestamosOP') {
+          var total = vm.guardSalarys[guardKey].salary;
+          var prestamo = parseInt(document.getElementById(dataToUpdateById).value) >= 0 ? parseInt(document.getElementById(dataToUpdateById).value) : 0;
+          total = prestamo + total;
+
+          vm.paySheet[guardKey]['sueldoTotal'] = total;
+
+          update['Argus/Nomina/' + dataPaySheetKey + '/' + guardKey + '/sueldoTotal'] = total;
+        }
+
         update['Argus/Nomina/' + dataPaySheetKey + '/' + guardKey + '/' + attribute] = document.getElementById(dataToUpdateById).value;
 
         firebase.database().ref().update(update);
@@ -280,6 +324,147 @@ argus
         document.getElementById(inputId).select();
       }
 
+      function updateAllPaySheetOfGuard(paySheetDays, PaySheetKey, guardKey, guardPaySheet) {
+
+        var lacks = 0;
+        var isBondForAssistence = false;
+        var assistence = 0;
+        var doubleTurn = 0;
+        var restWorked = 0;
+        var extraHours = 0;
+        var totalSalary = 0;
+        var existGuard = false;
+        var doubleTurnTotal = 0;
+        var restWorkedTotal = 0;
+        var lacksTotal = 0;
+        var extraHoursTotal = 0;
+        var statusOfDays = {};
+        var sick = 0;
+        var noSignature = 0;
+        var vacation = 0;
+        var incapacity = 0;
+        var isLack = true;
+        var permissions = 0;
+        var paidPermits = 0;
+
+        for (day in paySheetDays)
+          switch (paySheetDays[day].status) {
+
+          case 'A':
+            isLack = false;
+            assistence++;
+            break;
+
+          case 'P':
+            permissions++;
+            break;
+
+          case 'PP':
+            paidPermits++;
+            break;
+
+          case 'DL':
+            isLack = false;
+            restWorked++;
+            lacks--;
+            break;
+
+          case 'DT':
+            isLack = false;
+            doubleTurn++;
+            break;
+
+          case 'E':
+            isLack = false;
+            sick++;
+            break;
+
+          case 'NF':
+            isLack = false;
+            noSignature++;
+            break;
+
+          case 'I':
+            isLack = false;
+            incapacity++;
+            break;
+
+          case 'V':
+            isLack = false;
+            vacation++;
+            break;
+
+          case 'F':
+            lacks++;
+            break;
+        }
+
+        if (lacks <= 0) {
+          isBondForAssistence = true;
+        }
+
+        doubleTurnTotal = doubleTurn * vm.doubleTurnPayment;
+        restWorkedTotal = restWorked * vm.restWorkedPayment;
+        extraHoursTotal = guardPaySheet.horasExtrasTotal;
+        var totalExtras = restWorkedTotal + doubleTurnTotal + extraHoursTotal;
+
+        var descuentoFalta = ( isBondForAssistence ? 0 : vm.securityGuards[guardKey].usuarioSueldoBase == 0 ? 0 : 1600 - vm.securityGuards[guardKey].usuarioSueldoBase );
+        var totalExtrasYFaltas = totalExtras - descuentoFalta;
+        var bond = vm.securityGuards[guardKey].usuarioSueldoBase == 0 ? 0 : vm.securityGuards[guardKey].usuarioSueldoBase - 1600;
+        var subTotal = ( totalExtrasYFaltas < 0 ? bond + totalExtrasYFaltas : totalExtrasYFaltas + bond );
+
+        vm.paySheet[guardKey]['asistencias'] = assistence;
+        vm.paySheet[guardKey]['inasistencias'] = lacks;
+        vm.paySheet[guardKey]['descansosLaborados'] = restWorked;
+        vm.paySheet[guardKey]['descansosLaboradosTotal'] = restWorkedTotal;
+        vm.paySheet[guardKey]['dobleTurnos'] = doubleTurn;
+        vm.paySheet[guardKey]['dobleTurnosTotal'] = doubleTurnTotal;
+        vm.paySheet[guardKey]['horasExtras'] = extraHours;
+        vm.paySheet[guardKey]['horasExtrasTotal'] = extraHoursTotal;
+        vm.paySheet[guardKey]['totalExtras'] = totalExtras;
+        vm.paySheet[guardKey]['totalExtrasYFaltas'] = totalExtrasYFaltas;
+        vm.paySheet[guardKey]['subTotal'] = subTotal;
+        vm.paySheet[guardKey]['sueldoTotal'] = subTotal;
+        vm.paySheet[guardKey]['permiso'] = permissions;
+        vm.paySheet[guardKey]['permisoPagado'] = paidPermits;
+        vm.paySheet[guardKey]['enfermo'] = sick;
+        vm.paySheet[guardKey]['noFirmo'] = noSignature;
+        vm.paySheet[guardKey]['incapacidad'] = incapacity;
+        vm.paySheet[guardKey]['vacaciones'] = vacation;
+        vm.paySheet[guardKey]['descuentoPorFalta'] = descuentoFalta;
+        vm.paySheet[guardKey]['bono'] = bond;
+
+        firebase.database().ref('Argus/Nomina/' + vm.fDate + 'to' + vm.tDate + '/' + guardKey)
+          .update({
+            'asistencias': assistence,
+            'inasistencias': lacks,
+            'descansosLaborados': restWorked,
+            'descansosLaboradosTotal': restWorkedTotal,
+            'dobleTurnos': doubleTurn,
+            'dobleTurnosTotal': doubleTurnTotal,
+            'horasExtras': extraHours,
+            'horasExtrasTotal': extraHoursTotal,
+            'totalExtras': totalExtras,
+            'totalExtrasYFaltas': totalExtrasYFaltas,
+            'subTotal': subTotal,
+            'sueldoTotal': subTotal,
+            'permiso': permissions,
+            'permisoPagado': paidPermits,
+            'enfermo': sick,
+            'noFirmo': noSignature,
+            'incapacidad': incapacity,
+            'vacaciones': vacation,
+            'descuentoPorFalta': descuentoFalta,
+            'bono': bond
+          })
+      }
+
+      function paySheetDays_keyUpEvent(eventCode, datePaySheetKey, statusKey, paySheetKey, guardKey, guardStatus, guard) {
+        if(eventCode == 13){
+          vm.updateStatusOfGuard(datePaySheetKey, statusKey, paySheetKey, guardKey);
+          vm.updateAllPaySheetOfGuard(guardStatus, 'asd', guardKey, guard);
+        }
+      }
     }
   ])
 ;
