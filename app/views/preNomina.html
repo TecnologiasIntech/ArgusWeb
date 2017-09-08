@@ -74,6 +74,7 @@
         <thead>
         <tr>
           <th>ZONA RIO</th>
+          <th>TIPO DE PAGO</th>
           <th>SALARIO</th>
           <th>DESCUENTO FALTA</th>
           <th>ADELANTO</th>
@@ -123,7 +124,8 @@
         <tr class=""
             ng-repeat="guard in vm.paySheet | toArray | filter: { nombreGuardia: vm.searchByGuardName, zona: vm.searchByZone, servicio: vm.searchByService }">
           <td style="    width: auto; max-width: 500px; min-width: 300px;">{{ guard.nombreGuardia }}</td>
-          <td align="right">{{ guard.salario }}</td>
+          <td style="width: auto; max-width: 100px; min-width: 300px;">{{ guard.tipoPago }}</td>
+          <td align="right" ng-click="vm.guardKeyTmp = guard.guardiaKey; vm.openModal();">{{ guard.salario }}</td>
           <td align="right">{{ guard.descuentoPorFalta }}</td>
           <td align="right">{{ guard.bono }}</td>
           <td></td>

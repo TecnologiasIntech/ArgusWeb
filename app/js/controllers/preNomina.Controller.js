@@ -1,10 +1,11 @@
 argus
-  .controller('preNominaCtrl', ['$location', '$scope', '$rootScope', 'alertService', 'dateService', 'objetService', 'user',
-    function ($location, $scope, $rootScope, alertService, dateService, objetService, user) {
+  .controller('preNominaCtrl', ['$location', '$scope', '$rootScope', 'alertService', 'dateService', 'objetService', 'user', '$uibModal',
+    function ($location, $scope, $rootScope, alertService, dateService, objetService, user, $uibModal) {
 
       //public var
       var vm = this;
       vm.securityGuards = {};
+      vm.guardKeyTmp = '';
       vm.paySheet = {};
       vm.restWorkedPayment = 250;
       vm.doubleTurnPayment = 300;
@@ -30,6 +31,8 @@ argus
       vm.updateAllPaySheetOfGuard = updateAllPaySheetOfGuard;
       vm.paySheetDays_keyUpEvent = paySheetDays_keyUpEvent;
       vm.getBackgroundColorOfTheDay = getBackgroundColorOfTheDay;
+      vm.updateSalayOfGuard = updateSalayOfGuard;
+      vm.openModal = openModal;
 
       //private functions
       function activate() {
@@ -43,14 +46,19 @@ argus
           .once('value', function (dataSnapshot) {
             vm.services = dataSnapshot.val();
           })
-
-        console.log(user.userName);
-
-        user.userName = 'Carlos';
-
       }
 
       activate();
+
+      function openModal() {
+        vm.modal = $uibModal.open({
+          animation: true,
+          templateUrl: 'views/modals/cambiarSueldo.modal.html',
+          scope: $scope,
+          size: 'xxm',
+          backdrop: 'static'
+        });
+      }
 
       function verifyPaySheet(fromDate, toDate) {
         vm.isLoading = true;
@@ -244,7 +252,9 @@ argus
                     'nominaKey': vm.fDate + 'to' + vm.tDate,
                     'zona': vm.services[vm.securityGuards[guard].usuarioClienteAsignado].clienteZonaAsignada,
                     'servicio': vm.securityGuards[guard].usuarioClienteAsignado,
-                    'salario': 1600,
+                    'tipoPago': vm.securityGuards[guard].tipoPago ? vm.securityGuards[guard].tipoPago : '',
+                    // 'salario': 1600,
+                    'salario': vm.securityGuards[guard].usuarioSueldoBase,
                     'asistencias': assistence,
                     'status': statusOfDays,
                     'inasistencias': lacks,
@@ -541,6 +551,14 @@ argus
 
         }
         return value;
+      }
+
+      function updateSalayOfGuard(guardKey, newSalary) {
+
+        firebase.database().ref('Argus/guardias/' + guardKey + '/usuarioSueldoBase/').update(newSalary);
+
+        vm.paySheet[guardKey]['salario'] = newSalary;
+
       }
     }
   ])

@@ -151,8 +151,6 @@ argus
           vm.notificationBitacora = bitacoraInfo;
         });
 
-        console.log(user.userName)
-
       }
 
       activate();

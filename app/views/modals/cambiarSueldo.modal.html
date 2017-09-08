@@ -1,0 +1,31 @@
+<form ng-submit="vm.updateSalayOfGuard(vm.guardKeyTmp, newSalary)">
+
+  <div class="modal-body" style="height: 100px">
+    <div class="row">
+
+      <!--Sueldo-->
+      <div class="col-xs-12 m-t-20">
+
+        <span>Nuevo sueldo</span>
+        <div class="fg-line m-l-10">
+          <input type="number"
+                 ng-model="newSalary"
+                 class="form-control"
+                 placeholder="Sueldo..."
+                 required>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div align="right">
+
+      <div class="btn btn-danger waves-effect" ng-click="vm.modal.dismiss();">Cancelar</div>
+
+      <button class="btn btn-success waves-effect" type="submit">Aceptar</button>
+
+    </div>
+  </div>
+</form>

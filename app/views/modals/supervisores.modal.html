@@ -18,25 +18,6 @@
       <div class="m-l-30 m-r-30 " ng-if="vm.view == 'general'">
         <div class="row m-t-20">
 
-          <!--TIPO DE USUARIO-->
-          <div class="col-xs-offset-1 col-xs-5">
-            <span>Tipo de usuario</span>
-            <div class="fg-line m-l-10">
-              <select
-                class="form-control"
-                ng-model="vm.user.usuarioTipo"
-                ng-disabled="true">
-
-                <option value="guardia">Guardia</option>
-                <option value="supervisor">Supervisor</option>
-                <option value="administrador">Administrador</option>
-                <option value="coordinador">Coordinador</option>
-                <option value="recursosHumanos">Recursos Humanos</option>
-              </select>
-            </div>
-
-          </div>
-
           <!--NOMBRE-->
           <div class="col-xs-5">
             <span>Nombre</span>
@@ -45,6 +26,25 @@
                      placeholder="Escribe un nombre completo aquí..." required>
             </div>
           </div>
+
+          <!--TIPO DE PAGO-->
+          <div class="col-xs-offset-1 col-xs-5">
+            <span>Tipo de pago</span>
+            <div class="fg-line m-l-10">
+              <select
+                class="form-control"
+                ng-model="vm.user.tipoPago">
+
+                <option value="cheque SATANDER">Cheque SATANDER</option>
+                <option value="cheque BBVA">Cheque BBVA</option>
+                <option value="cheque BANAMEX">Cheque BANAMEX</option>
+                <option value="efectivo">Efectivo</option>
+
+              </select>
+            </div>
+
+          </div>
+
         </div>
 
         <div class="row m-t-30" ng-if="vm.user.usuarioTipo != 'guardia'">
