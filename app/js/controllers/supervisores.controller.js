@@ -2,8 +2,8 @@
  * Created by Toshiba on 14/02/2017.
  */
 argus
-  .controller('supervisorCtrl', ['$location', '$scope', '$rootScope', 'alertService', '$uibModal', 'growl', '$timeout', 'userService',
-    function ($location, $scope, $rootScope, alertService, $uibModal, growl, $timeout, userService) {
+  .controller('supervisorCtrl', ['$location', '$scope', '$rootScope', 'alertService', '$uibModal', 'growl', '$timeout', 'userService', 'user',
+    function ($location, $scope, $rootScope, alertService, $uibModal, growl, $timeout, userService, user) {
 
       //public var
       var vm = this;
@@ -150,6 +150,8 @@ argus
         $scope.$on('notificacion:bitacora', function (event, bitacoraInfo) {
           vm.notificationBitacora = bitacoraInfo;
         });
+
+        console.log(user.userName)
 
       }
 

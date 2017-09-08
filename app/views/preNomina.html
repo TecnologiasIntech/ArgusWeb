@@ -91,6 +91,7 @@
           <th>F</th>
           <th>NF</th>
           <th>i</th>
+          <th>IRT</th>
           <th>v</th>
           <th>TOTAL DL</th>
           <th>TOTAL DT</th>
@@ -128,11 +129,11 @@
           <td></td>
 
           <td
-            style="width: 15px; color: white; cursor: default !important;  {{ status.status == 'F' ? 'background-color: #e74c3c' : ( status.status == 'DL' ? 'background-color: #E08283' : ( status.status == 'DT' ? 'background-color: #3498db' : ( status.status == 'D' ? 'background-color: #3498db' : (status.status == 'V' ? 'background-color: #9b59b6' : (status.status == 'I' ? 'background-color: #c0392b': (status.status == 'E' ? 'background-color: #F1A9A0': (status.status == 'NF' ? 'background-color: #2ecc71': (status.status == 'P' || status.status == 'PP' ? 'background-color: #e67e22': 'background-color: white; color: black !important'))))))))}}"
+            style="width: 15px; color: white; cursor: default !important;  {{ vm.getBackgroundColorOfTheDay(status.status) }}"
             align="center" ng-repeat="status in guard.status"
             ng-click="vm.selectAllText(guard.guardiaKey+status.statusKey)">
             <input id="{{ guard.guardiaKey + status.statusKey }}"
-                   style="width: 15px; border:none; {{ status.status == 'F' ? 'background-color: #e74c3c' : ( status.status == 'DL' ? 'background-color: #E08283' : ( status.status == 'DT' ? 'background-color: #3498db' : ( status.status == 'D' ? 'background-color: #3498db' : (status.status == 'V' ? 'background-color: #9b59b6' : (status.status == 'I' ? 'background-color: #c0392b': (status.status == 'E' ? 'background-color: #F1A9A0': (status.status == 'NF' ? 'background-color: #2ecc71': (status.status == 'P' || status.status == 'PP' ? 'background-color: #e67e22':'background-color: white; color: black !important'))))))))}}"
+                   style="width: 15px; border:none; text-align: center; {{ vm.getBackgroundColorOfTheDay(status.status) }}"
                    type="text" value="{{ status.status == 'A' ? '' : status.status }}"
                    ng-blur="vm.updateStatusOfGuard(guard.guardiaKey+status.statusKey, status.statusKey, guard.nominaKey, guard.guardiaKey); vm.updateAllPaySheetOfGuard(guard.status, 'asd', guard.guardiaKey, guard)"
                    ng-keyup="vm.paySheetDays_keyUpEvent($event.keyCode, guard.guardiaKey+status.statusKey, status.statusKey, guard.nominaKey, guard.guardiaKey, guard.status, guard)" >
@@ -148,6 +149,7 @@
           <td align="center">{{ guard.inasistencias < 0 ? 0 : guard.inasistencias }}</td>
           <td align="center">{{ guard.noFirmo }}</td>
           <td align="center">{{ guard.incapacidad }}</td>
+          <td align="center">{{ guard.incapacidadRT }}</td>
           <td align="center">{{ guard.vacaciones }}</td>
           <td align="right">{{ guard.descansosLaboradosTotal }}</td>
           <td align="right">{{ guard.dobleTurnosTotal }}</td>

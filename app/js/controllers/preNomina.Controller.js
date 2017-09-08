@@ -1,6 +1,6 @@
 argus
-  .controller('preNominaCtrl', ['$location', '$scope', '$rootScope', 'alertService', 'dateService', 'objetService', '$http',
-    function ($location, $scope, $rootScope, alertService, dateService, objetService, $http) {
+  .controller('preNominaCtrl', ['$location', '$scope', '$rootScope', 'alertService', 'dateService', 'objetService', 'user',
+    function ($location, $scope, $rootScope, alertService, dateService, objetService, user) {
 
       //public var
       var vm = this;
@@ -29,6 +29,7 @@ argus
       vm.selectAllText = selectAllText;
       vm.updateAllPaySheetOfGuard = updateAllPaySheetOfGuard;
       vm.paySheetDays_keyUpEvent = paySheetDays_keyUpEvent;
+      vm.getBackgroundColorOfTheDay = getBackgroundColorOfTheDay;
 
       //private functions
       function activate() {
@@ -42,6 +43,11 @@ argus
           .once('value', function (dataSnapshot) {
             vm.services = dataSnapshot.val();
           })
+
+        console.log(user.userName);
+
+        user.userName = 'Carlos';
+
       }
 
       activate();
@@ -118,6 +124,7 @@ argus
               var noSignature = 0;
               var vacation = 0;
               var incapacity = 0;
+              var incapacityRT = 0;
               var isLack = true;
 
               for (attendanceDate in attendanceList) {
@@ -143,7 +150,7 @@ argus
                     }
                     isLack = false;
                     restWorked++;
-                    lacks--;
+                    // lacks--;
                   }
                   if (guardInfo.dobleTurno) {
                     statusOfDays[attendanceDate] = {
@@ -256,6 +263,7 @@ argus
                     'enfermo': sick,
                     'noFirmo': noSignature,
                     'incapacidad': incapacity,
+                    'incapacidadRT': incapacityRT,
                     'vacaciones': vacation,
                     'comentariosGenerales': '',
                     'prestamosOP': '',
@@ -277,9 +285,9 @@ argus
 
       function saveGuardSalarys(paySheets) {
 
-        for(guard in paySheets){
+        for (guard in paySheets) {
           vm.guardSalarys[guard] = {
-            'salary' : paySheets[guard].sueldoTotal
+            'salary': paySheets[guard].sueldoTotal
           }
         }
 
@@ -294,7 +302,7 @@ argus
       function updatePaySheetOfGuard(dataToUpdateById, attribute, guardKey, dataPaySheetKey) {
         var update = {};
 
-        if(attribute == 'prestamosOP') {
+        if (attribute == 'prestamosOP') {
           var total = vm.guardSalarys[guardKey].salary;
           var prestamo = parseInt(document.getElementById(dataToUpdateById).value) >= 0 ? parseInt(document.getElementById(dataToUpdateById).value) : 0;
           total = prestamo + total;
@@ -327,6 +335,7 @@ argus
       function updateAllPaySheetOfGuard(paySheetDays, PaySheetKey, guardKey, guardPaySheet) {
 
         var lacks = 0;
+        var lacksTmp = 0;
         var isBondForAssistence = false;
         var assistence = 0;
         var doubleTurn = 0;
@@ -346,60 +355,67 @@ argus
         var isLack = true;
         var permissions = 0;
         var paidPermits = 0;
+        var incapacityRT = 0;
 
-        for (day in paySheetDays)
+        for (day in paySheetDays) {
           switch (paySheetDays[day].status) {
 
-          case 'A':
-            isLack = false;
-            assistence++;
-            break;
+            case 'A':
+              assistence++;
+              break;
 
-          case 'P':
-            permissions++;
-            break;
+            case 'P':
+              permissions++;
+              lacksTmp++;
+              break;
 
-          case 'PP':
-            paidPermits++;
-            break;
+            case 'PP':
+              paidPermits++;
+              break;
 
-          case 'DL':
-            isLack = false;
-            restWorked++;
-            lacks--;
-            break;
+            case 'DL':
+              restWorked++;
+              // lacks--;
+              break;
 
-          case 'DT':
-            isLack = false;
-            doubleTurn++;
-            break;
+            case 'DLP':
+              lacks--;
+              lacksTmp--;
+              break;
 
-          case 'E':
-            isLack = false;
-            sick++;
-            break;
+            case 'DT':
+              doubleTurn++;
+              break;
 
-          case 'NF':
-            isLack = false;
-            noSignature++;
-            break;
+            case 'E':
+              sick++;
+              lacksTmp++;
+              break;
 
-          case 'I':
-            isLack = false;
-            incapacity++;
-            break;
+            case 'NF':
+              noSignature++;
+              break;
 
-          case 'V':
-            isLack = false;
-            vacation++;
-            break;
+            case 'I':
+              incapacity++;
+              lacksTmp++;
+              break;
 
-          case 'F':
-            lacks++;
-            break;
+            case 'IRT':
+              incapacityRT++;
+              break;
+
+            case 'V':
+              vacation++;
+              break;
+
+            case 'F':
+              lacks++;
+              break;
+          }
         }
 
-        if (lacks <= 0) {
+        if (lacks <= 0 && lacksTmp <= 0) {
           isBondForAssistence = true;
         }
 
@@ -430,6 +446,7 @@ argus
         vm.paySheet[guardKey]['enfermo'] = sick;
         vm.paySheet[guardKey]['noFirmo'] = noSignature;
         vm.paySheet[guardKey]['incapacidad'] = incapacity;
+        vm.paySheet[guardKey]['incapacidadRT'] = incapacityRT;
         vm.paySheet[guardKey]['vacaciones'] = vacation;
         vm.paySheet[guardKey]['descuentoPorFalta'] = descuentoFalta;
         vm.paySheet[guardKey]['bono'] = bond;
@@ -460,10 +477,70 @@ argus
       }
 
       function paySheetDays_keyUpEvent(eventCode, datePaySheetKey, statusKey, paySheetKey, guardKey, guardStatus, guard) {
-        if(eventCode == 13){
+        if (eventCode == 13) {
           vm.updateStatusOfGuard(datePaySheetKey, statusKey, paySheetKey, guardKey);
           vm.updateAllPaySheetOfGuard(guardStatus, 'asd', guardKey, guard);
         }
+      }
+
+      function getBackgroundColorOfTheDay(status) {
+        var value = "";
+        switch (status) {
+
+          case 'F':
+            value = 'background-color: #e74c3c';
+            break;
+
+          case 'DL':
+            value = 'background-color: #E08283';
+            break;
+
+          case 'DLP':
+            value = 'background-color: #E08283; padding-right: 0px; padding-left: 0px; width: 25px !important';
+            break;
+
+          case 'DT':
+            value = 'background-color: #3498db';
+            break;
+
+          case 'D':
+            value = 'background-color: #3498db';
+            break;
+
+          case 'V':
+            value = 'background-color: #9b59b6';
+            break;
+
+          case 'I':
+            value = 'background-color: #c0392b';
+            break;
+
+          case 'IRT':
+            value = 'background-color: #c0392b; padding-right: 0px; padding-left: 0px; width: 25px !important';
+            break;
+
+          case 'E':
+            value = 'background-color: #F1A9A0';
+            break;
+
+          case 'NF':
+            value = 'background-color: #2ecc71';
+            break;
+
+          case 'P':
+            value = 'background-color: #e67e22';
+            break;
+
+          case 'PP':
+            value = 'background-color: #e67e22';
+            break;
+
+          default:
+            value = 'background-color: white; color: black !important';
+            break;
+
+        }
+        return value;
       }
     }
   ])
