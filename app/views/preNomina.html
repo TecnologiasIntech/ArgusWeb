@@ -114,6 +114,7 @@
           <td></td>
           <td></td>
           <td></td>
+          <td></td>
           <td align="center" ng-repeat="day in vm.rangeOfDates">{{ day.letterDay }}</td>
           <td></td>
           <td></td>
@@ -133,7 +134,8 @@
           <td
             style="width: 15px; color: white; cursor: default !important;  {{ vm.getBackgroundColorOfTheDay(status.status) }}"
             align="center" ng-repeat="status in guard.status"
-            ng-click="vm.selectAllText(guard.guardiaKey+status.statusKey)">
+            ng-click="vm.selectAllText(guard.guardiaKey+status.statusKey)"
+            popover-placement="top" popover-trigger="mouseenter" popover="{{ status.comment == 'undefined' ? '': status.comment}}">
             <input id="{{ guard.guardiaKey + status.statusKey }}"
                    style="width: 15px; border:none; text-align: center; {{ vm.getBackgroundColorOfTheDay(status.status) }}"
                    type="text" value="{{ status.status == 'A' ? '' : status.status }}"

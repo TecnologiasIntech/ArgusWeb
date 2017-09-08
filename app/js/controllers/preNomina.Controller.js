@@ -209,7 +209,8 @@ argus
                   if (isLack) {
                     statusOfDays[attendanceDate] = {
                       'status': 'F',
-                      'statusKey': attendanceDate
+                      'statusKey': attendanceDate,
+                      'comment': guardInfo.observacion ? guardInfo.observacion : guardInfo.descripcion
                     }
                     lacks++;
                   }
