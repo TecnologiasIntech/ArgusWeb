@@ -53,13 +53,13 @@ argus
           .on('value', function (snapshot) {
             vm.zones = snapshot.val();
             vm.isLoading = false;
-            $rootScope.$apply();
+            $rootScope.$applyAsync();
           });
 
         firebase.database().ref('Argus/Clientes')
           .on('value', function (snapshot) {
             vm.customers = snapshot.val();
-            $rootScope.$apply();
+            $rootScope.$applyAsync();
           });
 
         firebase.auth().onAuthStateChanged(function(user) {

@@ -3,7 +3,7 @@ argus
     //Con urlRouteProvider declaras la ruta por defecto del ui-view o
     //te redigige aqui cuando escriben una ruta invalida
     //$urlRouterProvider.otherwise("/pages/home/home-vistos");
-    $urlRouterProvider.otherwise("/supervisores");
+    $urlRouterProvider.otherwise("/usuarios");
 
     //En cada state declaras las diferentes rutas con sus vistas correspondientes, tambien
     //puedes declarar sus controladores, por ejemplo "controller: 'CtrlPrueba as vm' "
@@ -15,8 +15,8 @@ argus
         controller: 'loginCtrl as vm'
       })
 
-      .state('supervisores', {
-        url: '/supervisores',
+      .state('usuarios', {
+        url: '/usuarios',
         templateUrl: 'views/supervisores.html',
         controller: 'supervisorCtrl as vm'
       })
@@ -27,8 +27,8 @@ argus
         controller: 'guardiaCtrl as vm'
       })
 
-      .state('clientes', {
-        url: '/clientes',
+      .state('servicios', {
+        url: '/servicios',
         templateUrl: 'views/clientes.html',
         controller: 'clienteCtrl as vm'
       })
@@ -45,8 +45,8 @@ argus
         controller: 'zonaCtrl as vm'
       })
 
-      .state('bitacoras', {
-        url: '/bitacoras',
+      .state('listaAsistencia', {
+        url: '/listaAsistencia',
         templateUrl: 'views/bitacoras.html',
         controller: 'bitacoraCtrl as vm'
       })

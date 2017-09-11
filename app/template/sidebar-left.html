@@ -32,7 +32,7 @@
   <ul class="main-menu">
 
     <li data-ui-sref-active="active" ng-if="vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador' || vm.userType == 'director'">
-      <a data-ui-sref="supervisores" data-ng-click="mactrl.sidebarStat($event)"><i
+      <a data-ui-sref="usuarios" data-ng-click="mactrl.sidebarStat($event)"><i
         class="zmdi zmdi-accounts-list zmdi-hc-fw"></i> Usuarios</a>
     </li>
 
@@ -47,7 +47,7 @@
     </li>
 
     <li data-ui-sref-active="active" ng-if="vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador' || vm.userType == 'director'">
-      <a data-ui-sref="clientes" data-ng-click="mactrl.sidebarStat($event)"><i
+      <a data-ui-sref="servicios" data-ng-click="mactrl.sidebarStat($event)"><i
         class="zmdi zmdi-store zmdi-hc-fw"></i> Servicios</a>
     </li>
 
@@ -57,7 +57,7 @@
     </li>
 
     <li data-ui-sref-active="active" ng-if="vm.userType == 'coordinador' || vm.userType == 'administrador' || vm.userType == 'director'">
-      <a data-ui-sref="bitacoras" data-ng-click="mactrl.sidebarStat($event)"><i
+      <a data-ui-sref="listaAsistencia" data-ng-click="mactrl.sidebarStat($event)"><i
         class="zmdi zmdi-format-list-bulleted zmdi-hc-fw"></i> Lista de asistencia</a>
     </li>
 

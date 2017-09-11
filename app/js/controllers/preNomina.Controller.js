@@ -93,7 +93,7 @@ argus
                       vm.paySheet = data;
                       saveGuardSalarys(vm.paySheet);
                       vm.isLoading = false;
-                      $rootScope.$apply();
+                      $rootScope.$applyAsync();
                     });
                 } else {
                   getPaySheet();
@@ -289,7 +289,7 @@ argus
                 vm.paySheet = dataSnapshot2.val();
                 saveGuardSalarys(vm.paySheet);
                 vm.isLoading = false;
-                $rootScope.$apply();
+                $rootScope.$applyAsync();
               })
           })
       }

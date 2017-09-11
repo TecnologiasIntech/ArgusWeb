@@ -73,27 +73,27 @@ argus
         firebase.database().ref('Argus/guardias/')
           .on('value', function (snapshot) {
             vm.guardias = snapshot.val();
-            $rootScope.$apply();
+            $rootScope.$applyAsync();
           });
 
         firebase.database().ref('Argus/supervisores/')
           .on('value', function (snapshot) {
             vm.supervisores = snapshot.val();
-            $rootScope.$apply();
+            $rootScope.$applyAsync();
           });
 
         firebase.database().ref('Argus/administradores/')
           .on('value', function (snapshot) {
             vm.administradores = snapshot.val();
             vm.isLoading = false;
-            $rootScope.$apply();
+            $rootScope.$applyAsync();
           });
 
         firebase.database().ref('Argus/coordinadores/')
           .on('value', function (snapshot) {
             vm.coordinadores = snapshot.val();
             vm.isLoading = false;
-            $rootScope.$apply();
+            $rootScope.$applyAsync();
           });
 
         firebase.auth().onAuthStateChanged(function(user) {
@@ -497,7 +497,7 @@ argus
               break;
           }
           vm.isLoadingRegister = false;
-          $rootScope.$apply();
+          $rootScope.$applyAsync();
         }).then(function(){
           if (!vm.existingError) {
             //Cerramos sesion

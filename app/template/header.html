@@ -59,8 +59,7 @@
                   <i class="zmdi zmdi-check-circle zmdi-hc-2x"
                      ng-if="notification.accion == 'CF'"></i>
                 </div>
-                <p class="col-xs-8 p-l-0 m-b-0" ng-click="vm.verifyAction(notification.accion, notification.informacion, notification.bitacoraInformacion, notification.$key, notification)" ng-if="notification.accion != 'CF'">{{notification.descripcion}}</p>
-                <p class="col-xs-8 p-l-0 m-b-0" ng-click="vm.verifyAction(notification.accion, notification.informacion, notification.bitacoraInformacion, notification.$key, notification)" ng-if="notification.accion == 'CF'">{{notification.observacion}}</p>
+                <p class="col-xs-8 p-l-0 m-b-0" ng-click="vm.verifyAction(notification.accion, notification.informacion, notification.bitacoraInformacion, notification.$key, notification)">{{notification.observacion ? notification.observacion : notification.descripcion}}</p>
 
                 <div class="col-xs-2">
                   <i class="zmdi zmdi-close cursor-pointer"

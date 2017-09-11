@@ -110,7 +110,7 @@ argus
 
 
 
-              $rootScope.$apply();
+              $rootScope.$applyAsync();
             })
         } else {
           growl.warning('No has seleccionado la primera fecha', vm.config);

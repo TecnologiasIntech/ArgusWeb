@@ -19,7 +19,7 @@
         <div class="row m-t-20">
 
           <!--NOMBRE-->
-          <div class="col-xs-5">
+          <div class="col-xs-offset-1 col-xs-5">
             <span>Nombre</span>
             <div class="fg-line m-l-10">
               <input type="text" ng-model="vm.user.usuarioNombre" class="form-control"
@@ -28,7 +28,7 @@
           </div>
 
           <!--TIPO DE PAGO-->
-          <div class="col-xs-offset-1 col-xs-5">
+          <div class="col-xs-5" ng-if="vm.user.usuarioTipo == 'guardia'">
             <span>Tipo de pago</span>
             <div class="fg-line m-l-10">
               <select

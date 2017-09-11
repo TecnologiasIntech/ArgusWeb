@@ -12,15 +12,15 @@ argus
       vm.customers = {};
       vm.guards = {};
       vm.client = {};
-      vm.customersAvailable=[];
+      vm.customersAvailable = [];
       vm.client.clienteDisponible = true;
       vm.isEdit = false;
       vm.guardsToClient = [];
       vm.view = 'general';
       vm.config = {};
       vm.isLoading = false;
-      vm.saveGuardias=[];
-      vm.saveClientes=[];
+      vm.saveGuardias = [];
+      vm.saveClientes = [];
       vm.guardiasClienteEliminado = {};
       vm.consignasArray = {};
       vm.isAddConsigna = false;
@@ -40,6 +40,7 @@ argus
       vm.openingTimeh3 = "00:00";
       vm.closingTimeh3 = "00:00";
       vm.filter = '-clienteNombre';
+      vm.serviceToSelect = {};
 
 
       //public functions
@@ -69,6 +70,7 @@ argus
       vm.daysSelected = daysSelected;
       vm.clearSchedule = clearSchedule;
       vm.moveGuardService = moveGuardService;
+      vm.getServices = getServices;
 
       //private functions
       function activate() {
@@ -79,31 +81,32 @@ argus
             vm.customers = snapshot.val();
             vm.isLoading = false;
             // $rootScope.$apply();
-            $timeout( function(){
+            $timeout(function () {
 
-            }, 200 );
+            }, 200);
           });
 
         firebase.database().ref('Argus/guardias')
           .on('value', function (snapshot) {
             vm.guards = snapshot.val();
+            $rootScope.$applyAsync();
           });
 
         firebase.database().ref('Argus/Zonas')
-          .on('value', function(snapshot){
+          .on('value', function (snapshot) {
             vm.zonas = snapshot.val();
           });
 
-        firebase.auth().onAuthStateChanged(function(user) {
+        firebase.auth().onAuthStateChanged(function (user) {
           if (user) {
 
-            if(user.providerData[0].providerId == 'password'){
+            if (user.providerData[0].providerId == 'password') {
               vm.usuarioNombre = user.email;
 
               userService.getUserType(user.email).then(function (response) {
                 vm.userType = response;
               })
-            }else{
+            } else {
               vm.usuarioNombre = user.displayName;
               vm.usuarioFotoPerfil = user.photoURL;
             }
@@ -116,7 +119,6 @@ argus
 
       function openModal() {
         //saveGuardias=[];
-
 
 
         vm.modal = $uibModal.open({
@@ -150,34 +152,34 @@ argus
         });
       }
 
-      function getConsignas( consignaName ) {
+      function getConsignas(consignaName) {
 
         firebase.database().ref('Argus/Consigna/' + vm.client.clienteNombre + '/' + consignaName)
           .on('value', function (snapshot) {
 
             vm.consigna.items = snapshot.val();
 
-           $rootScope.$apply();
+            $rootScope.$applyAsync();
 
           })
 
       }
 
-      function getConsignasNames( consignaName ) {
+      function getConsignasNames(consignaName) {
 
         firebase.database().ref('Argus/Consigna/' + vm.client.clienteNombre)
           .on('value', function (snapshot) {
 
             vm.consignasArray = snapshot.val();
 
-           $rootScope.$apply();
+            $rootScope.$applyAsync();
 
           })
 
       }
 
       function editClient(client, clientName) {
-        if(vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador') {
+        if (vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador') {
           vm.isEdit = true;
           vm.client = client;
           vm.saveZona = vm.client.clienteZonaAsignada;
@@ -205,13 +207,13 @@ argus
         }
       }
 
-      function editClientCancel(){
-        for(var guard in vm.saveGuardias){
-          firebase.database().ref('Argus/guardias/'+ vm.saveGuardias[guard]).update({
+      function editClientCancel() {
+        for (var guard in vm.saveGuardias) {
+          firebase.database().ref('Argus/guardias/' + vm.saveGuardias[guard]).update({
             usuarioDisponible: false
           });
         }
-        vm.saveGuardias=[];
+        vm.saveGuardias = [];
       }
 
       function deleteClient(client) {
@@ -219,7 +221,7 @@ argus
         vm.guardiasClienteEliminado = {};
 
         firebase.database().ref('Argus/Clientes/' + client.clienteNombre).child('clienteGuardias')
-          .on('value', function(snapshot){
+          .on('value', function (snapshot) {
             vm.guardiasClienteEliminado = snapshot.val();
           });
 
@@ -232,7 +234,7 @@ argus
             firebase.database().ref('Argus/guardias/' + guardia).child('usuarioClienteAsignado').remove();
           }
 
-          if(client.clienteZonaAsignada){
+          if (client.clienteZonaAsignada) {
             firebase.database().ref('Argus/Zonas/' + client.clienteZonaAsignada + '/zonaClientes/' + client.clienteNombre).remove();
           }
 
@@ -251,9 +253,9 @@ argus
             data = dataSnapshot.val();
           });
 
-        if(data != null){
+        if (data != null) {
           return true;
-        }else{
+        } else {
           return false;
         }
 
@@ -261,11 +263,11 @@ argus
 
       function registerClient() {
 
-        if(serviceExists(vm.client.clienteNombre)){
+        if (serviceExists(vm.client.clienteNombre)) {
 
           alertService.error("Servicio existente", "El servicio ya existe, intente con otro nombre");
 
-        }else {
+        } else {
 
           if (vm.client.clienteZonaAsignada != undefined && vm.client.clienteZonaAsignada != "Sin Asignar") {
             vm.client.clienteDisponible = false;
@@ -297,83 +299,83 @@ argus
 
           // Agregar responsables a cliente
           var domicilio = ""; //variable auxiliar para concatenar los campos del domicilio
-          for (var responsible in vm.listResponsibles) {
-            domicilio = vm.listResponsibles[responsible].responsibleColony + "," + vm.listResponsibles[responsible].responsibleStreet;
-            firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteResponsables').push({
-              responsableNombre: vm.listResponsibles[responsible].responsibleName,
-              responsableTelefono: vm.listResponsibles[responsible].responsiblePhone,
-              responsableDomicilio: domicilio,
-              responsableCorreo: vm.listResponsibles[responsible].responsibleEmail
-            });
-          }
-
-          //Agregar horario
-          var l = false, ma = false, mi = false, j = false, v = false, s = false, d = false;
-          for (var index in vm.listDaysSchedule) {
-            switch (vm.listDaysSchedule[index]) {
-              case 'lunes':
-                l = true;
-                break;
-              case 'martes':
-                ma = true;
-                break;
-              case 'miercoles':
-                mi = true;
-                break;
-              case 'jueves':
-                j = true;
-                break;
-              case 'viernes':
-                v = true;
-                break;
-              case 'sabado':
-                s = true;
-                break;
-              case 'domingo':
-                d = true;
-                break;
-            }
-          }
-          var openingTimeh1 = verificarValoDeHorarios('tiempoAperturah1');
-          var closingTimeh1 = verificarValoDeHorarios('tiempoCierreh1');
-
-          var openingTimeh2 = verificarValoDeHorarios('tiempoAperturah2');
-          var closingTimeh2 = verificarValoDeHorarios('tiempoCierreh2');
-
-          var openingTimeh3 = verificarValoDeHorarios('tiempoAperturah3');
-          var closingTimeh3 = verificarValoDeHorarios('tiempoCierreh3');
-
-          // var openingTimeh1 = vm.openingTimeh1;
-          // var closingTimeh1 = vm.closingTimeh1;
+          // for (var responsible in vm.listResponsibles) {
+          //   domicilio = vm.listResponsibles[responsible].responsibleColony + "," + vm.listResponsibles[responsible].responsibleStreet;
+          //   firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteResponsables').push({
+          //     responsableNombre: vm.listResponsibles[responsible].responsibleName,
+          //     responsableTelefono: vm.listResponsibles[responsible].responsiblePhone,
+          //     responsableDomicilio: domicilio,
+          //     responsableCorreo: vm.listResponsibles[responsible].responsibleEmail
+          //   });
+          // }
           //
-          // var openingTimeh2 = vm.openingTimeh2;
-          // var closingTimeh2 = vm.closingTimeh2;
+          // //Agregar horario
+          // var l = false, ma = false, mi = false, j = false, v = false, s = false, d = false;
+          // for (var index in vm.listDaysSchedule) {
+          //   switch (vm.listDaysSchedule[index]) {
+          //     case 'lunes':
+          //       l = true;
+          //       break;
+          //     case 'martes':
+          //       ma = true;
+          //       break;
+          //     case 'miercoles':
+          //       mi = true;
+          //       break;
+          //     case 'jueves':
+          //       j = true;
+          //       break;
+          //     case 'viernes':
+          //       v = true;
+          //       break;
+          //     case 'sabado':
+          //       s = true;
+          //       break;
+          //     case 'domingo':
+          //       d = true;
+          //       break;
+          //   }
+          // }
+          // var openingTimeh1 = verificarValoDeHorarios('tiempoAperturah1');
+          // var closingTimeh1 = verificarValoDeHorarios('tiempoCierreh1');
           //
-          // var openingTimeh3 = vm.openingTimeh3;
-          // var closingTimeh3 = vm.closingTimeh3;
-
-          firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).child('clienteHorario/primerHorario').set({
-            'horaApertura': openingTimeh1,
-            'horaCierre': closingTimeh1
-          });
-          firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).child('clienteHorario/segundoHorario').set({
-            'horaApertura': openingTimeh2,
-            'horaCierre': closingTimeh2
-          });
-          firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).child('clienteHorario/tercerHorario').set({
-            'horaApertura': openingTimeh3,
-            'horaCierre': closingTimeh3
-          });
-
-          firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteHorario/diasLaborados').set({
-            'lunes': l,
-            'martes': ma,
-            'miercoles': mi,
-            'jueves': j,
-            'viernes': v,
-            'sabado': s,
-            'domingo': d
-          });
+          // var openingTimeh2 = verificarValoDeHorarios('tiempoAperturah2');
+          // var closingTimeh2 = verificarValoDeHorarios('tiempoCierreh2');
+          //
+          // var openingTimeh3 = verificarValoDeHorarios('tiempoAperturah3');
+          // var closingTimeh3 = verificarValoDeHorarios('tiempoCierreh3');
+          //
+          // // var openingTimeh1 = vm.openingTimeh1;
+          // // var closingTimeh1 = vm.closingTimeh1;
+          // //
+          // // var openingTimeh2 = vm.openingTimeh2;
+          // // var closingTimeh2 = vm.closingTimeh2;
+          // //
+          // // var openingTimeh3 = vm.openingTimeh3;
+          // // var closingTimeh3 = vm.closingTimeh3;
+          //
+          // firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).child('clienteHorario/primerHorario').set({
+          //   'horaApertura': openingTimeh1,
+          //   'horaCierre': closingTimeh1
+          // });
+          // firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).child('clienteHorario/segundoHorario').set({
+          //   'horaApertura': openingTimeh2,
+          //   'horaCierre': closingTimeh2
+          // });
+          // firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).child('clienteHorario/tercerHorario').set({
+          //   'horaApertura': openingTimeh3,
+          //   'horaCierre': closingTimeh3
+          // });
+          //
+          // firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteHorario/diasLaborados').set({
+          //   'lunes': l,
+          //   'martes': ma,
+          //   'miercoles': mi,
+          //   'jueves': j,
+          //   'viernes': v,
+          //   'sabado': s,
+          //   'domingo': d
+          // });
           // firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteHorario').set({
           //   'horaApertura': vm.openingTime,
           //   'horaCierre': vm.closingTime
@@ -394,23 +396,24 @@ argus
       function addOrDeleteItemInAssignment(guard, guardKey) {
         //noinspection JSDuplicatedDeclaration
         var guardObj = guard;
-        var guardIndex = _.findIndex(vm.guardsToClient, {'usuarioNombre' : guardObj.usuarioNombre});
+        var guardIndex = _.findIndex(vm.guardsToClient, {'usuarioNombre': guardObj.usuarioNombre});
 
-        if(guardIndex == -1){
+        if (guardIndex == -1) {
           vm.guardsToClient.push({
             usuarioNombre: guardObj.usuarioNombre,
             // usuarioTurno: guardObj.usuarioTurno,
             usuarioKey: guardKey
           })
-        }else{
-          vm.guardsToClient.splice(guardIndex, 1);0
+        } else {
+          vm.guardsToClient.splice(guardIndex, 1);
+          0
         }
       }
 
       function verifyChecked(guard) {
         var checked;
 
-        checked =_.findIndex(vm.guardsToClient, {'usuarioNombre' : guard});
+        checked = _.findIndex(vm.guardsToClient, {'usuarioNombre': guard});
 
         return checked;
       }
@@ -419,7 +422,7 @@ argus
         // for (var guardia in vm.saveGuardias) {
         //   firebase.database().ref('Argus/guardias/'+ vm.saveGuardias[guardia]).child('usuarioClienteAsignado').remove();
         // }
-        vm.saveGuardias=[];
+        vm.saveGuardias = [];
         //Actulizar referencia del servicio en la zona
         if (vm.saveZona != vm.client.clienteZonaAsignada) {
           firebase.database().ref('Argus/Zonas/' + vm.saveZona + '/zonaClientes/' + vm.client.clienteNombre).remove();
@@ -435,15 +438,14 @@ argus
         //   clienteDomicilio: vm.client.clienteDomicilio
         // });
         firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).update({
-          clienteNumeroGuardias: vm.client.clienteNumeroGuardias,
           clienteDomicilio: vm.client.clienteDomicilio,
           clienteZonaAsignada: vm.client.clienteZonaAsignada ? vm.client.clienteZonaAsignada : ''
         });
 
         firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteGuardias').remove();
 
-        for(var i = 0; i < vm.guardsToClient.length; i++){
-          firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteGuardias/' +  vm.guardsToClient[i].usuarioKey).set({
+        for (var i = 0; i < vm.guardsToClient.length; i++) {
+          firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteGuardias/' + vm.guardsToClient[i].usuarioKey).set({
             usuarioNombre: vm.guardsToClient[i].usuarioNombre,
             usuarioKey: vm.guardsToClient[i].usuarioKey
           });
@@ -451,130 +453,130 @@ argus
           // Agregar referencia del cliente en el guardia
           var updates = {};
           updates['Argus/guardias/' + vm.guardsToClient[i].usuarioKey + '/usuarioClienteAsignado'] = vm.client.clienteNombre;
-          updates['Argus/guardias/'+ vm.guardsToClient[i].usuarioKey+'/usuarioDisponible']= false;
+          updates['Argus/guardias/' + vm.guardsToClient[i].usuarioKey + '/usuarioDisponible'] = false;
           firebase.database().ref().update(updates);
 
         }
         // Agregar responsables actualizados a cliente
         var domicilio = ""; //variable auxiliar para concatenar los campos del domicilio
-        firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteResponsables').remove();
-
-        for (var responsible in vm.listResponsibles) {
-         domicilio = vm.listResponsibles[responsible].responsibleColony + "," + vm.listResponsibles[responsible].responsibleStreet;
-         firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteResponsables').push({
-           responsableNombre: vm.listResponsibles[responsible].responsibleName,
-           responsableTelefono:vm.listResponsibles[responsible].responsiblePhone,
-           responsableDomicilio: domicilio,
-           responsableCorreo: vm.listResponsibles[responsible].responsibleEmail
-         });
-        }
-        // getResponsibles( vm.client.clienteNombre );
-
-        // firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteResponsables').push({
-        //   // jsonResponsibles
-        //   responsableNombre: vm.listResponsibles[responsible].responsibleName,
-        //   responsableTelefono:vm.listResponsibles[responsible].responsiblePhone,
-        //   responsableDomicilio: domicilio,
-        //   responsableCorreo: vm.listResponsibles[responsible].responsibleEmail
+        // firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteResponsables').remove();
+        //
+        // for (var responsible in vm.listResponsibles) {
+        //   domicilio = vm.listResponsibles[responsible].responsibleColony + "," + vm.listResponsibles[responsible].responsibleStreet;
+        //   firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteResponsables').push({
+        //     responsableNombre: vm.listResponsibles[responsible].responsibleName,
+        //     responsableTelefono: vm.listResponsibles[responsible].responsiblePhone,
+        //     responsableDomicilio: domicilio,
+        //     responsableCorreo: vm.listResponsibles[responsible].responsibleEmail
+        //   });
+        // }
+        // // getResponsibles( vm.client.clienteNombre );
+        //
+        // // firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteResponsables').push({
+        // //   // jsonResponsibles
+        // //   responsableNombre: vm.listResponsibles[responsible].responsibleName,
+        // //   responsableTelefono:vm.listResponsibles[responsible].responsiblePhone,
+        // //   responsableDomicilio: domicilio,
+        // //   responsableCorreo: vm.listResponsibles[responsible].responsibleEmail
+        // // });
+        //
+        // //Actualizar horario
+        // var l = false, ma = false, mi = false, j = false, v = false, s = false, d = false;
+        // for (var index in vm.listDaysSchedule) {
+        //   switch (vm.listDaysSchedule[index]) {
+        //     case 'lunes':
+        //       l = true;
+        //       break;
+        //     case 'martes':
+        //       ma = true;
+        //       break;
+        //     case 'miercoles':
+        //       mi = true;
+        //       break;
+        //     case 'jueves':
+        //       j = true;
+        //       break;
+        //     case 'viernes':
+        //       v = true;
+        //       break;
+        //     case 'sabado':
+        //       s = true;
+        //       break;
+        //     case 'domingo':
+        //       d = true;
+        //       break;
+        //   }
+        // }
+        //
+        // var openingTimeh1 = verificarValoDeHorarios('tiempoAperturah1');
+        // var closingTimeh1 = verificarValoDeHorarios('tiempoCierreh1');
+        //
+        // var openingTimeh2 = verificarValoDeHorarios('tiempoAperturah2');
+        // var closingTimeh2 = verificarValoDeHorarios('tiempoCierreh2');
+        //
+        // var openingTimeh3 = verificarValoDeHorarios('tiempoAperturah3');
+        // var closingTimeh3 = verificarValoDeHorarios('tiempoCierreh3');
+        //
+        // // var openingTimeh1 = vm.openingTimeh1;
+        // // var closingTimeh1 = vm.closingTimeh1;
+        // //
+        // // var openingTimeh2 = vm.openingTimeh2;
+        // // var closingTimeh2 = vm.closingTimeh2;
+        // //
+        // // var openingTimeh3 = vm.openingTimeh3;
+        // // var closingTimeh3 = vm.closingTimeh3;
+        //
+        // firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).child('clienteHorario/primerHorario').update({
+        //   'horaApertura': openingTimeh1,
+        //   'horaCierre': closingTimeh1
         // });
-
-        //Actualizar horario
-        var l=false, ma= false, mi=false, j=false, v=false, s=false, d=false;
-        for (var index in vm.listDaysSchedule) {
-          switch (vm.listDaysSchedule[index]) {
-            case 'lunes':
-              l = true;
-              break;
-            case 'martes':
-              ma = true;
-              break;
-            case 'miercoles':
-              mi = true;
-              break;
-            case 'jueves':
-              j = true;
-              break;
-            case 'viernes':
-              v = true;
-              break;
-            case 'sabado':
-              s = true;
-              break;
-            case 'domingo':
-              d = true;
-              break;
-          }
-        }
-
-        var openingTimeh1 = verificarValoDeHorarios('tiempoAperturah1');
-        var closingTimeh1 = verificarValoDeHorarios('tiempoCierreh1');
-
-        var openingTimeh2 = verificarValoDeHorarios('tiempoAperturah2');
-        var closingTimeh2 = verificarValoDeHorarios('tiempoCierreh2');
-
-        var openingTimeh3 = verificarValoDeHorarios('tiempoAperturah3');
-        var closingTimeh3 = verificarValoDeHorarios('tiempoCierreh3');
-
-        // var openingTimeh1 = vm.openingTimeh1;
-        // var closingTimeh1 = vm.closingTimeh1;
         //
-        // var openingTimeh2 = vm.openingTimeh2;
-        // var closingTimeh2 = vm.closingTimeh2;
+        // firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).child('clienteHorario/segundoHorario').update({
+        //   'horaApertura': openingTimeh2,
+        //   'horaCierre': closingTimeh2
+        // });
         //
-        // var openingTimeh3 = vm.openingTimeh3;
-        // var closingTimeh3 = vm.closingTimeh3;
-
-        firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).child('clienteHorario/primerHorario').update({
-          'horaApertura': openingTimeh1,
-          'horaCierre': closingTimeh1
-        });
-
-        firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).child('clienteHorario/segundoHorario').update({
-          'horaApertura': openingTimeh2,
-          'horaCierre': closingTimeh2
-        });
-
-        firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).child('clienteHorario/tercerHorario').update({
-          'horaApertura': openingTimeh3,
-          'horaCierre': closingTimeh3
-        });
-
-        firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteHorario/diasLaborados').update({
-          'lunes': l,
-          'martes': ma,
-          'miercoles': mi,
-          'jueves': j,
-          'viernes': v,
-          'sabado': s,
-          'domingo': d
-        });
+        // firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).child('clienteHorario/tercerHorario').update({
+        //   'horaApertura': openingTimeh3,
+        //   'horaCierre': closingTimeh3
+        // });
+        //
+        // firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteHorario/diasLaborados').update({
+        //   'lunes': l,
+        //   'martes': ma,
+        //   'miercoles': mi,
+        //   'jueves': j,
+        //   'viernes': v,
+        //   'sabado': s,
+        //   'domingo': d
+        // });
 
         vm.client = {};
         vm.client.clienteDisponible = true;
         vm.guardsToClient = [];
         // vm.listResponsibles = [];
-        vm.listDaysSchedule =[];
+        vm.listDaysSchedule = [];
         vm.isEdit = false;
         vm.view = 'general';
         growl.info('Cliente Actualizado!', vm.config);
 
       }
 
-      function addConsigna( titleConsigna ) {
+      function addConsigna(titleConsigna) {
 
-        if( !titleConsigna ){
+        if (!titleConsigna) {
           growl.error('No puedes agregar una consigna vacía', vm.config);
-        }else{
+        } else {
 
           firebase.database().ref('Argus/Consigna/' + vm.client.clienteNombre + '/' + titleConsigna)
             .once('value', function (snapshot) {
 
               var existConsigna = snapshot.val();
-              if( !existConsigna ){
+              if (!existConsigna) {
                 vm.isAddConsigna = true;
 
                 firebase.database().ref('Argus/Consigna/' + vm.client.clienteNombre + '/' + titleConsigna).set({
-                  prueba:{
+                  prueba: {
                     consignaNombre: 'Prueba'
                   }
                 });
@@ -587,26 +589,26 @@ argus
         }
       }
 
-      function verifyClientName( consignaName ) {
+      function verifyClientName(consignaName) {
 
-        if( !vm.client.clienteNombre ){
+        if (!vm.client.clienteNombre) {
           vm.view = 'general';
           growl.error('Tiene que asignar un nombre al Servicio antes de crear consignas', vm.config)
-        }else{
+        } else {
           // vm.view = 'consignas'
           vm.openModalToAsignTitleToConsigna();
           vm.consigna.nombre = consignaName;
-          getConsignas( consignaName )
+          getConsignas(consignaName)
         }
 
       }
 
-      function addItemToConsigna( consignaTarea ) {
+      function addItemToConsigna(consignaTarea) {
 
         // Añade la nueva tarea
-        if( !consignaTarea ){
+        if (!consignaTarea) {
           growl.error('No puedes agregar una tarea vacía', vm.config);
-        } else if( !vm.consigna.nombre ){
+        } else if (!vm.consigna.nombre) {
           growl.error('No puedes agregar una tarea a una consigna sin nombre', vm.config);
         } else {
 
@@ -619,17 +621,17 @@ argus
           });
 
           vm.consignaTarea = '';
-          getConsignas( vm.consigna.nombre );
+          getConsignas(vm.consigna.nombre);
         }
 
       }
 
-      function removeItem( consignaKey, tareaKey ) {
+      function removeItem(consignaKey, tareaKey) {
         // var client = vm.client.clienteNombre;
         firebase.database().ref('Argus/Consigna/' + vm.client.clienteNombre + '/' + consignaKey + '/' + tareaKey).remove();
       }
 
-      function deleteConsigna( consignaKey ) {
+      function deleteConsigna(consignaKey) {
         alertService.verifyConfirm('Estas seguro de eliminar esta consigna?', '').then(function () {
 
           firebase.database().ref('Argus/Consigna/' + vm.client.clienteNombre + '/' + consignaKey).remove();
@@ -641,10 +643,9 @@ argus
         })
 
 
-
       }
 
-      function deleteAllConsignas( clienteName ) {
+      function deleteAllConsignas(clienteName) {
         firebase.database().ref('Argus/Consigna/' + vm.client.clienteNombre).remove();
         getConsignas();
       }
@@ -661,7 +662,7 @@ argus
         growl.error('Tiene que asignar un nombre al servicio antes de crear Consignas', vm.config)
       }
 
-      function openModalAddResponsible(){
+      function openModalAddResponsible() {
         vm.modalResponsible = $uibModal.open({
           animation: true,
           templateUrl: 'views/modals/addResponsible.modal.html',
@@ -671,7 +672,7 @@ argus
         });
       }
 
-      function saveResponsible(){
+      function saveResponsible() {
         if (!vm.isEditResponsible) {
           vm.responsible.responsibleId = vm.responsibleId;
           vm.listResponsibles.push(vm.responsible);
@@ -681,7 +682,7 @@ argus
         }
       }
 
-      function removeResponsible( idResponsible){
+      function removeResponsible(idResponsible) {
         for (var index in vm.listResponsibles) {
           var x = vm.listResponsibles[index].responsibleId;
           if (vm.listResponsibles[index].responsibleId == idResponsible) {
@@ -690,25 +691,25 @@ argus
             break;
           }
         }
-        vm.listResponsibles.splice(responsableId-1, 1);
+        vm.listResponsibles.splice(responsableId - 1, 1);
       }
 
       function editResponsible(responsibleId) {
         for (var index in vm.listResponsibles) {
           if (vm.listResponsibles[index].responsibleId == responsibleId) {
             vm.responsible = {
-              'responsibleName' : vm.listResponsibles[index].responsibleName,
-              'responsiblePhone' : vm.listResponsibles[index].responsiblePhone,
-              'responsibleColony' : vm.listResponsibles[index].responsibleColony,
-              'responsibleStreet' : vm.listResponsibles[index].responsibleStreet,
-              'responsibleEmail' : vm.listResponsibles[index].responsibleEmail,
-              'responsibleId' :  vm.listResponsibles[index].responsibleId
+              'responsibleName': vm.listResponsibles[index].responsibleName,
+              'responsiblePhone': vm.listResponsibles[index].responsiblePhone,
+              'responsibleColony': vm.listResponsibles[index].responsibleColony,
+              'responsibleStreet': vm.listResponsibles[index].responsibleStreet,
+              'responsibleEmail': vm.listResponsibles[index].responsibleEmail,
+              'responsibleId': vm.listResponsibles[index].responsibleId
             };
           }
         }
       }
 
-      function updateResponsible( responsibleId ) {
+      function updateResponsible(responsibleId) {
         for (var index in vm.listResponsibles) {
           if (vm.listResponsibles[index].responsibleId == responsibleId) {
             vm.listResponsibles.splice(index, 1, vm.responsible);
@@ -718,28 +719,28 @@ argus
         vm.isEditResponsible = false;
       }
 
-      function getResponsibles( clientName ) {
+      function getResponsibles(clientName) {
         // vm.responsibleId = 1;
         vm.listResponsibles = [];
-        firebase.database().ref('Argus/Clientes/'+ clientName +'/clienteResponsables')
-         .on('value', function(snapshot){
-           vm.listaResponsables = snapshot.val();
-           for (var responsible in vm.listaResponsables) {
-             var arrayDomicilio = vm.listaResponsables[responsible].responsableDomicilio.split(",");
-             vm.listResponsibles.push({
-               'responsibleName' : vm.listaResponsables[responsible].responsableNombre,
-               'responsiblePhone' : vm.listaResponsables[responsible].responsableTelefono,
-               'responsibleColony' : arrayDomicilio[0],
-               'responsibleStreet' : arrayDomicilio[1],
-               'responsibleEmail' : vm.listaResponsables[responsible].responsableCorreo,
-               'responsibleId' :  vm.responsibleId
-             });
-             vm.responsibleId++;
-           }
-         });
+        firebase.database().ref('Argus/Clientes/' + clientName + '/clienteResponsables')
+          .on('value', function (snapshot) {
+            vm.listaResponsables = snapshot.val();
+            for (var responsible in vm.listaResponsables) {
+              var arrayDomicilio = vm.listaResponsables[responsible].responsableDomicilio.split(",");
+              vm.listResponsibles.push({
+                'responsibleName': vm.listaResponsables[responsible].responsableNombre,
+                'responsiblePhone': vm.listaResponsables[responsible].responsableTelefono,
+                'responsibleColony': arrayDomicilio[0],
+                'responsibleStreet': arrayDomicilio[1],
+                'responsibleEmail': vm.listaResponsables[responsible].responsableCorreo,
+                'responsibleId': vm.responsibleId
+              });
+              vm.responsibleId++;
+            }
+          });
       }
 
-      function daysSelected( addOrDeleteDay, day ){
+      function daysSelected(addOrDeleteDay, day) {
         if (addOrDeleteDay) {
           vm.listDaysSchedule.push(day);
         }
@@ -752,11 +753,17 @@ argus
         }
       }
 
-      function getSchedule( clientName ) {
-        vm.listDaysSchedule = []; vm.saturday = false; vm.thusday = false; vm.wednesday = false;
-        vm.thursday = false; vm.friday = false; vm.monday = false; vm.sunday = false;
+      function getSchedule(clientName) {
+        vm.listDaysSchedule = [];
+        vm.saturday = false;
+        vm.thusday = false;
+        vm.wednesday = false;
+        vm.thursday = false;
+        vm.friday = false;
+        vm.monday = false;
+        vm.sunday = false;
         firebase.database().ref('Argus/Clientes/' + clientName + '/clienteHorario')
-          .on('value', function(snapshot){
+          .on('value', function (snapshot) {
             var horario = snapshot.val();
             if (horario.diasLaborados.lunes) {
               vm.listDaysSchedule.push('lunes');
@@ -813,45 +820,65 @@ argus
         vm.closingTimeh2 = "00:00";
         vm.openingTimeh3 = "00:00";
         vm.closingTimeh3 = "00:00";
-        vm.saturday = false; vm.thusday = false; vm.wednesday = false;
-        vm.thursday = false; vm.friday = false; vm.monday = false; vm.sunday = false;
+        vm.saturday = false;
+        vm.thusday = false;
+        vm.wednesday = false;
+        vm.thursday = false;
+        vm.friday = false;
+        vm.monday = false;
+        vm.sunday = false;
       }
 
-      function moveGuardService( guard, service, guardKey ) {
+      function moveGuardService(guard, service, guardKey) {
 
         var servicioAnterior = '';
 
-          //Al servicio que vamos enviarlo le asignamos el guardia
-          firebase.database().ref('Argus/Clientes/' + document.getElementById(guardKey).value + '/clienteGuardias/').child(guard.$key).set({
-            usuarioKey: guard.$key,
-            usuarioNombre: guard.usuarioNombre
+        //Al servicio que vamos enviarlo le asignamos el guardia
+        firebase.database().ref('Argus/Clientes/' + document.getElementById(guardKey).value + '/clienteGuardias/').child(guardKey).set({
+          usuarioKey: guardKey,
+          usuarioNombre: guard.usuarioNombre
+        });
+
+        //Obtenemos el servicio actual del guardia
+        firebase.database().ref('Argus/guardias/' + guardKey + '/usuarioClienteAsignado')
+          .once('value', function (dataSnapshot) {
+            servicioAnterior = dataSnapshot.val();
           });
 
-          //Obtenemos el servicio actual del guardia
-          firebase.database().ref('Argus/guardias/' + guardKey + '/usuarioClienteAsignado')
-            .once('value', function (dataSnapshot) {
-              servicioAnterior = dataSnapshot.val();
-            });
+        //Al guardia le asignamos el nuevo servicio
+        var update = {};
+        update['Argus/guardias/' + guardKey + '/usuarioClienteAsignado'] = document.getElementById(guardKey).value;
+        update['Argus/guardias/' + guardKey + '/usuarioDisponible'] = false;
+        firebase.database().ref().update(update);
 
-          //Eliminamos al guardia del cliente anterior si es que el guardia ya tenia un cliente anterior
-          if(servicioAnterior.length > 0){
-            firebase.database().ref('Argus/Clientes/' + servicioAnterior + '/clienteGuardias/' + guardKey).remove();
-          }
-
-          //Al guardia le asignamos el nuevo servicio
-          firebase.database().ref('Argus/guardias/' + guard.$key).update({
-            'usuarioClienteAsignado': document.getElementById(guardKey).value,
-            'usuarioDisponible': false
-          });
-
+        //Eliminamos al guardia del cliente anterior si es que el guardia ya tenia un cliente anterior
+        if (servicioAnterior != null) {
+          firebase.database().ref('Argus/Clientes/' + servicioAnterior + '/clienteGuardias/' + guardKey).remove();
+        }
       }
 
-      function verificarValoDeHorarios( id ) {
+      // function verificarValoDeHorarios(id) {
+      //
+      //   if (document.getElementById(id).value == null) {
+      //     return '00:00';
+      //   } else {
+      //     return document.getElementById(id).value;
+      //   }
+      //
+      // }
 
-        if(document.getElementById(id).value == null){
-          return '00:00';
-        }else{
-          return document.getElementById(id).value;
+      function getServices(zonaID, inputKey) {
+        var zona = document.getElementById(zonaID).value;
+
+        if (zona != -1) {
+          vm.serviceToSelect[inputKey] = {};
+          for (service in vm.zonas[zona]['zonaClientes']) {
+
+            vm.serviceToSelect[inputKey][service] = {
+              'clienteNombre': service
+            };
+
+          }
         }
 
       }

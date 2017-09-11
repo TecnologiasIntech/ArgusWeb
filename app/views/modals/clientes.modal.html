@@ -2,30 +2,35 @@
 
   <!--Header-->
   <div class="modal-header p-t-10">
-    <ul class="tab-nav">
-      <li class="{{vm.view == 'general' ? 'active' : ''}}">
-        <a href="" ng-click="vm.view = 'general'">General</a>
-      </li>
-      <li class="{{vm.view == 'horarios' ? 'active' : ''}}">
-        <a href="" ng-click="vm.view = 'horarios'">Horarios</a>
-      </li>
-      <li class="{{vm.view == 'responsibles' ? 'active' : ''}}" >
-        <a href="" ng-click="vm.view = 'responsibles'">Responsables</a>
-      </li>
-      <li class="{{vm.view == 'assignment' ? 'active' : ''}}" >
-        <a href="" ng-click="vm.view = 'assignment'">Asignación</a>
-      </li>
-      <li class="{{vm.view == 'consignas' ? 'active' : ''}}" ng-if="vm.isEdit" >
-        <a href="" ng-click="vm.view = 'consignas'">Consignas</a>
-      </li>
-      <li class="{{vm.view == 'consignas' ? 'active' : ''}}" ng-if="!vm.isEdit">
-        <a href="" ng-click="vm.client.clienteNombre ? vm.view = 'consignas' : vm.errorConsignaUndeclaredClientName()" >Consignas</a>
-      </li>
-    </ul>
+    <div class="row">
+      <h4 class="m-t-0 m-b-0 m-l-15" style="color: #5f5d5d;">{{ vm.client.clienteNombre }}</h4>
+    </div>
+    <div class="row">
+      <ul class="tab-nav">
+        <li class="{{vm.view == 'general' ? 'active' : ''}}">
+          <a href="" ng-click="vm.view = 'general'">General</a>
+        </li>
+        <li class="{{vm.view == 'horarios' ? 'active' : ''}}">
+          <a href="" ng-click="vm.view = 'horarios'">Horarios</a>
+        </li>
+        <li class="{{vm.view == 'responsibles' ? 'active' : ''}}" >
+          <a href="" ng-click="vm.view = 'responsibles'">Responsables</a>
+        </li>
+        <li class="{{vm.view == 'assignment' ? 'active' : ''}}" >
+          <a href="" ng-click="vm.view = 'assignment'">Asignación</a>
+        </li>
+        <li class="{{vm.view == 'consignas' ? 'active' : ''}}" ng-if="vm.isEdit" >
+          <a href="" ng-click="vm.view = 'consignas'">Consignas</a>
+        </li>
+        <li class="{{vm.view == 'consignas' ? 'active' : ''}}" ng-if="!vm.isEdit">
+          <a href="" ng-click="vm.client.clienteNombre ? vm.view = 'consignas' : vm.errorConsignaUndeclaredClientName()" >Consignas</a>
+        </li>
+      </ul>
+    </div>
   </div>
 
   <!--Body-->
-  <div class="modal-body modal-size" style="overflow-y: auto">
+  <div class="modal-body modal-size" style="overflow-x: hidden">
     <div class="row">
 
       <!--General-->
@@ -67,92 +72,98 @@
             </div>
           </div>
         </div>
-        <h4 style="color: #616161; margin-top: 20px; margin-left: 30px;">Horario</h4>
-        <div class="row">
-          <div class="col-xs-12 m-t-15" align="center">
-            <div class="checkbox m-b-15" style="display: inline">
-              <label>
-                <input type="checkbox" ng-model="vm.monday" ng-click="vm.daysSelected(vm.monday, 'lunes')">
-                <i class="input-helper"></i>
-                Lunes
-              </label>
-            </div>
-            <div class="checkbox m-b-15" style="display: inline">
-              <label>
-                <input type="checkbox" ng-model="vm.thusday" ng-click="vm.daysSelected(vm.thusday, 'martes')">
-                <i class="input-helper"></i>
-                Martes
-              </label>
-            </div>
-            <div class="checkbox m-b-15" style="display: inline">
-              <label>
-                <input type="checkbox" ng-model="vm.wednesday" ng-click="vm.daysSelected(vm.wednesday, 'miercoles')">
-                <i class="input-helper"></i>
-                Miercoles
-              </label>
-            </div>
-            <div class="checkbox m-b-15" style="display: inline">
-              <label>
-                <input type="checkbox" ng-model="vm.thursday" ng-click="vm.daysSelected(vm.thursday, 'jueves')">
-                <i class="input-helper"></i>
-                Jueves
-              </label>
-            </div>
-            <div class="checkbox m-b-15" style="display: inline">
-              <label>
-                <input type="checkbox" ng-model="vm.friday" ng-click="vm.daysSelected(vm.friday, 'viernes')">
-                <i class="input-helper"></i>
-                Viernes
-              </label>
-            </div>
-            <div class="checkbox m-b-15" style="display: inline">
-              <label>
-                <input type="checkbox" ng-model="vm.saturday" ng-click="vm.daysSelected(vm.saturday, 'sabado')">
-                <i class="input-helper"></i>
-                Sabado
-              </label>
-            </div>
-            <div class="checkbox m-b-15" style="display: inline">
-              <label>
-                <input type="checkbox" ng-model="vm.sunday" ng-click="vm.daysSelected(vm.sunday, 'domingo')">
-                <i class="input-helper"></i>
-                Domingo
-              </label>
-            </div>
-          </div>
-        </div>
 
-        <div class="row m-t-30">
-          <div class="col-xs-6" align="right">
-            <span>Hora de apertura:</span>
-            <input type="time" name="" id="tiempoAperturah1" ng-value="vm.openingTimeh1" ng-model="vm.openingTimeh1">
-          </div>
-          <div class="col-xs-6">
-            <span>Hora de cierre:</span>
-            <input type="time" name="" id="tiempoCierreh1" ng-value="vm.closingTimeh1" ng-model="vm.closingTimeh1">
-          </div>
-        </div>
-        <div class="row m-t-15">
-          <div class="col-xs-6" align="right">
-            <span>Hora de apertura:</span>
-            <input type="time" name="" id="tiempoAperturah2" ng-value="vm.openingTimeh2" ng-model="vm.openingTimeh2">
-          </div>
-          <div class="col-xs-6">
-            <span>Hora de cierre:</span>
-            <input type="time" name="" id="tiempoCierreh2" ng-value="vm.closingTimeh2" ng-model="vm.closingTimeh2">
-          </div>
-        </div>
-        <div class="row m-t-15">
-          <div class="col-xs-6" align="right">
-            <span>Hora de apertura:</span>
-            <input type="time" name="" id="tiempoAperturah3" ng-value="vm.openingTimeh3" ng-model="vm.openingTimeh3">
-          </div>
-          <div class="col-xs-6">
-            <span>Hora de cierre:</span>
-            <input type="time" name="" id="tiempoCierreh3" ng-value="vm.closingTimeh3" ng-model="vm.closingTimeh3">
-          </div>
-        </div>
+        <!--HORARIOS-->
+        <!--<h4 style="color: #616161; margin-top: 20px; margin-left: 30px;">Horario</h4>-->
+        <!---->
+        <!--<div class="row">-->
+          <!--<div class="col-xs-12 m-t-15" align="center">-->
+            <!--<div class="checkbox m-b-15" style="display: inline">-->
+              <!--<label>-->
+                <!--<input type="checkbox" ng-model="vm.monday" ng-click="vm.daysSelected(vm.monday, 'lunes')">-->
+                <!--<i class="input-helper"></i>-->
+                <!--Lunes-->
+              <!--</label>-->
+            <!--</div>-->
+            <!--<div class="checkbox m-b-15" style="display: inline">-->
+              <!--<label>-->
+                <!--<input type="checkbox" ng-model="vm.thusday" ng-click="vm.daysSelected(vm.thusday, 'martes')">-->
+                <!--<i class="input-helper"></i>-->
+                <!--Martes-->
+              <!--</label>-->
+            <!--</div>-->
+            <!--<div class="checkbox m-b-15" style="display: inline">-->
+              <!--<label>-->
+                <!--<input type="checkbox" ng-model="vm.wednesday" ng-click="vm.daysSelected(vm.wednesday, 'miercoles')">-->
+                <!--<i class="input-helper"></i>-->
+                <!--Miercoles-->
+              <!--</label>-->
+            <!--</div>-->
+            <!--<div class="checkbox m-b-15" style="display: inline">-->
+              <!--<label>-->
+                <!--<input type="checkbox" ng-model="vm.thursday" ng-click="vm.daysSelected(vm.thursday, 'jueves')">-->
+                <!--<i class="input-helper"></i>-->
+                <!--Jueves-->
+              <!--</label>-->
+            <!--</div>-->
+            <!--<div class="checkbox m-b-15" style="display: inline">-->
+              <!--<label>-->
+                <!--<input type="checkbox" ng-model="vm.friday" ng-click="vm.daysSelected(vm.friday, 'viernes')">-->
+                <!--<i class="input-helper"></i>-->
+                <!--Viernes-->
+              <!--</label>-->
+            <!--</div>-->
+            <!--<div class="checkbox m-b-15" style="display: inline">-->
+              <!--<label>-->
+                <!--<input type="checkbox" ng-model="vm.saturday" ng-click="vm.daysSelected(vm.saturday, 'sabado')">-->
+                <!--<i class="input-helper"></i>-->
+                <!--Sabado-->
+              <!--</label>-->
+            <!--</div>-->
+            <!--<div class="checkbox m-b-15" style="display: inline">-->
+              <!--<label>-->
+                <!--<input type="checkbox" ng-model="vm.sunday" ng-click="vm.daysSelected(vm.sunday, 'domingo')">-->
+                <!--<i class="input-helper"></i>-->
+                <!--Domingo-->
+              <!--</label>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
 
+        <!--<div class="row m-t-30">-->
+          <!--<div class="col-xs-6" align="right">-->
+            <!--<span>Hora de apertura:</span>-->
+            <!--<input type="time" name="" id="tiempoAperturah1" ng-value="vm.openingTimeh1" ng-model="vm.openingTimeh1">-->
+          <!--</div>-->
+          <!--<div class="col-xs-6">-->
+            <!--<span>Hora de cierre:</span>-->
+            <!--<input type="time" name="" id="tiempoCierreh1" ng-value="vm.closingTimeh1" ng-model="vm.closingTimeh1">-->
+          <!--</div>-->
+        <!--</div>-->
+        <!---->
+        <!--<div class="row m-t-15">-->
+          <!--<div class="col-xs-6" align="right">-->
+            <!--<span>Hora de apertura:</span>-->
+            <!--<input type="time" name="" id="tiempoAperturah2" ng-value="vm.openingTimeh2" ng-model="vm.openingTimeh2">-->
+          <!--</div>-->
+          <!--<div class="col-xs-6">-->
+            <!--<span>Hora de cierre:</span>-->
+            <!--<input type="time" name="" id="tiempoCierreh2" ng-value="vm.closingTimeh2" ng-model="vm.closingTimeh2">-->
+          <!--</div>-->
+        <!--</div>-->
+        <!---->
+        <!--<div class="row m-t-15">-->
+          <!--<div class="col-xs-6" align="right">-->
+            <!--<span>Hora de apertura:</span>-->
+            <!--<input type="time" name="" id="tiempoAperturah3" ng-value="vm.openingTimeh3" ng-model="vm.openingTimeh3">-->
+          <!--</div>-->
+          <!--<div class="col-xs-6">-->
+            <!--<span>Hora de cierre:</span>-->
+            <!--<input type="time" name="" id="tiempoCierreh3" ng-value="vm.closingTimeh3" ng-model="vm.closingTimeh3">-->
+          <!--</div>-->
+        <!--</div>-->
+
+        <!--FIN HORARIOS-->
       </div>
 
       <div ng-if="vm.view == 'horarios'">
@@ -221,12 +232,18 @@
       <!--Asignación-->
       <div ng-if="vm.view == 'assignment'">
         <div class="row">
-          <div class="col-xs-offset-2 col-xs-5" align="left">
-            <div class="zmdi zmdi-search display-inline"></div>
-            <label>
-              <input type="text" class="form-control supervisor-search  display-inline" placeholder="Buscar..."
-                     ng-model="vm.searchInGuards">
-            </label>
+          <div class="col-xs-offset-1 col-xs-6" align="left">
+            <div class="row">
+              <div class="col-xs-1">
+                <i class="zmdi zmdi-search zmdi-hc-2x dp-inline" style="padding-top: 8px; margin-left: 7px;"></i>
+              </div>
+              <div class="col-xs-10">
+                <div class="fg-line dp-inline m-l-10">
+                  <input type="text" class="form-control  dp-inline" placeholder="Buscar..."
+                         ng-model="vm.searchInGuards">
+                </div>
+              </div>
+            </div>
           </div>
           <!--<div class="col-xs-3 m-r-20" align="left">-->
             <!--<div class="checkbox m-b-15">-->
@@ -241,6 +258,15 @@
         <div class="row">
           <div class="m-l-30 col-xs-11 m-t-10 p-l-0 p-r-0 table-guardias table-box">
             <table class="table table-hover table-bordered ">
+              <thead>
+              <tr align="center">
+                <th>Guardias</th>
+                <th>Zonas</th>
+                <th>Servicios</th>
+                <th>Mover</th>
+                <th>Info</th>
+              </tr>
+              </thead>
               <tbody>
               <tr ng-repeat="guard in vm.guards | toArray |filter: {usuarioNombre: vm.searchInGuards} " ng-if="!mostrar">
                 <td align="left" ng-if="guard.usuarioDisponible">
@@ -256,21 +282,21 @@
 
                 <td ng-if="guard.usuarioDisponible" class="col-xs-2">
 
-                  <select  id="{{guard.$key + 'zona'}}">
-                    <option value="Seleccione el servicio" selected>Seleccione el servicio</option>
-                    <option value="{{customer.clienteNombre}}" ng-repeat="customer in vm.customers">{{customer.clienteNombre}}</option>
+                  <select  id="{{guard.$key + 'zona'}}" class="form-control" style="color: #5e5e5e;" ng-click="vm.getServices(guard.$key + 'zona',guard.$key)">
+                    <option value="-1" selected>Seleccione</option>
+                    <option value="{{zona.zonaNombre}}" ng-repeat="zona in vm.zonas">{{zona.zonaNombre}}</option>
                   </select>
 
                 </td>
 
                 <td ng-if="guard.usuarioDisponible" class="col-xs-2">
-                  <select  id="{{guard.$key}}">
-                    <option value="Seleccione el servicio" selected>Seleccione el servicio</option>
-                    <option value="{{customer.clienteNombre}}" ng-repeat="customer in vm.customers">{{customer.clienteNombre}}</option>
+                  <select  id="{{guard.$key}}" class="form-control" style="color: #5e5e5e;">
+                    <option value="asd" selected>Seleccione</option>
+                    <option value="{{customer.clienteNombre}}" ng-repeat="customer in vm.serviceToSelect[guard.$key]">{{customer.clienteNombre}}</option>
                   </select>
                 </td>
                 <td ng-if="guard.usuarioDisponible" class="col-xs-1">
-                  <button class="btn btn-primary btn-sm waves-effect" ng-click="vm.moveGuardService(guard, vm.selectedCustome, guard.$key)">Mover</button>
+                  <div class="btn btn-primary btn-sm waves-effect" ng-click="vm.moveGuardService(guard, vm.selectedCustome, guard.$key)">Mover</div>
                 </td>
 
                 <td  ng-if="guard.usuarioDisponible" align="center">
@@ -356,11 +382,11 @@
   <!--Footer-->
   <div class="modal-footer">
     <div align="right">
-      <button class="btn btn-primary waves-effect" ng-click="vm.view = 'general'; vm.responsibleId = 1" type="submit" ng-if="!vm.isEdit">Aceptar</button>
-      <div class="btn btn-primary waves-effect" ng-click="vm.updateClient(); vm.clearConsignas(); vm.responsibleId = 1; vm.modal.dismiss();" ng-if="vm.isEdit">Aceptar</div>
+      <button class="btn btn-success waves-effect" ng-click="vm.view = 'general'; vm.responsibleId = 1" type="submit" ng-if="!vm.isEdit">Aceptar</button>
+      <div class="btn btn-success waves-effect" ng-click="vm.updateClient(); vm.clearConsignas(); vm.responsibleId = 1; vm.modal.dismiss();" ng-if="vm.isEdit">Aceptar</div>
 
-      <div class="btn btn-primary waves-effect" ng-if="!vm.isEdit" ng-click="vm.modal.dismiss(); vm.deleteAllConsignas( vm.client.clienteNombre ); vm.guardsToClient = []; vm.client = {}; vm.isEdit = false; vm.client.clienteDisponible = true; vm.editClientCancel(); vm.clearConsignas(); vm.responsibleId = 1; vm.clearSchedule(); vm.listResponsibles = []">Cancelar</div>
-      <div class="btn btn-primary waves-effect" ng-if="vm.isEdit" ng-click="vm.modal.dismiss(); vm.guardsToClient = []; vm.client = {}; vm.isEdit = false; vm.client.clienteDisponible = true; vm.editClientCancel(); vm.clearConsignas(); vm.responsibleId = 1; vm.clearSchedule(); vm.listResponsibles = []">Cancelar</div>
+      <div class="btn btn-danger waves-effect" ng-if="!vm.isEdit" ng-click="vm.modal.dismiss(); vm.deleteAllConsignas( vm.client.clienteNombre ); vm.guardsToClient = []; vm.client = {}; vm.isEdit = false; vm.client.clienteDisponible = true; vm.editClientCancel(); vm.clearConsignas(); vm.responsibleId = 1; vm.clearSchedule(); vm.listResponsibles = []">Cerrar</div>
+      <div class="btn btn-danger waves-effect" ng-if="vm.isEdit" ng-click="vm.modal.dismiss(); vm.guardsToClient = []; vm.client = {}; vm.isEdit = false; vm.client.clienteDisponible = true; vm.editClientCancel(); vm.clearConsignas(); vm.responsibleId = 1; vm.clearSchedule(); vm.listResponsibles = []">Cerrar</div>
     </div>
   </div>
 </form>
