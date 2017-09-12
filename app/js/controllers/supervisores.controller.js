@@ -101,18 +101,25 @@ argus
 
         firebase.database().ref('Argus/administradores/')
           .on('value', function (snapshot) {
-            vm.administradores = snapshot.val();
+
+            var users = snapshot.val();
             vm.isLoading = false;
             vm.coordinadores = [];
             vm.recursosHumanos = [];
-            for (item in vm.administradores) {
-              switch (vm.administradores[item].usuarioTipo) {
+            vm.administradores = [];
+
+            for (item in users) {
+              switch (users[item].usuarioTipo) {
                 case 'coordinador':
-                  vm.coordinadores.push(vm.administradores[item]);
+                  vm.coordinadores.push(users[item]);
                   break;
 
                 case 'recursosHumanos':
-                  vm.recursosHumanos.push(vm.administradores[item]);
+                  vm.recursosHumanos.push(users[item]);
+                  break;
+
+                case 'administrador':
+                  vm.administradores.push(users[item]);
                   break;
               }
             }
