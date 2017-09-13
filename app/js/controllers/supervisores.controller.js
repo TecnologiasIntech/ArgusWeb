@@ -535,7 +535,7 @@ argus
           }
         }
 
-        vm.user.usuarioDomicilio = vm.user.usuarioColony + "," + vm.user.usuarioStreet;
+        vm.user.usuarioDomicilio = vm.user.usuarioColony + "," + (vm.user.usuarioStreet ? vm.user.usuarioStreet : '');
         delete vm.user.usuarioColony;
         delete vm.user.usuarioStreet;
 

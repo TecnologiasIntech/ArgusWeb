@@ -295,12 +295,15 @@
                     <option value="{{customer.clienteNombre}}" ng-repeat="customer in vm.serviceToSelect[guard.$key]">{{customer.clienteNombre}}</option>
                   </select>
                 </td>
+
                 <td ng-if="guard.usuarioDisponible" class="col-xs-1">
                   <div class="btn btn-primary btn-sm waves-effect" ng-click="vm.moveGuardService(guard, vm.selectedCustome, guard.$key)">Mover</div>
                 </td>
 
                 <td  ng-if="guard.usuarioDisponible" align="center">
-                  <div class="lv-actions actions dropdown" uib-dropdown="" ng-click="vm.guardInfo = guard; vm.openGuardiaDetails();">
+                  <div class="lv-actions actions dropdown" popover-placement="left" popover="Hola mi nombre es \n jaja" uib-dropdown=""
+                       ng-click=""
+                  >
                     <div class="cursor-pointer dropdown-toggle">
                       <i class="zmdi zmdi-info-outline zmdi-hc-2x actions-size"></i>
                     </div>

@@ -251,13 +251,13 @@
 
   <div class="modal-footer">
     <div align="right">
-      <button class="btn btn-primary waves-effect" type="submit" ng-if="!vm.isEdit || vm.isNewGuardiaofSeivice">
+      <button class="btn btn-success waves-effect" type="submit" ng-if="!vm.isEdit || vm.isNewGuardiaofSeivice">
         Aceptar
       </button>
-      <div class="btn btn-primary waves-effect" ng-click="vm.update = false; vm.updateUser()" ng-if="vm.isEdit">
+      <div class="btn btn-success waves-effect" ng-click="vm.update = false; vm.updateUser()" ng-if="vm.isEdit">
         Aceptar
       </div>
-      <div class="btn btn-primary waves-effect"
+      <div class="btn btn-danger waves-effect"
            ng-click="vm.modal.dismiss(); vm.isEdit = false ;vm.editUserCancel(vm.user.usuarioTipo, vm.isEdit); vm.user = {}; vm.user.usuarioTipo = 'guardia';">
         Cancelar
       </div>
