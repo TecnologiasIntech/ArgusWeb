@@ -151,7 +151,7 @@ argus
                     isLack = false;
                     assistence++;
                   }
-                  if (guardInfo.cubreDescanso) {
+                  if (guardInfo.cubredescanso) {
                     statusOfDays[attendanceDate] = {
                       'status': 'DL',
                       'statusKey': attendanceDate
@@ -210,7 +210,7 @@ argus
                     statusOfDays[attendanceDate] = {
                       'status': 'F',
                       'statusKey': attendanceDate,
-                      'comment': guardInfo.observacion ? guardInfo.observacion : guardInfo.descripcion
+                      'comment': guardInfo.observacion ? guardInfo.observacion : (guardInfo.descripcion ? guardInfo.descripcion : null)
                     }
                     lacks++;
                   }

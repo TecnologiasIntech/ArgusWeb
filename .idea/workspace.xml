@@ -2,25 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7f4ae1f1-b0de-4894-a4d9-423677ee78ea" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/controllers/footer.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/css/app.css" afterPath="$PROJECT_DIR$/app/css/app.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/css/app.min.2.css" afterPath="$PROJECT_DIR$/app/css/app.min.2.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index.html" afterPath="$PROJECT_DIR$/app/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controllers/guardias.controller.js" afterPath="$PROJECT_DIR$/app/js/controllers/guardias.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controllers/header.Controller.js" afterPath="$PROJECT_DIR$/app/js/controllers/header.Controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controllers/main.js" afterPath="$PROJECT_DIR$/app/js/controllers/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controllers/sidebar.Controller.js" afterPath="$PROJECT_DIR$/app/js/controllers/sidebar.Controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/template/footer.html" afterPath="$PROJECT_DIR$/app/template/footer.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/template/sidebar-left.html" afterPath="$PROJECT_DIR$/app/template/sidebar-left.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/bitacoraRegistro.html" afterPath="$PROJECT_DIR$/app/views/bitacoraRegistro.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/bitacoras.html" afterPath="$PROJECT_DIR$/app/views/bitacoras.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/clientes.html" afterPath="$PROJECT_DIR$/app/views/clientes.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/guardias.html" afterPath="$PROJECT_DIR$/app/views/guardias.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/modals/supervisores.modal.html" afterPath="$PROJECT_DIR$/app/views/modals/supervisores.modal.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/preNomina.html" afterPath="$PROJECT_DIR$/app/views/preNomina.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/supervisores.html" afterPath="$PROJECT_DIR$/app/views/supervisores.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/zonas.html" afterPath="$PROJECT_DIR$/app/views/zonas.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controllers/preNomina.Controller.js" afterPath="$PROJECT_DIR$/app/js/controllers/preNomina.Controller.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -41,108 +25,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="48" column="26" lean-forward="true" selection-start-line="48" selection-start-column="26" selection-end-line="48" selection-end-column="26" />
-              <folding>
-                <element signature="n#style#0;n#footer#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="footer.controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/js/controllers/footer.controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/css/app.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
-              <caret line="14129" column="17" lean-forward="true" selection-start-line="14129" selection-start-column="17" selection-end-line="14129" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.min.2.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/css/app.min.2.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="1862" column="25" lean-forward="false" selection-start-line="1862" selection-start-column="2" selection-end-line="1862" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/login.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1302">
-              <caret line="62" column="32" lean-forward="false" selection-start-line="62" selection-start-column="29" selection-end-line="62" selection-end-column="32" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="preNomina.Controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/js/controllers/preNomina.Controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sidebar.Controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/js/controllers/sidebar.Controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="12" column="6" lean-forward="false" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="preNomina.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/preNomina.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="154" column="56" lean-forward="true" selection-start-line="154" selection-start-column="56" selection-end-line="154" selection-end-column="56" />
+            <state relative-caret-position="262">
+              <caret line="131" column="105" lean-forward="false" selection-start-line="131" selection-start-column="96" selection-end-line="131" selection-end-column="105" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="footer.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/template/footer.html">
+      <file leaf-file-name="objects.service.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/services/objects.service.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
-              <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-              <folding>
-                <element signature="e#10#16#0" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="315">
+              <caret line="15" column="21" lean-forward="true" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sidebar-left.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/template/sidebar-left.html">
+      <file leaf-file-name="preNomina.Controller.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/js/controllers/preNomina.Controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="9" column="18" lean-forward="false" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+            <state relative-caret-position="294">
+              <caret line="209" column="52" lean-forward="true" selection-start-line="209" selection-start-column="52" selection-end-line="209" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -161,10 +68,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>cance</find>
-      <find>moveGuardSer</find>
-      <find>mover</find>
-      <find>guardstoclient</find>
       <find>date</find>
       <find>horarios</find>
       <find>register</find>
@@ -191,6 +94,10 @@
       <find>body.sw-toggled #footer</find>
       <find>#footer</find>
       <find>controll</find>
+      <find>commen</find>
+      <find>exis</find>
+      <find>obj</find>
+      <find>comme</find>
     </findStrings>
     <replaceStrings>
       <replace>sm</replace>
@@ -220,7 +127,6 @@
         <option value="$PROJECT_DIR$/app/services/getDate.service.js" />
         <option value="$PROJECT_DIR$/app/js/controllers/nomina.controller.js" />
         <option value="$PROJECT_DIR$/app/services/objets.service.js" />
-        <option value="$PROJECT_DIR$/app/services/objects.service.js" />
         <option value="$PROJECT_DIR$/app/js/controllers/preNomina.controller.js" />
         <option value="$PROJECT_DIR$/app/services/date.service.js" />
         <option value="$PROJECT_DIR$/app/services/alert.service.js" />
@@ -236,7 +142,6 @@
         <option value="$PROJECT_DIR$/app/js/controllers/clientes.controller.js" />
         <option value="$PROJECT_DIR$/app/js/controllers/zonas.controller.js" />
         <option value="$PROJECT_DIR$/app/js/controllers/bitacora.Controller.js" />
-        <option value="$PROJECT_DIR$/app/js/controllers/preNomina.Controller.js" />
         <option value="$PROJECT_DIR$/app/views/modals/zonas.modal.html" />
         <option value="$PROJECT_DIR$/app/views/modals/clientes.modal.html" />
         <option value="$PROJECT_DIR$/app/js/controllers/main.js" />
@@ -256,9 +161,11 @@
         <option value="$PROJECT_DIR$/app/css/app.css" />
         <option value="$PROJECT_DIR$/app/js/controllers/footer.controller.js" />
         <option value="$PROJECT_DIR$/app/index.html" />
-        <option value="$PROJECT_DIR$/app/views/preNomina.html" />
         <option value="$PROJECT_DIR$/app/template/footer.html" />
         <option value="$PROJECT_DIR$/app/template/sidebar-left.html" />
+        <option value="$PROJECT_DIR$/app/services/objects.service.js" />
+        <option value="$PROJECT_DIR$/app/views/preNomina.html" />
+        <option value="$PROJECT_DIR$/app/js/controllers/preNomina.Controller.js" />
       </list>
     </option>
   </component>
@@ -695,7 +602,7 @@
       <workItem from="1505227716146" duration="4149000" />
       <workItem from="1505326426281" duration="176000" />
       <workItem from="1505326856188" duration="11000" />
-      <workItem from="1505406917608" duration="8100000" />
+      <workItem from="1505406917608" duration="10964000" />
     </task>
     <task id="LOCAL-00001" summary="cambios generales&#10;">
       <created>1489812407890</created>
@@ -963,11 +870,18 @@
       <option name="project" value="LOCAL" />
       <updated>1505326584675</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="- Ahora el sideBar, header y footer se cargan solo una vez.">
+      <created>1505415353833</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1505415353833</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1077512000" />
+    <option name="totallyTimeSpent" value="1080376000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1028,7 +942,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="- Correcion de confirmar asistencias&#10;- Funcionalidad para borrar notificacion por notificacion" />
     <MESSAGE value="- Filtro por supervisores en bitacora registro" />
     <MESSAGE value="- Zonas: validar caracteres no permitidos en el nombre de la zona como la diagonal y el punto" />
     <MESSAGE value="- Bugs arreglados" />
@@ -1053,7 +966,8 @@
     <MESSAGE value="- Correccion de errores por &quot;apply()&quot;&#10;- Correccion de errores al poder editar a un usuario&#10;- Correccion de errores al poder editar un servicio" />
     <MESSAGE value="- Correccion de bug cuando se cargaban la lista de administradores, cargaba tambien a los RH y coordinadores." />
     <MESSAGE value="- Correccion de bugs en la vista de &quot;Servicios&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Correccion de bugs en la vista de &quot;Servicios&quot;" />
+    <MESSAGE value="- Ahora el sideBar, header y footer se cargan solo una vez." />
+    <option name="LAST_COMMIT_MESSAGE" value="- Ahora el sideBar, header y footer se cargan solo una vez." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1062,13 +976,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/bower_components/sweetalert2/dist/sweetalert2.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="85" column="22" lean-forward="true" selection-start-line="85" selection-start-column="22" selection-end-line="85" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/vendors/bower_components/sweetalert/dev/sweetalert.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-29">
@@ -1383,18 +1290,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/controllers/sidebar.Controller.js">
+    <entry file="file://$PROJECT_DIR$/app/css/app.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="12" column="6" lean-forward="false" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="33" />
+        <state relative-caret-position="325">
+          <caret line="14129" column="17" lean-forward="true" selection-start-line="14129" selection-start-column="17" selection-end-line="14129" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/controllers/preNomina.Controller.js">
+    <entry file="file://$PROJECT_DIR$/app/template/sidebar-left.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+        <state relative-caret-position="441">
+          <caret line="21" column="15" lean-forward="true" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/template/footer.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding>
+            <element signature="e#10#16#0" expanded="false" />
+            <element signature="n#style#0;n#a#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controllers/sidebar.Controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="12" column="6" lean-forward="false" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="33" />
           <folding />
         </state>
       </provider>
@@ -1404,7 +1330,7 @@
         <state relative-caret-position="1302">
           <caret line="62" column="32" lean-forward="false" selection-start-line="62" selection-start-column="29" selection-end-line="62" selection-end-column="32" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1413,14 +1339,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
           <caret line="1862" column="25" lean-forward="false" selection-start-line="1862" selection-start-column="2" selection-end-line="1862" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/css/app.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="14129" column="17" lean-forward="true" selection-start-line="14129" selection-start-column="17" selection-end-line="14129" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -1443,29 +1361,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/preNomina.html">
+    <entry file="file://$PROJECT_DIR$/app/services/objects.service.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="154" column="56" lean-forward="true" selection-start-line="154" selection-start-column="56" selection-end-line="154" selection-end-column="56" />
+        <state relative-caret-position="315">
+          <caret line="15" column="21" lean-forward="true" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/template/footer.html">
+    <entry file="file://$PROJECT_DIR$/app/views/preNomina.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding>
-            <element signature="e#10#16#0" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="262">
+          <caret line="131" column="105" lean-forward="false" selection-start-line="131" selection-start-column="96" selection-end-line="131" selection-end-column="105" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/template/sidebar-left.html">
+    <entry file="file://$PROJECT_DIR$/app/js/controllers/preNomina.Controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="9" column="18" lean-forward="false" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+        <state relative-caret-position="294">
+          <caret line="209" column="52" lean-forward="true" selection-start-line="209" selection-start-column="52" selection-end-line="209" selection-end-column="52" />
           <folding />
         </state>
       </provider>
