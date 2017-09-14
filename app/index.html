@@ -34,12 +34,29 @@
 
     <body data-ng-class="'sw-toggled'">
 
+    <div ng-controller="headerCtrl as vm">
+      <header id="header" data-current-skin={{mactrl.currentSkin}} data-ng-include="'template/header.html'" ng-if="vm.path != '/login'">
+      </header>
+    </div>
+
+    <div ng-controller="sidebarCtrl as vm">
+      <aside id="sidebar" data-ng-include="'template/sidebar-left.html'"
+             data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }"  ng-if="vm.path != '/login' && vm.path != '/preNomina'"></aside>
+    </div>
             <!-- Vistas -->
+    <section id="main">
+
             <data ui-view>
 
             </data>
 
-        <!-- Core -->
+    </section>
+
+    <div ng-controller="footerCtrl as vm">
+      <footer id="footer" data-ng-include="'template/footer.html'" style="{{vm.path != '/login' && vm.path != '/preNomina' ? '' : 'padding-left: 0px !important'}}"></footer>
+    </div>
+
+    <!-- Core -->
         <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
 
         <!-- Angular -->
@@ -125,7 +142,8 @@
         <script src="js/controllers/nomina.controller.js"></script>
         <script src="js/controllers/bitacoraRegistro.controller.js"></script>
         <script src="js/controllers/guardias.controller.js"></script>
-        <script src="js/controllers/preNomina.controller.js"></script>
+        <script src="js/controllers/preNomina.Controller.js"></script>
+        <script src="js/controllers/footer.controller.js"></script>
 
         <!--Services-->
         <script src="services/alert.service.js"></script>
@@ -161,17 +179,6 @@
 
 
         <script src="bower_components/angular-toArrayFilter/toArrayFilter.js"></script>
-
-        <script>
-          // Initialize Firebase
-
-        </script>
-
-
-
-
-
-
 
     </body>
 </html>

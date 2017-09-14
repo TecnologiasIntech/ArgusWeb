@@ -1,8 +1,15 @@
 argus
 
-    .controller('mainCtrl', function($timeout, $state, $scope, growlService){
+    .controller('mainCtrl', function($timeout, $state, $scope, growlService, $rootScope, $location){
         //Welcome Message
         // growlService.growl('Bienvenido Alumno :)', 'inverse')
+
+      firebase.auth().onAuthStateChanged(function (user) {
+        if (!user) {
+          $location.path('/login');
+          $rootScope.$applyAsync();
+        }
+      });
 
         // Detact Mobile Browser
         if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {

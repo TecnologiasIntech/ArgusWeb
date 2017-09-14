@@ -1826,7 +1826,6 @@ body.login-content:before {
 }
 
 #footer {
-  position: relative !important;
   bottom: 0;
   text-align: center;
   width: 100%;

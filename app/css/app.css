@@ -14119,7 +14119,6 @@ body.login-content:before {
   clear: both;
 }
 #footer {
-  position: absolute;
   bottom: 0;
   text-align: center;
   width: 100%;
@@ -16171,7 +16170,7 @@ select.chosen {
 
 }
 .card-login{
-  margin-top: 20%;
+  margin-top: 10%;
   padding-left: 36px;
   padding-right: 36px;
   box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27) !important;

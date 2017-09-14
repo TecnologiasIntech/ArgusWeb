@@ -278,7 +278,8 @@ argus
               usuarioSueldoBase: vm.user.usuarioSueldoBase,
               usuarioTurno: vm.user.usuarioTurno,
               usuarioClienteAsignado: vm.user.usuarioClienteAsignado,
-              usuarioDisponible: vm.user.usuarioDisponible
+              usuarioDisponible: vm.user.usuarioDisponible,
+              diaDescanso: parseInt(vm.user.diaDescanso)
             });
             if (vm.saveService != vm.user.usuarioClienteAsignado) {
              if (vm.user.usuarioClienteAsignado != undefined && vm.user.usuarioClienteAsignado != 'Sin asignar') {
@@ -558,7 +559,8 @@ argus
 
           firebase.database().ref('Argus/guardias/' + key).update(
             {
-              usuarioKey: key
+              usuarioKey: key,
+              diaDescanso: parseInt(vm.user.diaDescanso)
             }
           )
         }

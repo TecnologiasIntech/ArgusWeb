@@ -1,81 +1,68 @@
-<header id="header" data-current-skin={{mactrl.currentSkin}} data-ng-include="'template/header.html'"
-        data-ng-controller="headerCtrl as hctrl">
-</header>
+<section id="content" class="animated fadeIn">
 
-<section id="main">
-
-  <aside id="sidebar" data-ng-include="'template/sidebar-left.html'"
-         data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }"></aside>
-
-  <section id="content" class="animated fadeIn">
-
-    <div growl></div>
-    <div class="card m-l-20 m-r-20">
-      <div class="row">
-        <div class="col-xs-offset-1 col-xs-9 m-t-20" align="right">
-          <div class="zmdi zmdi-search display-inline"></div>
-          <label>
-            <input type="text" class="form-control supervisor-search  display-inline " placeholder="Buscar..."
-                   ng-model="vm.searchInZones">
-          </label>
-          <button class="btn btn-primary waves-effect display-inline" ng-click="vm.openModal()"
-                  ng-if="vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador'">
-            Agregar
-          </button>
-        </div>
-        <div class="col-xs-1"></div>
+  <div growl></div>
+  <div class="card m-l-20 m-r-20">
+    <div class="row">
+      <div class="col-xs-offset-1 col-xs-9 m-t-20" align="right">
+        <div class="zmdi zmdi-search display-inline"></div>
+        <label>
+          <input type="text" class="form-control supervisor-search  display-inline " placeholder="Buscar..."
+                 ng-model="vm.searchInZones">
+        </label>
+        <button class="btn btn-primary waves-effect display-inline" ng-click="vm.openModal()"
+                ng-if="vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador'">
+          Agregar
+        </button>
       </div>
-
-
-      <div class="col-lg-offset-5 col-lg-6 m-t-30">
-        <div class="preloader pls-blue pl-xl" align="center" ng-if="vm.isLoading">
-          <svg class="pl-circular" viewBox="25 25 50 50">
-            <circle class="plc-path" cx="50" cy="50" r="20"></circle>
-          </svg>
-        </div>
-      </div>
-
-      <!--Lista de Zonas-->
-      <div class="row" ng-if="vm.zones || !vm.isLoading">
-        <div class="col-xs-offset-1 col-xs-9 m-t-10 m-b-30 p-l-0 p-r-0 table-box">
-          <table class="table table-striped table-hover-gray">
-            <tbody>
-            <th>Nombre de la zona</th>
-            <th></th>
-            <tr ng-repeat="zone in vm.zones | toArray | filter: {zonaNombre: vm.searchInZones}">
-              <td class="p-t-15 cursor-pointer" ng-click="vm.editZone(zone)">
-                <span>{{zone.zonaNombre}}</span>
-              </td>
-              <td align="right"
-                  ng-if="vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador'">
-                <div class="lv-actions actions dropdown" uib-dropdown="">
-                  <a class="cursor-pointer dropdown-toggle" uib-dropdown-toggle=""
-                     aria-haspopup="true" aria-expanded="false">
-                    <i class="zmdi zmdi-more-vert zmdi-hc-2x actions-size"></i>
-                  </a>
-                  <ul class="dropdown-menu pull-right actions-supervisor">
-                    <li class="action-edit cursor-pointer" ng-click="vm.editZone(zone)">Editar</li>
-                    <li class="action-delete cursor-pointer" ng-click="vm.deleteZone(zone)">Eliminar</li>
-                  </ul>
-                </div>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="row" ng-if="!vm.zones" align="center">
-        <div class="zmdi zmdi-quote m-t-20 not-found-quote">
-        </div>
-        <div class="not-found">No se encontraron</div>
-        <div class="m-b-30 not-found">Zonas</div>
-      </div>
+      <div class="col-xs-1"></div>
     </div>
 
 
-  </section>
+    <div class="col-lg-offset-5 col-lg-6 m-t-30">
+      <div class="preloader pls-blue pl-xl" align="center" ng-if="vm.isLoading">
+        <svg class="pl-circular" viewBox="25 25 50 50">
+          <circle class="plc-path" cx="50" cy="50" r="20"></circle>
+        </svg>
+      </div>
+    </div>
+
+    <!--Lista de Zonas-->
+    <div class="row" ng-if="vm.zones || !vm.isLoading">
+      <div class="col-xs-offset-1 col-xs-9 m-t-10 m-b-30 p-l-0 p-r-0 table-box">
+        <table class="table table-striped table-hover-gray">
+          <tbody>
+          <th>Nombre de la zona</th>
+          <th></th>
+          <tr ng-repeat="zone in vm.zones | toArray | filter: {zonaNombre: vm.searchInZones}">
+            <td class="p-t-15 cursor-pointer" ng-click="vm.editZone(zone)">
+              <span>{{zone.zonaNombre}}</span>
+            </td>
+            <td align="right"
+                ng-if="vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador'">
+              <div class="lv-actions actions dropdown" uib-dropdown="">
+                <a class="cursor-pointer dropdown-toggle" uib-dropdown-toggle=""
+                   aria-haspopup="true" aria-expanded="false">
+                  <i class="zmdi zmdi-more-vert zmdi-hc-2x actions-size"></i>
+                </a>
+                <ul class="dropdown-menu pull-right actions-supervisor">
+                  <li class="action-edit cursor-pointer" ng-click="vm.editZone(zone)">Editar</li>
+                  <li class="action-delete cursor-pointer" ng-click="vm.deleteZone(zone)">Eliminar</li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row" ng-if="!vm.zones" align="center">
+      <div class="zmdi zmdi-quote m-t-20 not-found-quote">
+      </div>
+      <div class="not-found">No se encontraron</div>
+      <div class="m-b-30 not-found">Zonas</div>
+    </div>
+  </div>
+
 
 </section>
-
-<footer id="footer" data-ng-include="'template/footer.html'"></footer>

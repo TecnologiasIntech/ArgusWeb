@@ -1,116 +1,98 @@
-<header id="header" data-current-skin={{mactrl.currentSkin}} data-ng-include="'template/header.html'"
-        data-ng-controller="headerCtrl as hctrl">
-</header>
+<section id="content" class="animated fadeIn">
 
-<section id="main">
+  <div growl></div>
+  <div class="card m-l-20 m-r-20">
+    <div class="row">
+      <div class="col-xs-offset-1 col-xs-9 m-t-20" align="right">
 
-  <aside id="sidebar" data-ng-include="'template/sidebar-left.html'"
-         data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }"></aside>
+        <!--TIPOS DE BUSQUEDA-->
+        <!--&lt;!&ndash;Guardia&ndash;&gt;-->
+        <!--<div class="radio radio-search">-->
+        <!--<label>-->
+        <!--<input class="form-control" type="radio" value="guardia" ng-model="vm.searchTypeUser">-->
+        <!--<i class="input-helper"></i>-->
+        <!--Guardia-->
+        <!--</label>-->
+        <!--</div>-->
 
-  <section id="content" class="animated fadeIn">
+        <!--INPUT DE BUSQUEDA-->
+        <div class="zmdi zmdi-search display-inline"></div>
+        <label>
+          <input type="text" class="form-control supervisor-search  display-inline " placeholder="Buscar..."
+                 ng-model="vm.buscarUsuario">
+        </label>
+        <button
+          class="btn btn-primary waves-effect display-inline"
+          ng-click="vm.user = {}; vm.user.usuarioTipo = vm.searchTypeUser ; vm.verifyUser(vm.searchTypeUser); vm.availableZones()"
+          ng-if="vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador'">
+          Agregar
+        </button>
 
-    <div growl></div>
-    <div class="card m-l-20 m-r-20">
-      <div class="row">
-        <div class="col-xs-offset-1 col-xs-9 m-t-20" align="right">
-
-          <!--TIPOS DE BUSQUEDA-->
-          <!--&lt;!&ndash;Guardia&ndash;&gt;-->
-          <!--<div class="radio radio-search">-->
-          <!--<label>-->
-          <!--<input class="form-control" type="radio" value="guardia" ng-model="vm.searchTypeUser">-->
-          <!--<i class="input-helper"></i>-->
-          <!--Guardia-->
-          <!--</label>-->
-          <!--</div>-->
-
-          <!--INPUT DE BUSQUEDA-->
-          <div class="zmdi zmdi-search display-inline"></div>
-          <label>
-            <input type="text" class="form-control supervisor-search  display-inline " placeholder="Buscar..."
-                   ng-model="vm.buscarUsuario">
-          </label>
-          <button
-            class="btn btn-primary waves-effect display-inline"
-            ng-click="vm.user = {}; vm.user.usuarioTipo = vm.searchTypeUser ; vm.verifyUser(vm.searchTypeUser); vm.availableZones()"
-            ng-if="vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador'">
-            Agregar
-          </button>
-
-        </div>
-        <div class="col-xs-1"></div>
       </div>
+      <div class="col-xs-1"></div>
+    </div>
 
-      <!--No se encontró guardias-->
-      <div class="row" ng-if="vm.searchTypeUser == 'guardia' && !vm.guardias" align="center">
-        <div class="zmdi zmdi-quote m-t-20 not-found-quote">
-        </div>
-        <div class="not-found">No se encontraron</div>
-        <div class="m-b-30 not-found">guardias</div>
+    <!--No se encontró guardias-->
+    <div class="row" ng-if="vm.searchTypeUser == 'guardia' && !vm.guardias" align="center">
+      <div class="zmdi zmdi-quote m-t-20 not-found-quote">
       </div>
-
-
-      <!--Todos los usuarios-->
-      <div class="row" ng-if="vm.usuarios || !vm.isLoading">
-        <div class="col-xs-offset-1 col-xs-9 m-t-10 m-b-30 p-l-0 p-r-0 table-box">
-          <table class="table table-striped table-hover-gray">
-            <tbody>
-
-            <!--GUARDIAS-->
-            <th ng-if="vm.searchTypeUser == 'guardia'" ng-click="vm.filter = '-usuarioNombre'">Nombre</th>
-            <th ng-if="vm.searchTypeUser == 'guardia'">Telefono</th>
-            <th ng-if="vm.searchTypeUser == 'guardia'" ng-click="vm.filter = '-usuarioTurno'">Turno</th>
-            <th ng-if="vm.searchTypeUser == 'guardia'" ng-click="vm.filter = '-usuarioClienteAsignado'">Servicio</th>
-            <th ng-if="vm.searchTypeUser == 'guardia'"></th>
-
-            <tr
-              ng-repeat="guardia in vm.guardias | toArray  | orderBy : vm.filter:true | filter: {usuarioNombre: vm.buscarUsuario}"
-              ng-if="vm.searchTypeUser == 'guardia'">
-              <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key)">
-                <span>{{guardia.usuarioNombre}}</span>
-              </td>
-              <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key)">
-                <span>{{guardia.usuarioTelefonoCelular}}</span>
-              </td>
-              <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key)">
-                <span>{{guardia.usuarioTurno}}</span>
-              </td>
-              <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key)">
-                <span>{{ guardia.usuarioClienteAsignado ? guardia.usuarioClienteAsignado: 'No asignado' }}</span>
-              </td>
-              <td align="right" style="width: 50px"
-                  ng-if="vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador'">
-                <div class="lv-actions actions dropdown" uib-dropdown="">
-                  <a class="cursor-pointer dropdown-toggle" uib-dropdown-toggle=""
-                     aria-haspopup="true" aria-expanded="false">
-                    <i class="zmdi zmdi-more-vert zmdi-hc-2x actions-size"></i>
-                  </a>
-                  <ul class="dropdown-menu pull-right actions-supervisor">
-                    <li class="action-edit cursor-pointer"
-                        ng-click="vm.editUser(guardia, guardia.$key)">Editar
-                    </li>
-                    <li class="action-edit cursor-pointer" ng-click="vm.deleteUser(guardia, 'guardias', guardia.$key)">
-                      Eliminar
-                    </li>
-                    <li class="action-delete cursor-pointer" ng-click="vm.suspenderGuardia(guardia.$key)">
-                      Suspender
-                    </li>
-                  </ul>
-                </div>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-
-        </div>
-      </div>
+      <div class="not-found">No se encontraron</div>
+      <div class="m-b-30 not-found">guardias</div>
     </div>
 
 
-    <!--<button class="btn btn-primary" ng-repeat="guardia in vm.guardias | toArray" ng-click="vm.insertarKey(guardia.$key)">{{ guardia.$key }}</button>-->
+    <!--Todos los usuarios-->
+    <div class="row" ng-if="vm.usuarios || !vm.isLoading">
+      <div class="col-xs-offset-1 col-xs-9 m-t-10 m-b-30 p-l-0 p-r-0 table-box">
+        <table class="table table-striped table-hover-gray">
+          <tbody>
 
-  </section>
+          <!--GUARDIAS-->
+          <th ng-if="vm.searchTypeUser == 'guardia'" ng-click="vm.filter = '-usuarioNombre'">Nombre</th>
+          <th ng-if="vm.searchTypeUser == 'guardia'">Telefono</th>
+          <th ng-if="vm.searchTypeUser == 'guardia'" ng-click="vm.filter = '-usuarioTurno'">Turno</th>
+          <th ng-if="vm.searchTypeUser == 'guardia'" ng-click="vm.filter = '-usuarioClienteAsignado'">Servicio</th>
+          <th ng-if="vm.searchTypeUser == 'guardia'"></th>
 
+          <tr
+            ng-repeat="guardia in vm.guardias | toArray  | orderBy : vm.filter:true | filter: {usuarioNombre: vm.buscarUsuario}"
+            ng-if="vm.searchTypeUser == 'guardia'">
+            <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key)">
+              <span>{{guardia.usuarioNombre}}</span>
+            </td>
+            <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key)">
+              <span>{{guardia.usuarioTelefonoCelular}}</span>
+            </td>
+            <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key)">
+              <span>{{guardia.usuarioTurno}}</span>
+            </td>
+            <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key)">
+              <span>{{ guardia.usuarioClienteAsignado ? guardia.usuarioClienteAsignado: 'No asignado' }}</span>
+            </td>
+            <td align="right" style="width: 50px"
+                ng-if="vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador'">
+              <div class="lv-actions actions dropdown" uib-dropdown="">
+                <a class="cursor-pointer dropdown-toggle" uib-dropdown-toggle=""
+                   aria-haspopup="true" aria-expanded="false">
+                  <i class="zmdi zmdi-more-vert zmdi-hc-2x actions-size"></i>
+                </a>
+                <ul class="dropdown-menu pull-right actions-supervisor">
+                  <li class="action-edit cursor-pointer"
+                      ng-click="vm.editUser(guardia, guardia.$key)">Editar
+                  </li>
+                  <li class="action-edit cursor-pointer" ng-click="vm.deleteUser(guardia, 'guardias', guardia.$key)">
+                    Eliminar
+                  </li>
+                  <li class="action-delete cursor-pointer" ng-click="vm.suspenderGuardia(guardia.$key)">
+                    Suspender
+                  </li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </section>
-
-<footer id="footer" data-ng-include="'template/footer.html'"></footer>

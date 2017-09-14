@@ -10,6 +10,7 @@ argus
       vm.notifications = [];
       vm.notificationsLength = 0;
       vm.isReadyToListener = false;
+      vm.path = $location.path();
 
       //public functions
       vm.verifyAction = verifyAction;
@@ -138,6 +139,10 @@ argus
           });
         }
       }
+
+      $scope.$on("$locationChangeSuccess", function (event) {
+        vm.path = $location.path();
+      });
 
     }
   ]);

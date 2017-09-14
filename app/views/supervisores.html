@@ -1,350 +1,334 @@
-<header id="header" data-current-skin={{mactrl.currentSkin}} data-ng-include="'template/header.html'"
-        data-ng-controller="headerCtrl as hctrl">
-</header>
+<section id="content" class="animated fadeIn">
 
-<section id="main" >
+  <div growl></div>
+  <div class="card m-l-20 m-r-20" ng-init="vm.searchTypeUser = 'supervisor'">
+    <div class="row">
+      <div class="col-xs-offset-1 col-xs-9 m-t-20" align="right">
 
-  <aside id="sidebar" data-ng-include="'template/sidebar-left.html'"
-         data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }"></aside>
+        <!--TIPOS DE BUSQUEDA-->
+        <!--&lt;!&ndash;Guardia&ndash;&gt;-->
+        <!--<div class="radio radio-search">-->
+        <!--<label>-->
+        <!--<input class="form-control" type="radio" value="guardia" ng-model="vm.searchTypeUser">-->
+        <!--<i class="input-helper"></i>-->
+        <!--Guardia-->
+        <!--</label>-->
+        <!--</div>-->
 
-  <section id="content" class="animated fadeIn">
-
-    <div growl></div>
-    <div class="card m-l-20 m-r-20" ng-init="vm.searchTypeUser = 'supervisor'">
-      <div class="row">
-        <div class="col-xs-offset-1 col-xs-9 m-t-20" align="right">
-
-          <!--TIPOS DE BUSQUEDA-->
-          <!--&lt;!&ndash;Guardia&ndash;&gt;-->
-          <!--<div class="radio radio-search">-->
-          <!--<label>-->
-          <!--<input class="form-control" type="radio" value="guardia" ng-model="vm.searchTypeUser">-->
-          <!--<i class="input-helper"></i>-->
-          <!--Guardia-->
-          <!--</label>-->
-          <!--</div>-->
-
-          <!--Supervisor-->
-          <div class="radio radio-search">
-            <label>
-              <input class="form-control" type="radio" value="supervisor" ng-model="vm.searchTypeUser">
-              <i class="input-helper"></i>
-              Supervisor
-            </label>
-          </div>
-
-          <!-- Coordinadores -->
-          <div class="radio radio-search">
-            <label>
-              <input class="form-control" type="radio" value="coordinador" ng-model="vm.searchTypeUser">
-              <i class="input-helper"></i>
-              Coord
-            </label>
-          </div>
-
-          <!-- Recursos Humanos -->
-          <div class="radio radio-search">
-            <label>
-              <input class="form-control" type="radio" value="recursosHumanos" ng-model="vm.searchTypeUser">
-              <i class="input-helper"></i>
-              R.H.
-            </label>
-          </div>
-
-          <!--Administrador-->
-          <div class="radio radio-search">
-            <label>
-              <input class="form-control" type="radio" value="administrador" ng-model="vm.searchTypeUser">
-              <i class="input-helper"></i>
-              Admin
-            </label>
-          </div>
-
-          <!--INPUT DE BUSQUEDA-->
-          <div class="zmdi zmdi-search display-inline"></div>
+        <!--Supervisor-->
+        <div class="radio radio-search">
           <label>
-            <input type="text" class="form-control supervisor-search  display-inline " placeholder="Buscar..."
-                   ng-model="vm.buscarUsuario">
+            <input class="form-control" type="radio" value="supervisor" ng-model="vm.searchTypeUser">
+            <i class="input-helper"></i>
+            Supervisor
           </label>
-          <button
-            class="btn btn-primary waves-effect display-inline"
-            ng-click="vm.user = {}; vm.user.usuarioTipo = vm.searchTypeUser ; vm.verifyUser(vm.searchTypeUser); vm.availableZones()"
-            ng-if="vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador'">
-            Agregar
-          </button>
-
         </div>
-        <div class="col-xs-1"></div>
-      </div>
 
-      <!--No se encontró supervisores-->
-
-      <div class="row" ng-if="vm.searchTypeUser == 'supervisor' && !vm.supervisores" align="center">
-        <div class="zmdi zmdi-quote m-t-20 not-found-quote">
+        <!-- Coordinadores -->
+        <div class="radio radio-search">
+          <label>
+            <input class="form-control" type="radio" value="coordinador" ng-model="vm.searchTypeUser">
+            <i class="input-helper"></i>
+            Coord
+          </label>
         </div>
-        <div class="not-found">No se encontraron</div>
-        <div class="m-b-30 not-found">supervisores</div>
-      </div>
 
-      <!--No se encontró coordinadores-->
-      <div class="row" ng-if="vm.searchTypeUser == 'coordinador' && vm.coordinadores.length == 0" align="center">
-        <div class="zmdi zmdi-quote m-t-20 not-found-quote">
+        <!-- Recursos Humanos -->
+        <div class="radio radio-search">
+          <label>
+            <input class="form-control" type="radio" value="recursosHumanos" ng-model="vm.searchTypeUser">
+            <i class="input-helper"></i>
+            R.H.
+          </label>
         </div>
-        <div class="not-found">No se encontraron</div>
-        <div class="m-b-30 not-found">coordinadores</div>
-      </div>
 
-
-      <!--No se encontró administradores-->
-      <div class="row" ng-if="vm.searchTypeUser == 'administrador' && !vm.administradores" align="center">
-        <div class="zmdi zmdi-quote m-t-20 not-found-quote">
+        <!--Administrador-->
+        <div class="radio radio-search">
+          <label>
+            <input class="form-control" type="radio" value="administrador" ng-model="vm.searchTypeUser">
+            <i class="input-helper"></i>
+            Admin
+          </label>
         </div>
-        <div class="not-found">No se encontraron</div>
-        <div class="m-b-30 not-found">administradores</div>
+
+        <!--INPUT DE BUSQUEDA-->
+        <div class="zmdi zmdi-search display-inline"></div>
+        <label>
+          <input type="text" class="form-control supervisor-search  display-inline " placeholder="Buscar..."
+                 ng-model="vm.buscarUsuario">
+        </label>
+        <button
+          class="btn btn-primary waves-effect display-inline"
+          ng-click="vm.user = {}; vm.user.usuarioTipo = vm.searchTypeUser ; vm.verifyUser(vm.searchTypeUser); vm.availableZones()"
+          ng-if="vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador'">
+          Agregar
+        </button>
+
       </div>
+      <div class="col-xs-1"></div>
+    </div>
 
-      <!--No se encontró administradores-->
-      <div class="row" ng-if="vm.searchTypeUser == 'recursosHumanos' && vm.recursosHumanos.length == 0" align="center">
-        <div class="zmdi zmdi-quote m-t-20 not-found-quote">
-        </div>
-        <div class="not-found">No se encontraron</div>
-        <div class="m-b-30 not-found">usuarios R.H.</div>
+    <!--No se encontró supervisores-->
+
+    <div class="row" ng-if="vm.searchTypeUser == 'supervisor' && !vm.supervisores" align="center">
+      <div class="zmdi zmdi-quote m-t-20 not-found-quote">
       </div>
+      <div class="not-found">No se encontraron</div>
+      <div class="m-b-30 not-found">supervisores</div>
+    </div>
 
-
-      <!--Todos los usuarios-->
-      <div class="row" ng-if="vm.usuarios || !vm.isLoading">
-        <div class="col-xs-offset-1 col-xs-9 m-t-10 m-b-30 p-l-0 p-r-0 table-box">
-          <table class="table table-striped table-hover-gray">
-            <tbody>
-
-            <!--ADMINISTRADORES-->
-            <th ng-if="vm.searchTypeUser == 'administrador' && vm.administradores">Nombre</th>
-            <th ng-if="vm.searchTypeUser == 'administrador' && vm.administradores">Correo electrónico</th>
-            <th ng-if="vm.searchTypeUser == 'administrador' && vm.administradores"></th>
-
-            <tr
-              ng-repeat="administrador in vm.administradores | toArray | orderBy: '-usuarioNombre':true | filter: {usuarioNombre: vm.buscarUsuario}"
-              ng-if="vm.searchTypeUser == 'administrador'">
-              <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(administrador, administrador.$key)">
-                <span>{{administrador.usuarioNombre}}</span>
-              </td>
-              <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(administrador, administrador.$key)">
-                <span>{{administrador.usuarioEmail}}</span>
-              </td>
-              <td align="right" style="width: 50px"
-                  ng-if="vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador'">
-                <div class="lv-actions actions dropdown" uib-dropdown="">
-                  <a class="cursor-pointer dropdown-toggle" uib-dropdown-toggle=""
-                     aria-haspopup="true" aria-expanded="false">
-                    <i class="zmdi zmdi-more-vert zmdi-hc-2x actions-size"></i>
-                  </a>
-                  <ul class="dropdown-menu pull-right actions-supervisor">
-                    <li class="action-edit cursor-pointer" ng-click="vm.editUser(administrador, administrador.$key)">
-                      Editar
-                    </li>
-                    <li class="action-delete cursor-pointer"
-                        ng-click="vm.deleteUser(administrador, 'administradores', administrador.$key)">Eliminar
-                    </li>
-                  </ul>
-                </div>
-              </td>
-            </tr>
-
-            <!--SUPERVISORES-->
-            <th ng-if="vm.searchTypeUser == 'supervisor' && vm.supervisores">Nombre</th>
-            <th ng-if="vm.searchTypeUser == 'supervisor' && vm.supervisores">Correo electronico</th>
-            <th ng-if="vm.searchTypeUser == 'supervisor' && vm.supervisores">Zona</th>
-            <th ng-if="vm.searchTypeUser == 'supervisor' && vm.supervisores">Turno</th>
-            <th ng-if="vm.searchTypeUser == 'supervisor' && vm.supervisores">Teléfono Celular</th>
-            <th ng-if="vm.searchTypeUser == 'supervisor' && vm.supervisores"></th>
-
-            <tr
-              ng-repeat="supervisor in vm.supervisores | toArray | orderBy: '-usuarioNombre':true | filter: {usuarioNombre: vm.buscarUsuario}"
-              ng-if="vm.searchTypeUser == 'supervisor'">
-              <td class="p-t-15 cursor-pointer"
-                  ng-click="vm.editUser(supervisor, supervisor.$key, 'supervisor', supervisor.usuarioTurno, supervisor.usuarioZona)">
-                <span>{{supervisor.usuarioNombre}}</span>
-              </td>
-              <td class="p-t-15 cursor-pointer"
-                  ng-click="vm.editUser(supervisor, supervisor.$key, 'supervisor', supervisor.usuarioTurno, supervisor.usuarioZona)">
-                <span>{{supervisor.usuarioEmail}}</span>
-              </td>
-              <td class="p-t-15 cursor-pointer"
-                  ng-click="vm.editUser(supervisor, supervisor.$key, 'supervisor', supervisor.usuarioTurno, supervisor.usuarioZona)">
-                <span ng-if="supervisor.usuarioZona != undefined">{{supervisor.usuarioZona}}</span>
-                <span ng-if="supervisor.usuarioZona == undefined">Sin zona asignada</span>
-              </td>
-              <td class="p-t-15 cursor-pointer"
-                  ng-click="vm.editUser(supervisor, supervisor.$key, 'supervisor', supervisor.usuarioTurno, supervisor.usuarioZona)">
-                <span>{{supervisor.usuarioTurno}}</span>
-              </td>
-              <td class="p-t-15 cursor-pointer"
-                  ng-click="vm.editUser(supervisor, supervisor.$key, 'supervisor', supervisor.usuarioTurno, supervisor.usuarioZona)">
-                <span>{{supervisor.usuarioTelefonoCelular}}</span>
-              </td>
-              <td align="right" style="width: 50px"
-                  ng-if="vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador'">
-                <div class="lv-actions actions dropdown" uib-dropdown="">
-                  <a class="cursor-pointer dropdown-toggle" uib-dropdown-toggle=""
-                     aria-haspopup="true" aria-expanded="false">
-                    <i class="zmdi zmdi-more-vert zmdi-hc-2x actions-size"></i>
-                  </a>
-                  <ul class="dropdown-menu pull-right actions-supervisor">
-                    <li class="action-edit cursor-pointer"
-                        ng-click="vm.editUser(supervisor, supervisor.$key, 'supervisor', supervisor.usuarioTurno, supervisor.usuarioZona)">
-                      Editar
-                    </li>
-                    <li class="action-delete cursor-pointer"
-                        ng-click="vm.deleteUser(supervisor, 'supervisores', supervisor.$key, supervisor.usuarioTurno, supervisor.usuarioZona)">
-                      Eliminar
-                    </li>
-                  </ul>
-                </div>
-              </td>
-            </tr>
-
-            <!--COORDINADORES-->
-            <th ng-if="vm.searchTypeUser == 'coordinador' && vm.coordinadores.length != 0">Nombre</th>
-            <th ng-if="vm.searchTypeUser == 'coordinador' && vm.coordinadores.length != 0">Correo electronico</th>
-            <th ng-if="vm.searchTypeUser == 'coordinador' && vm.coordinadores.length != 0">Teléfono Celular</th>
-            <th ng-if="vm.searchTypeUser == 'coordinador' && vm.coordinadores.length != 0">Teléfono</th>
-            <th ng-if="vm.searchTypeUser == 'coordinador' && vm.coordinadores.length != 0"></th>
-
-            <tr ng-repeat="coordinador in vm.coordinadores | filter: {usuarioNombre: vm.buscarUsuario}"
-                ng-if="vm.searchTypeUser == 'coordinador'">
-              <td class="p-t-15 cursor-pointer"
-                  ng-click="vm.editUser(coordinador, coordinador.usuarioKey, 'coordinador', coordinador.usuarioTurno, coordinador.usuarioZona)">
-                <span>{{coordinador.usuarioNombre}}</span>
-              </td>
-              <td class="p-t-15 cursor-pointer"
-                  ng-click="vm.editUser(coordinador, coordinador.usuarioKey, 'coordinador', coordinador.usuarioTurno, coordinador.usuarioZona)">
-                <span>{{coordinador.usuarioEmail}}</span>
-              </td>
-              <td class="p-t-15 cursor-pointer"
-                  ng-click="vm.editUser(coordinador, coordinador.usuarioKey, 'coordinador', coordinador.usuarioTurno, coordinador.usuarioZona)">
-                <span>{{coordinador.usuarioTelefonoCelular}}</span>
-              </td>
-              <td class="p-t-15 cursor-pointer"
-                  ng-click="vm.editUser(coordinador, coordinador.usuarioKey, 'coordinador', coordinador.usuarioTurno, coordinador.usuarioZona)">
-                <span>{{coordinador.usuarioTelefono}}</span>
-              </td>
-              <td align="right" style="width: 50px"
-                  ng-if="vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador'">
-                <div class="lv-actions actions dropdown" uib-dropdown="">
-                  <a class="cursor-pointer dropdown-toggle" uib-dropdown-toggle=""
-                     aria-haspopup="true" aria-expanded="false">
-                    <i class="zmdi zmdi-more-vert zmdi-hc-2x actions-size"></i>
-                  </a>
-                  <ul class="dropdown-menu pull-right actions-supervisor">
-                    <li class="action-edit cursor-pointer"
-                        ng-click="vm.editUser(coordinador, coordinador.usuarioKey, 'coordinador', coordinador.usuarioTurno, coordinador.usuarioZona)">
-                      Editar
-                    </li>
-                    <li class="action-delete cursor-pointer"
-                        ng-click="vm.deleteUser(coordinador, 'administradores', coordinador.usuarioKey, coordinador.usuarioTurno, coordinador.usuarioZona)">
-                      Eliminar
-                    </li>
-                  </ul>
-                </div>
-              </td>
-            </tr>
-
-            <!--RECURSOS HUMANOS-->
-            <th ng-if="vm.searchTypeUser == 'recursosHumanos' && vm.recursosHumanos.length != 0">Nombre</th>
-            <th ng-if="vm.searchTypeUser == 'recursosHumanos' && vm.recursosHumanos.length != 0">Correo electronico</th>
-            <th ng-if="vm.searchTypeUser == 'recursosHumanos' && vm.recursosHumanos.length != 0">Teléfono Celular</th>
-            <th ng-if="vm.searchTypeUser == 'recursosHumanos' && vm.recursosHumanos.length != 0">Teléfono</th>
-            <th ng-if="vm.searchTypeUser == 'recursosHumanos' && vm.recursosHumanos.length != 0"></th>
-
-            <tr ng-repeat="rh in vm.recursosHumanos | filter: {usuarioNombre: vm.buscarUsuario}"
-                ng-if="vm.searchTypeUser == 'recursosHumanos'">
-              <td class="p-t-15 cursor-pointer"
-                  ng-click="vm.editUser(rh, rh.usuarioKey, 'recursosHumanos', rh.usuarioTurno, rh.usuarioZona)">
-                <span>{{rh.usuarioNombre}}</span>
-              </td>
-              <td class="p-t-15 cursor-pointer"
-                  ng-click="vm.editUser(rh, rh.usuarioKey, 'recursosHumanos', rh.usuarioTurno, rh.usuarioZona)">
-                <span>{{rh.usuarioEmail}}</span>
-              </td>
-              <td class="p-t-15 cursor-pointer"
-                  ng-click="vm.editUser(rh, rh.usuarioKey, 'recursosHumanos', rh.usuarioTurno, rh.usuarioZona)">
-                <span>{{rh.usuarioTelefonoCelular}}</span>
-              </td>
-              <td class="p-t-15 cursor-pointer"
-                  ng-click="vm.editUser(rh, rh.usuarioKey, 'recursosHumanos', rh.usuarioTurno, rh.usuarioZona)">
-                <span>{{rh.usuarioTelefono}}</span>
-              </td>
-              <td align="right" style="width: 50px"
-                  ng-if="vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador'">
-                <div class="lv-actions actions dropdown" uib-dropdown="">
-                  <a class="cursor-pointer dropdown-toggle" uib-dropdown-toggle=""
-                     aria-haspopup="true" aria-expanded="false">
-                    <i class="zmdi zmdi-more-vert zmdi-hc-2x actions-size"></i>
-                  </a>
-                  <ul class="dropdown-menu pull-right actions-supervisor">
-                    <li class="action-edit cursor-pointer"
-                        ng-click="vm.editUser(rh, rh.usuarioKey, 'recursosHumanos', rh.usuarioTurno, rh.usuarioZona)">
-                      Editar
-                    </li>
-                    <li class="action-delete cursor-pointer"
-                        ng-click="vm.deleteUser(rh, 'administradores', rh.usuarioKey, rh.usuarioTurno, rh.usuarioZona)">
-                      Eliminar
-                    </li>
-                  </ul>
-                </div>
-              </td>
-            </tr>
-
-            <!--GUARDIAS-->
-            <!--<th ng-if="vm.searchTypeUser == 'guardia'">Nombre</th>-->
-            <!--<th ng-if="vm.searchTypeUser == 'guardia'">Telefono</th>-->
-            <!--<th ng-if="vm.searchTypeUser == 'guardia'">Turno</th>-->
-            <!--<th ng-if="vm.searchTypeUser == 'guardia'">Servicio</th>-->
-            <!--<th ng-if="vm.searchTypeUser == 'guardia'"></th>-->
-
-            <!--<tr ng-repeat="guardia in vm.guardias | toArray | filter: {usuarioNombre: vm.buscarUsuario}"-->
-            <!--ng-if="vm.searchTypeUser == 'guardia'">-->
-            <!--<td class="p-t-15 cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key)">-->
-            <!--<span>{{guardia.usuarioNombre}}</span>-->
-            <!--</td>-->
-            <!--<td class="p-t-15 cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key)">-->
-            <!--<span>{{guardia.usuarioTelefonoCelular}}</span>-->
-            <!--</td>-->
-            <!--<td class="p-t-15 cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key)">-->
-            <!--<span>{{guardia.usuarioTurno}}</span>-->
-            <!--</td>-->
-            <!--<td class="p-t-15 cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key)">-->
-            <!--<span>{{ guardia.usuarioClienteAsignado ? guardia.usuarioClienteAsignado: 'No asignado' }}</span>-->
-            <!--</td>-->
-            <!--<td align="right" style="width: 50px">-->
-            <!--<div class="lv-actions actions dropdown" uib-dropdown="">-->
-            <!--<a class="cursor-pointer dropdown-toggle" uib-dropdown-toggle=""-->
-            <!--aria-haspopup="true" aria-expanded="false">-->
-            <!--<i class="zmdi zmdi-more-vert zmdi-hc-2x actions-size"></i>-->
-            <!--</a>-->
-            <!--<ul class="dropdown-menu pull-right actions-supervisor">-->
-            <!--<li class="action-edit cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key, supervisor.usuarioTurno)">Editar</li>-->
-            <!--<li class="action-edit cursor-pointer" ng-click="vm.deleteUser(guardia, 'guardias', guardia.$key)">-->
-            <!--Eliminar-->
-            <!--</li>-->
-            <!--<li class="action-delete cursor-pointer" ng-click="vm.suspenderGuardia(guardia.$key)">-->
-            <!--Suspender-->
-            <!--</li>-->
-            <!--</ul>-->
-            <!--</div>-->
-            <!--</td>-->
-            <!--</tr>-->
-            </tbody>
-          </table>
-        </div>
+    <!--No se encontró coordinadores-->
+    <div class="row" ng-if="vm.searchTypeUser == 'coordinador' && vm.coordinadores.length == 0" align="center">
+      <div class="zmdi zmdi-quote m-t-20 not-found-quote">
       </div>
+      <div class="not-found">No se encontraron</div>
+      <div class="m-b-30 not-found">coordinadores</div>
     </div>
 
 
-  </section>
+    <!--No se encontró administradores-->
+    <div class="row" ng-if="vm.searchTypeUser == 'administrador' && !vm.administradores" align="center">
+      <div class="zmdi zmdi-quote m-t-20 not-found-quote">
+      </div>
+      <div class="not-found">No se encontraron</div>
+      <div class="m-b-30 not-found">administradores</div>
+    </div>
 
+    <!--No se encontró administradores-->
+    <div class="row" ng-if="vm.searchTypeUser == 'recursosHumanos' && vm.recursosHumanos.length == 0" align="center">
+      <div class="zmdi zmdi-quote m-t-20 not-found-quote">
+      </div>
+      <div class="not-found">No se encontraron</div>
+      <div class="m-b-30 not-found">usuarios R.H.</div>
+    </div>
+
+
+    <!--Todos los usuarios-->
+    <div class="row" ng-if="vm.usuarios || !vm.isLoading">
+      <div class="col-xs-offset-1 col-xs-9 m-t-10 m-b-30 p-l-0 p-r-0 table-box">
+        <table class="table table-striped table-hover-gray">
+          <tbody>
+
+          <!--ADMINISTRADORES-->
+          <th ng-if="vm.searchTypeUser == 'administrador' && vm.administradores">Nombre</th>
+          <th ng-if="vm.searchTypeUser == 'administrador' && vm.administradores">Correo electrónico</th>
+          <th ng-if="vm.searchTypeUser == 'administrador' && vm.administradores"></th>
+
+          <tr
+            ng-repeat="administrador in vm.administradores | toArray | orderBy: '-usuarioNombre':true | filter: {usuarioNombre: vm.buscarUsuario}"
+            ng-if="vm.searchTypeUser == 'administrador'">
+            <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(administrador, administrador.$key)">
+              <span>{{administrador.usuarioNombre}}</span>
+            </td>
+            <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(administrador, administrador.$key)">
+              <span>{{administrador.usuarioEmail}}</span>
+            </td>
+            <td align="right" style="width: 50px"
+                ng-if="vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador'">
+              <div class="lv-actions actions dropdown" uib-dropdown="">
+                <a class="cursor-pointer dropdown-toggle" uib-dropdown-toggle=""
+                   aria-haspopup="true" aria-expanded="false">
+                  <i class="zmdi zmdi-more-vert zmdi-hc-2x actions-size"></i>
+                </a>
+                <ul class="dropdown-menu pull-right actions-supervisor">
+                  <li class="action-edit cursor-pointer" ng-click="vm.editUser(administrador, administrador.$key)">
+                    Editar
+                  </li>
+                  <li class="action-delete cursor-pointer"
+                      ng-click="vm.deleteUser(administrador, 'administradores', administrador.$key)">Eliminar
+                  </li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+
+          <!--SUPERVISORES-->
+          <th ng-if="vm.searchTypeUser == 'supervisor' && vm.supervisores">Nombre</th>
+          <th ng-if="vm.searchTypeUser == 'supervisor' && vm.supervisores">Correo electronico</th>
+          <th ng-if="vm.searchTypeUser == 'supervisor' && vm.supervisores">Zona</th>
+          <th ng-if="vm.searchTypeUser == 'supervisor' && vm.supervisores">Turno</th>
+          <th ng-if="vm.searchTypeUser == 'supervisor' && vm.supervisores">Teléfono Celular</th>
+          <th ng-if="vm.searchTypeUser == 'supervisor' && vm.supervisores"></th>
+
+          <tr
+            ng-repeat="supervisor in vm.supervisores | toArray | orderBy: '-usuarioNombre':true | filter: {usuarioNombre: vm.buscarUsuario}"
+            ng-if="vm.searchTypeUser == 'supervisor'">
+            <td class="p-t-15 cursor-pointer"
+                ng-click="vm.editUser(supervisor, supervisor.$key, 'supervisor', supervisor.usuarioTurno, supervisor.usuarioZona)">
+              <span>{{supervisor.usuarioNombre}}</span>
+            </td>
+            <td class="p-t-15 cursor-pointer"
+                ng-click="vm.editUser(supervisor, supervisor.$key, 'supervisor', supervisor.usuarioTurno, supervisor.usuarioZona)">
+              <span>{{supervisor.usuarioEmail}}</span>
+            </td>
+            <td class="p-t-15 cursor-pointer"
+                ng-click="vm.editUser(supervisor, supervisor.$key, 'supervisor', supervisor.usuarioTurno, supervisor.usuarioZona)">
+              <span ng-if="supervisor.usuarioZona != undefined">{{supervisor.usuarioZona}}</span>
+              <span ng-if="supervisor.usuarioZona == undefined">Sin zona asignada</span>
+            </td>
+            <td class="p-t-15 cursor-pointer"
+                ng-click="vm.editUser(supervisor, supervisor.$key, 'supervisor', supervisor.usuarioTurno, supervisor.usuarioZona)">
+              <span>{{supervisor.usuarioTurno}}</span>
+            </td>
+            <td class="p-t-15 cursor-pointer"
+                ng-click="vm.editUser(supervisor, supervisor.$key, 'supervisor', supervisor.usuarioTurno, supervisor.usuarioZona)">
+              <span>{{supervisor.usuarioTelefonoCelular}}</span>
+            </td>
+            <td align="right" style="width: 50px"
+                ng-if="vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador'">
+              <div class="lv-actions actions dropdown" uib-dropdown="">
+                <a class="cursor-pointer dropdown-toggle" uib-dropdown-toggle=""
+                   aria-haspopup="true" aria-expanded="false">
+                  <i class="zmdi zmdi-more-vert zmdi-hc-2x actions-size"></i>
+                </a>
+                <ul class="dropdown-menu pull-right actions-supervisor">
+                  <li class="action-edit cursor-pointer"
+                      ng-click="vm.editUser(supervisor, supervisor.$key, 'supervisor', supervisor.usuarioTurno, supervisor.usuarioZona)">
+                    Editar
+                  </li>
+                  <li class="action-delete cursor-pointer"
+                      ng-click="vm.deleteUser(supervisor, 'supervisores', supervisor.$key, supervisor.usuarioTurno, supervisor.usuarioZona)">
+                    Eliminar
+                  </li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+
+          <!--COORDINADORES-->
+          <th ng-if="vm.searchTypeUser == 'coordinador' && vm.coordinadores.length != 0">Nombre</th>
+          <th ng-if="vm.searchTypeUser == 'coordinador' && vm.coordinadores.length != 0">Correo electronico</th>
+          <th ng-if="vm.searchTypeUser == 'coordinador' && vm.coordinadores.length != 0">Teléfono Celular</th>
+          <th ng-if="vm.searchTypeUser == 'coordinador' && vm.coordinadores.length != 0">Teléfono</th>
+          <th ng-if="vm.searchTypeUser == 'coordinador' && vm.coordinadores.length != 0"></th>
+
+          <tr ng-repeat="coordinador in vm.coordinadores | filter: {usuarioNombre: vm.buscarUsuario}"
+              ng-if="vm.searchTypeUser == 'coordinador'">
+            <td class="p-t-15 cursor-pointer"
+                ng-click="vm.editUser(coordinador, coordinador.usuarioKey, 'coordinador', coordinador.usuarioTurno, coordinador.usuarioZona)">
+              <span>{{coordinador.usuarioNombre}}</span>
+            </td>
+            <td class="p-t-15 cursor-pointer"
+                ng-click="vm.editUser(coordinador, coordinador.usuarioKey, 'coordinador', coordinador.usuarioTurno, coordinador.usuarioZona)">
+              <span>{{coordinador.usuarioEmail}}</span>
+            </td>
+            <td class="p-t-15 cursor-pointer"
+                ng-click="vm.editUser(coordinador, coordinador.usuarioKey, 'coordinador', coordinador.usuarioTurno, coordinador.usuarioZona)">
+              <span>{{coordinador.usuarioTelefonoCelular}}</span>
+            </td>
+            <td class="p-t-15 cursor-pointer"
+                ng-click="vm.editUser(coordinador, coordinador.usuarioKey, 'coordinador', coordinador.usuarioTurno, coordinador.usuarioZona)">
+              <span>{{coordinador.usuarioTelefono}}</span>
+            </td>
+            <td align="right" style="width: 50px"
+                ng-if="vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador'">
+              <div class="lv-actions actions dropdown" uib-dropdown="">
+                <a class="cursor-pointer dropdown-toggle" uib-dropdown-toggle=""
+                   aria-haspopup="true" aria-expanded="false">
+                  <i class="zmdi zmdi-more-vert zmdi-hc-2x actions-size"></i>
+                </a>
+                <ul class="dropdown-menu pull-right actions-supervisor">
+                  <li class="action-edit cursor-pointer"
+                      ng-click="vm.editUser(coordinador, coordinador.usuarioKey, 'coordinador', coordinador.usuarioTurno, coordinador.usuarioZona)">
+                    Editar
+                  </li>
+                  <li class="action-delete cursor-pointer"
+                      ng-click="vm.deleteUser(coordinador, 'administradores', coordinador.usuarioKey, coordinador.usuarioTurno, coordinador.usuarioZona)">
+                    Eliminar
+                  </li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+
+          <!--RECURSOS HUMANOS-->
+          <th ng-if="vm.searchTypeUser == 'recursosHumanos' && vm.recursosHumanos.length != 0">Nombre</th>
+          <th ng-if="vm.searchTypeUser == 'recursosHumanos' && vm.recursosHumanos.length != 0">Correo electronico</th>
+          <th ng-if="vm.searchTypeUser == 'recursosHumanos' && vm.recursosHumanos.length != 0">Teléfono Celular</th>
+          <th ng-if="vm.searchTypeUser == 'recursosHumanos' && vm.recursosHumanos.length != 0">Teléfono</th>
+          <th ng-if="vm.searchTypeUser == 'recursosHumanos' && vm.recursosHumanos.length != 0"></th>
+
+          <tr ng-repeat="rh in vm.recursosHumanos | filter: {usuarioNombre: vm.buscarUsuario}"
+              ng-if="vm.searchTypeUser == 'recursosHumanos'">
+            <td class="p-t-15 cursor-pointer"
+                ng-click="vm.editUser(rh, rh.usuarioKey, 'recursosHumanos', rh.usuarioTurno, rh.usuarioZona)">
+              <span>{{rh.usuarioNombre}}</span>
+            </td>
+            <td class="p-t-15 cursor-pointer"
+                ng-click="vm.editUser(rh, rh.usuarioKey, 'recursosHumanos', rh.usuarioTurno, rh.usuarioZona)">
+              <span>{{rh.usuarioEmail}}</span>
+            </td>
+            <td class="p-t-15 cursor-pointer"
+                ng-click="vm.editUser(rh, rh.usuarioKey, 'recursosHumanos', rh.usuarioTurno, rh.usuarioZona)">
+              <span>{{rh.usuarioTelefonoCelular}}</span>
+            </td>
+            <td class="p-t-15 cursor-pointer"
+                ng-click="vm.editUser(rh, rh.usuarioKey, 'recursosHumanos', rh.usuarioTurno, rh.usuarioZona)">
+              <span>{{rh.usuarioTelefono}}</span>
+            </td>
+            <td align="right" style="width: 50px"
+                ng-if="vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador'">
+              <div class="lv-actions actions dropdown" uib-dropdown="">
+                <a class="cursor-pointer dropdown-toggle" uib-dropdown-toggle=""
+                   aria-haspopup="true" aria-expanded="false">
+                  <i class="zmdi zmdi-more-vert zmdi-hc-2x actions-size"></i>
+                </a>
+                <ul class="dropdown-menu pull-right actions-supervisor">
+                  <li class="action-edit cursor-pointer"
+                      ng-click="vm.editUser(rh, rh.usuarioKey, 'recursosHumanos', rh.usuarioTurno, rh.usuarioZona)">
+                    Editar
+                  </li>
+                  <li class="action-delete cursor-pointer"
+                      ng-click="vm.deleteUser(rh, 'administradores', rh.usuarioKey, rh.usuarioTurno, rh.usuarioZona)">
+                    Eliminar
+                  </li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+
+          <!--GUARDIAS-->
+          <!--<th ng-if="vm.searchTypeUser == 'guardia'">Nombre</th>-->
+          <!--<th ng-if="vm.searchTypeUser == 'guardia'">Telefono</th>-->
+          <!--<th ng-if="vm.searchTypeUser == 'guardia'">Turno</th>-->
+          <!--<th ng-if="vm.searchTypeUser == 'guardia'">Servicio</th>-->
+          <!--<th ng-if="vm.searchTypeUser == 'guardia'"></th>-->
+
+          <!--<tr ng-repeat="guardia in vm.guardias | toArray | filter: {usuarioNombre: vm.buscarUsuario}"-->
+          <!--ng-if="vm.searchTypeUser == 'guardia'">-->
+          <!--<td class="p-t-15 cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key)">-->
+          <!--<span>{{guardia.usuarioNombre}}</span>-->
+          <!--</td>-->
+          <!--<td class="p-t-15 cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key)">-->
+          <!--<span>{{guardia.usuarioTelefonoCelular}}</span>-->
+          <!--</td>-->
+          <!--<td class="p-t-15 cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key)">-->
+          <!--<span>{{guardia.usuarioTurno}}</span>-->
+          <!--</td>-->
+          <!--<td class="p-t-15 cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key)">-->
+          <!--<span>{{ guardia.usuarioClienteAsignado ? guardia.usuarioClienteAsignado: 'No asignado' }}</span>-->
+          <!--</td>-->
+          <!--<td align="right" style="width: 50px">-->
+          <!--<div class="lv-actions actions dropdown" uib-dropdown="">-->
+          <!--<a class="cursor-pointer dropdown-toggle" uib-dropdown-toggle=""-->
+          <!--aria-haspopup="true" aria-expanded="false">-->
+          <!--<i class="zmdi zmdi-more-vert zmdi-hc-2x actions-size"></i>-->
+          <!--</a>-->
+          <!--<ul class="dropdown-menu pull-right actions-supervisor">-->
+          <!--<li class="action-edit cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key, supervisor.usuarioTurno)">Editar</li>-->
+          <!--<li class="action-edit cursor-pointer" ng-click="vm.deleteUser(guardia, 'guardias', guardia.$key)">-->
+          <!--Eliminar-->
+          <!--</li>-->
+          <!--<li class="action-delete cursor-pointer" ng-click="vm.suspenderGuardia(guardia.$key)">-->
+          <!--Suspender-->
+          <!--</li>-->
+          <!--</ul>-->
+          <!--</div>-->
+          <!--</td>-->
+          <!--</tr>-->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </section>
-
-<footer id="footer" data-ng-include="'template/footer.html'"></footer>
-
