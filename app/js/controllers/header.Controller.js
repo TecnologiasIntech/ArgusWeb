@@ -17,6 +17,8 @@ argus
       vm.goToNotifications = goToNotifications;
       vm.deleteNotifications = deleteNotifications;
       vm.deleteNotification = deleteNotification;
+      vm.cerrarSesion = cerrarSesion;
+      vm.irAListaAsistencia = irAListaAsistencia;
 
       //private functions
       function activate() {
@@ -75,11 +77,11 @@ argus
         if(vm.userType != 'director') {
           switch (action) {
             case 'AG':
-              if ($location.path() !== '/supervisores') {
+              if ($location.path() !== '/guardias') {
                 sessionStorage['guardiaInformacion'] = JSON.stringify(information);
                 sessionStorage['bitacoraInformacion'] = JSON.stringify(bitacoraInformation);
                 sessionStorage['notificacionKey'] = key;
-                $location.path('/supervisores');
+                $location.path('/guardias');
               } else {
                 $rootScope.$broadcast('notificacion:agregar', information);
                 $rootScope.$broadcast('notificacion:bitacora', bitacoraInformation);
@@ -144,5 +146,15 @@ argus
         vm.path = $location.path();
       });
 
+      function cerrarSesion() {
+        firebase.auth().signOut().then(function() {
+          location.href = '#/login';
+        }, function(error) {
+        });
+      }
+
+      function irAListaAsistencia() {
+        $location.path('/listaAsistencia')
+      }
     }
   ]);

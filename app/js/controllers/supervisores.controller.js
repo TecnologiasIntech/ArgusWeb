@@ -77,6 +77,10 @@ argus
 
               userService.getUserType(user.email).then(function (response) {
                 vm.userType = response;
+
+                if(vm.userType == 'encargadoNomina'){
+                  $location.path('/preNomina');
+                }
               })
             } else {
               vm.usuarioNombre = user.displayName;

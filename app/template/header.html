@@ -13,21 +13,29 @@
   <li class="logo hidden-xs">
     <a data-ui-sref="home" data-ng-click="mactrl.sidebarStat($event)">Argus Seguridad</a>
   </li>
+  <li style="margin-top: 7px;" ng-if="vm.userType == 'encargadoNomina'">
+    <span class="m-l-20 cursor-pointer" style="color: #fff; font-size: 15px" ng-click="vm.cerrarSesion()">Cerrar Sesión</span>
+  </li>
+
+  <li style="margin-top: 7px;" ng-if="vm.userType == 'encargadoNomina'">
+    <span class="m-l-20 cursor-pointer" style="color: #fff; font-size: 15px" ng-click="vm.irAListaAsistencia()">Lista de asistencia</span>
+  </li>
 
   <li class="pull-right" ng-controller="headerCtrl as vm">
     <ul class="top-menu">
 
-      <li id="toggle-width" ng-if="vm.userType == 'encargadoNomina'">
-        <div class="toggle-switch">
-          <input id="tw-switch" type="checkbox" checked="checked" hidden="hidden"
-                 data-change-layout="mactrl.layoutType">
-          <label for="tw-switch" class="ts-helper"></label>
-        </div>
-      </li>
+      <!--<li id="toggle-width" ng-if="vm.userType == 'encargadoNomina'">-->
+        <!--<div class="toggle-switch">-->
+          <!--<input id="tw-switch" type="checkbox" checked="checked" hidden="hidden"-->
+                 <!--data-change-layout="mactrl.layoutType">-->
+          <!--<label for="tw-switch" class="ts-helper"></label>-->
+        <!--</div>-->
+      <!--</li>-->
 
       <!--<li id="top-search">-->
       <!--<a href="" data-ng-click="hctrl.openSearch()"><i class="tm-icon zmdi zmdi-search"></i></a>-->
       <!--</li>-->
+
       <li id="" >
         <div class="lv-actions actions dropdown" uib-dropdown="">
           <a class="cursor-pointer dropdown-toggle notification-opacity" uib-dropdown-toggle=""

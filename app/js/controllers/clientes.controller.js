@@ -459,26 +459,26 @@ argus
         }
         // Agregar responsables actualizados a cliente
         var domicilio = ""; //variable auxiliar para concatenar los campos del domicilio
-        // firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteResponsables').remove();
-        //
-        // for (var responsible in vm.listResponsibles) {
-        //   domicilio = vm.listResponsibles[responsible].responsibleColony + "," + vm.listResponsibles[responsible].responsibleStreet;
-        //   firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteResponsables').push({
-        //     responsableNombre: vm.listResponsibles[responsible].responsibleName,
-        //     responsableTelefono: vm.listResponsibles[responsible].responsiblePhone,
-        //     responsableDomicilio: domicilio,
-        //     responsableCorreo: vm.listResponsibles[responsible].responsibleEmail
-        //   });
-        // }
-        // // getResponsibles( vm.client.clienteNombre );
-        //
-        // // firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteResponsables').push({
-        // //   // jsonResponsibles
-        // //   responsableNombre: vm.listResponsibles[responsible].responsibleName,
-        // //   responsableTelefono:vm.listResponsibles[responsible].responsiblePhone,
-        // //   responsableDomicilio: domicilio,
-        // //   responsableCorreo: vm.listResponsibles[responsible].responsibleEmail
-        // // });
+        firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteResponsables').remove();
+
+        for (var responsible in vm.listResponsibles) {
+          domicilio = vm.listResponsibles[responsible].responsibleColony + "," + vm.listResponsibles[responsible].responsibleStreet;
+          firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteResponsables').push({
+            responsableNombre: vm.listResponsibles[responsible].responsibleName,
+            responsableTelefono: vm.listResponsibles[responsible].responsiblePhone,
+            responsableDomicilio: domicilio,
+            responsableCorreo: vm.listResponsibles[responsible].responsibleEmail
+          });
+        }
+        getResponsibles( vm.client.clienteNombre );
+
+        // firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteResponsables').push({
+        //   // jsonResponsibles
+        //   responsableNombre: vm.listResponsibles[responsible].responsibleName,
+        //   responsableTelefono:vm.listResponsibles[responsible].responsiblePhone,
+        //   responsableDomicilio: domicilio,
+        //   responsableCorreo: vm.listResponsibles[responsible].responsibleEmail
+        // });
         //
         // //Actualizar horario
         // var l = false, ma = false, mi = false, j = false, v = false, s = false, d = false;

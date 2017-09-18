@@ -85,13 +85,13 @@ argus
 
       function viewRecords() {
         if (vm.secondDate) {
-          var primaryDate = dateFormat(vm.myDate);
-          var secondDate = dateFormat(vm.secondDate);
+          vm.primaryDate = dateFormat(vm.myDate);
+          vm.secondDates = dateFormat(vm.secondDate);
 
           firebase.database().ref('Argus/Bitacora')
             .orderByChild('fecha')
-            .startAt(secondDate)
-            .endAt(primaryDate)
+            .startAt(parseInt(vm.secondDates))
+            .endAt(parseInt(vm.primaryDate))
             .once('value', function (snapshot) {
               vm.records = {};
               vm.records = snapshot.val();
@@ -101,7 +101,7 @@ argus
               // });
 
               // console.log(vm.records[20170318]);
-              // vm.recordsLength = Object.keys(vm.records).length;
+              vm.recordsLength = Object.keys(vm.records).length;
               // if (vm.recordsLength != 0) {
               //   vm.isReady = true;
               // } else {
@@ -212,6 +212,14 @@ argus
         link.setAttribute('href', data);
         link.setAttribute('download', filename);
         link.click();
+      }
+
+      function getFirma() {
+
+      }
+
+      function getFoto() {
+
       }
 
     }

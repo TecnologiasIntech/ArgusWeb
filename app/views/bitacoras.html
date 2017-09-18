@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class="col-xs-2  m-t-25">
-        <button class="btn btn-waves btn-success" ng-click="vm.records = {}; vm.viewRecords()">Ver resultados</button>
+        <button class="btn btn-waves btn-success" ng-click="vm.viewRecords()">Ver resultados</button>
       </div>
       <div class="col-xs-2 m-t-25">
         <button class="btn waves-effect btn-primary" ng-click="vm.downloadCSV({ filename: 'stock-data.csv' });">
@@ -72,7 +72,7 @@
             <th>Guardia</th>
             <th>Turno</th>
             <th>Firma</th>
-            <!--<th>Status</th>-->
+            <th>Status</th>
             <th>Fecha</th>
           </tr>
           </thead>
@@ -95,19 +95,44 @@
               {{guard.turno}}
             </td>
             <td class="bitacora-align-middle">
-              <img src="{{guard.firma ? guard.firma : ''}}" alt="" style="width: 50px; height: 50px;"
-                   ng-click="guard.firma ? vm.openPicture(guard.firma) : ''">
+              <img src="{{guard.firmaAsistio ? guard.firmaAsistio : ''}}" alt="" style="width: 50px; height: 25px;"
+                   ng-click="guard.firmaAsistio ? vm.openPicture(guard.firmaAsistio) : ''">
+
+              <img src="{{guard.firmaCubreDescanso ? guard.firmaCubreDescanso : ''}}" alt="" style="width: 50px; height: 25px;"
+                   ng-click="guard.firmaCubreDescanso ? vm.openPicture(guard.firmaCubreDescanso) : ''">
+
+              <img src="{{guard.firmaDobleTurno ? guard.firmaDobleTurno : ''}}" alt="" style="width: 50px; height: 25px;"
+                   ng-click="guard.firmaDobleTurno ? vm.openPicture(guard.firmaDobleTurno) : ''">
+
+              <img src="{{guard.firmaHorasExtras ? guard.firmaHorasExtras : ''}}" alt="" style="width: 50px; height: 25px;"
+                   ng-click="guard.firmaHorasExtras ? vm.openPicture(guard.firmaHorasExtras) : ''">
             </td>
+
+            <!--Foto del guardia-->
+            <td class="bitacora-align-middle">
+              <img src="{{guard.capturaAsistio ? guard.capturaAsistio : ''}}" alt="" style="width: 50px; height: 25px;"
+                   ng-click="guard.capturaAsistio ? vm.openPicture(guard.capturaAsistio) : ''">
+
+              <img src="{{guard.capturaCubreDescanso ? guard.capturaCubreDescanso : ''}}" alt="" style="width: 50px; height: 25px;"
+                   ng-click="guard.capturaCubreDescanso ? vm.openPicture(guard.capturaCubreDescanso) : ''">
+
+              <img src="{{guard.capturaDobleTurno ? guard.capturaDobleTurno : ''}}" alt="" style="width: 50px; height: 25px;"
+                   ng-click="guard.capturaDobleTurno ? vm.openPicture(guard.capturaDobleTurno) : ''">
+
+              <img src="{{guard.capturaHorasExtras ? guard.capturaHorasExtras : ''}}" alt="" style="width: 50px; height: 25px;"
+                   ng-click="guard.capturaHorasExtras ? vm.openPicture(guard.capturaHorasExtras) : ''">
+            </td>
+
             <td class="bitacora-align-middle">
               {{guard.fecha}}
             </td>
-            <td class="bitacora-align-middle"
-                ng-if="vm.userType == 'coordinador' || vm.userType == 'administrador'">
-              <a href="">
-                <i class="zmdi zmdi-close-circle" style="font-size: 20px; color: #e74c3c"
-                   ng-click="vm.cancelAsssist(record.$key, guard.$key, guard.cliente)"></i>
-              </a>
-            </td>
+            <!--<td class="bitacora-align-middle"-->
+                <!--ng-if="vm.userType == 'coordinador' || vm.userType == 'administrador'">-->
+              <!--<a href="">-->
+                <!--<i class="zmdi zmdi-close-circle" style="font-size: 20px; color: #e74c3c"-->
+                   <!--ng-click="vm.cancelAsssist(record.$key, guard.$key, guard.cliente)"></i>-->
+              <!--</a>-->
+            <!--</td>-->
           </tr>
           </tbody>
         </table>

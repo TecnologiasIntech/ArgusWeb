@@ -160,7 +160,7 @@ argus
                     restWorked++;
                     // lacks--;
                   }
-                  if (guardInfo.dobleTurno) {
+                  if (guardInfo.dobleturno) {
                     statusOfDays[attendanceDate] = {
                       'status': 'DT',
                       'statusKey': attendanceDate
@@ -244,7 +244,7 @@ argus
               var bond = vm.securityGuards[guard].usuarioSueldoBase == 0 ? 0 : vm.securityGuards[guard].usuarioSueldoBase - 1600;
               var subTotal = ( totalExtrasYFaltas < 0 ? bond + totalExtrasYFaltas : totalExtrasYFaltas + bond );
 
-              if (vm.securityGuards[guard].usuarioClienteAsignado != null) {
+              if (vm.securityGuards[guard].usuarioClienteAsignado != null && vm.securityGuards[guard].usuarioClienteAsignado != 'Sin asignar') {
 
                 firebase.database().ref('Argus/Nomina/' + vm.fDate + 'to' + vm.tDate + '/' + guard)
                   .update({

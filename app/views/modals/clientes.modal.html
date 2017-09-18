@@ -10,9 +10,9 @@
         <li class="{{vm.view == 'general' ? 'active' : ''}}">
           <a href="" ng-click="vm.view = 'general'">General</a>
         </li>
-        <li class="{{vm.view == 'horarios' ? 'active' : ''}}">
-          <a href="" ng-click="vm.view = 'horarios'">Horarios</a>
-        </li>
+        <!--<li class="{{vm.view == 'horarios' ? 'active' : ''}}">-->
+          <!--<a href="" ng-click="vm.view = 'horarios'">Horarios</a>-->
+        <!--</li>-->
         <li class="{{vm.view == 'responsibles' ? 'active' : ''}}" >
           <a href="" ng-click="vm.view = 'responsibles'">Responsables</a>
         </li>
@@ -264,7 +264,7 @@
                 <th>Zonas</th>
                 <th>Servicios</th>
                 <th>Mover</th>
-                <th>Info</th>
+                <!--<th>Info</th>-->
               </tr>
               </thead>
               <tbody>
@@ -300,15 +300,15 @@
                   <div class="btn btn-primary btn-sm waves-effect" ng-click="vm.moveGuardService(guard, vm.selectedCustome, guard.$key)">Mover</div>
                 </td>
 
-                <td  ng-if="guard.usuarioDisponible" align="center">
-                  <div class="lv-actions actions dropdown" popover-placement="left" popover="Hola mi nombre es \n jaja" uib-dropdown=""
-                       ng-click=""
-                  >
-                    <div class="cursor-pointer dropdown-toggle">
-                      <i class="zmdi zmdi-info-outline zmdi-hc-2x actions-size"></i>
-                    </div>
-                  </div>
-                </td>
+                <!--<td  ng-if="guard.usuarioDisponible" align="center">-->
+                  <!--<div class="lv-actions actions dropdown" popover-placement="left" popover="Hola mi nombre es \n jaja" uib-dropdown=""-->
+                       <!--ng-click=""-->
+                  <!--&gt;-->
+                    <!--<div class="cursor-pointer dropdown-toggle">-->
+                      <!--<i class="zmdi zmdi-info-outline zmdi-hc-2x actions-size"></i>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                <!--</td>-->
               </tr>
 
               <!--<tr ng-repeat="guard in vm.guardsToClient | filter: {usuarioNombre: vm.searchInGuards} " ng-if="mostrar">-->
