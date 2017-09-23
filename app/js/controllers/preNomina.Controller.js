@@ -10,7 +10,7 @@ argus
       vm.restWorkedPayment = 250;
       vm.doubleTurnPayment = 300;
       vm.assistencePayment = 0;
-      vm.extraHoursPayment = 0;
+      vm.extraHoursPayment = 20;
       vm.salary = 1600;
       vm.services = {};
       vm.toDate = new Date();
@@ -202,8 +202,8 @@ argus
                   }
                   if (guardInfo.descanso) {
                   }
-                  if (guardInfo.horasExtra) {
-                    extraHours += guardInfo.horasExtra;
+                  if (guardInfo.horasextra) {
+                    extraHours += guardInfo.horasextra;
                     isLack = false;
                   }
                   if (isLack) {
