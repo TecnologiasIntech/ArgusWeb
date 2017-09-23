@@ -556,9 +556,18 @@ argus
 
       function updateSalayOfGuard(guardKey, newSalary) {
 
-        firebase.database().ref('Argus/guardias/' + guardKey + '/usuarioSueldoBase/').update(newSalary);
+        firebase.database().ref('Argus/guardias/' + guardKey).update({
+          'usuarioSueldoBase': newSalary
+        });
 
         vm.paySheet[guardKey]['salario'] = newSalary;
+
+        firebase.database().ref('Argus/Nomina/' + vm.fDate + 'to' + vm.tDate + '/' + guardKey)
+          .update({
+            'salario': newSalary
+          })
+
+        vm.modal.dismiss();
 
       }
     }
