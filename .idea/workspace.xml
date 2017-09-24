@@ -3,16 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="7f4ae1f1-b0de-4894-a4d9-423677ee78ea" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index.html" afterPath="$PROJECT_DIR$/app/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/config.js" afterPath="$PROJECT_DIR$/app/js/config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controllers/bitacora.Controller.js" afterPath="$PROJECT_DIR$/app/js/controllers/bitacora.Controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controllers/clientes.controller.js" afterPath="$PROJECT_DIR$/app/js/controllers/clientes.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controllers/header.Controller.js" afterPath="$PROJECT_DIR$/app/js/controllers/header.Controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controllers/guardias.controller.js" afterPath="$PROJECT_DIR$/app/js/controllers/guardias.controller.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controllers/preNomina.Controller.js" afterPath="$PROJECT_DIR$/app/js/controllers/preNomina.Controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controllers/supervisores.controller.js" afterPath="$PROJECT_DIR$/app/js/controllers/supervisores.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/template/header.html" afterPath="$PROJECT_DIR$/app/template/header.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/bitacoras.html" afterPath="$PROJECT_DIR$/app/views/bitacoras.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/modals/clientes.modal.html" afterPath="$PROJECT_DIR$/app/views/modals/clientes.modal.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/modals/supervisores.modal.html" afterPath="$PROJECT_DIR$/app/views/modals/supervisores.modal.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/preNomina.html" afterPath="$PROJECT_DIR$/app/views/preNomina.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -36,8 +30,8 @@
       <file leaf-file-name="preNomina.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/preNomina.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2251">
-              <caret line="131" column="105" lean-forward="false" selection-start-line="131" selection-start-column="96" selection-end-line="131" selection-end-column="105" />
+            <state relative-caret-position="375">
+              <caret line="25" column="17" lean-forward="true" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -46,58 +40,48 @@
       <file leaf-file-name="preNomina.Controller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/js/controllers/preNomina.Controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="430">
-              <caret line="155" column="37" lean-forward="true" selection-start-line="155" selection-start-column="37" selection-end-line="155" selection-end-column="37" />
+            <state relative-caret-position="310">
+              <caret line="287" column="81" lean-forward="true" selection-start-line="287" selection-start-column="81" selection-end-line="287" selection-end-column="81" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="header.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/template/header.html">
+      <file leaf-file-name="supervisores.modal.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/modals/supervisores.modal.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="20" column="108" lean-forward="false" selection-start-line="20" selection-start-column="90" selection-end-line="20" selection-end-column="108" />
+            <state relative-caret-position="54">
+              <caret line="160" column="36" lean-forward="true" selection-start-line="160" selection-start-column="36" selection-end-line="160" selection-end-column="36" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="header.Controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/js/controllers/header.Controller.js">
+      <file leaf-file-name="supervisores.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/supervisores.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="8" column="20" lean-forward="true" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+            <state relative-caret-position="37">
+              <caret line="63" column="17" lean-forward="true" selection-start-line="63" selection-start-column="17" selection-end-line="63" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/js/config.js">
+      <file leaf-file-name="supervisores.controller.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/js/controllers/supervisores.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="29" column="27" lean-forward="true" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
+            <state relative-caret-position="202">
+              <caret line="61" column="49" lean-forward="true" selection-start-line="61" selection-start-column="49" selection-end-line="61" selection-end-column="49" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sidebar-left.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/template/sidebar-left.html">
+      <file leaf-file-name="guardias.controller.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/js/controllers/guardias.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="44" column="9" lean-forward="true" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="date.service.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/services/date.service.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1470">
-              <caret line="70" column="46" lean-forward="true" selection-start-line="70" selection-start-column="46" selection-end-line="70" selection-end-column="46" />
+            <state relative-caret-position="286">
+              <caret line="543" column="40" lean-forward="true" selection-start-line="543" selection-start-column="40" selection-end-line="543" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -116,9 +100,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>user</find>
-      <find>updateuser</find>
-      <find>desca</find>
       <find>saveuserinfo</find>
       <find>card-login</find>
       <find>card</find>
@@ -146,6 +127,9 @@
       <find>recordsLength</find>
       <find>getMonth</find>
       <find>dobleturno</find>
+      <find>domi</find>
+      <find>saveuser</find>
+      <find>agregar</find>
     </findStrings>
     <replaceStrings>
       <replace>sm</replace>
@@ -189,8 +173,6 @@
         <option value="$PROJECT_DIR$/app/js/controllers/zonas.controller.js" />
         <option value="$PROJECT_DIR$/app/views/modals/zonas.modal.html" />
         <option value="$PROJECT_DIR$/app/js/controllers/main.js" />
-        <option value="$PROJECT_DIR$/app/views/modals/supervisores.modal.html" />
-        <option value="$PROJECT_DIR$/app/js/controllers/guardias.controller.js" />
         <option value="$PROJECT_DIR$/app/views/supervisores.html" />
         <option value="$PROJECT_DIR$/app/views/clientes.html" />
         <option value="$PROJECT_DIR$/app/views/zonas.html" />
@@ -202,7 +184,6 @@
         <option value="$PROJECT_DIR$/app/template/footer.html" />
         <option value="$PROJECT_DIR$/app/template/sidebar-left.html" />
         <option value="$PROJECT_DIR$/app/services/objects.service.js" />
-        <option value="$PROJECT_DIR$/app/views/preNomina.html" />
         <option value="$PROJECT_DIR$/app/js/controllers/supervisores.controller.js" />
         <option value="$PROJECT_DIR$/app/js/controllers/sidebar.Controller.js" />
         <option value="$PROJECT_DIR$/app/js/controllers/clientes.controller.js" />
@@ -210,10 +191,13 @@
         <option value="$PROJECT_DIR$/app/index.html" />
         <option value="$PROJECT_DIR$/app/js/controllers/bitacora.Controller.js" />
         <option value="$PROJECT_DIR$/app/views/bitacoras.html" />
-        <option value="$PROJECT_DIR$/app/js/controllers/preNomina.Controller.js" />
         <option value="$PROJECT_DIR$/app/template/header.html" />
         <option value="$PROJECT_DIR$/app/js/controllers/header.Controller.js" />
         <option value="$PROJECT_DIR$/app/js/config.js" />
+        <option value="$PROJECT_DIR$/app/views/preNomina.html" />
+        <option value="$PROJECT_DIR$/app/js/controllers/preNomina.Controller.js" />
+        <option value="$PROJECT_DIR$/app/js/controllers/guardias.controller.js" />
+        <option value="$PROJECT_DIR$/app/views/modals/supervisores.modal.html" />
       </list>
     </option>
   </component>
@@ -273,25 +257,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="NodeModulesDirectoryManager">
-    <handled-path value="$PROJECT_DIR$/app/bower_components/angular-toArrayFilter/node_modules" />
-    <handled-path value="$PROJECT_DIR$/app/bower_components/bootstrap/node_modules" />
-    <handled-path value="$PROJECT_DIR$/app/bower_components/ng-csv/node_modules" />
     <handled-path value="$PROJECT_DIR$/app/node_modules" />
-    <handled-path value="$PROJECT_DIR$/app/vendors/bower_components/Waves/node_modules" />
-    <handled-path value="$PROJECT_DIR$/app/vendors/bower_components/angular-nouislider/node_modules" />
-    <handled-path value="$PROJECT_DIR$/app/vendors/bower_components/autosize/node_modules" />
-    <handled-path value="$PROJECT_DIR$/app/vendors/bower_components/bootstrap-sweetalert/node_modules" />
-    <handled-path value="$PROJECT_DIR$/app/vendors/bower_components/eonasdan-bootstrap-datetimepicker/node_modules" />
-    <handled-path value="$PROJECT_DIR$/app/vendors/bower_components/install/node_modules" />
-    <handled-path value="$PROJECT_DIR$/app/vendors/bower_components/jquery.easy-pie-chart/node_modules" />
-    <handled-path value="$PROJECT_DIR$/app/vendors/bower_components/lightgallery/node_modules" />
-    <handled-path value="$PROJECT_DIR$/app/vendors/bower_components/summernote/node_modules" />
-    <handled-path value="$PROJECT_DIR$/app/vendors/bower_components/sweetalert/node_modules" />
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="PackageJsonUpdateNotifier">
-    <dismissed value="$PROJECT_DIR$/app/bower_components/js-xls/package.json" />
-    <dismissed value="$PROJECT_DIR$/app/bower_components/js-xlsx/package.json" />
     <dismissed value="$PROJECT_DIR$/app/vendors/bower_components/angular-loading-bar/package.json" />
     <dismissed value="$PROJECT_DIR$/app/vendors/bower_components/angular-nouislider/package.json" />
     <dismissed value="$PROJECT_DIR$/app/vendors/bower_components/animate.css/package.json" />
@@ -303,10 +272,9 @@
     <dismissed value="$PROJECT_DIR$/bower_components/simple-web-notification/package.json" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1296" />
-    <option name="height" value="1000" />
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
+    <option name="height" value="824" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -601,6 +569,7 @@
       <workItem from="1505326856188" duration="11000" />
       <workItem from="1505406917608" duration="11188000" />
       <workItem from="1505744159529" duration="8744000" />
+      <workItem from="1506182539043" duration="2093000" />
     </task>
     <task id="LOCAL-00001" summary="cambios generales&#10;">
       <created>1489812407890</created>
@@ -886,7 +855,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1089344000" />
+    <option name="totallyTimeSpent" value="1091437000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -897,19 +866,19 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="823" extended-state="6" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2472178" sideWeight="0.8527005" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Grunt " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22321428" sideWeight="0.09328969" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298611" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2199074" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23148148" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21947874" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298887" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3101852" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17559524" sideWeight="0.14729951" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17559524" sideWeight="0.14729951" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1111,15 +1080,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
           <caret line="7" column="43" lean-forward="false" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/modals/supervisores.modal.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="206" column="47" lean-forward="true" selection-start-line="206" selection-start-column="47" selection-end-line="206" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1144,18 +1104,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/bower_components/alasql/console/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/bower_components/alasql/console/style.css" />
     <entry file="file://$PROJECT_DIR$/app/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="325">
           <caret line="351" column="5" lean-forward="false" selection-start-line="351" selection-start-column="1" selection-end-line="351" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1163,7 +1116,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
           <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1171,7 +1123,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="325">
           <caret line="14129" column="17" lean-forward="true" selection-start-line="14129" selection-start-column="17" selection-end-line="14129" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1186,9 +1137,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1302">
           <caret line="62" column="32" lean-forward="false" selection-start-line="62" selection-start-column="29" selection-end-line="62" selection-end-column="32" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1196,7 +1144,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
           <caret line="1862" column="25" lean-forward="false" selection-start-line="1862" selection-start-column="2" selection-end-line="1862" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1204,23 +1151,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/supervisores.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3868">
-          <caret line="327" column="22" lean-forward="true" selection-start-line="327" selection-start-column="22" selection-end-line="327" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/controllers/supervisores.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="79" column="0" lean-forward="true" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1228,7 +1158,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
           <caret line="35" column="7" lean-forward="true" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1244,16 +1173,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="430">
           <caret line="261" column="33" lean-forward="true" selection-start-line="261" selection-start-column="33" selection-end-line="261" selection-end-column="33" />
-          <folding>
-            <marker date="1505746078409" expanded="false" signature="3055:3107" ph="..." />
-            <marker date="1505746078409" expanded="false" signature="3289:3304" ph="..." />
-            <marker date="1505746078409" expanded="false" signature="3643:3658" ph="..." />
-            <marker date="1505746078409" expanded="false" signature="4001:4016" ph="..." />
-            <marker date="1505746078409" expanded="false" signature="4369:4384" ph="..." />
-            <marker date="1505746078409" expanded="false" signature="4729:4744" ph="..." />
-            <marker date="1505746078409" expanded="false" signature="5087:5102" ph="..." />
-            <marker date="1505746078409" expanded="false" signature="5447:5462" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1269,15 +1188,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/controllers/guardias.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="277" column="59" lean-forward="true" selection-start-line="277" selection-start-column="59" selection-end-line="277" selection-end-column="59" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1293,9 +1203,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="430">
           <caret line="98" column="62" lean-forward="true" selection-start-line="98" selection-start-column="62" selection-end-line="98" selection-end-column="62" />
-          <folding>
-            <element signature="n#style#0;n#footer#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1303,17 +1210,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="346">
           <caret line="93" column="46" lean-forward="true" selection-start-line="93" selection-start-column="46" selection-end-line="93" selection-end-column="46" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#td#4;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#2;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#1;n#td#4;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#2;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#2;n#td#4;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#2;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#3;n#td#4;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#2;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#td#5;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#2;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#1;n#td#5;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#2;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#2;n#td#5;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#2;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#3;n#td#5;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#2;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <marker date="1505749257017" expanded="false" signature="5927:5958" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1321,39 +1217,38 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="703">
           <caret line="220" column="22" lean-forward="false" selection-start-line="220" selection-start-column="22" selection-end-line="220" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/preNomina.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2251">
-          <caret line="131" column="105" lean-forward="false" selection-start-line="131" selection-start-column="96" selection-end-line="131" selection-end-column="105" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/date.service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1470">
-          <caret line="70" column="46" lean-forward="true" selection-start-line="70" selection-start-column="46" selection-end-line="70" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/controllers/preNomina.Controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="155" column="37" lean-forward="true" selection-start-line="155" selection-start-column="37" selection-end-line="155" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/template/header.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="20" column="108" lean-forward="false" selection-start-line="20" selection-start-column="90" selection-end-line="20" selection-end-column="108" />
-          <folding />
+        <state relative-caret-position="405">
+          <caret line="27" column="35" lean-forward="false" selection-start-line="27" selection-start-column="35" selection-end-line="27" selection-end-column="35" />
+          <folding>
+            <marker date="1506182339000" expanded="true" signature="1623:4716" ph="..." />
+            <marker date="1506182339000" expanded="true" signature="1623:4724" ph="..." />
+            <marker date="1506182339000" expanded="true" signature="1639:4706" ph="..." />
+            <marker date="1506182339000" expanded="true" signature="1706:4694" ph="..." />
+            <marker date="1506182339000" expanded="true" signature="1803:2070" ph="..." />
+            <marker date="1506182339000" expanded="true" signature="2000:2055" ph="..." />
+            <marker date="1506182339000" expanded="true" signature="2003:2048" ph="..." />
+            <marker date="1506182339000" expanded="true" signature="2168:4679" ph="..." />
+            <marker date="1506182339000" expanded="true" signature="2185:2407" ph="..." />
+            <marker date="1506182339000" expanded="true" signature="2224:2389" ph="..." />
+            <marker date="1506182339000" expanded="true" signature="2279:2368" ph="..." />
+            <marker date="1506182339000" expanded="true" signature="2498:4295" ph="..." />
+            <marker date="1506182339000" expanded="true" signature="3036:4277" ph="..." />
+            <marker date="1506182339000" expanded="true" signature="3216:3735" ph="..." />
+            <marker date="1506182339000" expanded="true" signature="3279:3341" ph="..." />
+            <marker date="1506182339000" expanded="true" signature="3401:3462" ph="..." />
+            <marker date="1506182339000" expanded="true" signature="3526:3587" ph="..." />
+            <marker date="1506182339000" expanded="true" signature="3651:3712" ph="..." />
+            <marker date="1506182339000" expanded="true" signature="4051:4256" ph="..." />
+            <marker date="1506182339000" expanded="true" signature="4112:4233" ph="..." />
+            <marker date="1506182339000" expanded="false" signature="4141:4155" ph="..." />
+            <marker date="1506182339000" expanded="true" signature="4382:4663" ph="..." />
+            <marker date="1506182339000" expanded="false" signature="4485:4500" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1361,14 +1256,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="9" column="35" lean-forward="true" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/js/controllers/header.Controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" column="20" lean-forward="true" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+        <state relative-caret-position="120">
+          <caret line="8" column="20" lean-forward="false" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1376,15 +1278,63 @@
     <entry file="file://$PROJECT_DIR$/app/template/sidebar-left.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="199">
-          <caret line="44" column="9" lean-forward="true" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="21" />
+          <caret line="44" column="9" lean-forward="false" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/config.js">
+    <entry file="file://$PROJECT_DIR$/app/services/date.service.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="29" column="27" lean-forward="true" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
+        <state relative-caret-position="502">
+          <caret line="70" column="46" lean-forward="false" selection-start-line="70" selection-start-column="46" selection-end-line="70" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/preNomina.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="17" lean-forward="true" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controllers/preNomina.Controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="287" column="81" lean-forward="true" selection-start-line="287" selection-start-column="81" selection-end-line="287" selection-end-column="81" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controllers/guardias.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="543" column="40" lean-forward="true" selection-start-line="543" selection-start-column="40" selection-end-line="543" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/modals/supervisores.modal.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="160" column="36" lean-forward="true" selection-start-line="160" selection-start-column="36" selection-end-line="160" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/supervisores.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="37">
+          <caret line="63" column="17" lean-forward="true" selection-start-line="63" selection-start-column="17" selection-end-line="63" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controllers/supervisores.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="61" column="49" lean-forward="true" selection-start-line="61" selection-start-column="49" selection-end-line="61" selection-end-column="49" />
           <folding />
         </state>
       </provider>

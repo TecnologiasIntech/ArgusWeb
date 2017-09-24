@@ -539,9 +539,9 @@ argus
 
         }
 
-        vm.user.usuarioDomicilio = vm.user.usuarioColony + "," + vm.user.usuarioStreet;
-        delete vm.user.usuarioColony;
-        delete vm.user.usuarioStreet;
+        // vm.user.usuarioDomicilio = vm.user.usuarioColony + "," + vm.user.usuarioStreet;
+        // delete vm.user.usuarioColony;
+        // delete vm.user.usuarioStreet;
 
         if (vm.user.usuarioTipo == 'guardia') {
           if (vm.user.usuarioClienteAsignado != undefined && vm.user.usuarioClienteAsignado != 'Sin asignar' ) {

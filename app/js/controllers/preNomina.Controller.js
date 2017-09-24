@@ -7,6 +7,7 @@ argus
       vm.securityGuards = {};
       vm.guardKeyTmp = '';
       vm.paySheet = {};
+      vm.paySheetToExcel = [];
       vm.restWorkedPayment = 250;
       vm.doubleTurnPayment = 300;
       vm.assistencePayment = 0;
@@ -287,6 +288,11 @@ argus
             firebase.database().ref('Argus/Nomina/' + vm.fDate + 'to' + vm.tDate)
               .once('value', function (dataSnapshot2) {
                 vm.paySheet = dataSnapshot2.val();
+
+                for(nomina in vm.paySheet){
+                  vm.paySheetToExcel.push(vm.paySheet[nomina]);
+                }
+
                 saveGuardSalarys(vm.paySheet);
                 vm.isLoading = false;
                 $rootScope.$applyAsync();
@@ -306,7 +312,8 @@ argus
 
       function exportToExcel() {
 
-        alasql('SELECT * INTO XLSX("nomina.xlsx",{headers:true}) FROM ?', [vm.paySheet]);
+        alasql('SELECT * INTO XLSX("nomina.xlsx",{headers:true}) FROM ?', [vm.paySheetToExcel]);
+        // alasql('SELECT * INTO json(\'my.json\') from xlsx(' + [vm.paySheet] + ',{headers:true})');
 
       }
 
