@@ -201,7 +201,7 @@ argus
           getResponsibles(clientName);
 
           //Obtener el horario
-          getSchedule(clientName);
+          // getSchedule(clientName);
 
           vm.openModal();
         }
@@ -298,16 +298,16 @@ argus
           }
 
           // Agregar responsables a cliente
-          var domicilio = ""; //variable auxiliar para concatenar los campos del domicilio
-          // for (var responsible in vm.listResponsibles) {
-          //   domicilio = vm.listResponsibles[responsible].responsibleColony + "," + vm.listResponsibles[responsible].responsibleStreet;
-          //   firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteResponsables').push({
-          //     responsableNombre: vm.listResponsibles[responsible].responsibleName,
-          //     responsableTelefono: vm.listResponsibles[responsible].responsiblePhone,
-          //     responsableDomicilio: domicilio,
-          //     responsableCorreo: vm.listResponsibles[responsible].responsibleEmail
-          //   });
-          // }
+          // var domicilio = ""; //variable auxiliar para concatenar los campos del domicilio
+          for (var responsible in vm.listResponsibles) {
+            domicilio = vm.listResponsibles[responsible].responsibleColony + "," + vm.listResponsibles[responsible].responsibleStreet;
+            firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteResponsables').push({
+              responsableNombre: vm.listResponsibles[responsible].responsibleName,
+              responsableTelefono: vm.listResponsibles[responsible].responsiblePhone,
+              responsableDomicilio: domicilio,
+              responsableCorreo: vm.listResponsibles[responsible].responsibleEmail
+            });
+          }
           //
           // //Agregar horario
           // var l = false, ma = false, mi = false, j = false, v = false, s = false, d = false;
@@ -598,6 +598,7 @@ argus
           // vm.view = 'consignas'
           vm.openModalToAsignTitleToConsigna();
           vm.consigna.nombre = consignaName;
+          vm.consignaTarea = "";
           getConsignas(consignaName)
         }
 
