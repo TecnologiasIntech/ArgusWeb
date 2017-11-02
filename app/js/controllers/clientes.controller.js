@@ -71,6 +71,7 @@ argus
       vm.clearSchedule = clearSchedule;
       vm.moveGuardService = moveGuardService;
       vm.getServices = getServices;
+      vm.openModalToMoveGuard = openModalToMoveGuard;
 
       //private functions
       function activate() {
@@ -148,6 +149,16 @@ argus
           templateUrl: 'views/modals/asignarNombreConsigna.modal.html',
           scope: $scope,
           size: 'c',
+          backdrop: 'static'
+        });
+      }
+
+      function openModalToMoveGuard() {
+        vm.modalMoveGuard = $uibModal.open({
+          animation: true,
+          templateUrl: 'views/modals/moveGuard.modal.html',
+          scope: $scope,
+          size: 'ar',
           backdrop: 'static'
         });
       }

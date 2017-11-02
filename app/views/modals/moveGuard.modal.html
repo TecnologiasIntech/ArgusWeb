@@ -1,0 +1,47 @@
+<form name="clientForm" id="form" ng-submit="vm.registerClient(); vm.clearConsignas()">
+
+  <div class="card" style="height: 500px; border-radius: 3px">
+    <div class="card-header" align="center">
+      <h4 class="m-t-10">Guardias disponibles</h4>
+    </div>
+
+    <div class="card-body">
+      <div class="row">
+        <div class="col-xs-offset-1 col-xs-10" align="left">
+          <div class="row">
+            <div class="col-xs-1">
+              <i class="zmdi zmdi-search zmdi-hc-2x dp-inline" style="padding-top: 8px; margin-left: 7px;"></i>
+            </div>
+            <div class="col-xs-10">
+              <div class="fg-line dp-inline m-l-10">
+                <input type="text" class="form-control  dp-inline" placeholder="Buscar...">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row p-t-10" style="height: 330px;">
+        <div class="col-xs-offset-1 col-xs-10" align="left">
+          <div class="checkbox m-t-15 m-b-15">
+            <label>
+              <input type="checkbox">
+              <i class="input-helper"></i>
+              <span>CERVANTES BALDENEGRO JESUS RAMON</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer p-b-15" align="center">
+      <button class="btn btn-success waves-effect m-r-10">
+        Agregar
+      </button>
+      <div class="btn btn-danger waves-effect ">
+        Cancelar
+      </div>
+    </div>
+  </div>
+
+</form>

@@ -78,7 +78,7 @@ argus
               userService.getUserType(user.email).then(function (response) {
                 vm.userType = response;
 
-                if(vm.userType == 'encargadoNomina'){
+                if (vm.userType == 'encargadoNomina') {
                   $location.path('/preNomina');
                 }
               })
@@ -167,16 +167,7 @@ argus
       activate();
 
       function verifyUser(user) {
-        if (user === 'supervisor') {
-          availableZones();
-          if (vm.zonasDisponibles.length > 0) {
-            openModal();
-          } else {
-            alertService.error('No hay zonas disponibles', 'Agregar una nueva zona para poder agregar un supervisor');
-          }
-        } else {
-          openModal();
-        }
+        openModal();
       }
 
       function openModal() {
@@ -226,7 +217,7 @@ argus
               }
             }
           }*/
-         /* availableZones();*/
+          /* availableZones();*/
           openModal();
         }
         // console.log(user);
@@ -381,13 +372,13 @@ argus
             break;
         }
 
-          vm.user = {};
-          // vm.user.usuarioTipo = 'guardia';
-          vm.isEdit = false;
-          vm.user.usuarioTipo = vm.userTmp;
-          growl.info('¡Usuario actualizado!', vm.config);
-          vm.modal.dismiss();
-          // update = false;
+        vm.user = {};
+        // vm.user.usuarioTipo = 'guardia';
+        vm.isEdit = false;
+        vm.user.usuarioTipo = vm.userTmp;
+        growl.info('¡Usuario actualizado!', vm.config);
+        vm.modal.dismiss();
+        // update = false;
       }
 
       function deleteUser(user, type, userKey, turno) {
