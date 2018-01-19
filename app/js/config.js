@@ -30,7 +30,19 @@ argus
       .state('servicios', {
         url: '/servicios',
         templateUrl: 'views/clientes.html',
-        controller: 'clienteCtrl as vm'
+        controller: 'clienteCtrl as vm',
+        resolve: {
+          loadPlugin: function($ocLazyLoad) {
+            return $ocLazyLoad.load ([
+              {
+                name: 'vendors',
+                files: [
+                  'vendors/input-mask/input-mask.min.js',
+                ]
+              }
+            ])
+          }
+        }
       })
 
       .state('preNomina', {

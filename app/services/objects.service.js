@@ -17,7 +17,11 @@ argus
       },
 
       getObjectLength: function (object) {
-        return Object.keys(object).length;
+        if(object == null || object == undefined){
+          return 0;
+        }else{
+          return Object.keys(object).length;
+        }
       }
 
     }

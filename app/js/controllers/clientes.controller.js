@@ -2,8 +2,8 @@
  * Created by Toshiba on 20/02/2017.
  */
 argus
-  .controller('clienteCtrl', ['$scope', '$rootScope', 'alertService', '$uibModal', 'growl', '$location', '$timeout', 'focusService', 'userService',
-    function ($scope, $rootScope, alertService, $uibModal, growl, $location, $timeout, focusService, userService) {
+  .controller('clienteCtrl', ['$scope', '$rootScope', 'alertService', '$uibModal', 'growl', '$location', '$timeout', 'focusService', 'userService', 'objetService',
+    function ($scope, $rootScope, alertService, $uibModal, growl, $location, $timeout, focusService, userService, objetService) {
 
       //public var
       var vm = this;
@@ -33,19 +33,46 @@ argus
       vm.listDaysSchedule = [];
       vm.guardInfo = {};
       vm.saveZona;
-      vm.openingTimeh1 = "00:00";
-      vm.closingTimeh1 = "00:00";
-      vm.openingTimeh2 = "00:00";
-      vm.closingTimeh2 = "00:00";
-      vm.openingTimeh3 = "00:00";
-      vm.closingTimeh3 = "00:00";
       vm.filter = '-clienteNombre';
       vm.serviceToSelect = {};
-
+      vm.horarios = {};
+      //   dasdasdas: {
+      //     dias: {
+      //       lunes: true,
+      //       martes: true,
+      //       miercoles: true,
+      //       jueves: true,
+      //       viernes: true,
+      //       sabado: false,
+      //       domingo: false
+      //     },
+      //     desdeHora: '8:00',
+      //     hastaHora: '20:00'
+      //   },
+      //   asdasdas: {
+      //     dias: {
+      //       lunes: false,
+      //       martes: false,
+      //       miercoles: true,
+      //       jueves: true,
+      //       viernes: true,
+      //       sabado: false,
+      //       domingo: false
+      //     },
+      //     desdeHora: '8:00',
+      //     hastaHora: '20:00'
+      //   }
+      // };
+      vm.isEditHorario = false;
+      vm.horario = {};
+      vm.keyHorario = '';
+      vm.objectService = objetService;
 
       //public functions
       vm.openModal = openModal;
       vm.openGuardiaDetails = openGuardiaDetails;
+      vm.openModalNewHorario = openModalNewHorario;
+      vm.openModalEditarHorario = openModalEditarHorario;
       vm.editClient = editClient;
       vm.deleteClient = deleteClient;
       vm.registerClient = registerClient;
@@ -72,6 +99,11 @@ argus
       vm.moveGuardService = moveGuardService;
       vm.getServices = getServices;
       vm.openModalToMoveGuard = openModalToMoveGuard;
+      vm.agregarHorario = agregarHorario;
+      vm.editarHorario = editarHorario;
+      vm.cerrarHorario = cerrarHorario;
+      vm.borrarHorarios = borrarHorarios;
+      vm.borrarHorario = borrarHorario;
 
       //private functions
       function activate() {
@@ -163,6 +195,29 @@ argus
         });
       }
 
+      function openModalNewHorario() {
+
+        if (!vm.client.clienteNombre) {
+          vm.view = 'general';
+          growl.error('Tiene que asignar un nombre al Servicio antes de crear horarios', vm.config)
+        } else {
+          vm.modalNewHoraqrio = $uibModal.open({
+            animation: true,
+            templateUrl: 'views/modals/agregarHorario.modal.html',
+            scope: $scope,
+            size: 'lm',
+            backdrop: 'static'
+          });
+        }
+      }
+
+      function openModalEditarHorario(keyHorario) {
+        vm.isEditHorario = true;
+        vm.horario = vm.horarios[keyHorario];
+        vm.keyHorario = keyHorario;
+        openModalNewHorario();
+      }
+
       function getConsignas(consignaName) {
 
         firebase.database().ref('Argus/Consigna/' + vm.client.clienteNombre + '/' + consignaName)
@@ -193,6 +248,7 @@ argus
         if (vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador') {
           vm.isEdit = true;
           vm.client = client;
+          getHorariosByClient(clientName);
           vm.saveZona = vm.client.clienteZonaAsignada;
           for (var guard in vm.client.clienteGuardias) {
             vm.saveGuardias.push(guard);
@@ -216,6 +272,14 @@ argus
 
           vm.openModal();
         }
+      }
+
+      function getHorariosByClient(clienteNombre) {
+        firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/Horarios')
+          .on('value', function (dataSnapshot) {
+            vm.horarios = dataSnapshot.val();
+            $rootScope.$applyAsync();
+          })
       }
 
       function editClientCancel() {
@@ -319,79 +383,6 @@ argus
               responsableCorreo: vm.listResponsibles[responsible].responsibleEmail
             });
           }
-          //
-          // //Agregar horario
-          // var l = false, ma = false, mi = false, j = false, v = false, s = false, d = false;
-          // for (var index in vm.listDaysSchedule) {
-          //   switch (vm.listDaysSchedule[index]) {
-          //     case 'lunes':
-          //       l = true;
-          //       break;
-          //     case 'martes':
-          //       ma = true;
-          //       break;
-          //     case 'miercoles':
-          //       mi = true;
-          //       break;
-          //     case 'jueves':
-          //       j = true;
-          //       break;
-          //     case 'viernes':
-          //       v = true;
-          //       break;
-          //     case 'sabado':
-          //       s = true;
-          //       break;
-          //     case 'domingo':
-          //       d = true;
-          //       break;
-          //   }
-          // }
-          // var openingTimeh1 = verificarValoDeHorarios('tiempoAperturah1');
-          // var closingTimeh1 = verificarValoDeHorarios('tiempoCierreh1');
-          //
-          // var openingTimeh2 = verificarValoDeHorarios('tiempoAperturah2');
-          // var closingTimeh2 = verificarValoDeHorarios('tiempoCierreh2');
-          //
-          // var openingTimeh3 = verificarValoDeHorarios('tiempoAperturah3');
-          // var closingTimeh3 = verificarValoDeHorarios('tiempoCierreh3');
-          //
-          // // var openingTimeh1 = vm.openingTimeh1;
-          // // var closingTimeh1 = vm.closingTimeh1;
-          // //
-          // // var openingTimeh2 = vm.openingTimeh2;
-          // // var closingTimeh2 = vm.closingTimeh2;
-          // //
-          // // var openingTimeh3 = vm.openingTimeh3;
-          // // var closingTimeh3 = vm.closingTimeh3;
-          //
-          // firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).child('clienteHorario/primerHorario').set({
-          //   'horaApertura': openingTimeh1,
-          //   'horaCierre': closingTimeh1
-          // });
-          // firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).child('clienteHorario/segundoHorario').set({
-          //   'horaApertura': openingTimeh2,
-          //   'horaCierre': closingTimeh2
-          // });
-          // firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).child('clienteHorario/tercerHorario').set({
-          //   'horaApertura': openingTimeh3,
-          //   'horaCierre': closingTimeh3
-          // });
-          //
-          // firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteHorario/diasLaborados').set({
-          //   'lunes': l,
-          //   'martes': ma,
-          //   'miercoles': mi,
-          //   'jueves': j,
-          //   'viernes': v,
-          //   'sabado': s,
-          //   'domingo': d
-          // });
-          // firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteHorario').set({
-          //   'horaApertura': vm.openingTime,
-          //   'horaCierre': vm.closingTime
-          // });
-
 
           vm.client = {};
           vm.client.clienteDisponible = true;
@@ -417,7 +408,6 @@ argus
           })
         } else {
           vm.guardsToClient.splice(guardIndex, 1);
-          0
         }
       }
 
@@ -444,10 +434,7 @@ argus
             clienteZonaAsignada: vm.client.clienteZonaAsignada
           });
         }
-        // firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).update({
-        //   clienteNumeroGuardias: vm.client.clienteNumeroGuardias,
-        //   clienteDomicilio: vm.client.clienteDomicilio
-        // });
+
         firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).update({
           clienteDomicilio: vm.client.clienteDomicilio,
           clienteZonaAsignada: vm.client.clienteZonaAsignada ? vm.client.clienteZonaAsignada : ''
@@ -481,86 +468,7 @@ argus
             responsableCorreo: vm.listResponsibles[responsible].responsibleEmail
           });
         }
-        getResponsibles( vm.client.clienteNombre );
-
-        // firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteResponsables').push({
-        //   // jsonResponsibles
-        //   responsableNombre: vm.listResponsibles[responsible].responsibleName,
-        //   responsableTelefono:vm.listResponsibles[responsible].responsiblePhone,
-        //   responsableDomicilio: domicilio,
-        //   responsableCorreo: vm.listResponsibles[responsible].responsibleEmail
-        // });
-        //
-        // //Actualizar horario
-        // var l = false, ma = false, mi = false, j = false, v = false, s = false, d = false;
-        // for (var index in vm.listDaysSchedule) {
-        //   switch (vm.listDaysSchedule[index]) {
-        //     case 'lunes':
-        //       l = true;
-        //       break;
-        //     case 'martes':
-        //       ma = true;
-        //       break;
-        //     case 'miercoles':
-        //       mi = true;
-        //       break;
-        //     case 'jueves':
-        //       j = true;
-        //       break;
-        //     case 'viernes':
-        //       v = true;
-        //       break;
-        //     case 'sabado':
-        //       s = true;
-        //       break;
-        //     case 'domingo':
-        //       d = true;
-        //       break;
-        //   }
-        // }
-        //
-        // var openingTimeh1 = verificarValoDeHorarios('tiempoAperturah1');
-        // var closingTimeh1 = verificarValoDeHorarios('tiempoCierreh1');
-        //
-        // var openingTimeh2 = verificarValoDeHorarios('tiempoAperturah2');
-        // var closingTimeh2 = verificarValoDeHorarios('tiempoCierreh2');
-        //
-        // var openingTimeh3 = verificarValoDeHorarios('tiempoAperturah3');
-        // var closingTimeh3 = verificarValoDeHorarios('tiempoCierreh3');
-        //
-        // // var openingTimeh1 = vm.openingTimeh1;
-        // // var closingTimeh1 = vm.closingTimeh1;
-        // //
-        // // var openingTimeh2 = vm.openingTimeh2;
-        // // var closingTimeh2 = vm.closingTimeh2;
-        // //
-        // // var openingTimeh3 = vm.openingTimeh3;
-        // // var closingTimeh3 = vm.closingTimeh3;
-        //
-        // firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).child('clienteHorario/primerHorario').update({
-        //   'horaApertura': openingTimeh1,
-        //   'horaCierre': closingTimeh1
-        // });
-        //
-        // firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).child('clienteHorario/segundoHorario').update({
-        //   'horaApertura': openingTimeh2,
-        //   'horaCierre': closingTimeh2
-        // });
-        //
-        // firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre).child('clienteHorario/tercerHorario').update({
-        //   'horaApertura': openingTimeh3,
-        //   'horaCierre': closingTimeh3
-        // });
-        //
-        // firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/clienteHorario/diasLaborados').update({
-        //   'lunes': l,
-        //   'martes': ma,
-        //   'miercoles': mi,
-        //   'jueves': j,
-        //   'viernes': v,
-        //   'sabado': s,
-        //   'domingo': d
-        // });
+        getResponsibles(vm.client.clienteNombre);
 
         vm.client = {};
         vm.client.clienteDisponible = true;
@@ -869,16 +777,6 @@ argus
         }
       }
 
-      // function verificarValoDeHorarios(id) {
-      //
-      //   if (document.getElementById(id).value == null) {
-      //     return '00:00';
-      //   } else {
-      //     return document.getElementById(id).value;
-      //   }
-      //
-      // }
-
       function getServices(zonaID, inputKey) {
         var zona = document.getElementById(zonaID).value;
 
@@ -893,6 +791,35 @@ argus
           }
         }
 
+      }
+
+      function agregarHorario() {
+        firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/Horarios').push(vm.horario);
+        cerrarHorario();
+      }
+
+      function editarHorario() {
+        var updates = {};
+        updates['Argus/Clientes/' + vm.client.clienteNombre + '/Horarios/'+vm.keyHorario] = {
+          desdeHora: vm.horario.desdeHora,
+          hastaHora: vm.horario.hastaHora,
+          dias: vm.horario.dias
+        };
+        firebase.database().ref().update(updates);
+        cerrarHorario();
+      }
+
+      function borrarHorarios() {
+        firebase.database().ref('Argus/Clientes/' + vm.client.clienteNombre + '/Horarios').remove();
+      }
+
+      function cerrarHorario() {
+        vm.horario = {};
+        vm.modalNewHoraqrio.dismiss();
+      }
+
+      function borrarHorario(keyHorario) {
+        firebase.database().ref('Argus/Clientes/'+ vm.client.clienteNombre + '/Horarios/' + keyHorario).remove();
       }
 
     }
