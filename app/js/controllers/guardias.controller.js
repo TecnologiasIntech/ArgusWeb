@@ -17,7 +17,7 @@ argus
       vm.coordinadores = {};
       vm.guardias = {};
       vm.zonas = {};
-      vm.zonesAvailable=[];
+      vm.zonesAvailable = [];
       vm.user.usuarioTipo = 'guardia';
       vm.userAsignacion = {};
       vm.emailAdmin = '';
@@ -30,8 +30,8 @@ argus
       vm.viewPassword = false;
       vm.isAssignmentToZone = false;
       vm.notificationkey = '';
-      vm.zonaSupervisorEliminado="";
-      vm.saveUser=[];
+      vm.zonaSupervisorEliminado = "";
+      vm.saveUser = [];
       vm.clienteDelGuardia = "";
       vm.existingError = false;
       vm.validar = validar;
@@ -54,19 +54,20 @@ argus
       vm.verifyUser = verifyUser;
       vm.suspenderGuardia = suspenderGuardia;
       vm.availableZones = availableZones;
+      vm.ObtenerZona = ObtenerZona;
 
       //private functions
       function activate() {
 
         firebase.database().ref('Argus/Clientes')
-          .on('value', function(snapshot){
+          .on('value', function (snapshot) {
             vm.customers = snapshot.val();
           });
 
         firebase.database().ref('Argus/Zonas/')
-        .on('value', function(snapshot){
-          vm.zonas = snapshot.val();
-        });
+          .on('value', function (snapshot) {
+            vm.zonas = snapshot.val();
+          });
 
         vm.isLoading = true;
 
@@ -96,22 +97,21 @@ argus
             $rootScope.$applyAsync();
           });
 
-        firebase.auth().onAuthStateChanged(function(user) {
+        firebase.auth().onAuthStateChanged(function (user) {
           if (user) {
 
-            if(user.providerData[0].providerId == 'password'){
+            if (user.providerData[0].providerId == 'password') {
               vm.usuarioNombre = user.email;
 
               userService.getUserType(user.email).then(function (response) {
                 vm.userType = response;
               })
-            }else{
+            } else {
               vm.usuarioNombre = user.displayName;
               vm.usuarioFotoPerfil = user.photoURL;
             }
           }
         });
-
 
 
         vm.emailAdmin = localStorage.getItem('email');
@@ -150,14 +150,14 @@ argus
       activate();
 
       function verifyUser(user) {
-        if(user === 'supervisor'){
+        if (user === 'supervisor') {
           availableZones();
           if (vm.zonasDisponibles.length > 0) {
             openModal();
           } else {
             alertService.error('No hay zonas disponibles', 'Agregar una nueva zona para poder agregar un supervisor');
           }
-        }else{
+        } else {
           openModal();
         }
       }
@@ -177,7 +177,7 @@ argus
       }
 
       function editUser(user, userKey, userType, turno, zona) {
-        if(vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador') {
+        if (vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador') {
           vm.isEdit = true;
           vm.user = user;
           vm.saveZonaSupervisor = zona;
@@ -215,45 +215,44 @@ argus
         // console.log(user);
       }
 
-      function editUserCancel(userType, isEdit){
+      function editUserCancel(userType, isEdit) {
         if (isEdit) {
-          if(userType === 'supervisor'){
-            firebase.database().ref('Argus/supervisores/'+ vm.user.usuarioKey)
-             .on('value', function(snapshot){
-               vm.zoneSupervisor = snapshot.val();
-               var domicilio = vm.zoneSupervisor.usuarioDomicilio.split(",");
-               vm.user.usuarioNombre = vm.zoneSupervisor.usuarioNombre;
-               vm.user.usuarioTelefono = vm.zoneSupervisor.usuarioTelefono;
-               vm.user.usuarioZona = vm.zoneSupervisor.usuarioZona;
-               vm.user.usuarioColony = domicilio[0];
-               vm.user.usuarioStreet =  domicilio[1];
-               vm.user.usuarioTurno = vm.zoneSupervisor.usuarioTurno;
+          if (userType === 'supervisor') {
+            firebase.database().ref('Argus/supervisores/' + vm.user.usuarioKey)
+              .on('value', function (snapshot) {
+                vm.zoneSupervisor = snapshot.val();
+                var domicilio = vm.zoneSupervisor.usuarioDomicilio.split(",");
+                vm.user.usuarioNombre = vm.zoneSupervisor.usuarioNombre;
+                vm.user.usuarioTelefono = vm.zoneSupervisor.usuarioTelefono;
+                vm.user.usuarioZona = vm.zoneSupervisor.usuarioZona;
+                vm.user.usuarioColony = domicilio[0];
+                vm.user.usuarioStreet = domicilio[1];
+                vm.user.usuarioTurno = vm.zoneSupervisor.usuarioTurno;
 
-               if (vm.zoneSupervisor.usuarioZona != undefined) { /*El undefined puede aparecer en caso de que se elimine la zona del supervisor*/
-                 if (vm.zoneSupervisor.usuarioTurno == 'Día' /*vm.user.usuarioTurno == 'Día'*/) {
-                   firebase.database().ref('Argus/Zonas/'+ vm.zoneSupervisor.usuarioZona +'/disponibilidadZona').update({
-                     disponibilidadDia: false
-                   });
-                 }
-                 else {
-                   firebase.database().ref('Argus/Zonas/'+ vm.zoneSupervisor.usuarioZona +'/disponibilidadZona').update({
-                     disponibilidadNoche: false
-                   });
-                 }
-               }
-               vm.saveUser=[];
-               vm.user = {};
-             });
+                if (vm.zoneSupervisor.usuarioZona != undefined) { /*El undefined puede aparecer en caso de que se elimine la zona del supervisor*/
+                  if (vm.zoneSupervisor.usuarioTurno == 'Día' /*vm.user.usuarioTurno == 'Día'*/) {
+                    firebase.database().ref('Argus/Zonas/' + vm.zoneSupervisor.usuarioZona + '/disponibilidadZona').update({
+                      disponibilidadDia: false
+                    });
+                  }
+                  else {
+                    firebase.database().ref('Argus/Zonas/' + vm.zoneSupervisor.usuarioZona + '/disponibilidadZona').update({
+                      disponibilidadNoche: false
+                    });
+                  }
+                }
+                vm.saveUser = [];
+                vm.user = {};
+              });
 
 
             fireService.get('Argus/Supervisores').then(function (response) {
 
 
-
             })
           }
         }
-        vm.saveUser=[];
+        vm.saveUser = [];
         vm.user = {};
       }
 
@@ -261,12 +260,12 @@ argus
         switch (vm.user.usuarioTipo) {
 
           case 'guardia':
-          if (vm.user.usuarioClienteAsignado != undefined && vm.user.usuarioClienteAsignado != 'Sin asignar') {
-             vm.user.usuarioDisponible = false;
-           }
-           else {
-             vm.user.usuarioDisponible = true;
-           }
+            if (vm.user.usuarioClienteAsignado != undefined && vm.user.usuarioClienteAsignado != 'Sin asignar') {
+              vm.user.usuarioDisponible = false;
+            }
+            else {
+              vm.user.usuarioDisponible = true;
+            }
             vm.user.usuarioDomicilio = vm.user.usuarioColony + ',' + vm.user.usuarioStreet;
             // ACTUALIZAR GUARDIAS
             // TODO: quitar telefono por telefono de casa y de celular
@@ -282,25 +281,25 @@ argus
               diaDescanso: parseInt(vm.user.diaDescanso)
             });
             if (vm.saveService != vm.user.usuarioClienteAsignado) {
-             if (vm.user.usuarioClienteAsignado != undefined && vm.user.usuarioClienteAsignado != 'Sin asignar') {
-               firebase.database().ref('Argus/Clientes/' + vm.saveService + '/clienteGuardias/' + vm.user.usuarioKey).remove();
-               firebase.database().ref('Argus/Clientes/' + vm.user.usuarioClienteAsignado + '/clienteGuardias/').child(vm.user.usuarioKey).set({
-                 usuarioKey: vm.user.usuarioKey,
-                 usuarioNombre: vm.user.usuarioNombre
-               });
-             }
-             else {
-               firebase.database().ref('Argus/Clientes/' + vm.saveService + '/clienteGuardias/' + vm.user.usuarioKey).remove();
-             }
-           }
+              if (vm.user.usuarioClienteAsignado != undefined && vm.user.usuarioClienteAsignado != 'Sin asignar') {
+                firebase.database().ref('Argus/Clientes/' + vm.saveService + '/clienteGuardias/' + vm.user.usuarioKey).remove();
+                firebase.database().ref('Argus/Clientes/' + vm.user.usuarioClienteAsignado + '/clienteGuardias/').child(vm.user.usuarioKey).set({
+                  usuarioKey: vm.user.usuarioKey,
+                  usuarioNombre: vm.user.usuarioNombre
+                });
+              }
+              else {
+                firebase.database().ref('Argus/Clientes/' + vm.saveService + '/clienteGuardias/' + vm.user.usuarioKey).remove();
+              }
+            }
             vm.update = true;
             break;
 
           case 'supervisor':
-          // ACTUALIZAR SUPERVISORES
+            // ACTUALIZAR SUPERVISORES
 
-            firebase.database().ref('Argus/Zonas/' + vm.user.usuarioZona +'/disponibilidadZona')
-              .once('value', function(snapshot){
+            firebase.database().ref('Argus/Zonas/' + vm.user.usuarioZona + '/disponibilidadZona')
+              .once('value', function (snapshot) {
                 vm.zonaUsuario = snapshot.val();
                 switch (vm.user.usuarioTurno) {
                   case 'Día':
@@ -328,24 +327,24 @@ argus
                   default:
                 }
               });
-              if (vm.update) {
-                vm.user.usuarioDomicilio = vm.user.usuarioColony + ',' + vm.user.usuarioStreet;
-                var updates = {};
-                // TODO: cambiar telefono por telefono de casa y de celular
-                updates['Argus/supervisores/' + vm.user.usuarioKey + '/usuarioDomicilio'] = vm.user.usuarioDomicilio;
-                updates['Argus/supervisores/' + vm.user.usuarioKey + '/usuarioNombre'] = vm.user.usuarioNombre;
-                updates['Argus/supervisores/' + vm.user.usuarioKey + '/usuarioTelefono'] = vm.user.usuarioTelefono;
-                updates['Argus/supervisores/' + vm.user.usuarioKey + '/usuarioTelefonoCelular'] = vm.user.usuarioTelefonoCelular;
-                updates['Argus/supervisores/' + vm.user.usuarioKey + '/usuarioTurno'] = vm.user.usuarioTurno;
-                updates['Argus/supervisores/' + vm.user.usuarioKey + '/usuarioZona'] = vm.user.usuarioZona;
-                if (vm.user.usuarioTurno == 'Día') {
-                  updates['Argus/Zonas/'+vm.user.usuarioZona + '/disponibilidadZona/disponibilidadDia'] = false;
-                }
-                else {
-                  updates['Argus/Zonas/'+vm.user.usuarioZona + '/disponibilidadZona/disponibilidadNoche'] = false;
-                }
-                firebase.database().ref().update(updates);
+            if (vm.update) {
+              vm.user.usuarioDomicilio = vm.user.usuarioColony + ',' + vm.user.usuarioStreet;
+              var updates = {};
+              // TODO: cambiar telefono por telefono de casa y de celular
+              updates['Argus/supervisores/' + vm.user.usuarioKey + '/usuarioDomicilio'] = vm.user.usuarioDomicilio;
+              updates['Argus/supervisores/' + vm.user.usuarioKey + '/usuarioNombre'] = vm.user.usuarioNombre;
+              updates['Argus/supervisores/' + vm.user.usuarioKey + '/usuarioTelefono'] = vm.user.usuarioTelefono;
+              updates['Argus/supervisores/' + vm.user.usuarioKey + '/usuarioTelefonoCelular'] = vm.user.usuarioTelefonoCelular;
+              updates['Argus/supervisores/' + vm.user.usuarioKey + '/usuarioTurno'] = vm.user.usuarioTurno;
+              updates['Argus/supervisores/' + vm.user.usuarioKey + '/usuarioZona'] = vm.user.usuarioZona;
+              if (vm.user.usuarioTurno == 'Día') {
+                updates['Argus/Zonas/' + vm.user.usuarioZona + '/disponibilidadZona/disponibilidadDia'] = false;
               }
+              else {
+                updates['Argus/Zonas/' + vm.user.usuarioZona + '/disponibilidadZona/disponibilidadNoche'] = false;
+              }
+              firebase.database().ref().update(updates);
+            }
             break;
 
           case 'administrador':
@@ -353,7 +352,7 @@ argus
             // ACTUALIZAR ADMINISTRADORES
             firebase.database().ref('Argus/administradores/' + vm.user.usuarioKey + '/').update({
               usuarioNombre: vm.user.usuarioNombre
-            //  TODO: Agregar telefono de casa y telefono de celular
+              //  TODO: Agregar telefono de casa y telefono de celular
             });
             vm.update = true;
             break;
@@ -373,61 +372,61 @@ argus
         vm.zonaSupervisorEliminado = "";
 
         alertService.confirm('Eliminar usuario', '¿Estás seguro de que desea eliminar este usuario?').then(function () {
-          if(user.usuarioTipo != 'guardia'){
+          if (user.usuarioTipo != 'guardia') {
 
             /*Obtenemos la zona que tiene asignada el supervisor*/
-            firebase.database().ref('Argus/supervisores/'+ userKey).child('usuarioZona')
-            .on('value', function(snapshot){
-              vm.zonaSupervisorEliminado = snapshot.val();
-              //Cerramos sesion
-              firebase.auth().signOut().then(function () {
-                // Iniciamos sesion
-                firebase.auth().signInWithEmailAndPassword(user.usuarioEmail, user.usuarioContrasena).then(function () {
-                  //Eliminamos la cuenta de Autentification
-                  var user = firebase.auth().currentUser;
-                  user.delete().then(function() {
-                    // Volvemos a iniciar sesion actual
-                    firebase.auth().signInWithEmailAndPassword(vm.emailAdmin, vm.passwordAdmin).then(function () {
-                      // Listo
-                      firebase.database().ref('Argus/' + type + '/' + userKey).remove();
-                      location.reload();
+            firebase.database().ref('Argus/supervisores/' + userKey).child('usuarioZona')
+              .on('value', function (snapshot) {
+                vm.zonaSupervisorEliminado = snapshot.val();
+                //Cerramos sesion
+                firebase.auth().signOut().then(function () {
+                  // Iniciamos sesion
+                  firebase.auth().signInWithEmailAndPassword(user.usuarioEmail, user.usuarioContrasena).then(function () {
+                    //Eliminamos la cuenta de Autentification
+                    var user = firebase.auth().currentUser;
+                    user.delete().then(function () {
+                      // Volvemos a iniciar sesion actual
+                      firebase.auth().signInWithEmailAndPassword(vm.emailAdmin, vm.passwordAdmin).then(function () {
+                        // Listo
+                        firebase.database().ref('Argus/' + type + '/' + userKey).remove();
+                        location.reload();
 
-                    }).catch(function (error) {
-                      var errorCode = error.code;
-                      console.log(errorCode);
+                      }).catch(function (error) {
+                        var errorCode = error.code;
+                        console.log(errorCode);
+                      });
+
+                    }, function (error) {
+                      console.log(error);
                     });
 
-                  }, function(error) {
-                    console.log(error);
-                  });
+                  }).catch(function (error) {
+                    var errorCode = error.code;
+                    //Inicio de sesion de emergencia
+                    firebase.auth().signInWithEmailAndPassword(vm.emailAdmin, vm.passwordAdmin).then(function () {
+                    });
 
-                }).catch(function (error) {
-                  var errorCode = error.code;
-                  //Inicio de sesion de emergencia
-                  firebase.auth().signInWithEmailAndPassword(vm.emailAdmin, vm.passwordAdmin).then(function () {
                   });
-
+                }, function (error) {
                 });
-              }, function (error) {
+                /*Una vez eliminado el supervisor hacemos dispobible la zona que tenia asignada*/
+                if (vm.zonaSupervisorEliminado != undefined && vm.zonaSupervisorEliminado != 'Sin asignar') {
+                  if (turno == 'Día') {
+                    firebase.database().ref('Argus/Zonas/' + vm.zonaSupervisorEliminado + '/disponibilidadZona').update({
+                      disponibilidadDia: true
+                    });
+                  }
+                  else {
+                    firebase.database().ref('Argus/Zonas/' + vm.zonaSupervisorEliminado + '/disponibilidadZona').update({
+                      disponibilidadNoche: true
+                    });
+                  }
+                }
               });
-              /*Una vez eliminado el supervisor hacemos dispobible la zona que tenia asignada*/
-              if (vm.zonaSupervisorEliminado != undefined && vm.zonaSupervisorEliminado != 'Sin asignar') {
-                if (turno == 'Día') {
-                 firebase.database().ref('Argus/Zonas/'+ vm.zonaSupervisorEliminado+'/disponibilidadZona').update({
-                   disponibilidadDia: true
-                 });
-                 }
-                 else {
-                 firebase.database().ref('Argus/Zonas/'+ vm.zonaSupervisorEliminado +'/disponibilidadZona').update({
-                   disponibilidadNoche: true
-                 });
-               }
-              }
-            });
           }
-          else{
+          else {
             firebase.database().ref('Argus/' + type + '/' + user.$key).remove();
-            if(user.usuarioClienteAsignado){
+            if (user.usuarioClienteAsignado) {
               firebase.database().ref('Argus/Clientes/' + user.usuarioClienteAsignado + '/clienteGuardias/' + userKey).remove();
             }
           }
@@ -436,39 +435,39 @@ argus
 
       function registerUser() {
         if (vm.user.usuarioTipo != 'guardia') {
-          if(vm.user.usuarioTipo == 'supervisor' && !vm.user.usuarioZona){
+          if (vm.user.usuarioTipo == 'supervisor' && !vm.user.usuarioZona) {
             growl.error('Tiene que seleccionar una zona!', vm.config);
-          }else{
+          } else {
             firebase.database().ref('Argus/Zonas/' + vm.user.usuarioZona)
-             .on('value', function(snapshot){
-               var zonaUsuario = snapshot.val();
-               for (var detallesZona in zonaUsuario) {
-                 if (detallesZona == "disponibilidadZona") {
-                   detallesZona = zonaUsuario[detallesZona];
-                   switch (vm.user.usuarioTurno) {
-                     case 'Día':
-                       if (detallesZona.disponibilidadDia) {
-                         registerUserWithEmail();
-                       }
-                       else {
-                         alert("Ya existe un supervisor con este turno")
-                       }
-                       break;
-                     case 'Noche':
-                       if (detallesZona.disponibilidadNoche) {
-                         registerUserWithEmail();
-                       }
-                       else {
-                         alert("Ya existe un supervisor con este turno")
-                       }
-                       break;
-                     default:
+              .on('value', function (snapshot) {
+                var zonaUsuario = snapshot.val();
+                for (var detallesZona in zonaUsuario) {
+                  if (detallesZona == "disponibilidadZona") {
+                    detallesZona = zonaUsuario[detallesZona];
+                    switch (vm.user.usuarioTurno) {
+                      case 'Día':
+                        if (detallesZona.disponibilidadDia) {
+                          registerUserWithEmail();
+                        }
+                        else {
+                          alert("Ya existe un supervisor con este turno")
+                        }
+                        break;
+                      case 'Noche':
+                        if (detallesZona.disponibilidadNoche) {
+                          registerUserWithEmail();
+                        }
+                        else {
+                          alert("Ya existe un supervisor con este turno")
+                        }
+                        break;
+                      default:
 
-                   }
-                 }
-               }
-             });
-         }
+                    }
+                  }
+                }
+              });
+          }
         } else {
           saveUserInformation();
         }
@@ -477,7 +476,7 @@ argus
       function registerUserWithEmail() {
         vm.existingError = false;
         vm.isLoadingRegister = true;
-        firebase.auth().createUserWithEmailAndPassword(vm.user.usuarioEmail, vm.user.usuarioContrasena).catch(function(error) {
+        firebase.auth().createUserWithEmailAndPassword(vm.user.usuarioEmail, vm.user.usuarioContrasena).catch(function (error) {
           switch (error.code) {
             case 'auth/email-already-in-use':
               alertService.error('Email ya en uso', 'Intenta con uno diferente');
@@ -499,7 +498,7 @@ argus
           }
           vm.isLoadingRegister = false;
           $rootScope.$applyAsync();
-        }).then(function(){
+        }).then(function () {
           if (!vm.existingError) {
             //Cerramos sesion
             firebase.auth().signOut().then(function () {
@@ -526,104 +525,126 @@ argus
       }
 
       function saveUserInformation() {
-        var tipoPlural;
-        if (vm.user.usuarioTipo != 'guardia') {
-          tipoPlural = 'es';
+
+        if (!vm.user.tipoPago) {
+          alertService.error('Falta asignar el tipo de pago', 'Complete el campo');
+        } else if (!vm.user.usuarioTurno) {
+          alertService.error('Falta asignar Turno', 'Complete el campo');
+        } else if (!vm.user.usuarioClienteAsignado) {
+          alertService.error('Falta asignar Cliente', 'Complete el campo');
+        } else if (vm.user.diaDescanso == undefined) {
+          alertService.error('Falta asignar Dia de descanso', 'Complete el campo');
         } else {
-          tipoPlural = 's';
-          if(vm.isAssignmentToZone){
-            vm.user.usuarioDisponible = false;
-          }else{
-            vm.user.usuarioDisponible = true;
-          }
-
-        }
-
-        // vm.user.usuarioDomicilio = vm.user.usuarioColony + "," + vm.user.usuarioStreet;
-        // delete vm.user.usuarioColony;
-        // delete vm.user.usuarioStreet;
-
-        if (vm.user.usuarioTipo == 'guardia') {
-          if (vm.user.usuarioClienteAsignado != undefined && vm.user.usuarioClienteAsignado != 'Sin asignar' ) {
-            vm.user.usuarioDisponible = false;
-            var key = firebase.database().ref('Argus/' + vm.user.usuarioTipo + tipoPlural).push(vm.user).key;
-            firebase.database().ref('Argus/Clientes/' + vm.user.usuarioClienteAsignado + '/clienteGuardias').child(key).set({
-              usuarioKey: key,
-              usuarioNombre: vm.user.usuarioNombre
-            });
-          }
-          else {
-            vm.user.usuarioDisponible = true;
-            var key = firebase.database().ref('Argus/' + vm.user.usuarioTipo + tipoPlural).push(vm.user).key;
-          }
-
-          firebase.database().ref('Argus/guardias/' + key).update(
-            {
-              usuarioKey: key,
-              diaDescanso: parseInt(vm.user.diaDescanso)
-            }
-          )
-        }
-        else {
-          var key = firebase.database().ref('Argus/' + vm.user.usuarioTipo + tipoPlural).push(vm.user).key;
-        }
-
-
-        if(vm.user.usuarioTipo == 'supervisor'){
-            if (vm.user.usuarioTurno == 'Día') {
-              firebase.database().ref('Argus/Zonas/'+vm.user.usuarioZona + '/disponibilidadZona').child('disponibilidadDia').set(false);
-            }
-            else {
-              firebase.database().ref('Argus/Zonas/'+vm.user.usuarioZona + '/disponibilidadZona').child('disponibilidadNoche').set(false);
-            }
-        }
-
-        if(vm.isAssignmentToZone){
 
           firebase.database().ref('Argus/guardias')
             .orderByChild('usuarioNombre')
             .equalTo(vm.user.usuarioNombre)
-            .on('value', function (snapshot) {
-              var guardia = snapshot.val();
-              vm.user.key = Object.keys(guardia);
+            .once('value', function (resp) {
+              if (resp.val()) {
+                alertService.error('Nombre de guardia repetido', 'Cambie el nombre del guardia.');
+              } else {
 
-              firebase.database().ref('Argus/Clientes/' + vm.user.usuarioClienteAsignado + '/clienteGuardias/' + vm.user.key).set({
-                usuarioKey: vm.user.key[0],
-                usuarioNombre: vm.user.usuarioNombre
-              });
-              firebase.database().ref('Argus/NotificacionTmp/' + vm.notificationkey).remove();
+                var tipoPlural;
+                if (vm.user.usuarioTipo != 'guardia') {
+                  tipoPlural = 'es';
+                } else {
+                  tipoPlural = 's';
+                  if (vm.isAssignmentToZone) {
+                    vm.user.usuarioDisponible = false;
+                  } else {
+                    vm.user.usuarioDisponible = true;
+                  }
 
-              vm.isAssignmentToZone = false;
-              vm.notificationkey = '';
-            });
+                }
 
-          // actualizar estatus de la bitacora a verde
-          firebase.database().ref('Argus/BitacoraRegistro/' + vm.notificationBitacora.codigoFecha + '/' + vm.notificationBitacora.llaveSupervisor + '/' + vm.notificationBitacora.llaveObservacion + '/')
-            .update({
-              semaforo: 1
+                // vm.user.usuarioDomicilio = vm.user.usuarioColony + "," + vm.user.usuarioStreet;
+                // delete vm.user.usuarioColony;
+                // delete vm.user.usuarioStreet;
+
+                if (vm.user.usuarioTipo == 'guardia') {
+                  if (vm.user.usuarioClienteAsignado != undefined && vm.user.usuarioClienteAsignado != 'Sin asignar') {
+                    vm.user.usuarioDisponible = false;
+                    var key = firebase.database().ref('Argus/' + vm.user.usuarioTipo + tipoPlural).push(vm.user).key;
+                    firebase.database().ref('Argus/Clientes/' + vm.user.usuarioClienteAsignado + '/clienteGuardias').child(key).set({
+                      usuarioKey: key,
+                      usuarioNombre: vm.user.usuarioNombre
+                    });
+                  }
+                  else {
+                    vm.user.usuarioDisponible = true;
+                    var key = firebase.database().ref('Argus/' + vm.user.usuarioTipo + tipoPlural).push(vm.user).key;
+                  }
+
+                  firebase.database().ref('Argus/guardias/' + key).update(
+                    {
+                      usuarioKey: key,
+                      diaDescanso: parseInt(vm.user.diaDescanso)
+                    }
+                  )
+                }
+                else {
+                  var key = firebase.database().ref('Argus/' + vm.user.usuarioTipo + tipoPlural).push(vm.user).key;
+                }
+
+
+                if (vm.user.usuarioTipo == 'supervisor') {
+                  if (vm.user.usuarioTurno == 'Día') {
+                    firebase.database().ref('Argus/Zonas/' + vm.user.usuarioZona + '/disponibilidadZona').child('disponibilidadDia').set(false);
+                  }
+                  else {
+                    firebase.database().ref('Argus/Zonas/' + vm.user.usuarioZona + '/disponibilidadZona').child('disponibilidadNoche').set(false);
+                  }
+                }
+
+                if (vm.isAssignmentToZone) {
+
+                  firebase.database().ref('Argus/guardias')
+                    .orderByChild('usuarioNombre')
+                    .equalTo(vm.user.usuarioNombre)
+                    .on('value', function (snapshot) {
+                      var guardia = snapshot.val();
+                      vm.user.key = Object.keys(guardia);
+
+                      firebase.database().ref('Argus/Clientes/' + vm.user.usuarioClienteAsignado + '/clienteGuardias/' + vm.user.key).set({
+                        usuarioKey: vm.user.key[0],
+                        usuarioNombre: vm.user.usuarioNombre
+                      });
+                      firebase.database().ref('Argus/NotificacionTmp/' + vm.notificationkey).remove();
+
+                      vm.isAssignmentToZone = false;
+                      vm.notificationkey = '';
+                    });
+
+                  // actualizar estatus de la bitacora a verde
+                  firebase.database().ref('Argus/BitacoraRegistro/' + vm.notificationBitacora.codigoFecha + '/' + vm.notificationBitacora.llaveSupervisor + '/' + vm.notificationBitacora.llaveObservacion + '/')
+                    .update({
+                      semaforo: 1
+                    });
+                }
+                vm.user = {};
+                vm.user.usuarioTipo = 'guardia';
+                // $rootScope.$apply();
+                growl.success('Usuario Agregado exitosamente!', vm.config);
+                vm.isNewGuardiaofSeivice = false;
+                vm.modal.dismiss();
+              }
             });
         }
-        vm.user = {};
-        vm.user.usuarioTipo = 'guardia';
-        // $rootScope.$apply();
-        growl.success('Usuario Agregado exitosamente!', vm.config);
-        vm.isNewGuardiaofSeivice =  false;
-        vm.modal.dismiss();
-
       }
 
       function validar(e) { // 1
         tecla = (document.all) ? e.keyCode : e.which; // 2
-        if (tecla==8) return true; // 3
-        patron =/[A-Za-z\s]/; // 4
+        if (tecla == 8) return true; // 3
+        patron = /[A-Za-z\s]/; // 4
         te = String.fromCharCode(tecla); // 5
         return patron.test(te); // 6
       }
 
-      function availableZones(){
+      function availableZones() {
         vm.zonasDisponibles = [];
         for (var zona in vm.zonas) {
-          var nameZone = zona; /*En esta linea guardo el nombre de la zona para ponerlo en la lista de disponibles*/
+          var nameZone = zona;
+          /*En esta linea guardo el nombre de la zona para ponerlo en la lista de disponibles*/
           zona = vm.zonas[zona];
           for (var detallesZona in zona) {
             if (detallesZona == "disponibilidadZona") {
@@ -639,7 +660,7 @@ argus
         }
       }
 
-      function suspenderGuardia( guardKey ) {
+      function suspenderGuardia(guardKey) {
 
         alertService.confirm('Suspender Guardia', 'Estas seguro que deseas suspender a este guardia?').then(function () {
 
@@ -650,15 +671,38 @@ argus
         });
       }
 
-      // vm.insertarKey = function (key) {
-      //
-      //   firebase.database().ref('Argus/guardias/' + key).update({
-      //     usuarioKey: key
-      //   })
-      //
-      // }
+      function ObtenerZona(clienteKey) {
+        try {
+          if (vm.customers[clienteKey].clienteZonaAsignada != undefined) {
+            return vm.customers[clienteKey].clienteZonaAsignada;
+          } else {
+            return 'No asignada';
+          }
+        } catch (err) {
+          return 'No asignada'
+        }
 
+        // firebase.database().ref('Argus/Clientes/'+clienteKey)
+        //   .on('value', function (dataSnapshot) {
+        //     var cliente = dataSnapshot.val();
+        //
+        //     if(cliente.clienteZonaAsignada){
+        //       return cliente.clienteZonaAsignada;
+        //     }else{
+        //       return 'No asignado';
+        //     }
+        //   });
+      }
+
+// vm.insertarKey = function (key) {
+//
+//   firebase.database().ref('Argus/guardias/' + key).update({
+//     usuarioKey: key
+//   })
+//
+// }
 
 
     }
-  ]);
+  ])
+;

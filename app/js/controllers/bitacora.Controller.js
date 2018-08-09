@@ -16,26 +16,15 @@ argus
       vm.picture = '';
       vm.binnacleToExport = [];
 
-
       //public functions
       vm.viewRecords = viewRecords;
       vm.openPicture = openPicture;
       vm.openModal = openModal;
       vm.cancelAsssist = cancelAsssist;
       vm.downloadCSV = downloadCSV;
-      // vm.createBitacora = createBitacora;
 
       //private functions
       function activate() {
-        // var user = firebase.auth().currentUser;
-        // $timeout( function(){
-        //   if (user) {
-        //     // User is signed in.
-        //   } else {
-        //     $location.path('/login');
-        //     // $rootScope.$apply();
-        //   }
-        // }, 100 );
 
         firebase.auth().onAuthStateChanged(function(user) {
           if (user) {
@@ -54,24 +43,7 @@ argus
         });
       }
 
-
       activate();
-      //
-      // function createBitacora() {
-      //   for(var y = 2017; y <= 2029; y++ ){
-      //     for(var m = 1; m <= 12; m++ ) {
-      //       for(var d = 1; d <= 32; d++){
-      //
-      //         var m = ("0" + (m)).slice(-2);
-      //         var d = ("0" + (d)).slice(-2);
-      //
-      //         firebase.database().ref('Argus/Bitacora/' + y.toString() + m.toString() + d.toString()).set({
-      //           fecha: y.toString() + m.toString() + d.toString()
-      //         })
-      //       }
-      //     }
-      //   }
-      // }
 
       function openModal() {
         vm.modal = $uibModal.open({
@@ -95,20 +67,7 @@ argus
             .once('value', function (snapshot) {
               vm.records = {};
               vm.records = snapshot.val();
-              //
-              // vm.result = Object.keys(vm.records).map(function (e) {
-              //   return Number(e), vm.records[e];
-              // });
-
-              // console.log(vm.records[20170318]);
               vm.recordsLength = Object.keys(vm.records).length;
-              // if (vm.recordsLength != 0) {
-              //   vm.isReady = true;
-              // } else {
-              //   vm.isReady = false;
-              // }
-
-
 
               $rootScope.$applyAsync();
             })
@@ -194,8 +153,6 @@ argus
           }
         }
 
-
-
         var csv = convertArrayOfObjectsToCSV({
           data: vm.binnacleToExport
         });
@@ -213,14 +170,5 @@ argus
         link.setAttribute('download', filename);
         link.click();
       }
-
-      function getFirma() {
-
-      }
-
-      function getFoto() {
-
-      }
-
     }
   ]);

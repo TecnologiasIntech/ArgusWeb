@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7f4ae1f1-b0de-4894-a4d9-423677ee78ea" name="Default" comment="" />
+    <list default="true" id="7f4ae1f1-b0de-4894-a4d9-423677ee78ea" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/directives/ngEnter.Directive.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/directives/ngEnter.Directive.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/js/controllers/bitacora.Controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/js/controllers/bitacora.Controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/js/controllers/guardias.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/js/controllers/guardias.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/js/controllers/header.Controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/js/controllers/header.Controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/js/controllers/nomina.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/js/controllers/nomina.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/js/controllers/preNomina.Controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/js/controllers/preNomina.Controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/template/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/template/footer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/template/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/template/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/bitacoraRegistro.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/bitacoraRegistro.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/bitacoras.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/bitacoras.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/guardias.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/guardias.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/modals/supervisores.modal.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/modals/supervisores.modal.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/preNomina.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/preNomina.html" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -20,7 +37,7 @@
     <favorites_list name="ArgusWeb.git" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375" />
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -33,23 +50,11 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>guard.fir</find>
-      <find>firebase</find>
-      <find>vm.records</find>
-      <find>second</find>
-      <find>recordsLength</find>
-      <find>getMonth</find>
-      <find>dobleturno</find>
-      <find>domi</find>
-      <find>saveuser</find>
-      <find>agregar</find>
-      <find>init</find>
       <find>user</find>
       <find>user.</find>
       <find>user.d</find>
       <find>not-found-quote</find>
       <find>mas</find>
-      <find>repe</find>
       <find>cancelar</find>
       <find>cerrar</find>
       <find>horario</find>
@@ -63,6 +68,18 @@
       <find>vm.keyHorario</find>
       <find>update</find>
       <find>horarios</find>
+      <find>pre</find>
+      <find>vm.paySheet</find>
+      <find>paySheetToExcel</find>
+      <find>repe</find>
+      <find>mover</find>
+      <find>radio</find>
+      <find>elimi</find>
+      <find>turno</find>
+      <find>servici</find>
+      <find>diades</find>
+      <find>saveuserin</find>
+      <find>tipopa</find>
     </findStrings>
     <replaceStrings>
       <replace>sm</replace>
@@ -80,8 +97,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/constants/constants.js" />
-        <option value="$PROJECT_DIR$/app/views/login.html" />
         <option value="$PROJECT_DIR$/app/js/controllers/loginController.js" />
         <option value="$PROJECT_DIR$/app/services/userService.js" />
         <option value="$PROJECT_DIR$/app/services/user.service.js" />
@@ -89,7 +104,6 @@
         <option value="$PROJECT_DIR$/app/views/nomina.html" />
         <option value="$PROJECT_DIR$/app/services/diaDeSemana.service.js" />
         <option value="$PROJECT_DIR$/app/services/getDate.service.js" />
-        <option value="$PROJECT_DIR$/app/js/controllers/nomina.controller.js" />
         <option value="$PROJECT_DIR$/app/services/objets.service.js" />
         <option value="$PROJECT_DIR$/app/js/controllers/preNomina.controller.js" />
         <option value="$PROJECT_DIR$/app/services/alert.service.js" />
@@ -106,31 +120,34 @@
         <option value="$PROJECT_DIR$/app/views/supervisores.html" />
         <option value="$PROJECT_DIR$/app/views/clientes.html" />
         <option value="$PROJECT_DIR$/app/views/zonas.html" />
-        <option value="$PROJECT_DIR$/app/views/bitacoraRegistro.html" />
-        <option value="$PROJECT_DIR$/app/views/guardias.html" />
         <option value="$PROJECT_DIR$/app/css/app.min.2.css" />
         <option value="$PROJECT_DIR$/app/css/app.css" />
         <option value="$PROJECT_DIR$/app/js/controllers/footer.controller.js" />
-        <option value="$PROJECT_DIR$/app/template/footer.html" />
         <option value="$PROJECT_DIR$/app/template/sidebar-left.html" />
         <option value="$PROJECT_DIR$/app/js/controllers/supervisores.controller.js" />
         <option value="$PROJECT_DIR$/app/js/controllers/sidebar.Controller.js" />
         <option value="$PROJECT_DIR$/app/index.html" />
-        <option value="$PROJECT_DIR$/app/js/controllers/bitacora.Controller.js" />
-        <option value="$PROJECT_DIR$/app/views/bitacoras.html" />
-        <option value="$PROJECT_DIR$/app/template/header.html" />
-        <option value="$PROJECT_DIR$/app/js/controllers/header.Controller.js" />
-        <option value="$PROJECT_DIR$/app/views/preNomina.html" />
-        <option value="$PROJECT_DIR$/app/js/controllers/preNomina.Controller.js" />
-        <option value="$PROJECT_DIR$/app/js/controllers/guardias.controller.js" />
-        <option value="$PROJECT_DIR$/app/views/modals/supervisores.modal.html" />
         <option value="$PROJECT_DIR$/app/services/date.service.js" />
-        <option value="$PROJECT_DIR$/app/css/main.css" />
         <option value="$PROJECT_DIR$/app/js/config.js" />
         <option value="$PROJECT_DIR$/app/services/objects.service.js" />
         <option value="$PROJECT_DIR$/app/views/modals/agregarHorario.modal.html" />
         <option value="$PROJECT_DIR$/app/js/controllers/clientes.controller.js" />
         <option value="$PROJECT_DIR$/app/views/modals/clientes.modal.html" />
+        <option value="$PROJECT_DIR$/app/js/controllers/nomina.controller.js" />
+        <option value="$PROJECT_DIR$/app/views/preNomina.html" />
+        <option value="$PROJECT_DIR$/app/js/controllers/preNomina.Controller.js" />
+        <option value="$PROJECT_DIR$/app/js/controllers/bitacora.Controller.js" />
+        <option value="$PROJECT_DIR$/app/views/bitacoras.html" />
+        <option value="$PROJECT_DIR$/app/css/main.css" />
+        <option value="$PROJECT_DIR$/app/views/bitacoraRegistro.html" />
+        <option value="$PROJECT_DIR$/app/template/header.html" />
+        <option value="$PROJECT_DIR$/app/js/controllers/header.Controller.js" />
+        <option value="$PROJECT_DIR$/app/js/app.js" />
+        <option value="$PROJECT_DIR$/app/directives/ngEnter.Directive.js" />
+        <option value="$PROJECT_DIR$/app/views/guardias.html" />
+        <option value="$PROJECT_DIR$/app/views/modals/supervisores.modal.html" />
+        <option value="$PROJECT_DIR$/app/js/controllers/guardias.controller.js" />
+        <option value="$PROJECT_DIR$/app/template/footer.html" />
       </list>
     </option>
   </component>
@@ -193,6 +210,44 @@
     <handled-path value="$PROJECT_DIR$/app/node_modules" />
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/app/bower_components/angular-animate/package.json" />
+      <path value="$PROJECT_DIR$/app/bower_components/angular-cookies/package.json" />
+      <path value="$PROJECT_DIR$/app/bower_components/angular-messages/package.json" />
+      <path value="$PROJECT_DIR$/app/bower_components/angular-mocks/package.json" />
+      <path value="$PROJECT_DIR$/app/bower_components/angular-resource/package.json" />
+      <path value="$PROJECT_DIR$/app/bower_components/angular-route/package.json" />
+      <path value="$PROJECT_DIR$/app/bower_components/angular-sanitize/package.json" />
+      <path value="$PROJECT_DIR$/app/bower_components/angular-toArrayFilter/package.json" />
+      <path value="$PROJECT_DIR$/app/bower_components/angular-touch/package.json" />
+      <path value="$PROJECT_DIR$/app/bower_components/angular/package.json" />
+      <path value="$PROJECT_DIR$/app/bower_components/bootstrap/package.json" />
+      <path value="$PROJECT_DIR$/app/bower_components/ng-csv/package.json" />
+      <path value="$PROJECT_DIR$/app/package.json" />
+      <path value="$PROJECT_DIR$/app/vendors/bower_components/Waves/package.json" />
+      <path value="$PROJECT_DIR$/app/vendors/bower_components/angular-animate/package.json" />
+      <path value="$PROJECT_DIR$/app/vendors/bower_components/angular-bootstrap/package.json" />
+      <path value="$PROJECT_DIR$/app/vendors/bower_components/angular-farbtastic/package.json" />
+      <path value="$PROJECT_DIR$/app/vendors/bower_components/angular-loading-bar/package.json" />
+      <path value="$PROJECT_DIR$/app/vendors/bower_components/angular-nouislider/package.json" />
+      <path value="$PROJECT_DIR$/app/vendors/bower_components/angular-resource/package.json" />
+      <path value="$PROJECT_DIR$/app/vendors/bower_components/angular/package.json" />
+      <path value="$PROJECT_DIR$/app/vendors/bower_components/animate.css/package.json" />
+      <path value="$PROJECT_DIR$/app/vendors/bower_components/autosize/package.json" />
+      <path value="$PROJECT_DIR$/app/vendors/bower_components/bootstrap-sweetalert/package.json" />
+      <path value="$PROJECT_DIR$/app/vendors/bower_components/bootstrap/package.json" />
+      <path value="$PROJECT_DIR$/app/vendors/bower_components/eonasdan-bootstrap-datetimepicker/package.json" />
+      <path value="$PROJECT_DIR$/app/vendors/bower_components/flot/package.json" />
+      <path value="$PROJECT_DIR$/app/vendors/bower_components/install/package.json" />
+      <path value="$PROJECT_DIR$/app/vendors/bower_components/jquery.easy-pie-chart/package.json" />
+      <path value="$PROJECT_DIR$/app/vendors/bower_components/lightgallery/package.json" />
+      <path value="$PROJECT_DIR$/app/vendors/bower_components/simpleWeather/package.json" />
+      <path value="$PROJECT_DIR$/app/vendors/bower_components/summernote/package.json" />
+      <path value="$PROJECT_DIR$/app/vendors/bower_components/sweetalert/package.json" />
+      <path value="$PROJECT_DIR$/package.json" />
+    </packageJsonPaths>
+  </component>
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/app/vendors/bower_components/angular-loading-bar/package.json" />
     <dismissed value="$PROJECT_DIR$/app/vendors/bower_components/angular-nouislider/package.json" />
@@ -202,73 +257,35 @@
     <dismissed value="$PROJECT_DIR$/app/vendors/bower_components/simpleWeather/package.json" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
-    <option name="width" value="1938" />
-    <option name="height" value="1048" />
+    <option name="x" value="470" />
+    <option name="y" value="-10" />
+    <option name="width" value="980" />
+    <option name="height" value="1040" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
-      <flattenPackages />
-      <showMembers />
-      <showModules />
-      <showLibraryContents />
-      <hideEmptyPackages />
-      <abbreviatePackageNames />
-      <autoscrollToSource />
-      <autoscrollFromSource />
+    <navigator proportions="" version="1">
       <sortByType ProjectPane="true" />
-      <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="ArgusWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ArgusWeb" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ArgusWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ArgusWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ArgusWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ArgusWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ArgusWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ArgusWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="modals" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="HbShouldOpenHtmlAsHb" value="" />
-    <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
-    <property name="js.eslint.eslintPackage" value="" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="SearchEverywhereHistoryKey" value="nom&#9;FILE&#9;file://C:/ArgusWeb/app/js/controllers/nomina.controller.js&#10;bitacora&#9;FILE&#9;file://C:/ArgusWeb/app/views/bitacoras.html&#10;nomina&#9;FILE&#9;file://C:/ArgusWeb/app/views/nomina.html&#10;bitacoras&#9;FILE&#9;file://C:/ArgusWeb/app/views/bitacoras.html&#10;cliente&#9;FILE&#9;file://C:/ArgusWeb/app/views/clientes.html&#10;guardias&#9;FILE&#9;file://C:/ArgusWeb/app/views/guardias.html&#10;super&#9;FILE&#9;file://C:/ArgusWeb/app/views/supervisores.html&#10;growlse&#9;FILE&#9;file://C:/ArgusWeb.git/app/services/growl.service.js&#10;disponibilidadZona&#9;null&#9;null&#10;zona&#9;FILE&#9;file://C:/ArgusWeb.git/app/js/controllers/zonas.controller.js&#10;app&#9;FILE&#9;file://C:/ArgusWeb.git/app/css/app.min.2.css&#10;client&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/clientes.html&#10;clientes&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/modals/clientes.modal.html&#10;zonas&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/modals/zonas.modal.html&#10;login&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/login.html&#10;zon&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/zonas.html&#10;inde&#9;FILE&#9;file://C:/ArgusWeb.git/app/index.html&#10;config&#9;FILE&#9;file://C:/ArgusWeb.git/app/js/config.js&#10;sid&#9;FILE&#9;file://C:/ArgusWeb.git/app/template/sidebar-left.html&#10;componen&#9;FILE&#9;file://C:/ArgusWeb.git/app/js/modules/components.js&#10;sidebar&#9;FILE&#9;file://C:/ArgusWeb.git/app/template/sidebar-left.html&#10;main&#9;FILE&#9;file://C:/ArgusWeb.git/app/css/main.css&#10;SU&#9;FILE&#9;file://C:/ArgusWeb.git/app/js/controllers/supervisores.controller.js&#10;index&#9;FILE&#9;file://C:/ArgusWeb.git/app/index.html&#10;sett&#9;FILE&#9;file://C:/ArgusWeb.git/app/config/settings.js&#10;footer&#9;FILE&#9;file://C:/ArgusWeb.git/app/template/footer.html&#10;supervi&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/supervisores.html&#10;lo&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/login.html&#10;profile&#9;FILE&#9;file://C:/GEEB/app/views/profile.html&#10;maestro&#9;FILE&#9;file://C:/GEEB/app/js/controllers/buscarMaestro.Controller.js&#10;regis&#9;FILE&#9;file://C:/GEEB/app/views/register.html&#10;logi&#9;FILE&#9;file://C:/GEEB/app/views/login.html&#10;ma&#9;FILE&#9;file://C:/GEEB/app/js/controllers/main.js&#10;controller&#9;FILE&#9;file://C:/GEEB/app/js/controllers/perfilMestro.Controller.js&#10;maestros&#9;FILE&#9;file://C:/GEEB/app/views/maestros.html&#10;comentarios&#9;FILE&#9;file://C:/GEEB/app/views/profile-comentarios.html&#10;bus&#9;FILE&#9;file://C:/GEEB/app/js/controllers/buscarMaestro.Controller.js&#10;a&#9;FILE&#9;file://C:/GEEB/app/css/app.css&#10;admi&#9;FILE&#9;file://C:/GEEB/app/views/PreHorarios/administracion.html&#10;resetP&#9;FILE&#9;file://C:/GEEB/app/views/resetPassword.html&#10;controll&#9;FILE&#9;file://C:/GEEB/app/js/controllers/perfilMestro.Controller.js&#10;maes&#9;FILE&#9;file://C:/GEEB/app/views/maestros.html&#10;buscar&#9;FILE&#9;file://C:/GEEB/app/js/controllers/buscarMaestro.Controller.js&#10;busca&#9;FILE&#9;file://C:/GEEB/app/js/controllers/buscarMaestro.Controller.js&#10;pass&#9;FILE&#9;file://C:/GEEB/app/views/resetPassword.html" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="editor.config.accepted" value="true" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="js-jscs-package" value="C:\GEEB\node_modules\jscs" />
-    <property name="SearchEverywhereHistoryKey" value="nom&#9;FILE&#9;file://C:/ArgusWeb/app/js/controllers/nomina.controller.js&#10;bitacora&#9;FILE&#9;file://C:/ArgusWeb/app/views/bitacoras.html&#10;nomina&#9;FILE&#9;file://C:/ArgusWeb/app/views/nomina.html&#10;bitacoras&#9;FILE&#9;file://C:/ArgusWeb/app/views/bitacoras.html&#10;cliente&#9;FILE&#9;file://C:/ArgusWeb/app/views/clientes.html&#10;guardias&#9;FILE&#9;file://C:/ArgusWeb/app/views/guardias.html&#10;super&#9;FILE&#9;file://C:/ArgusWeb/app/views/supervisores.html&#10;growlse&#9;FILE&#9;file://C:/ArgusWeb.git/app/services/growl.service.js&#10;disponibilidadZona&#9;null&#9;null&#10;zona&#9;FILE&#9;file://C:/ArgusWeb.git/app/js/controllers/zonas.controller.js&#10;app&#9;FILE&#9;file://C:/ArgusWeb.git/app/css/app.min.2.css&#10;client&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/clientes.html&#10;clientes&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/modals/clientes.modal.html&#10;zonas&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/modals/zonas.modal.html&#10;login&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/login.html&#10;zon&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/zonas.html&#10;inde&#9;FILE&#9;file://C:/ArgusWeb.git/app/index.html&#10;config&#9;FILE&#9;file://C:/ArgusWeb.git/app/js/config.js&#10;sid&#9;FILE&#9;file://C:/ArgusWeb.git/app/template/sidebar-left.html&#10;componen&#9;FILE&#9;file://C:/ArgusWeb.git/app/js/modules/components.js&#10;sidebar&#9;FILE&#9;file://C:/ArgusWeb.git/app/template/sidebar-left.html&#10;main&#9;FILE&#9;file://C:/ArgusWeb.git/app/css/main.css&#10;SU&#9;FILE&#9;file://C:/ArgusWeb.git/app/js/controllers/supervisores.controller.js&#10;index&#9;FILE&#9;file://C:/ArgusWeb.git/app/index.html&#10;sett&#9;FILE&#9;file://C:/ArgusWeb.git/app/config/settings.js&#10;footer&#9;FILE&#9;file://C:/ArgusWeb.git/app/template/footer.html&#10;supervi&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/supervisores.html&#10;lo&#9;FILE&#9;file://C:/ArgusWeb.git/app/views/login.html&#10;profile&#9;FILE&#9;file://C:/GEEB/app/views/profile.html&#10;maestro&#9;FILE&#9;file://C:/GEEB/app/js/controllers/buscarMaestro.Controller.js&#10;regis&#9;FILE&#9;file://C:/GEEB/app/views/register.html&#10;logi&#9;FILE&#9;file://C:/GEEB/app/views/login.html&#10;ma&#9;FILE&#9;file://C:/GEEB/app/js/controllers/main.js&#10;controller&#9;FILE&#9;file://C:/GEEB/app/js/controllers/perfilMestro.Controller.js&#10;maestros&#9;FILE&#9;file://C:/GEEB/app/views/maestros.html&#10;comentarios&#9;FILE&#9;file://C:/GEEB/app/views/profile-comentarios.html&#10;bus&#9;FILE&#9;file://C:/GEEB/app/js/controllers/buscarMaestro.Controller.js&#10;a&#9;FILE&#9;file://C:/GEEB/app/css/app.css&#10;admi&#9;FILE&#9;file://C:/GEEB/app/views/PreHorarios/administracion.html&#10;resetP&#9;FILE&#9;file://C:/GEEB/app/views/resetPassword.html&#10;controll&#9;FILE&#9;file://C:/GEEB/app/js/controllers/perfilMestro.Controller.js&#10;maes&#9;FILE&#9;file://C:/GEEB/app/views/maestros.html&#10;buscar&#9;FILE&#9;file://C:/GEEB/app/js/controllers/buscarMaestro.Controller.js&#10;busca&#9;FILE&#9;file://C:/GEEB/app/js/controllers/buscarMaestro.Controller.js&#10;pass&#9;FILE&#9;file://C:/GEEB/app/views/resetPassword.html" />
-    <property name="editor.config.accepted" value="true" />
     <property name="js.buildTools.grunt.grunt-cli.package" value="$USER_HOME$/AppData/Roaming/npm/node_modules/grunt-cli" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="js.eslint.eslintPackage" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.prettier" value="true" />
+    <property name="node.js.path.for.package.prettier" value="project" />
+    <property name="node.js.selected.package.prettier" value="" />
+    <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -291,22 +308,6 @@
   </component>
   <component name="RunManager" selected="JavaScript Debug.nomina.html">
     <configuration name="nomina.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/ArgusWeb.git/app/views/nomina.html" />
-    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
-      <config-file value="" />
-      <node-interpreter value="project" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
-      <method />
-    </configuration>
-    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
-      <command value="run" />
-      <scripts />
-      <node-interpreter value="project" />
-      <envs />
-      <method />
-    </configuration>
     <configuration default="true" type="js.build_tools.grunt" factoryName="Grunt.js">
       <node-interpreter value="project" />
       <envs />
@@ -328,19 +329,16 @@
       <node-interpreter value="project" />
       <envs />
     </configuration>
-    <list size="2">
-      <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.nomina.html" />
-      <item index="1" class="java.lang.String" itemvalue="npm.test" />
+    <list>
+      <item itemvalue="JavaScript Debug.nomina.html" />
+      <item itemvalue="npm.test" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="npm.test" />
-        <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.nomina.html" />
+      <list>
+        <item itemvalue="npm.test" />
+        <item itemvalue="JavaScript Debug.nomina.html" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
   </component>
   <component name="SvnConfiguration">
     <configuration>C:\Users\Legible\AppData\Roaming\Subversion</configuration>
@@ -546,7 +544,29 @@
       <workItem from="1514501744668" duration="618000" />
       <workItem from="1516174887183" duration="14465000" />
       <workItem from="1516294974613" duration="5946000" />
-      <workItem from="1516383084274" duration="110000" />
+      <workItem from="1516383084274" duration="6119000" />
+      <workItem from="1516635351272" duration="16000" />
+      <workItem from="1516636708421" duration="10197000" />
+      <workItem from="1516866420548" duration="599000" />
+      <workItem from="1516911764371" duration="617000" />
+      <workItem from="1517682296087" duration="2372000" />
+      <workItem from="1517883663268" duration="599000" />
+      <workItem from="1521052037032" duration="2097000" />
+      <workItem from="1522199616191" duration="554000" />
+      <workItem from="1524170872764" duration="41000" />
+      <workItem from="1524173485422" duration="1000" />
+      <workItem from="1524494157059" duration="900000" />
+      <workItem from="1524500176343" duration="643000" />
+      <workItem from="1524673128687" duration="1508000" />
+      <workItem from="1524759863991" duration="452000" />
+      <workItem from="1525116613801" duration="637000" />
+      <workItem from="1529363596129" duration="3424000" />
+      <workItem from="1529430112052" duration="1305000" />
+      <workItem from="1530559507081" duration="3834000" />
+      <workItem from="1532131641633" duration="3099000" />
+      <workItem from="1532477181236" duration="15000" />
+      <workItem from="1533059597627" duration="3768000" />
+      <workItem from="1533077437248" duration="36000" />
     </task>
     <task id="LOCAL-00001" summary="cambios generales&#10;">
       <created>1489812407890</created>
@@ -832,7 +852,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1118391000" />
+    <option name="totallyTimeSpent" value="1161114000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -843,30 +863,30 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24695928" sideWeight="0.8527005" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Grunt " active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22321428" sideWeight="0.09328969" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298611" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21947874" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298887" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23148148" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24960339" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31014824" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17559524" sideWeight="0.14729951" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287037" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="CSS-X-Fire" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8527005" weight="0.24653007" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3289689" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info id="Grunt " order="4" sideWeight="0.09328969" side_tool="true" weight="0.22321428" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" weight="0.3298611" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.21947874" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.23148148" />
+      <window_info id="npm" order="2" side_tool="true" weight="0.3298887" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.24960339" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.30827886" />
+      <window_info id="Favorites" order="3" sideWeight="0.14729951" side_tool="true" weight="0.17559524" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="TypeScript" order="7" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.3289689" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="CSS-X-Fire" order="10" weight="0.3289689" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3287037" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -925,113 +945,19 @@
     <breakpoint-manager>
       <option name="time" value="21" />
     </breakpoint-manager>
-    <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/bower_components/bootstrap/js/popover.js" />
-    <entry file="file://$PROJECT_DIR$/app/vendors/bower_components/summernote/src/js/module/Popover.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="55" column="41" lean-forward="false" selection-start-line="55" selection-start-column="34" selection-end-line="55" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/vendors/bower_components/bootstrap/less/popovers.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="64" column="37" lean-forward="true" selection-start-line="64" selection-start-column="37" selection-end-line="64" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/nomina.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="86" column="30" lean-forward="true" selection-start-line="86" selection-start-column="30" selection-end-line="86" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/controllers/servicios.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/controllers/zonas.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="44" column="35" lean-forward="false" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/template/template.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/controllers/template.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/templates.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" column="43" lean-forward="false" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/zonas.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="68" column="0" lean-forward="false" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/bower_components/alasql/console/style.css" />
-    <entry file="file://$PROJECT_DIR$/app/js/controllers/loginController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/css/app.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="14129" column="17" lean-forward="true" selection-start-line="14129" selection-start-column="17" selection-end-line="14129" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/template/footer.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1302">
-          <caret line="62" column="32" lean-forward="false" selection-start-line="62" selection-start-column="29" selection-end-line="62" selection-end-column="32" />
+          <caret line="62" column="32" selection-start-line="62" selection-start-column="29" selection-end-line="62" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/css/app.min.2.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
-          <caret line="1862" column="25" lean-forward="false" selection-start-line="1862" selection-start-column="2" selection-end-line="1862" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/controllers/footer.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+          <caret line="1862" column="25" selection-start-line="1862" selection-start-column="2" selection-end-line="1862" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -1042,73 +968,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/bitacoraRegistro.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/controllers/bitacoraRegistro.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="133" column="47" lean-forward="true" selection-start-line="133" selection-start-column="47" selection-end-line="133" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/bitacoras.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="93" column="46" lean-forward="true" selection-start-line="93" selection-start-column="46" selection-end-line="93" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/controllers/bitacora.Controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="703">
-          <caret line="220" column="22" lean-forward="false" selection-start-line="220" selection-start-column="22" selection-end-line="220" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/template/header.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="35" lean-forward="false" selection-start-line="27" selection-start-column="35" selection-end-line="27" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/js/controllers/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="9" column="35" lean-forward="true" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/controllers/header.Controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="20" lean-forward="false" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/template/sidebar-left.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="44" column="9" lean-forward="false" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/controllers/preNomina.Controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="287" column="81" lean-forward="true" selection-start-line="287" selection-start-column="81" selection-end-line="287" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/preNomina.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="25" column="17" lean-forward="true" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -1119,80 +982,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="16" column="65" lean-forward="false" selection-start-line="16" selection-start-column="65" selection-end-line="16" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/controllers/supervisores.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="778">
-          <caret line="80" column="51" lean-forward="false" selection-start-line="80" selection-start-column="51" selection-end-line="80" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/controllers/guardias.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="778">
-          <caret line="564" column="11" lean-forward="false" selection-start-line="564" selection-start-column="11" selection-end-line="564" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/modals/guardiasDetalles.modal.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="29" column="14" lean-forward="true" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/guardias.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-402">
-          <caret line="34" column="34" lean-forward="true" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/services/date.service.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="229">
-          <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/modals/supervisores.modal.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="150" column="23" lean-forward="false" selection-start-line="150" selection-start-column="23" selection-end-line="150" selection-end-column="23" />
+          <caret line="56" selection-start-line="56" selection-end-line="56" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/vendors/bower_components/chosen/docsupport/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4176">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
+        <state relative-caret-position="-4176" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/vendors/bower_components/Waves/docs/static/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-18141">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
+        <state relative-caret-position="-18141" />
       </provider>
     </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="282">
-          <caret line="2136" column="4" lean-forward="false" selection-start-line="2136" selection-start-column="4" selection-end-line="2136" selection-end-column="4" />
+          <caret line="2136" column="4" selection-start-line="2136" selection-start-column="4" selection-end-line="2136" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/vendors/bower_components/summernote/src/js/Renderer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="282">
-          <caret line="635" column="38" lean-forward="false" selection-start-line="635" selection-start-column="38" selection-end-line="635" selection-end-column="38" />
+          <caret line="635" column="38" selection-start-line="635" selection-start-column="38" selection-end-line="635" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -1206,7 +1023,7 @@
     <entry file="file://$PROJECT_DIR$/app/js/modules/form.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
-          <caret line="82" column="25" lean-forward="false" selection-start-line="82" selection-start-column="25" selection-end-line="82" selection-end-column="25" />
+          <caret line="82" column="25" selection-start-line="82" selection-start-column="25" selection-end-line="82" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -1217,66 +1034,259 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="41" column="15" lean-forward="false" selection-start-line="41" selection-start-column="15" selection-end-line="41" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="41" column="1" lean-forward="false" selection-start-line="41" selection-start-column="1" selection-end-line="41" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/supervisores.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="153" column="19" lean-forward="false" selection-start-line="153" selection-start-column="15" selection-end-line="153" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/services/objects.service.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="528">
-          <caret line="22" column="44" lean-forward="false" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
-          <folding />
+          <caret line="22" column="44" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/clientes.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
-          <caret line="34" column="17" lean-forward="false" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/controllers/clientes.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="531">
-          <caret line="820" column="28" lean-forward="false" selection-start-line="820" selection-start-column="15" selection-end-line="820" selection-end-column="28" />
-          <folding />
+          <caret line="34" column="17" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/modals/agregarHorario.modal.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="579">
-          <caret line="77" column="93" lean-forward="false" selection-start-line="77" selection-start-column="93" selection-end-line="77" selection-end-column="93" />
-          <folding />
+          <caret line="77" column="93" selection-start-line="77" selection-start-column="93" selection-end-line="77" selection-end-column="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controllers/nomina.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="41" column="27" lean-forward="true" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/preNomina.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="547">
+          <caret line="129" column="13" lean-forward="true" selection-start-line="129" selection-start-column="13" selection-end-line="129" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controllers/clientes.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="783" column="44" lean-forward="true" selection-start-line="783" selection-start-column="44" selection-end-line="783" selection-end-column="44" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/modals/clientes.modal.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="97" column="14" lean-forward="true" selection-start-line="97" selection-start-column="14" selection-end-line="97" selection-end-column="14" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#1;n#div#0;n#div#1;n#form#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="355">
+          <caret line="261" column="27" lean-forward="true" selection-start-line="261" selection-start-column="27" selection-end-line="261" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controllers/bitacora.Controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="799">
+          <caret line="136" lean-forward="true" selection-start-line="136" selection-end-line="136" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/supervisores.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="21" column="40" lean-forward="true" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="771">
+          <caret line="398" column="12" selection-start-line="398" selection-start-column="12" selection-end-line="398" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/template/sidebar-left.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="29" column="8" lean-forward="true" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/modals/guardiasDetalles.modal.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-45">
+          <caret line="29" column="14" lean-forward="true" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/modals/bitacora.modal.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/bitacoras.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="109" lean-forward="true" selection-start-line="109" selection-end-line="109" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controllers/preNomina.Controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="284" column="22" selection-start-line="284" selection-start-column="22" selection-end-line="284" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controllers/notificaciones.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="29" column="57" selection-start-line="29" selection-start-column="57" selection-end-line="29" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/css/app.min.1.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="10128" column="1" selection-start-line="10128" selection-start-column="1" selection-end-line="10128" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/css/app.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="8250" column="1" selection-start-line="8250" selection-start-column="1" selection-end-line="8250" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/vendors/bower_components/angular-ui-router/src/viewDirective.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5835" />
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/webstorm.jar!/resources/html5-schema/html5/data.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="40" column="12" selection-start-line="40" selection-start-column="12" selection-end-line="40" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="48" column="16" selection-start-line="48" selection-start-column="16" selection-end-line="48" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/modals/incidentesNoResueltos.modal.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/modals/notificaciones.modal.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/notificaciones.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/template/header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="8" column="37" lean-forward="true" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controllers/header.Controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="84" column="22" lean-forward="true" selection-start-line="84" selection-start-column="22" selection-end-line="84" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/bitacoraRegistro.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="54" column="58" lean-forward="true" selection-start-line="54" selection-start-column="58" selection-end-line="54" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controllers/bitacoraRegistro.controller.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controllers/supervisores.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1205">
+          <caret line="229" column="48" lean-forward="true" selection-start-line="229" selection-start-column="48" selection-end-line="229" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1152">
+          <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="17" column="3" lean-forward="true" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/directives/ngEnter.Directive.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="18" column="10" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/template/footer.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controllers/footer.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controllers/guardias.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="423">
+          <caret line="532" column="53" lean-forward="true" selection-start-line="532" selection-start-column="53" selection-end-line="532" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/modals/supervisores.modal.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="38" column="42" selection-start-line="38" selection-start-column="41" selection-end-line="38" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/guardias.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="61" column="43" selection-start-line="61" selection-start-column="30" selection-end-line="61" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controllers/loginController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="38" column="28" lean-forward="true" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="28" />
         </state>
       </provider>
     </entry>

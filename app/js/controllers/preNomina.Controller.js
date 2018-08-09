@@ -247,41 +247,45 @@ argus
 
               if (vm.securityGuards[guard].usuarioClienteAsignado != null && vm.securityGuards[guard].usuarioClienteAsignado != 'Sin asignar') {
 
-                firebase.database().ref('Argus/Nomina/' + vm.fDate + 'to' + vm.tDate + '/' + guard)
-                  .update({
-                    'nombreGuardia': vm.securityGuards[guard].usuarioNombre,
-                    'guardiaKey': guard,
-                    'nominaKey': vm.fDate + 'to' + vm.tDate,
-                    'zona': vm.services[vm.securityGuards[guard].usuarioClienteAsignado].clienteZonaAsignada,
-                    'servicio': vm.securityGuards[guard].usuarioClienteAsignado,
-                    'tipoPago': vm.securityGuards[guard].tipoPago ? vm.securityGuards[guard].tipoPago : '',
-                    // 'salario': 1600,
-                    'salario': vm.securityGuards[guard].usuarioSueldoBase,
-                    'asistencias': assistence,
-                    'status': statusOfDays,
-                    'inasistencias': lacks,
-                    'descansosLaborados': restWorked,
-                    'descansosLaboradosTotal': restWorkedTotal,
-                    'dobleTurnos': doubleTurn,
-                    'dobleTurnosTotal': doubleTurnTotal,
-                    'horasExtras': extraHours,
-                    'horasExtrasTotal': extraHoursTotal,
-                    'totalExtras': totalExtras,
-                    'totalExtrasYFaltas': totalExtrasYFaltas,
-                    'subTotal': subTotal,
-                    'sueldoTotal': subTotal,
-                    'permiso': 0,
-                    'permisoPagado': 0,
-                    'enfermo': sick,
-                    'noFirmo': noSignature,
-                    'incapacidad': incapacity,
-                    'incapacidadRT': incapacityRT,
-                    'vacaciones': vacation,
-                    'comentariosGenerales': '',
-                    'prestamosOP': '',
-                    'descuentoPorFalta': descuentoFalta,
-                    'bono': bond
-                  })
+                try{
+                  firebase.database().ref('Argus/Nomina/' + vm.fDate + 'to' + vm.tDate + '/' + guard)
+                    .update({
+                      'nombreGuardia': vm.securityGuards[guard].usuarioNombre,
+                      'guardiaKey': guard,
+                      'nominaKey': vm.fDate + 'to' + vm.tDate,
+                      'zona': vm.services[vm.securityGuards[guard].usuarioClienteAsignado].clienteZonaAsignada,
+                      'servicio': vm.securityGuards[guard].usuarioClienteAsignado,
+                      'tipoPago': vm.securityGuards[guard].tipoPago ? vm.securityGuards[guard].tipoPago : '',
+                      // 'salario': 1600,
+                      'salario': vm.securityGuards[guard].usuarioSueldoBase,
+                      'asistencias': assistence,
+                      'status': statusOfDays,
+                      'inasistencias': lacks,
+                      'descansosLaborados': restWorked,
+                      'descansosLaboradosTotal': restWorkedTotal,
+                      'dobleTurnos': doubleTurn,
+                      'dobleTurnosTotal': doubleTurnTotal,
+                      'horasExtras': extraHours,
+                      'horasExtrasTotal': extraHoursTotal,
+                      'totalExtras': totalExtras,
+                      'totalExtrasYFaltas': totalExtrasYFaltas,
+                      'subTotal': subTotal,
+                      'sueldoTotal': subTotal,
+                      'permiso': 0,
+                      'permisoPagado': 0,
+                      'enfermo': sick,
+                      'noFirmo': noSignature,
+                      'incapacidad': incapacity,
+                      'incapacidadRT': incapacityRT,
+                      'vacaciones': vacation,
+                      'comentariosGenerales': '',
+                      'prestamosOP': '',
+                      'descuentoPorFalta': descuentoFalta,
+                      'bono': bond
+                    })
+                }catch(err){
+                  console.log(err)
+                }
               }
             }
 
@@ -289,14 +293,55 @@ argus
               .once('value', function (dataSnapshot2) {
                 vm.paySheet = dataSnapshot2.val();
 
+                var nominita = [];
                 for(nomina in vm.paySheet){
-                  vm.paySheetToExcel.push(vm.paySheet[nomina]);
+
+                  var guardia = {};
+                  guardia['1-nombreGuardia'] = vm.paySheet[nomina].nombreGuardia;
+                  guardia['2-tipoPago'] = vm.paySheet[nomina].tipoPago;
+                  guardia['3-salario'] = vm.paySheet[nomina].salario;
+                  guardia['4-descuentoPorFalta'] = vm.paySheet[nomina].descuentoPorFalta;
+                  guardia['5-bono'] = vm.paySheet[nomina].bono;
+
+                  for(status in vm.paySheet[nomina].status){
+                    guardia['6- '+ status.slice(0, 4) + "-" +status.slice(4, 6) + "-" +status.slice(6, 8)] = vm.paySheet[nomina].status[status].status;
+                  }
+
+                  guardia['7-descansosLaborados'] = vm.paySheet[nomina].descansosLaborados;
+                  guardia['8-dobleTurnos'] = vm.paySheet[nomina].dobleTurnos;
+                  guardia['9-horasExtras'] = vm.paySheet[nomina].horasExtras;
+                  guardia['10-permiso'] = vm.paySheet[nomina].permiso;
+                  guardia['11-permisoPagado'] = vm.paySheet[nomina].permisoPagado;
+                  guardia['12-enfermo'] = vm.paySheet[nomina].enfermo;
+                  guardia['13-inasistencias'] = vm.paySheet[nomina].inasistencias;
+                  guardia['14-noFirmo'] = vm.paySheet[nomina].noFirmo;
+                  guardia['15-incapacidad'] = vm.paySheet[nomina].incapacidad;
+                  guardia['16-incapacidadRT'] = vm.paySheet[nomina].incapacidadRT;
+                  guardia['17-vacaciones'] = vm.paySheet[nomina].vacaciones;
+                  guardia['18-descansosLaboradosTotal'] = vm.paySheet[nomina].descansosLaboradosTotal;
+                  guardia['19-dobleTurnosTotal'] = vm.paySheet[nomina].dobleTurnosTotal;
+                  guardia['20-horasExtrasTotal'] = vm.paySheet[nomina].horasExtrasTotal;
+                  guardia['21-totalExtrasYFaltas'] = vm.paySheet[nomina].totalExtrasYFaltas;
+                  guardia['22-subTotal'] = vm.paySheet[nomina].subTotal;
+                  guardia['23-prestamosOP'] = vm.paySheet[nomina].prestamosOP;
+                  guardia['24-sueldoTotal'] = vm.paySheet[nomina].sueldoTotal;
+                  guardia['25-comentariosGenerales'] = vm.paySheet[nomina].comentariosGenerales;
+
+
+                  nominita.push(guardia);
+
+                  // vm.paySheetToExcel.push(vm.paySheet[nomina]);
+                  vm.paySheetToExcel.push(guardia);
                 }
+
+                console.log(nominita);
 
                 saveGuardSalarys(vm.paySheet);
                 vm.isLoading = false;
                 $rootScope.$applyAsync();
               })
+
+
           })
       }
 
@@ -492,6 +537,7 @@ argus
             'descuentoPorFalta': descuentoFalta,
             'bono': bond
           })
+
       }
 
       function paySheetDays_keyUpEvent(eventCode, datePaySheetKey, statusKey, paySheetKey, guardKey, guardStatus, guard) {

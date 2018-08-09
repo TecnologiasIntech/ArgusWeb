@@ -390,3 +390,11 @@
   font-size: 15px;
   margin-top: 5px;
 }
+
+
+.bitacora-fecha{
+  font-size: 14px;
+  position: relative;
+  font-weight: bold;
+  top: -5px;
+}

@@ -28,7 +28,7 @@ argus
             //Voy a recibir
             //  * Tipo de accion que se ha hecho
             vm.notifications = snapshot.val();
-
+            console.log(vm.notifications);
             if(vm.notifications === null){
               vm.notificationsLength = 0;
             }else {

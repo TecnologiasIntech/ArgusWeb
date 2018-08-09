@@ -52,6 +52,7 @@
           <th ng-if="vm.searchTypeUser == 'guardia'">Telefono</th>
           <th ng-if="vm.searchTypeUser == 'guardia'" ng-click="vm.filter = '-usuarioTurno'">Turno</th>
           <th ng-if="vm.searchTypeUser == 'guardia'" ng-click="vm.filter = '-usuarioClienteAsignado'">Servicio</th>
+          <th ng-if="vm.searchTypeUser == 'guardia'" ng-click="vm.filter = '-usuarioZona'">Zona</th>
           <th ng-if="vm.searchTypeUser == 'guardia'"></th>
 
           <tr
@@ -68,6 +69,9 @@
             </td>
             <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key)">
               <span>{{ guardia.usuarioClienteAsignado ? guardia.usuarioClienteAsignado: 'No asignado' }}</span>
+            </td>
+            <td class="p-t-15 cursor-pointer" ng-click="vm.editUser(guardia, guardia.$key)">
+              <span>{{ vm.ObtenerZona(guardia.usuarioClienteAsignado) }}</span>
             </td>
             <td align="right" style="width: 50px"
                 ng-if="vm.userType == 'recursosHumanos' || vm.userType == 'coordinador' || vm.userType == 'administrador'">

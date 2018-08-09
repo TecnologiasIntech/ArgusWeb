@@ -2,6 +2,7 @@
 
   <div class="card m-l-20 m-r-20">
 
+    <!--Ayuda de colores-->
     <div class="col-xs-4 m-t-10" style="position: fixed; margin-left: 62% !important; margin-top: 150px !important;"
          ng-if="vm.datesRecords">
 
@@ -37,7 +38,6 @@
       </div>
 
     </div>
-
 
     <!--Bitacora-->
     <div ng-if="vm.view == 'bitacora'">
@@ -79,91 +79,118 @@
                    placeholder="Filtrar por supervisor...">
           </div>
         </div>
-      </div>
 
-      <div class="row" ng-init="nombre = vm.nombre" ng-repeat="date in vm.datesRecords | toArray">
-        <div class="row m-t-20">
-          <div ng-init="" class="col-lg-offset-1">
-            {{ vm.getFullDate( date.fecha ) }}
-            <label class="f-20" ng-init="supervisores = vm.datesRecords[date.$key]"></label>
+        <!--<div class="col-xs-2">-->
+        <!--<button class="btn btn-primary">Expandir todos</button>-->
+        <!--</div>-->
+        <!--<div class="col-xs-2">-->
+        <!--<button class="btn btn-warning">Minimizar todos</button>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--Lista de bitacora-->
+        <!--<div class="row m-t-20">-->
+        <!--<div class="col-xs-offset-1 col-xs-9">-->
+        <!--<div class="row">-->
+        <!--<div class="col-xs-12">-->
+        <!--<i class="zmdi zmdi-caret-right zmdi-hc-2x cursor-pointer" ng-if="false"></i>-->
+        <!--<i class="zmdi zmdi-caret-down zmdi-hc-2x cursor-pointer" ng-if="true"></i>-->
+        <!--<span class="m-l-5 p-b-5 bitacora-fecha cursor-pointer">-->
+        <!--07 de noviembre del 2017-->
+        <!--</span>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+
+
+        <div class="row" ng-init="nombre = vm.nombre" ng-repeat="date in vm.datesRecords | toArray">
+          <div class="row m-t-20">
+            <div ng-init="" class="col-lg-offset-1">
+              {{ vm.getFullDate( date.fecha ) }}
+              <label class="f-20" ng-init="supervisores = vm.datesRecords[date.$key]"></label>
+            </div>
+          </div>
+
+          <div class="row " ng-repeat="supervisor in date | toArray | filter: {supervisor:filterSupervisor}"
+               ng-if="supervisor.$key != '$$hashKey' && supervisor.$key != 'fecha' ">
+            <div ng-init="" class="col-lg-offset-1">
+              <label class="f-20">{{ date.fecha | formatoFecha }}</label>
+            </div>
+            <div class="row m-t-15">
+              <div class="col-lg-offset-1" ng-if="supervisor.$key != '$$hashKey' && supervisor.$key != 'fecha'">
+                <!--{{ vm.getSupervisor( supervisor.$key ) }}-->
+                <label class="f-17 m-l-20">{{ supervisor.supervisor }}</label>
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-offset-1 col-xs-8 m-t-10 m-b-10 p-l-0 p-r-0 table-box">
+                <table class="table table-striped table-hover-gray">
+                  <thead>
+                  <tr>
+                    <th class="col-lg-9">Observaciones</th>
+                    <th class="col-lg-3">Hora</th>
+                    <th class="col-lg-3">Estatus</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr ng-repeat="observacion in supervisores[supervisor.$key]"
+                      ng-if="observacion.observacion ? true : !!observacion.descripcion">
+                    <td class="bitacora-align-middle col-lg-9">
+                      {{observacion.observacion ? observacion.observacion : observacion.descripcion}}
+                    </td>
+                    <td class="bitacora-align-middle col-lg-3">
+                      {{observacion.hora}}
+                    </td>
+                    <td class="bitacora-align-middle col-lg-3">
+
+
+                      <div class="lv-actions actions dropdown" uib-dropdown="">
+                        <a class="cursor-pointer dropdown-toggle" uib-dropdown-toggle=""
+                           aria-haspopup="true" aria-expanded="false">
+                          <button class="btn btn-primary btn-icon waves-effect waves-circle di-block"
+                                  style="height: 30px; width: 30px; background-color: #e74c3c"
+                                  ng-if="observacion.semaforo == 3"></button>
+                          <button class="btn btn-primary btn-icon waves-effect waves-circle di-block"
+                                  style="height: 30px; width: 30px; background-color: #e67e22"
+                                  ng-if="observacion.semaforo == 2"></button>
+                          <button class="btn btn-primary btn-icon waves-effect waves-circle di-block"
+                                  style="height: 30px; width: 30px; background-color: #2ecc71"
+                                  ng-if="observacion.semaforo == 1"></button>
+                        </a>
+                        <ul class="dropdown-menu pull-right actions-supervisor" style="min-width: 75px !important;">
+                          <li class="action-edit cursor-pointer"
+                              ng-click="vm.editUser(supervisor, supervisor.$key, 'supervisor')">
+                            <button class="btn btn-primary btn-icon waves-effect waves-circle di-block"
+                                    style="height: 30px; width: 30px; background-color: #e74c3c"></button>
+                          </li>
+                          <li class="action-delete cursor-pointer"
+                              ng-click="vm.deleteUser(supervisor, 'supervisores', supervisor.key)">
+                            <button class="btn btn-primary btn-icon waves-effect waves-circle di-block"
+                                    style="height: 30px; width: 30px; background-color: #e67e22"></button>
+                          </li>
+                          <li class="action-delete cursor-pointer p-t-5"
+                              ng-click="vm.deleteUser(supervisor, 'supervisores', supervisor.key)">
+                            <button class="btn btn-primary btn-icon waves-effect waves-circle di-block"
+                                    style="height: 30px; width: 30px; background-color: #2ecc71"></button>
+                          </li>
+                        </ul>
+                      </div>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="row " ng-repeat="supervisor in date | toArray | filter: {supervisor:filterSupervisor}"
-             ng-if="supervisor.$key != '$$hashKey' && supervisor.$key != 'fecha' ">
-          <div ng-init="" class="col-lg-offset-1">
-            <label class="f-20">{{ date.fecha | formatoFecha }}</label>
-          </div>
-          <div class="row m-t-15">
-            <div class="col-lg-offset-1" ng-if="supervisor.$key != '$$hashKey' && supervisor.$key != 'fecha'">
-              <!--{{ vm.getSupervisor( supervisor.$key ) }}-->
-              <label class="f-17 m-l-20">{{ supervisor.supervisor }}</label>
 
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-offset-1 col-xs-8 m-t-10 m-b-10 p-l-0 p-r-0 table-box">
-              <table class="table table-striped table-hover-gray">
-                <thead>
-                <tr>
-                  <th class="col-lg-9">Observaciones</th>
-                  <th class="col-lg-3">Hora</th>
-                  <th class="col-lg-3">Estatus</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="observacion in supervisores[supervisor.$key]"
-                    ng-if="observacion.observacion ? true : !!observacion.descripcion">
-                  <td class="bitacora-align-middle col-lg-9">
-                    {{observacion.observacion ? observacion.observacion : observacion.descripcion}}
-                  </td>
-                  <td class="bitacora-align-middle col-lg-3">
-                    {{observacion.hora}}
-                  </td>
-                  <td class="bitacora-align-middle col-lg-3">
-
-
-                    <div class="lv-actions actions dropdown" uib-dropdown="">
-                      <a class="cursor-pointer dropdown-toggle" uib-dropdown-toggle=""
-                         aria-haspopup="true" aria-expanded="false">
-                        <button class="btn btn-primary btn-icon waves-effect waves-circle di-block"
-                                style="height: 30px; width: 30px; background-color: #e74c3c"
-                                ng-if="observacion.semaforo == 3"></button>
-                        <button class="btn btn-primary btn-icon waves-effect waves-circle di-block"
-                                style="height: 30px; width: 30px; background-color: #e67e22"
-                                ng-if="observacion.semaforo == 2"></button>
-                        <button class="btn btn-primary btn-icon waves-effect waves-circle di-block"
-                                style="height: 30px; width: 30px; background-color: #2ecc71"
-                                ng-if="observacion.semaforo == 1"></button>
-                      </a>
-                      <!--<ul class="dropdown-menu pull-right actions-supervisor" style="min-width: 75px !important;">-->
-                      <!--<li class="action-edit cursor-pointer"-->
-                      <!--ng-click="vm.editUser(supervisor, supervisor.$key, 'supervisor')">-->
-                      <!--<button class="btn btn-primary btn-icon waves-effect waves-circle di-block"-->
-                      <!--style="height: 30px; width: 30px; background-color: #e74c3c"></button>-->
-                      <!--</li>-->
-                      <!--<li class="action-delete cursor-pointer" ng-click="vm.deleteUser(supervisor, 'supervisores', supervisor.key)">-->
-                      <!--<button class="btn btn-primary btn-icon waves-effect waves-circle di-block" style="height: 30px; width: 30px; background-color: #e67e22"></button>-->
-                      <!--</li>-->
-                      <!--<li class="action-delete cursor-pointer p-t-5" ng-click="vm.deleteUser(supervisor, 'supervisores', supervisor.key)">-->
-                      <!--<button class="btn btn-primary btn-icon waves-effect waves-circle di-block" style="height: 30px; width: 30px; background-color: #2ecc71" ></button>-->
-                      <!--</li>-->
-                      <!--</ul>-->
-                    </div>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
-
-            </div>
-          </div>
-        </div>
       </div>
-
 
     </div>
-
-  </div>
 
 
 </section>

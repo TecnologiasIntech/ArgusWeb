@@ -126,30 +126,30 @@ argus
 
       activate();
 
-      vm.script = script;
-
-      function script() {
-        var fecha = 20170401;
-
-        for (fecha; fecha <= 20170415; fecha++) {
-          if (fecha == 20170415) {
-            firebase.database().ref('Argus/Bitacora/' + fecha + '/-KhZRSL02I7Csjl-hHBZ').set({
-              asistio: false,
-              cubreDescanso: true,
-              dobleTurno: false,
-              guardiaNombre: "CERVANTES BALDENEBRO JESUS RAMON"
-            })
-          } else {
-            firebase.database().ref('Argus/Bitacora/' + fecha + '/-KhZRSL02I7Csjl-hHBZ').set({
-              asistio: true,
-              cubreDescanso: false,
-              dobleTurno: false,
-              guardiaNombre: "CERVANTES BALDENEBRO JESUS RAMON"
-            })
-          }
-        }
-
-      }
+      // vm.script = script;
+      //
+      // function script() {
+      //   var fecha = 20170401;
+      //
+      //   for (fecha; fecha <= 20170415; fecha++) {
+      //     if (fecha == 20170415) {
+      //       firebase.database().ref('Argus/Bitacora/' + fecha + '/-KhZRSL02I7Csjl-hHBZ').set({
+      //         asistio: false,
+      //         cubreDescanso: true,
+      //         dobleTurno: false,
+      //         guardiaNombre: "CERVANTES BALDENEBRO JESUS RAMON"
+      //       })
+      //     } else {
+      //       firebase.database().ref('Argus/Bitacora/' + fecha + '/-KhZRSL02I7Csjl-hHBZ').set({
+      //         asistio: true,
+      //         cubreDescanso: false,
+      //         dobleTurno: false,
+      //         guardiaNombre: "CERVANTES BALDENEBRO JESUS RAMON"
+      //       })
+      //     }
+      //   }
+      //
+      // }
 
       function openModal() {
         vm.modal = $uibModal.open({
